@@ -1,2 +1,0 @@
-# Witryny i aplikacje internetowe
-

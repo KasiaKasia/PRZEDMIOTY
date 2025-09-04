@@ -1,2 +1,0 @@
-# Elementy programowania
-

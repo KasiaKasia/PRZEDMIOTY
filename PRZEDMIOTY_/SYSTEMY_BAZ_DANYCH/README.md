@@ -1,2 +1,0 @@
-# Systemy baz danych
-

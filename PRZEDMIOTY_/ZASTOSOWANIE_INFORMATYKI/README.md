@@ -1,2 +1,0 @@
-# Zastosowania informatyki
-
