@@ -1,0 +1,12 @@
+﻿#include <iostream>
+using namespace std;
+
+int main(int argc, char* argv[]) {
+    cout << "Liczba argumentow: " << argc << endl;
+
+    for (int i = 0; i < argc; i++) {
+        cout << "Argument " << i << ": " << argv[i] << endl;
+    }
+
+    return 0;
+}
