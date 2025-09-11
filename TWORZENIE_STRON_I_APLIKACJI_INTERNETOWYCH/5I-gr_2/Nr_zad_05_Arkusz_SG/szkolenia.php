@@ -31,18 +31,8 @@
 
             <main class="dashboard">
                 <?php 
-
-                $host     = "localhost";
-                $user     = "root";
-                $password = "";
-                $dbname   = "firma";
-                
-
-                $conn = new mysqli($host, $user, $password, $dbname);
-
-                if ($conn->connect_error) {
-                    die("Błąd połączenia: " . $conn->connect_error);
-                }
+            
+                include "db.php";
 
                 $sql    = "SELECT data, temat FROM szkolenia";
                 $result = $conn->query($sql);
