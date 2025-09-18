@@ -1,7 +1,7 @@
 CREATE TABLE dzialy (
     id INT PRIMARY KEY,
     nazwa VARCHAR(100) NOT NULL,
-    srednia_pensja DECIMAL(10,2) -- opcjonalne pole, można też wyliczać w zapytaniach
+    srednia_pensja DECIMAL(10,2)
 );
 
 CREATE TABLE pracownicy (
@@ -14,9 +14,9 @@ CREATE TABLE pracownicy (
 
 
 INSERT INTO dzialy (id, nazwa, srednia_pensja) VALUES
-(1, 'IT', NULL),
-(2, 'Finanse', NULL),
-(3, 'Marketing', NULL);
+(1, 'IT', 13000),
+(2, 'Finanse', 15700),
+(3, 'Marketing', 6000);
 
 
 INSERT INTO pracownicy (id, imie, pensja, id_dzial) VALUES
