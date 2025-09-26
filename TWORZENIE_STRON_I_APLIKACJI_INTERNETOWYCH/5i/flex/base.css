@@ -9,29 +9,38 @@ body {
   width: 100vw;
   padding:0;
   margin:0;
-  font-family: lato; 
+  font-family: lato;
+  counter-reset: box_span;
 }
+
+.box {
+  counter-increment: box_span;
+} 
+
+.box_span::before {
+  font-weight: bold;
+  font-size: 38px;
+  content: counter(box_span);
+}
+
 
 .box {
   width: 100px;
   height: 150px;
-  background: red; 
+  background: red;
   padding: 10px;
   margin: 5px;
-}
-
-.box_span {
-  font-weight: bold;
-  font-size: 38px; 
 }
 
 .box:nth-child(2) {
   background: orange;
 }
 
+
 .box:nth-child(3) {
   background: yellowgreen;
 }
+
 
 .box:nth-child(4) {
   background: yellow;
