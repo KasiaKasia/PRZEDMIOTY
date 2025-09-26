@@ -1,0 +1,19 @@
+body {
+	display: flex;   
+	flex-direction: row; 
+	flex-wrap:  wrap;
+	justify-content: flex-start;  
+	align-content: flex-start;
+}
+
+body > * {
+	flex-shrink: 1;
+}
+
+.box {
+	flex-basis: 20px;
+}
+
+.text{
+	color: green !important; 
+}
