@@ -1,0 +1,39 @@
+/* Wszystkie p nieparzyste w .content */
+.content p:nth-of-type(odd) {
+    color: blue;
+}
+
+/* Wszystkie p parzyste w .content */
+.content p:nth-of-type(even) {
+    color: darkorange;
+}
+
+/* Drugi <p> w każdym rodzicu */
+.content p:nth-of-type(2) {
+    font-weight: bold;
+}
+
+/* Ostatni <p> w .content */
+.content p:last-of-type {
+    text-decoration: underline;
+}
+
+/* Bezpośrednie p po ul */
+.content ul + p {
+    background-color: pink;
+}
+
+/* Wszystkie p po ul (niekoniecznie bezpośrednie) */
+.content ul ~ p {
+    background-color: sandybrown;
+}
+
+/* Wyjątek: wszystkie p oprócz pierwszego */
+.content p:not(:first-of-type) {
+    border: 1px solid green;
+}
+
+/* Element o ID */
+#p {
+    background-color: lightgreen;
+}
