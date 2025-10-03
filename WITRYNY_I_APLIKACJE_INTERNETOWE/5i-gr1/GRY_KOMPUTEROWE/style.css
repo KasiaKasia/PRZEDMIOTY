@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    background: #444;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+main {
+    display: flex;      /* 3 kolumny obok siebie */
+}
+
+#lewa, #srodek, #prawa {
+    padding: 15px;
+}
+
+#lewa {
+    width: 25%;
+    background: #f2f2f2;
+}
+
+#srodek {
+    width: 50%;
+    background: #fff;
+}
+
+#prawa {
+    width: 25%;
+    background: #f2f2f2;
+}
+
+footer {
+    margin-top: 10px;
+}
