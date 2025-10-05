@@ -38,7 +38,7 @@ Z `htmlspecialchars()` dostaniesz tekst &lt;h1&gt;Witaj!&lt;/h1&gt;, który w pr
 
 1) Wrażliwy (niebezpieczny) przykład PHP — nie rób w ten sposób:
  
-```
+```php
 
 <?php
 // Uwaga: PRZYKŁAD NIEBEZPIECZNY — tylko do testów lokalnych!
@@ -84,34 +84,33 @@ https://example.com:443/katalog/plik.html?szukaj=abc#sekcja2
 
 Składniki:
 
-1. Schemat (protocol)
+1. **Schemat** (protocol)
 
 np. `http`, `https`, `ftp`, `mailto`
 
 mówi, jak przeglądarka ma się połączyć.
 
-2. Host (pełny adres serwera w domenie)
+2. **Host** (pełny adres serwera w domenie)
 
 np. `example.com`, `pl.wikipedia.org`
 
 adres serwera (domena lub IP).
 
-
-    - Domena główna (root domain)
+- Domena główna (root domain)
 
     np. `wikipedia.org`
 
     składa się z:
 
-        -- domeny najwyższego poziomu (TLD) – `org`, `com`, `pl`
+    -- domeny najwyższego poziomu (TLD) – `org`, `com`, `pl`
 
-        -- domeny drugiego poziomu – wikipedia
+    -- domeny drugiego poziomu – wikipedia
 
-    razem: `wikipedia.org`.
+razem: `wikipedia.org`.
 
-    **To jest podstawowa nazwa, pod którą działa strona**.
+**To jest podstawowa nazwa, pod którą działa strona**.
 
-    - Subdomena
+- Subdomena
 
     np. pl. w `pl.wikipedia.org`
 
@@ -124,19 +123,19 @@ adres serwera (domena lub IP).
     `en.wikipedia.org` – wersja angielska,
 
 
-3. Port (opcjonalny)
+3. **Port** (opcjonalny)
 
 np. `:443`, `:8080`
 
 wskazuje port serwera (dla https domyślnie 443, dla http – 80, więc zwykle pomijamy).
 
-4. Ścieżka (path)
+4. **Ścieżka** (path)
 
 np. `/katalog/plik.html`
 
 mówi, który plik/zasób na serwerze ma być pobrany.
 
-5. Parametry zapytania (query string)
+5. **Parametry zapytania** (query string)
 
 zaczyna się od `?`, np. `?szukaj=abc&strona=2`
 
@@ -144,7 +143,7 @@ Para `klucz=wartość` przekazywana do aplikacji (np. wyniki wyszukiwania). Kole
 
 Znak `= `(equal sign) służy do przypisania wartości do klucza (parametru).
 
-6. Kotwica (fragment)
+6. **Kotwica** (fragment)
 
 zaczyna się od `#`, np. `#sekcja2`
 
