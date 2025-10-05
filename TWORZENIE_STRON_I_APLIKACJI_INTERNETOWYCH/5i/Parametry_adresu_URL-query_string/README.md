@@ -98,13 +98,13 @@ adres serwera (domena lub IP).
 
 - Domena główna (root domain)
 
-    np. `wikipedia.org`
+np. `wikipedia.org`
 
-    składa się z:
+składa się z:
 
-    -- domeny najwyższego poziomu (TLD) – `org`, `com`, `pl`
+    - domeny najwyższego poziomu (TLD) – `org`, `com`, `pl`
 
-    -- domeny drugiego poziomu – wikipedia
+    - domeny drugiego poziomu – wikipedia
 
 razem: `wikipedia.org`.
 
@@ -112,15 +112,15 @@ razem: `wikipedia.org`.
 
 - Subdomena
 
-    np. pl. w `pl.wikipedia.org`
+np. pl. w `pl.wikipedia.org`
 
-    jest **częścią przed domeną główną**.
+jest **częścią przed domeną główną**.
 
-    Subdomeny tworzy właściciel domeny, żeby wydzielać różne sekcje lub usługi:
+Subdomeny tworzy właściciel domeny, żeby wydzielać różne sekcje lub usługi:
 
-    `pl.wikipedia.org` – wersja polska,
+`pl.wikipedia.org` – wersja polska,
 
-    `en.wikipedia.org` – wersja angielska,
+`en.wikipedia.org` – wersja angielska,
 
 
 3. **Port** (opcjonalny)
