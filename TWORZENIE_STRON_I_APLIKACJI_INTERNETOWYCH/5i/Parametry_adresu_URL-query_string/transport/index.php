@@ -23,8 +23,8 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Pojazdów</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Lista Pojazdów</title>
     <style>
         table {
             width: 100%;
@@ -94,8 +94,7 @@ try {
 </head>
 <body>
     <div class="container">
-        <h1>Lista Pojazdów</h1>
-         
+        <h1>Lista Pojazdów</h1>         
         <table>
             <thead>
                 <tr>
