@@ -1,6 +1,5 @@
 <?php
-session_start();
-// Połączenie z bazą danych
+session_start(); 
 $conn = new mysqli("localhost", "root", "", "gry");
 if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
@@ -14,30 +13,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nazwa'])) {
     $opis = $conn->real_escape_string(($_POST['opis']));
     $cena = (float)$_POST['cena'];
     $zdjecie = $conn->real_escape_string(($_POST['zdjecie']));
-  $_SESSION['test'] =$_POST['nazwa'];
-    // Jeśli puste lub cena <=0 – błąd
-    // if (empty(trim($_POST['nazwa'])) || empty(trim($_POST['opis'])) || empty(trim($_POST['zdjecie'])) || $cena <= 0) {
-    //     $_SESSION['blad'] = "Wypełnij wszystkie pola poprawnie (cena > 0)!";
-    //     header('Location: index.php');
-    //     exit();
-    // }
-
+ 
+    if (empty($nazwa) || empty($opis) || empty($zdjecie) || $cena <= 0) {
+        $_SESSION['blad'] = "Wypełnij wszystkie pola poprawnie (cena > 0)!";
+        header('Location: gry.php');
+        exit();
+    }
     // INSERT z query (jak chcesz)
     if ($conn->query("INSERT INTO gry (nazwa, opis, cena, zdjecie) 
                       VALUES ('$nazwa', '$opis', $cena, '$zdjecie')")) {
-        // Po sukcesie przekieruj na tę samą stronę (GET)
-        // $_SESSION['sukces'] = "Gra '$nazwa' dodana pomyślnie!";
-        header('Location: index.php');
-        exit();  // Zatrzymaj wykonanie skryptu
+        $_SESSION['sukces'] = "Gra '$nazwa' dodana pomyślnie!";
+        header('Location: gry.php');
+        exit();
     } else {
-        // $_SESSION['blad'] = "Błąd dodawania: " . $conn->error;
-        // header('Location: index.php');
-        // exit();
-    }
+        $_SESSION['blad'] = "Błąd dodawania: " . $conn->error;
+        header('Location: gry.php');
+        exit();
+    }  
 }
-if (isset($_SESSION['test'])) {
-    echo $_SESSION['test'];
-} 
+ 
 // Wyświetl komunikaty z sesji
 if (isset($_SESSION['sukces'])) {
     echo "<div style='color: green; background: #d4edda; padding: 10px; margin: 10px; border: 1px solid #c3e6cb;'>";
@@ -77,42 +71,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['szukaj'])) {
             <h3>Top 5 gier w tym miesiącu</h3>
             <ul>
                 <?php
-                $wynik = $conn->query("SELECT id, nazwa, zdjecie FROM gry LIMIT 5");
+                // Skrypt 1: Top 5 po punktach
+                $wynik = $conn->query("SELECT nazwa FROM gry ORDER BY punkty DESC LIMIT 5");
                 while ($row = $wynik->fetch_assoc()) {
-                    echo "<li>{$row['nazwa']} <img src='{$row['zdjecie']}' alt='gra' height='50'></li>";
+                    echo "<li>{$row['nazwa']}</li>";
                 }
                 ?>
             </ul>
             <h3>Nasz sklep</h3>
-            <a href="http://sklep.gry.pl" target="_blank">Tu kupisz gry</a>
-
+            <a href="http://sklep.gry.pl">Tu kupisz gry</a>
             <h3>Stronę wykonał</h3>
-            <p>000000000 (Twój numer zdającego)</p>
+            <p>000000000</p>
         </section>
-
         <section id="srodek">
             <?php
-            $wynik = $conn->query("
-                SELECT nazwa, LEFT(opis,100) AS opis_skrot, punkty, cena
-                FROM gry WHERE id = 1
-            ");
-            if ($wynik && $wynik->num_rows > 0) {
-                $row = $wynik->fetch_assoc();
+            // Skrypt 2: Wyświetlenie wszystkich gier w blokach
+            $wynik = $conn->query("SELECT nazwa, opis, punkty, cena FROM gry");
+            while ($row = $wynik->fetch_assoc()) {
+                $opis_skrot = substr($row['opis'], 0, 100) . '...';
+                echo "<div class='gra'>";
                 echo "<h3>{$row['nazwa']}</h3>";
-                echo "<p>{$row['opis_skrot']}...</p>";
-                echo "<p>Punkty: {$row['punkty']}, Cena: {$row['cena']} PLN</p>";
+                echo "<p>{$opis_skrot}</p>";
+                echo "<span class='punkty'>{$row['punkty']}</span>";
+                echo "<p>Cena: {$row['cena']} PLN</p>";
+                echo "</div>";
             }
             ?>
         </section>
-
         <section id="prawa">
             <h3>Dodaj nową grę</h3>
-            <form method="post" action="index.php" >
-                <div>Nazwa: </div> <input type="text" name="nazwa" required> 
-                <p>Opis: </p><input type="text" name="opis" required> 
-                <p>Cena:</p> <input type="number" step="0.01" name="cena" required> 
-                <p>Zdjęcie: </p><input type="text" name="zdjecie" required> 
-                <button type="submit" name="Wyślij">DODAJ</button>
+            <form method="post" action="gry.php">
+                <label for="nazwa">Nazwa:</label><br>
+                <input type="text" id="nazwa" name="nazwa" required><br>
+                <label for="opis">Opis:</label><br>
+                <input type="text" id="opis" name="opis" required><br>
+                <label for="cena">Cena:</label><br>
+                <input type="number" step="0.01" id="cena" name="cena" required><br>
+                <label for="zdjecie">Zdjęcie:</label><br>
+                <input type="text" id="zdjecie" name="zdjecie" required><br>
+                <button type="submit">DODAJ</button>
             </form>
         </section>
     </main>
@@ -121,22 +118,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['szukaj'])) {
             <label>ID gry: <input type="number" name="szukaj"></label>
             <button type="submit">Pokaż opis</button>
         </form>
-
         <?php
+        // Efekt skryptu 3: Wyświetlenie opisu po submicie
         if ($opisGra) {
             echo "<h4>{$opisGra['nazwa']}</h4>";
             echo "<p>{$opisGra['opis']}</p>";
-        }
-
-        echo "<h3>Najlepsze gry</h3>";
-        $wynik = $conn->query("
-            SELECT nazwa, punkty, cena
-            FROM gry
-            ORDER BY punkty DESC
-            LIMIT 5
-        ");
-        while ($row = $wynik->fetch_assoc()) {
-            echo "<p>{$row['nazwa']} - Punkty: {$row['punkty']} - Cena: {$row['cena']} PLN</p>";
         }
         ?>
     </footer>

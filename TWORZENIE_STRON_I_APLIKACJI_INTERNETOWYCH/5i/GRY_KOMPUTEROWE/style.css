@@ -1,38 +1,79 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+/* Zawartość pliku styl.css */
+
+* {
+    font-family: Garamond;
+    color: white;
 }
 
-header, footer {
-    background: #444;
-    color: #fff;
+body {
+    margin: 0;
+}
+
+header {
+    background: indigo;
     text-align: center;
-    padding: 15px;
+    padding: 2px;
 }
 
 main {
-    display: flex;      /* 3 kolumny obok siebie */
+     display: flex;
+     flex-wrap: wrap;
 }
 
-#lewa, #srodek, #prawa {
-    padding: 15px;
-}
-
-#lewa {
-    width: 25%;
-    background: #f2f2f2;
+#lewa, #prawa {
+    background: indigo;
+    height: 600px;
 }
 
 #srodek {
-    width: 50%;
-    background: #fff;
-}
-
-#prawa {
-    width: 25%;
-    background: #f2f2f2;
+    background: black;
+    height: 600px;
+    overflow: scroll;
 }
 
 footer {
-    margin-top: 10px;
+    background: indigo;
+    height: 150px;
+}
+
+.punkty {
+    background: tomato;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+li {
+    padding: 5px;
+}
+
+.gra {
+    display: inline-block;
+    text-align: center;
+    padding: 3px;
+}
+
+input {
+    margin: 10px;
+    color: indigo;
+}
+
+@media screen and (min-width: 801px) {
+    main {        
+        flex-direction: row;
+    }
+    #lewa, #prawa {
+        width: 20%;
+    }
+    #srodek {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    main {         
+        flex-direction: column;
+    }
+    #lewa, #srodek, #prawa {
+        width: 100%;
+    }
 }
