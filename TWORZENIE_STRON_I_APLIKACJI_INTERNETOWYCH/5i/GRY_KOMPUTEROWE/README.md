@@ -7,7 +7,7 @@
 
  ```
 
- ** Typy mediów**
+ **Typy mediów**
 
  - **all**: Domyślny typ, stosowany do wszystkich mediów (np. ekrany, drukarki). Nie wymaga jawnego podawania w zapytaniu.
 
@@ -17,8 +17,10 @@
 
 - **speech**: Przeznaczony dla syntezatorów mowy i czytników ekranowych (np. dla osób niewidomych), zastępujący przestarzały typ "aural"
 
-- jak mamy `min-width: 801px`
+**jak mamy** `min-width: 801px`
+
 Czyli:
+
 ✅ 801px → działa
 
 ✅ 1200px → działa
@@ -27,7 +29,8 @@ Czyli:
 
 ❌ 500px → nie działa
 
-- jak mamy `max-width: 800px`
+**jak mamy** `max-width: 800px`
+
 Czyli:
 
 ✅ 800px → działa
