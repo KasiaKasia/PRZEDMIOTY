@@ -1,4 +1,4 @@
-### Podstawy JavaScript
+# Podstawy JavaScript
 
 **W JavaScript możemy umieścić kod na kilka sposobów:**
 
@@ -80,24 +80,22 @@ console.log(pi); // 3.14159
 // pi = 3.14; ❌ Błąd: nie można zmieniać wartości stałej
 ```
 
-✅ Cechy const:
+Cechy `const`:
 
-wartość musi być przypisana od razu,
+- wartość musi być przypisana od razu,
+- nie można zmienić ani ponownie zadeklarować tej samej stałej,
+- zasięg działania – taki sam jak let (blokowy).
 
-nie można zmienić ani ponownie zadeklarować tej samej stałej,
-
-zasięg działania – taki sam jak let (blokowy).
-
-Przykład:
-
+```JS
 const imie = "Jan";
 if (true) {
   const imie = "Adam";
   console.log(imie); // Adam
 }
 console.log(imie); // Jan
+```
 
-3.  **Instrukcje `if, else if, else`**
+## 3.  **Instrukcje `if, else if, else`**
 
 ```JS
 let age = 18;
@@ -118,7 +116,7 @@ let age = 20;
 let message = age >= 18 ? "Pełnoletni" : "Niepełnoletni";
 console.log(message);
 ```
-4. **switch**
+## 4. **switch**
 
 ```JS
 let color = "zielony";
@@ -137,12 +135,13 @@ switch (color) {
     console.log("Nieznany kolor");
 }
 ```
+
 - switch sprawdza kolejne case za pomocą operatora **ścisłego porównania (===)**.
 - **break** zatrzymuje wykonywanie kolejnych przypadków (bez niego przejdzie dalej).
 - **default** — wykona się, jeśli żaden case nie pasuje
 
 
-5. **Pętle**
+## 5. **Pętle**
 a) **for — klasyczna pętla**
 
 ```JS
@@ -208,7 +207,7 @@ name: Anna
 age: 25
 city: Warszawa
 
-6. **Przerywanie i pomijanie iteracji**
+## 6. **Przerywanie i pomijanie iteracji**
 - **break** — przerywa działanie pętli
 
 ```JS
