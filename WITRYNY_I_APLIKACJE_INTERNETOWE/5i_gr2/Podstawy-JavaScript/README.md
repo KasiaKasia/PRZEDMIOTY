@@ -1,6 +1,6 @@
-## Podstawy JavaScript
+### Podstawy JavaScript
 
-*W JavaScript możemy umieścić kod na kilka sposobów:*
+**W JavaScript możemy umieścić kod na kilka sposobów:**
 
 a) Wewnątrz <script> w dokumencie HTML:
 
@@ -8,13 +8,13 @@ a) Wewnątrz <script> w dokumencie HTML:
 <!DOCTYPE html>
 <html>
 <head>
- <title>Przykład</title>
+  <title>Przykład</title>
 </head>
 <body>
- <h1>Witaj!</h1>
- <script>
- alert("To jest komunikat z JavaScript!");
- </script>
+  <h1>Witaj!</h1>
+  <script>
+  alert("To jest komunikat z JavaScript!");
+  </script>
 </body>
 </html>
 ```
@@ -22,14 +22,12 @@ a) Wewnątrz <script> w dokumencie HTML:
 b) Zewnętrzny plik .js:
 
 HTML:
-
 `<script src="skrypt.js"></script>`
 
 skrypt.js:
-
 `alert("Witaj z zewnętrznego pliku!");`
 
-🧩 **1. Definiowanie zmiennych**
+## **1. Definiowanie zmiennych**
 
 🔹 `let` – nowoczesny sposób (zalecany)
 Używamy go, gdy **wartość zmiennej może się zmieniać** w trakcie działania programu.
@@ -44,7 +42,7 @@ console.log(liczba); // 25
 // let liczba = 25; //  SyntaxError: Identifier 'liczba' has already been declared
 ```
 
-Cechy let:
+Cechy `let`:
 
 - działa w zasięgu blokowym (czyli tylko wewnątrz { }),
 - można zmieniać wartość,
@@ -60,23 +58,18 @@ var liczba = 5;
 var liczba = 7; // można ponownie zadeklarować
 console.log(liczba); // 7
 ```
-
-❌ Cechy var:
+Cechy `var`:
 
 - działa w zasięgu funkcji, nie bloku,
-
 - można ponownie deklarować tę samą zmienną,
-
 - może prowadzić do błędów przez tzw. hoisting (przesuwanie deklaracji na początek).
-
-Przykład:
 
 ```JS
 console.log(x); // undefined (zamiast błędu)
 var x = 10;
 ```
 
-2. **Definiowanie stałych**
+## 2. **Definiowanie stałych**
 🔹 `const` – stała (niezmienna wartość)
 
 Używana, gdy wartość nie powinna się zmieniać po przypisaniu.
