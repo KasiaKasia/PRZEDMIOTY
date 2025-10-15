@@ -230,17 +230,26 @@ for (let i = 0; i < 5; i++) {
 ## 7. **Inkrementacja i Dekrementacja**
 
 1. **Inkrementacja**
+
 To zwiększenie wartości zmiennej o 1.
+
 ● preinkrementacja ++x – najpierw zwiększa, potem używa wartości,
+
 ● postinkrementacja x++ – najpierw używa wartości, potem zwiększa.
+
 2. **Dekrementacja**
+
 To zmniejszenie wartości zmiennej o 1
+
 ● predekrementacja --x,
+
 ● postdekrementacja x--.
 
-## 18. Wyszukiwanie elementów w dokumencie
+
+## 8. Wyszukiwanie elementów w dokumencie
 
 1) `document.getElementById(id)`
+
 **Zwraca jeden element** o konkretnym identyfikatorze (atrybut `id`).
 Jeśli element nie istnieje — zwraca `null`.
 
@@ -374,9 +383,10 @@ kontakt.style.color = "green";
 </script>
 ```
 
-## 19. Zmiana treści i właściwości elementów HTML w JavaScript
+## 9. Zmiana treści i właściwości elementów HTML w JavaScript
 
 1. `element.innerHTML = "wartość"`
+
 • Zmienia zawartość HTML elementu.
 
 ```JS
@@ -385,6 +395,7 @@ paragraf.innerHTML = "Nowa treść paragrafu";
 ```
 
 2. `element.attribute_name = "wartość"`
+
 • Zmiana wartości atrybutu bezpośrednio.
 
 ```JS
@@ -402,12 +413,9 @@ obraz.setAttribute("alt", "Opis obrazka");
 
 ## 🖱️ Zdarzenia myszy w JavaScript
 
-
-1. `onclick` – kliknięcie myszką
+🔹 1. `onclick` – kliknięcie myszką
 
 Występuje, gdy użytkownik **kliknie na dany element** (naciśnięcie i puszczenie lewego przycisku myszy).
-
-Przykład:
 
 ```HTML
 <button onclick="alert('Kliknięto przycisk!')">Kliknij mnie</button>
@@ -423,8 +431,6 @@ Zastosowanie:
 
 Reaguje na dwukrotne **szybkie kliknięcie w ten sam element**.
 
-Przykład:
-
 ```HTML
 <p ondblclick="this.style.color='red'">Kliknij mnie dwa razy, by zmienić kolor</p>
 ```
@@ -435,8 +441,6 @@ Zastosowanie:
 🔹 3. `onmouseover` – najechanie kursorem
 
 Zdarzenie występuje, gdy **kursor myszy najedzie na element**.
-
-Przykład:
 
 ```HTML
 <div onmouseover="this.style.backgroundColor='lightgreen'">Najedź na mnie</div>
@@ -451,8 +455,6 @@ Zastosowanie:
 
 Zdarzenie występuje, gdy **kursor myszy opuści element, na który wcześniej najechał**.
 
-Przykład:
-
 ```HTML
 <div onmouseout="this.style.backgroundColor='white'">Opuść mnie</div>
 ```
@@ -466,7 +468,6 @@ Zastosowanie:
 
 Wywołuje się w momencie **naciśnięcia przycisku myszy** (jeszcze przed jego puszczeniem).
 
-Przykład:
 ```HTML
 <button onmousedown="this.style.backgroundColor='yellow'">Naciśnij i przytrzymaj</button>
 ```
@@ -479,7 +480,6 @@ Zastosowanie:
 
 Występuje, gdy użytkownik **puści przycisk myszy po wcześniejszym wciśnięciu**.
 
-Przykład:
 ```HTML
 <button onmouseup="this.style.backgroundColor='lightblue'">Puść przycisk</button>
 ```
@@ -490,7 +490,7 @@ Zastosowanie:
 
 ## ⌨️ Zdarzenia klawiatury (keyboard events)
 
-`onkeydown` – wciśnięcie klawisza
+🔹 1. `onkeydown` – wciśnięcie klawisza
  
 Występuje w momencie **naciśnięcia dowolnego klawisza** (zanim zostanie on puszczony).
 
@@ -507,7 +507,6 @@ Zastosowanie:
 Podobne do onkeydown, ale działa tylko dla klawiszy, które generują znaki (np. litery, cyfry).
 Uwaga – w nowoczesnych projektach jest zastępowane przez keydown i keyup.
 
-Przykład:
 ```HTML
 <input type="text" onkeypress="console.log('Naciśnięto znak')" placeholder="Wpisz znak">
 ```
@@ -519,7 +518,6 @@ Zastosowanie:
 
 Uruchamia się, gdy użytkownik **puści wciśnięty wcześniej klawisz**.
 
-Przykład:
 ```HTML
 <input type="text" onkeyup="console.log('Puszczono klawisz')" placeholder="Puść klawisz">
 ```
@@ -527,21 +525,19 @@ Przykład:
 Zastosowanie:
 – aktualizacja podpowiedzi po zakończeniu wpisywania,
 – wyszukiwanie po wpisaniu pełnego słowa.
-
  
 🔹 4. `oninput`
 
 **Reaguje**, gdy **zawartość pola tekstowego się zmienia** (nawet przez wklejenie).
 
-Przykład:
-
+```HTML
 <input type="text" oninput="console.log('Wpisano lub wklejono tekst')">
+```
 
 🔹 5. `onchange`
 
 **Uruchamia się po zatwierdzeniu zmiany** (np. po opuszczeniu pola tekstowego lub zmianie wyboru w select).
 
-Przykład:
 ```HTML
 <select onchange="alert('Wybrano nową opcję')">
   <option>Polska</option>
@@ -556,7 +552,6 @@ Przykład:
 
 Uruchamia się, gdy cała strona (łącznie z obrazkami i stylami) zostanie załadowana.
 
-Przykład:
 ```HTML
 <body onload="alert('Strona została załadowana!')">
 ```
@@ -569,7 +564,6 @@ Zastosowanie:
  
 Wywoływane, gdy użytkownik **zmieni rozmiar okna przeglądarki**.
 
-Przykład:
 ```HTML
 <script>
 window.onresize = () => console.log("Zmieniono rozmiar okna");
@@ -583,8 +577,7 @@ Zastosowanie:
 🔹 3. `onfocusin` – obiekt zyskał fokus
 
 Uruchamia się, gdy element **zostanie zaznaczony** (np. pole formularza kliknięte).
-
-Przykład:
+ 
 ```HTML
 <input type="text" onfocusin="this.style.backgroundColor='lightyellow'">
 ```
@@ -596,8 +589,7 @@ Zastosowanie:
 🔹 4. `onfocusout` – obiekt stracił fokus
 
 Uruchamia się, gdy element **straci fokus** (użytkownik kliknie gdzie indziej).
-
-Przykład:
+ 
 ```HTML
 <input type="text" onfocusout="this.style.backgroundColor='white'">
 ```
@@ -610,8 +602,7 @@ Zastosowanie:
 🔹 5. `onscroll`
  
 **Uruchamia się**, gdy użytkownik **przewija stronę** lub inny element z paskiem przewijania.
-
-Przykład:
+ 
 ```HTML
 <div onscroll="console.log('Przewijanie elementu')" style="height:100px; overflow:auto;">
   <p>Treść do przewinięcia...</p><p>Treść...</p><p>Jeszcze treść...</p>
@@ -620,8 +611,7 @@ Przykład:
 🔹 6. `onerror`
  
 Reaguje, gdy wystąpi **błąd wczytywania** (np. obrazka, skryptu).
-
-Przykład:
+ 
 ```HTML
 <img src="nieistnieje.jpg" onerror="this.src='domyslny.jpg'">
 ```
