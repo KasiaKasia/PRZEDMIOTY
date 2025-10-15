@@ -141,6 +141,129 @@ switch (color) {
 - **default** — wykona się, jeśli żaden case nie pasuje
 
 
+**🔸 == (operator porównania z konwersją typów)**
+
+**Porównuje wartości dwóch zmiennych, ignorując ich typy.
+Jeśli typy są różne, **JavaScript spróbuje je przekonwertować** (tzw. type coercion), **zanim porówna wartości**.
+
+```JS
+5 == "5"       // true   → bo "5" zostaje przekonwertowane na liczbę Jednak nie wszystko da sie skonwertować do liczby Number("true")-> NaN 
+0 == false      // true   → false zostaje przekonwertowane na 0
+null == undefined // true → są traktowane jako "równe" przy == 
+```
+**🔸 === (operator ścisłego porównania)**
+
+Porównuje zarówno **wartość, jak i typ** danych.
+Nie dokonuje żadnej konwersji — wszystko musi się dokładnie zgadzać.
+
+```JS
+5 === "5"      // false  → różne typy (number vs string)
+0 === false     // false  → number vs boolean
+null === undefined // false → różne typy
+5 === 5         // true   → ten sam typ i wartość
+```
+
+```JS
+null == undefined   // true  ✅ specjalny przypadek
+null === undefined  // false ❌ różne typy
+```
+
+Trudniejsze porównania
+
+```JS
+"abc" == 0      // false → "abc" -> NaN → false
+[1] == 1          // true → [1].toString() -> "1" -> 1
+["1"] == "1"      // true
+[] == 0           // true → [].toString() -> "" -> 0
+[null] == 0       // true → [null].toString() -> "" -> 0
+[1,2] == "1,2"    // true
+"5" == true   // false → true -> 1, "5" -> 5 → 5 != 1
+false == "0"  // true  → false -> 0, "0" -> 0
+```
+
+```JS
+console.log('undefined === undefined', undefined === undefined) // true
+console.log('undefined == undefined ', undefined ==  undefined) // true
+
+console.log('null === null', null === null) // true
+console.log('null == null ', null ==  null) // true
+
+console.log('null === undefined', null ===  undefined) // false
+console.log('null == undefined ', null ==   undefined) // true
+ 
+console.log('NaN === NaN', NaN ===  NaN) // false
+console.log('NaN == NaN ', NaN ==   NaN) // false
+
+console.log(typeof null); // "object"
+console.log(typeof undefined); // "undefined"
+console.log(typeof NaN); // number
+/*
+output:
+  + 'aa' => NaN
+  - 'aa' => NaN
+
+  + '2'  =>  2  
+  - '2'  => -2
+*/
+console.log( 1 + '2' + '2');   // 122
+console.log( 5 - + '2' + '2'); // 32
+/*
++'2' → konwertuje string '2' na liczbę 2
+→ 5 - 2 + '2'
+→ 3 + '2' 
+"32"
+*/
+console.log('A' + 'B' + '2');  // AB2
+console.log('A' + 'B'  + 2);   // AB2
+console.log('A' + - 'B' + 2);  // ANaN2
+console.log('A' + - 'B' + - 2); // 'ANaN-2'
+ 
+console.log(+'2' + +'3'); // '5'
+console.log(-'2' + -'3'); // -5
+
+
+console.log('0.1 + 0.2 === 0.3', 0.1 + 0.2 === 0.3); // false
+/*
+wynik 0.1 + 0.2 nie jest dokładnie równy 0.3 w pamięci komputera
+liczby zmiennoprzecinkowe są przechowywane binarnie (w systemie dwójkowym), a nie dziesiętnie.
+Nie każdą liczbę dziesiętną da się zapisać dokładnie w binarnym formacie.
+
+Na przykład:
+
+0.1 w systemie binarnym to liczba nieskończona:
+0.0001100110011001100110011...(powtarzające się 0011)
+
+
+0.2 to:
+0.0011001100110011001100110...(powtarzające się 0011)
+
+
+Komputer musi je zaokrąglić do ograniczonej liczby bitów (64 bity).
+Więc faktycznie:
+
+0.1 + 0.2  // ≈ 0.30000000000000004
+
+
+Dlatego:
+0.1 + 0.2 === 0.3  // false
+
+bo porównujesz:
+0.30000000000000004 === 0.3
+
+🔹 Jak to sprawdzić:
+console.log(0.1 + 0.2); 
+// => 0.30000000000000004
+
+
+
+*/
+console.log('-"cos"' , -'cos'  ); // NaN
+console.log('-+"cos"', -+'cos' ); // NaN
+console.log('!"cos"' , !'cos'  ); // false
+console.log('!!"cos"', !!'cos' ); // true
+```
+
+
 ## 5. **Pętle**
 a) **for — klasyczna pętla**
 
