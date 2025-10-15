@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Test wyszukiwania elementów w DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .sekcja {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .wynik {
+            margin-top: 10px;
+            background: #f5f5f5;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🔍 Wyszukiwanie elementów w JavaScript (DOM)</h1>
+
+<div id="opis" class="sekcja">
+    <h3 id="tytul">Sekcja główna</h3>
+    <p class="tekst">Pierwszy akapit</p>
+    <p class="tekst">Drugi akapit</p>
+    <input type="radio" name="kolor" value="czerwony"> Czerwony
+    <input type="radio" name="kolor" value="zielony"> Zielony
+</div>
+
+<div class="sekcja" id="produkty">
+    <h3>Produkty</h3>
+    <ul>
+        <li class="item">Laptop</li>
+        <li class="item">Telefon</li>
+        <li class="item">Monitor</li>
+    </ul>
+</div>
+
+<div class="sekcja" id="panel">
+    <h3>Panel przycisków</h3>
+    <button onclick="szukajId()">getElementById</button>
+    <button onclick="szukajTag()">getElementsByTagName</button>
+    <button onclick="szukajClass()">getElementsByClassName</button>
+    <button onclick="szukajName()">getElementsByName</button>
+    <button onclick="szukajQuery()">querySelector</button>
+    <button onclick="szukajQueryAll()">querySelectorAll</button>
+    <button onclick="szukajClosest()">closest</button>
+
+    <div class="wynik" id="wynik"></div>
+</div>
+
+<script>
+const wynik = document.getElementById("wynik");
+
+// 1️⃣ getElementById
+function szukajId() {
+    const el = document.getElementById("tytul");
+    el.style.color = "blue";
+    wynik.textContent = "Znaleziono element o ID = 'tytul' i zmieniono jego kolor na niebieski.";
+}
+
+// 2️⃣ getElementsByTagName
+function szukajTag() {
+    const akapity = document.getElementsByTagName("p");
+    akapity[0].style.fontWeight = "bold";
+    wynik.textContent = "Pogrubiono pierwszy akapit za pomocą getElementsByTagName('p').";
+}
+
+// 3️⃣ getElementsByClassName
+function szukajClass() {
+    const sekcje = document.getElementsByClassName("sekcja");
+    sekcje[1].style.backgroundColor = "#e0f7fa";
+    wynik.textContent = "Podświetlono drugą sekcję (.sekcja) za pomocą getElementsByClassName.";
+}
+
+// 4️⃣ getElementsByName
+function szukajName() {
+    const radio = document.getElementsByName("kolor");
+    radio[1].checked = true;
+    wynik.textContent = "Zaznaczono przycisk radiowy o name='kolor' (zielony).";
+}
+
+// 5️⃣ querySelector
+function szukajQuery() {
+    const pierwszy = document.querySelector(".item");
+    pierwszy.style.color = "red";
+    wynik.textContent = "Pokolorowano pierwszy produkt na czerwono za pomocą querySelector('.item').";
+}
+
+// 6️⃣ querySelectorAll
+function szukajQueryAll() {
+    const items = document.querySelectorAll(".item");
+    items.forEach(i => i.style.textTransform = "uppercase");
+    wynik.textContent = "Zmieniono tekst wszystkich produktów na WIELKIE LITERY (querySelectorAll).";
+}
+
+// 7️⃣ closest
+function szukajClosest() {
+    const akapit = document.querySelector(".tekst");
+    const kontener = akapit.closest(".sekcja");
+    kontener.style.border = "5px solid green";
+    wynik.textContent = "Zmieniono ramkę sekcji, w której znajduje się akapit (closest('.sekcja')).";
+}
+</script>
+
+</body>
+</html>

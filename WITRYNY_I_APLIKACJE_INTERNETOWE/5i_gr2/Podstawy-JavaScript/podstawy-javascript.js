@@ -19,3 +19,16 @@ const pi = 3.14159;
 console.log(pi); // 3.14159
 
 //  pi = 3.14; // TypeError: Assignment to constant variable. ❌ Błąd: nie można zmieniać wartości stałej
+
+let inkrementacja = 5;    
+console.log('inkrementacja++ ' , inkrementacja++); // 5
+console.log('inkrementacja ' ,  inkrementacja); // 6     
+console.log('++inkrementacja ' , ++inkrementacja); // 7 
+console.log('inkrementacja ' ,  inkrementacja); // 7
+
+let dekrementacja = 5;
+console.log('dekrementacja-- ' , dekrementacja--); // 5
+console.log('dekrementacja ' ,  dekrementacja); // 4     
+console.log('--dekrementacja ' , --dekrementacja); // 3 
+console.log('dekrementacja ' ,  dekrementacja); // 3
+ 
