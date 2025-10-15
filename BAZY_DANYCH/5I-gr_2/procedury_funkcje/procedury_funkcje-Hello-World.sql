@@ -1,4 +1,6 @@
 
+
+DROP PROCEDURE pokaz_hello_world;
 -- procedura
 DELIMITER //
 
