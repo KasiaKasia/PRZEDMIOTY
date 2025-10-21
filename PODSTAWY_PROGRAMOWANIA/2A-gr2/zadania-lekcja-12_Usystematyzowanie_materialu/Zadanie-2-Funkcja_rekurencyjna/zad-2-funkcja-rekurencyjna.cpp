@@ -12,7 +12,13 @@ int main() {
     int n;
     cout << "Podaj liczbe nieujemna: ";
 
-     
+     cin >> n;
+	 if(n<0) {
+		 cout << "podałeś liczbę nieujemna: "; 
+	 } else {
+		 
+		 cout << " " << factorial(n)<< endl;
+	 }
 
     return 0;
 }

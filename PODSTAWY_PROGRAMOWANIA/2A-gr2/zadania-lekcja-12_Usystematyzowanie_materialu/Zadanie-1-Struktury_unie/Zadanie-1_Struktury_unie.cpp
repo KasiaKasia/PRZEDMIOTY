@@ -3,11 +3,12 @@ Zadanie 1 – Struktury i unie
 
 Treść :
 Napisz program w C++, który przechowuje dane pracownika : 
-imię, wiek i typ identyfikatora.
+imię, wiek i typ identyfikatora. Gdzie typ identyfikatora jest typu char  
 
-Użytkownik może wybrać, czy identyfikator będzie numerem pracownika(int) czy kodem literowym(char[10]).
+Użytkownik może wybrać,  typ identyfikatora na podstawie którego poda numer pracownika lub kod pracownika. 
+Numer pracownika (int num;) i kod pracownika ( char code[20];) to specjalny typ union.
 
-Wykorzystaj strukturę i unię do przechowywania identyfikatora.Program powinien wyświetlić wprowadzone dane.
+Wykorzystaj typ struct i unię do przechowywania numeru i kodu pracownika. Program powinien wyświetlić wprowadzone dane dla typu struct oraz union.
 
 */
 
