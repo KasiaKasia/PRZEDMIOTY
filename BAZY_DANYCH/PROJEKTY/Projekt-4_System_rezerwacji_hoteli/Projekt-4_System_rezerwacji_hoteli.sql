@@ -46,7 +46,11 @@ CREATE TABLE rezerwacje (
     FOREIGN KEY (id_goscia) REFERENCES goscie(id),
     CHECK (data_checkout > data_checkin)
 );
-
+CREATE TABLE log_rezerwacji (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    opis VARCHAR(255),
+    data_zdarzenia TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 INSERT INTO pokoje (numer, cena_dobowa, status)
 VALUES 
 ('101', 200.00, 'wolny'),
@@ -100,3 +104,11 @@ BEGIN
 END//
 
 DELIMITER ;
+
+-- weryfikacja
+
+INSERT INTO rezerwacje (id_pokoju, id_goscia, data_checkin, data_checkout)
+VALUES (2, 3, '2025-11-10', '2025-11-12');
+
+SELECT * FROM rezerwacje;
+SELECT * FROM log_rezerwacji;

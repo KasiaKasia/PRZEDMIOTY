@@ -78,3 +78,10 @@ BEGIN
 END//
 
 DELIMITER ;
+
+-- weryfikacja
+UPDATE pracownicy
+SET pensja = 6000
+WHERE id = 2;
+
+Select * from historia_zmian;

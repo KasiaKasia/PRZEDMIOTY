@@ -14,6 +14,7 @@ Raporty: Raport sumujący obroty – bilans wartości dostaw per dostawca (SUM(i
 Zapytania z funkcjami dat/stringów: Zapytanie wyszukujące dostawy z ostatniego roku z przyciętym adresem (TRIM(adres)) i miesiącem dostawy (MONTHNAME(data_dostawy)).
 
 */
+
 DROP TABLE IF EXISTS log_magazynu;
 DROP TABLE IF EXISTS dostawy;
 DROP TABLE IF EXISTS produkty;
@@ -98,4 +99,25 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- ======================================
+-- Weryfikacja
+-- ======================================
+
+INSERT INTO dostawy (id_produktu, id_dostawcy, ilosc_dostawy, data_dostawy)
+VALUES (1, 1, 20, NOW());
+
+SELECT * FROM log_magazynu ORDER BY data_logu DESC LIMIT 1;
+-- ⚠️ Test przekroczenia limitu
+
+INSERT INTO dostawy (id_produktu, id_dostawcy, ilosc_dostawy, data_dostawy)
+VALUES (1, 2, 2000, NOW());
+
+SELECT ilosc FROM produkty WHERE id = 1;
+SELECT * FROM log_magazynu ORDER BY data_logu DESC LIMIT 1;
+
+SELECT * FROM produkty;
+SELECT * FROM dostawcy;
+SELECT * FROM log_magazynu;
+
  

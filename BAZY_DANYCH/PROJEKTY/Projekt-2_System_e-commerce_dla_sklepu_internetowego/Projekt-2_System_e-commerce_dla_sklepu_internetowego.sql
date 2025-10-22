@@ -69,7 +69,8 @@ INSERT INTO zamowienia (id_produktu, id_klienta, ilosc, data_zamowienia, status)
 VALUES
 (1, 1, 1, CURDATE(), 'zrealizowane'),
 (2, 2, 2, CURDATE(), 'oczekujące'),
-(3, 3, 1, CURDATE(), 'anulowane');
+(3, 3, 1, CURDATE(), 'anulowane'),
+(1, 3, 3, '2025-03-04', 'oczekujące');
 
 /*
 Wyzwalacz (Trigger): Trigger po_anulowaniu_zamowienia, który po zmianie statusu zamówienia na "anulowane" przywraca stan magazynowy produktu.
@@ -93,6 +94,18 @@ BEGIN
 END//
 
 DELIMITER ;
+ 
+ -- wywołanie
+ 
+SELECT * FROM produkty;
+SELECT * FROM zamowienia;
+SELECT * FROM log_zmian;
 
-DELIMITER ;
+-- Aktualizacja wywołująca trigger
+UPDATE zamowienia
+SET status = 'anulowane'
+WHERE id = 4;
 
+SELECT * FROM produkty;
+SELECT * FROM zamowienia;
+SELECT * FROM log_zmian;

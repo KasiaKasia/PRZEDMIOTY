@@ -95,3 +95,11 @@ BEGIN
 END//
 
 DELIMITER ;
+
+-- weryfikacja 
+
+INSERT INTO wypozyczenia (id_ksiazki, id_uzytkownika, data_wypozyczenia, data_zwrotu_planowana ) VALUES (2, 2, '2025-10-01',  CURDATE() );
+
+UPDATE wypozyczenia SET data_zwrotu_rzeczywista = CURDATE() WHERE id = 2;
+
+SELECT * FROM logi_zwrotow;

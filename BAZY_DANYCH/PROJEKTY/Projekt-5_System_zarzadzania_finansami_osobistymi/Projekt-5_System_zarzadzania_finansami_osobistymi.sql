@@ -75,7 +75,7 @@ VALUES
 Wyzwalacz (Trigger): Trigger po_transakcji, który po wstawieniu transakcji automatycznie aktualizuje saldo konta i loguje jeśli saldo staje się ujemne.
 */
 
-DELIMITER $$
+DELIMITER //
 
 CREATE TRIGGER po_transakcji
 AFTER INSERT ON transakcje
@@ -94,8 +94,22 @@ BEGIN
     IF (SELECT saldo FROM konta WHERE id = NEW.id_konta) < 0 THEN
         INSERT INTO log_saldo (id_konta, komunikat)
         VALUES (NEW.id_konta, CONCAT(' Uwaga: saldo konta ID ', NEW.id_konta, ' stało się ujemne.'));
-    END IF
-END$$
+    END IF;
+END//
 
 DELIMITER ;
+
+-- weryfikacja
+
+-- Test — przychód:
+
+INSERT INTO transakcje (id_konta, typ, kwota, data_transakcji) VALUES (1, 'przychód', 100.00, CURDATE());
+SELECT * FROM konta WHERE id = 1;        -- saldo powinno być 150.00
+SELECT * FROM log_saldo;                  -- brak wpisu (saldo >= 0)
+
+-- Test — wydatek powodujący saldo ujemne:
+
+INSERT INTO transakcje (id_konta, typ, kwota, data_transakcji) VALUES (1, 'wydatek', 300.00, CURDATE());
+SELECT * FROM konta WHERE id = 1;        -- saldo powinno być -150.00
+SELECT * FROM log_saldo ORDER BY data_zdarzenia DESC LIMIT 1; -- powinna być wiadomość o saldzie ujemnym
 
