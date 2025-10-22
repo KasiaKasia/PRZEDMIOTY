@@ -238,7 +238,7 @@ naglowek. innerHTML  = "Nowy tytuł"
 
 2. Chcemy, aby klikniecię w przycisk wyświetliło alert z właściwością:
 
-<button onclick = alert(kliknieto")" Kliknij mnie </button>
+<button onclick = alert("kliknieto")" Kliknij mnie </button>
 
 3. Chcemy, aby element miał czerwony tekst i niebieskie tło:
 
