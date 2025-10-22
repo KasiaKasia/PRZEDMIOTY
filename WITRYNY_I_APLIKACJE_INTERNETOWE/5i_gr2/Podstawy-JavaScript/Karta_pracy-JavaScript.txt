@@ -1,0 +1,251 @@
+Karta pracy: JavaScript
+Zadanie uzupełnij luki w definicjach.
+
+Uzupełnij brakujace wyrazy w definicjach pojęć JavaScript
+
+1. Zmienna, której wartość może się zmieniać w trakcie działania programu , nazywamy LET .
+Jest ograniczona do bloku kodu w którym  została zadeklarowana.
+
+2. Stała to element programu ktorego wartość po przypisaniu nie może uleć ZMIANIE CONST. Używa się jej do przechowywania wartości , które nie powinny się zmieniać , np.: liczby 
+
+3. Instrukcja pozwalacjąca wykonywać fragment kodu tylko w tedy , gdy spełniony jest określony  WARUNEK, nazywamy INSTRUKCJĄ WARUNKOWĄ (IF)  .
+
+4. Instrukcja umożliwiająca wybranie jednej sieżki wykonania, jeśli warunek jest prawdziwy i innej , jeśli warynek jest FAŁSZYWY nazywamy INSTRUKCJĄ IF...ELSE. .
+
+5. Pętla, w której kod jest powtarzalny określoną liczbę razy, a licznik możemy ustawić od wartości początkowej do końcowej z określonym  KROKIEM, nazywamy PĘTLĄ FOR. .
+
+6. Pętla, ktora wynonuje kod dopóki warunek pozostaje PRAWDZIWY, nazywamy PĘTLĄ WHILE.
+Trzeba pamietać , aby warunek zmieniać w trakcie działania , aby uniknąć niekończonej SIĘ PĘTLI.
+
+7. Metoda pozwalająca pobrać element HTML o określonej nazwie identyfikatora (id) to document.getElementById(). . Zawsze zwraca jeden element lub null jeśli nie istnieje
+
+8. Metoda pozwalająca pobrać wszystkie elementy pasujące do secttora CSS i zwrócić je w postaci kolekcji jest nazywana  document.querySelectorAll().
+
+
+
+9. Właściwość elementu, która pozwala zmienić lub odczytać jeggo zawartość HTML, to innerHTML . Możemy w niej umieścić tekst lub inne tagi HTML
+
+10. Metoda pozwalająca ustawić dowolny atrybut elementu (np.: src , alt, id) na określoną wartość to setAttribute(). .
+
+Zadanie 2. Podaj definicję i mały przykład: 
+
+createElement 
+Metoda createElement() tworzy nowy element HTML (np. <div>, <p>, <li>) w pamięci — ale nie dodaje go jeszcze do strony.
+
+Przykład:
+
+let nowyParagraf = document.createElement("p");
+nowyParagraf.textContent = "To jest nowy paragraf!";
+
+
+appendChild 
+
+Metoda appendChild() dodaje element (wcześniej utworzony np. przez createElement) jako dziecko do innego elementu w drzewie DOM.
+
+Przykład:
+
+let div = document.getElementById("kontener");
+let p = document.createElement("p");
+p.textContent = "Dodano tekst do kontenera!";
+div.appendChild(p);
+
+removeChild 
+Metoda removeChild() usuwa wskazany element (dziecko) z elementu nadrzędnego.
+
+Przykład:
+
+let lista = document.getElementById("lista");
+let pierwszyElement = lista.firstElementChild;
+lista.removeChild(pierwszyElement);
+
+replaceChild
+
+Metoda replaceChild() zamienia istniejący element potomny innym elementem.
+
+Przykład:
+
+let stary = document.getElementById("stary");
+let nowy = document.createElement("p");
+nowy.textContent = "Nowy element zamiast starego!";
+stary.parentNode.replaceChild(nowy, stary);
+
+
+setAttribute
+
+Metoda setAttribute() ustawia (lub nadpisuje) atrybut elementu HTML, np. src, id, class.
+
+Przykład:
+
+let obraz = document.createElement("img");
+obraz.setAttribute("src", "zdjecie.jpg");
+obraz.setAttribute("alt", "Opis zdjęcia");
+
+getElementsByTagName 
+Metoda getElementsByTagName() zwraca kolekcję wszystkich elementów o określonym tagu (np. wszystkich <p>).
+
+Przykład:
+
+let paragrafy = document.getElementsByTagName("p");
+console.log(paragrafy.length); // liczba paragrafów na stronie
+
+querySelector 
+
+Metoda querySelector() zwraca pierwszy element, który pasuje do podanego selektora CSS (np. .klasa, #id, div p).
+
+Przykład:
+
+let pierwszyParagraf = document.querySelector("p");
+let kontener = document.querySelector("#kontener");
+
+querySelectorAll 
+Metoda querySelectorAll() zwraca listę (NodeList) wszystkich elementów pasujących do danego selektora CSS.
+
+Przykład:
+
+let elementy = document.querySelectorAll(".menu li");
+elementy.forEach(el => el.style.color = "blue");
+
+onclick
+onclick to zdarzenie (event) uruchamiane po kliknięciu elementu HTML. Można je przypisać w kodzie JavaScript lub bezpośrednio w HTML.
+
+Przykład (JavaScript):
+
+let przycisk = document.getElementById("kliknij");
+przycisk.onclick = function() {
+  alert("Kliknięto przycisk!");
+};
+Przykład (HTML):
+
+<button onclick="alert('Klik!')">Kliknij mnie</button>
+
+Zadanie 3
+Oceń czy poniższe stwierdzenia są prawdziwe (P) czy fałszywe (F)
+
+1. var deklaruje zmienną blokową
+❌ F – var nie deklaruje zmiennej blokowej, tylko funkcyjną (nie jest ograniczona do bloku {} jak let czy const).
+
+2. const pozwala zmieniać wartość po przypisaniu
+❌ F – const nie pozwala zmieniać wartości po przypisaniu.
+
+3. document.getElementsByClassName zwraca kolekcję HTML
+✅ P – document.getElementsByClassName zwraca kolekcję HTML (HTMLCollection).
+
+4. innerHTML zmienia wygląd stylu elementu
+❌ F – innerHTML zmienia zawartość HTML elementu, a nie jego styl.
+
+5. onclick to zdarzenie klikniecią w element
+✅ P – onclick to zdarzenie kliknięcia w element.
+
+6. for może zastąpić while w wiekszości przypadków
+✅ P – for może zastąpić while w większości przypadków (oba mogą wykonywać powtarzalny kod).
+
+7. setAttribute służy do zmiany wartości atrybutu elementu
+✅ P – setAttribute służy do zmiany wartości atrybutu elementu.
+
+8. querySelector zwraca pierwszy element pasujący do selektora
+✅ P – querySelector zwraca pierwszy element pasujący do selektora.
+
+9 document.write jest zalecane w nowoczesnych JS
+❌ F – document.write nie jest zalecane w nowoczesnym JavaScript, ponieważ może nadpisać cały dokument i powodować błędy w dynamicznych stronach. Zamiast tego używa się np. innerHTML lub manipulacji DOM.
+
+10. element.style.fontWeight = "bold" pogrubia tekst
+✅ P – element.style.fontWeight = "bold" pogrubia tekst, ponieważ zmienia styl CSS właściwości font-weight
+
+zadanie 4. uzupełnij właściwości w JavaScript
+
+Uzupełnij brakujacą nazwę właściwości w kodzie JavaScript na podstawie efektu w nawiasie:
+
+1. element.style backgroundColor = "blue"; (zmienia kolor tła elementu)
+2. element.style color = "while": (zmienia kolor tekstu)
+3. element.style fontSize = "20px": (zmienia rozmiar czcionki)
+4. element.style fontStyle = "italic": (ustawia czcionkę na kursywę  )
+5. element.style fontWeight = "bold": (pogrubia tekst  )
+6. element.style listStyleType = "circle": (zmienia styl punktowania na liście )
+7. element.style border = "1px solid black": (dodaje obramowanie do elementu  )
+8. element.style borderRadius = "10px": (zaaokrągla rogi elementu  )
+9. element.style boxShadow = "5px 5px 10px gray": (dodaje cień elementu  )
+10. element.style textAlign = "center": (wyrównuje tekst w poziomie  )
+
+zadanie 5 Krótka analiza
+1. Kiedy używamy getElementById i querySelector — różnice
+
+🟢 getElementById("id") — służy tylko do pobrania elementu po jego identyfikatorze (id).
+→ Zwraca jeden element lub null, jeśli nie istnieje.
+👉 Przykład:
+
+const tytul = document.getElementById("naglowek");
+
+
+🔵 querySelector("selektor") — pozwala pobierać elementy za pomocą dowolnego selektora CSS (#id, .klasa, tag).
+→ Zwraca pierwszy pasujący element.
+👉 Przykład:
+
+const tytul = document.querySelector(".naglowek");
+
+2. Różnica między innerHTML a setAttribute
+
+🟢 innerHTML — zmienia zawartość (tekst/HTML) wewnątrz elementu.
+👉 Przykład:
+
+element.innerHTML = "<b>Nowy tekst</b>";
+
+
+🔵 setAttribute — ustawia atrybut elementu (np. src, id, alt, href).
+👉 Przykład:
+
+obrazek.setAttribute("src", "kot.jpg");
+
+3. Jak działają zdarzenia onclick i onmouseover
+
+🟢 onclick — uruchamia funkcję po kliknięciu elementu.
+👉 Przykład:
+
+button.onclick = function() {
+    alert("Kliknięto przycisk!");
+};
+
+
+🔵 onmouseover — uruchamia funkcję, gdy najedziemy kursorem na element.
+👉 Przykład:
+
+obrazek.onmouseover = function() {
+    obrazek.style.border = "2px solid red";
+};
+
+4. Co robi appendChild i removeChild w praktyce
+
+🟢 appendChild — dodaje nowy element jako dziecko (np. do div, ul itp.).
+👉 Przykład:
+
+const nowy = document.createElement("p");
+nowy.innerHTML = "Nowy akapit";
+document.body.appendChild(nowy);
+
+
+🔵 removeChild — usuwa element będący dzieckiem innego elementu.
+👉 Przykład:
+
+document.body.removeChild(nowy);
+
+Zadanie 7 
+Wymyśl właściwość / operację na podstawie efektu
+
+1. Chcemy , aby nagłowek zmienił treść na "nowy tytuł"
+Uzupełnij brakujace właściwości lub metody:
+
+var naglowek = document.getElementById("tytul")
+naglowek. innerHTML  = "Nowy tytuł"
+
+2. Chcemy, aby klikniecię w przycisk wyświetliło alert z właściwością:
+
+<button onclick = alert(kliknieto")" Kliknij mnie </button>
+
+3. Chcemy, aby element miał czerwony tekst i niebieskie tło:
+
+element.style. color = "red";
+element.style. backgroundColor  = "blue";
+
+5. Chcemy aby wszystkie div z klasą "box" miały czarne obramowanie:
+document.querySelectorAll("div.box").forEach(function(el) {
+    el.style.border = "1px solid black";
+});
