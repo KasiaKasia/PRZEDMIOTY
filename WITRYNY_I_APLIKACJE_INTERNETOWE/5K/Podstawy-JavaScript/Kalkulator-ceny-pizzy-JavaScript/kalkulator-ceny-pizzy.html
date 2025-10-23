@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator ceny pizzy</title>
+</head>
+
+<body>
+
+    <h2>Kalkulator ceny pizzy</h2>
+
+    <form id="formularz">
+
+        <p>Wybierz rozmiar pizzy:</p>
+        <label><input type="radio" name="rozmiar" value="20"> Mała (20 zł)</label><br>
+        <label><input type="radio" name="rozmiar" value="30"> Średnia (30 zł)</label><br>
+        <label><input type="radio" name="rozmiar" value="40"> Duża (40 zł)</label><br><br>
+
+        <p>Wybierz dodatki:</p>
+        <label><input type="checkbox" name="dodatek" value="5"> Ser (+5 zł)</label><br>
+        <label><input type="checkbox" name="dodatek" value="7"> Szynka (+7 zł)</label><br>
+        <label><input type="checkbox" name="dodatek" value="6"> Pieczarki (+6 zł)</label><br><br>
+
+        <label>Ilość pizz:
+            <input type="number" id="ilosc" min="1" value="1">
+        </label><br><br>
+
+        <button type="button" onclick="obliczCene()">Oblicz cenę</button>
+    </form>
+
+    <h3 id="wynik"></h3>
+
+    <script>
+        function obliczCene() {
+
+            let wybranyRozmiarPizzy = ''
+            const rozmiarPizzy = document.getElementsByName("rozmiar");
+
+
+            for (let el of rozmiarPizzy) {
+                if (el.checked) {
+                    console.log("Zaznaczony rozmiar:", el.value);
+                    wybranyRozmiarPizzy = el.value;
+                }
+            }
+
+            // wybór rozmiaru pizzy
+            const rozmiar = document.querySelector('input[name="rozmiar"]:checked');
+            if (!rozmiar) {
+                alert("Wybierz rozmiar pizzy!");
+                return;
+            }
+            console.log('wybranyRozmiarPizzy: ', wybranyRozmiarPizzy, rozmiar.value)
+
+            const checkboxes = document.getElementsByName("dodatek");
+            let sumaPizza = 0;
+
+            for (let el of checkboxes) {
+                if (el.checked) sumaPizza += Number(el.value);
+            }
+
+            let cena = parseFloat(rozmiar.value);
+
+            // wybór dodatków
+            const dodatki = document.querySelectorAll('input[type="checkbox"]:checked');
+            dodatki.forEach(function (dodatek) {
+                cena += parseFloat(dodatek.value);
+            });
+            console.log("Suma sumaPizza:", parseFloat(sumaPizza) + parseFloat(wybranyRozmiarPizzy), cena);
+
+            // ilość pizz
+            const ilosc = parseInt(document.getElementById("ilosc").value);
+            if (isNaN(ilosc) || ilosc <= 0) {
+                alert("Podaj poprawną ilość!");
+                return;
+            }
+
+            // obliczenie łącznej ceny
+            const suma = cena * ilosc;
+
+            // wyświetlenie wyniku
+            document.getElementById("wynik").textContent = "Łączny koszt zamówienia: " + suma + " zł";
+        }
+    </script>
+
+</body>
+
+</html>
