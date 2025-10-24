@@ -155,6 +155,10 @@ zadanie 4. uzupełnij właściwości w JavaScript
 
 Uzupełnij brakujacą nazwę właściwości w kodzie JavaScript na podstawie efektu w nawiasie:
 
+https://developer.mozilla.org/en-US/docs/Glossary/Camel_case
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#index
+
 1. element.style backgroundColor = "blue"; (zmienia kolor tła elementu)
 2. element.style color = "while": (zmienia kolor tekstu)
 3. element.style fontSize = "20px": (zmienia rozmiar czcionki)
