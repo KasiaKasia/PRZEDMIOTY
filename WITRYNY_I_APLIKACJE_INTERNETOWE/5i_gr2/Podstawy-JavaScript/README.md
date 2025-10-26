@@ -94,6 +94,30 @@ if (true) {
 }
 console.log(imie); // Jan
 ```
+**Zasięg zmiennych**
+
+```JS
+if (true) {
+  var x = 10;
+  let y = 20;
+  const z = 30;
+}
+
+console.log(x); // ✅ działa — 10
+console.log(y); // ❌ błąd — y is not defined
+console.log(z); // ❌ błąd — z is not defined
+
+for (var i = 0; i < 3; i++) {
+  // ...
+}
+console.log(i); // ✅ 3 — var "przeżył" poza pętlą
+
+for (let j = 0; j < 3; j++) {
+  // ...
+}
+console.log(j); // ❌ błąd — j is not defined
+
+```
 
 ## 3.  **Instrukcje `if, else if, else`**
 
@@ -433,12 +457,13 @@ genders[1].checked = true; // zaznacza "Kobieta"
 **Zwraca pierwszy pasujący element** do podanego selektora CSS.
 
 ```HTML
-<div class="produkt"></div>
-<div class="produkt"></div>
+<p class="text">Pierwszy akapit</p>
+<p class="text">Drugi akapit</p> 
+
 
 <script>
-const pierwszyProdukt = document.querySelector(".produkt");
-pierwszyProdukt.textContent = "Pierwszy produkt";
+const el = document.querySelector('.text');
+console.log(el.textContent); // ➜ "Pierwszy akapit"
 </script>
 ```
 
@@ -748,7 +773,7 @@ nowyDiv.innerHTML = "Jestem nowym divem";
 ```
 
 Wyjaśnienie:
-Tworzy nowy element HTML (tutaj <div>) w pamięci — jeszcze nie jest widoczny w dokumencie, dopóki nie zostanie dodany do jakiegoś rodzica (appendChild).
+Tworzy nowy element HTML (tutaj `<div>` ) w pamięci — jeszcze nie jest widoczny w dokumencie, dopóki nie zostanie dodany do jakiegoś rodzica (appendChild).
 Ustawiamy mu zawartość poprzez innerHTML.
 
 Zastosowanie:
@@ -808,7 +833,37 @@ Zastosowanie:
 – dawniej używane do prostych testów lub dynamicznych komunikatów.
 (Obecnie lepiej używać innerHTML lub appendChild.)
 
- 
+ ⚠️ **2. Problem** – gdy użyjesz document.write() po załadowaniu strony
+
+```HTML
+ <!DOCTYPE html>
+<html>
+<body>
+  <h1>To jest moja strona</h1>
+  <button onclick="addText()">Kliknij mnie</button>
+
+  <script>
+    function addText() {
+      document.write("Nowy tekst!");
+    }
+  </script>
+</body>
+</html>
+```
+
+👉 Po kliknięciu przycisku:
+
+Cała zawartość strony (nagłówek, przycisk, wszystko!) znika. Zzostaje tylko tekst „Nowy tekst!”.
+
+
+👉 Co zamiast document.write()?
+
+```JS
+const p = document.createElement("p");
+p.textContent = "Nowy tekst";
+document.body.appendChild(p); // ➡️ Ta metoda dodaje elementy bez usuwania zawartości strony.
+```
+
 🔹 6. **Klonowanie elementu**
 
 ```JS
@@ -862,3 +917,67 @@ element.style.borderColor = "green";
 element.style.margin = "20px";      // zewnętrzny odstęp
 element.style.padding = "10px";     // wewnętrzny odstęp
 
+## 🧩 Tworzenie tablicy w JavaScript
+
+W JavaScript tablica (ang. array) to specjalny typ **obiektu**, który może przechowywać **wiele wartości** w jednej zmiennej
+
+🔹 **Przykład 1 – utworzenie tablicy za pomocą nawiasów kwadratowych:**
+
+```JS
+let owoce = ["jabłko", "banan", "gruszka"];
+```
+
+🔹 **Przykład 2 – z użyciem konstruktora Array():**
+
+```JS 
+let kolory = new Array("czerwony", "zielony", "niebieski");
+```
+
+🧩 **2️⃣ Dodawanie elementu na końcu tablicy – push()**
+
+```JS 
+let owoce = ["jabłko", "banan"];
+owoce.push("gruszka");
+
+console.log(owoce); // ["jabłko", "banan", "gruszka"]
+owoce.push("kiwi", "pomarańcza");
+console.log(owoce); // ["jabłko", "banan", "gruszka", "kiwi", "pomarańcza"]
+```
+
+🧩 **3️⃣ Usuwanie elementu z końca tablicy – pop()**
+
+```JS 
+let owoce = ["jabłko", "banan", "gruszka"];
+let usuniety = owoce.pop();
+
+console.log(owoce);   // ["jabłko", "banan"]
+console.log(usuniety); // "gruszka"
+```
+
+📘 Warto wiedzieć:
+
+`pop()` i `push()` zmieniają długość tablicy (`length`).
+
+🧩 **4️⃣ Dodawanie elementu na początku tablicy – unshift()**
+
+Metoda unshift() **dodaje jeden lub więcej elementów na początek tablicy**
+
+```JS 
+let owoce = ["banan", "gruszka"];
+owoce.unshift("jabłko");
+
+console.log(owoce); // ["jabłko", "banan", "gruszka"]
+owoce.unshift("kiwi", "śliwka");
+console.log(owoce); // ["kiwi", "śliwka", "jabłko", "banan", "gruszka"]
+```
+
+🧩 **5️⃣ Usuwanie elementu z początku tablicy – shift()**
+Metoda shift() **usuwa pierwszy element tablicy i zwraca jego wartość**
+
+```JS
+let owoce = ["jabłko", "banan", "gruszka"];
+let usuniety = owoce.shift();
+
+console.log(owoce);   // ["banan", "gruszka"]
+console.log(usuniety); // "jabłko"
+```
