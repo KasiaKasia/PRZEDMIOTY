@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">  
+</head>
+<body> 
+        <h3 id="tytul">Sekcja główna</h3>
+   <div class="sekcja" id="panel">
+        <h3>Panel przycisków</h3>
+        <button onclick="szukajId()">getElementById</button>
+        <button onclick="szukajTag()">getElementsByTagName</button>
+        <button onclick="szukajClass()">getElementsByClassName</button>
+        <button onclick="szukajName()">getElementsByName</button>
+        <button onclick="szukajQuery()">querySelector</button>
+        <button onclick="szukajQueryAll()">querySelectorAll</button>
+        <button onclick="szukajClosest()">closest</button>
+
+        <div class="wynik" id="wynik"></div>
+    </div>
+
+    <script>
+        const wynik = document.getElementById("wynik");
+
+      
+        function szukajId() {
+            const el = document.getElementById("tytul");
+            wynik.textContent = "Znaleziono element o ID = 'tytul' i zmieniono jego kolor na niebieski.";
+        }
+		function szukajTag() {
+			const akapity = document.getElementsByTagName("p");
+			wynik.textContent = "Pogrubiono pierwszy akapit za pomocą getElementsByTagName('p').";
+		}
+		function szukajName() {
+			const radio = document.getElementsByName("kolor");
+			radio[1].checked = true;
+			wynik.textContent = "Zaznaczono przycisk radiowy o name='kolor' (zielony).";
+		}
+		function szukajQuery() {
+			const pierwszy = document.querySelector(".item");
+			pierwszy.style.color = "red";
+			wynik.textContent = "Pokolorowano pierwszy produkt na czerwono za pomoc querySelector('.item').";
+		}
+ 
+        function szukajQueryAll() {
+            const items = document.querySelectorAll(".item");
+            items.forEach(i => i.style.textTransform = "uppercase");
+            wynik.textContent = "Zmieniono tekst wszystkich produkt贸w na WIELKIE LITERY (querySelectorAll).";
+        }
+
+ </script>
+
+</body>
+</html>
