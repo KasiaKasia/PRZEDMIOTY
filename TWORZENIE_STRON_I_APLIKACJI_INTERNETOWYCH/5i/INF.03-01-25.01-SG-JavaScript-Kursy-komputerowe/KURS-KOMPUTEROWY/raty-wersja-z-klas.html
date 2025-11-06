@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kursy komputerowe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <img src="header.jpg" alt="kursy komputerowe">
+</header>
+
+<nav>
+    <a href="index.html">Strona główna</a>
+    <a href="raty.html">Koszt rat</a>
+    <a href="https://moje-szkolenia.pl/">Nasz partner</a>
+</nav>
+
+<main>
+    <h3>Oblicz miesięczną ratę</h3>
+
+    <div>
+        <label><input type="checkbox" id="react" class="kontrolki"> Kurs React.js</label><br>
+        <label><input type="checkbox" id="javascript" class="kontrolki"> Kurs JavaScript</label><br><br>
+
+        <label for="raty">Liczba rat: </label>
+        <input type="number" id="raty" class="kontrolki" min="1"><br><br>
+
+        <select id="miasto" class="kontrolki">
+            <option value="Warszawa">Warszawa</option>
+            <option value="Katowice">Katowice</option>
+            <option value="Gdańsk">Gdańsk</option>
+        </select><br><br>
+
+        <button class="kontrolki" onclick="kalkulator.obliczRate()">Oblicz</button>
+    </div>
+
+    <p id="wynik"></p>
+</main>
+
+<footer>
+    <p>Autor strony: 123456</p>
+</footer>
+
+<script>
+class KalkulatorRat {
+    constructor() { 
+        this.kursReact = false;
+        this.kursJavaScript = false;
+        this.liczbaRat = 0;
+        this.miasto = "";
+        this.kosztCalkowity = 0;
+        this.wynikParagraf = document.getElementById('wynik');
+    }
+
+    pobierzDane() { 
+        this.kursReact = document.getElementById('react').checked;
+        this.kursJavaScript = document.getElementById('javascript').checked;
+        this.liczbaRat = parseInt(document.getElementById('raty').value);
+        this.miasto = document.getElementById('miasto').value;
+    }
+
+    obliczKwoteCalkowita() { 
+        let suma = 0;
+        if (this.kursReact) suma += 2400;
+        if (this.kursJavaScript) suma += 1800;
+        this.kosztCalkowity = suma;
+    }
+
+    obliczRate() {
+        this.pobierzDane();
+        this.obliczKwoteCalkowita();
+
+        if (this.kosztCalkowity === 0 || isNaN(this.liczbaRat) || this.liczbaRat <= 0) {
+            this.wynikParagraf.textContent = "Proszę wybrać kurs i podać poprawną liczbę rat.";
+            return;
+        }
+
+        const rata = (this.kosztCalkowity / this.liczbaRat).toFixed(2);
+
+        this.wynikParagraf.textContent =
+            `Kurs odbędzie się w ${this.miasto}. Koszt całkowity: ${this.kosztCalkowity} zł. ` +
+            `Płacisz ${this.liczbaRat} rat po ${rata} zł.`;
+    }
+}
+ 
+const kalkulator = new KalkulatorRat();
+</script>
+
+</body>
+</html>
