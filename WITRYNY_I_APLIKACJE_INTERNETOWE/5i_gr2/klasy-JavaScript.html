@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dwie klasy z konstruktorami</title>
+</head>
+<body>
+  <h2>Przykład dwóch klas</h2>
+
+  <button onclick="utworzDomyslna()">Utwórz osobę z pustym konstruktorem</button>
+  <button onclick="utworzParametryczna()">Utwórz osobę z konstruktorem z parametrami</button>
+
+  <script>
+    // 🔹 Klasa 1 – pusty konstruktor (domyślne wartości)
+    class OsobaDomyslna {
+      imie;
+      nazwisko;
+
+      constructor() {
+        this.imie = "Jan";
+        this.nazwisko = "Kowalski";
+      }
+
+      przedstawSie() {
+        alert(`Cześć! Nazywam się ${this.imie} ${this.nazwisko}.`);
+      }
+    }
+
+    // 🔹 Klasa 2 – konstruktor z parametrami
+    class OsobaParametryczna {
+      imie;
+      nazwisko;
+
+      constructor(imie, nazwisko) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+      }
+
+      przedstawSie() {
+        alert(`Cześć! Nazywam się ${this.imie} ${this.nazwisko}.`);
+      }
+    }
+
+    // 🔹 Funkcje wywoływane po kliknięciu przycisków
+    function utworzDomyslna() {
+      const osoba1 = new OsobaDomyslna(); // używa pustego konstruktora
+      osoba1.przedstawSie();
+    }
+
+    function utworzParametryczna() {
+      const osoba2 = new OsobaParametryczna("Anna", "Nowak"); // konstruktor z parametrami
+      osoba2.przedstawSie();
+    }
+  </script>
+  <button onclick="pokazRekurencje()">Oblicz silnię</button>
+
+  <script>
+    function silnia(n) {
+      if (n === 0) return 1;
+      else return n * silnia(n - 1);
+    }
+
+    function pokazRekurencje() {
+      let liczba = 5;
+      alert(`Silnia z ${liczba} to ${silnia(liczba)}`);
+    }
+  </script>
+  
+    <h2>Przykład użycia obiektu window.location</h2>
+
+  <button onclick="pokazInformacje()">Pokaż informacje o stronie</button>
+  <button onclick="przejdzDoNowej()">Przejdź na inną stronę</button>
+
+  <p id="wynik"></p>
+
+  <script>
+    function pokazInformacje() {
+      let tekst = `
+        <strong>Pełny adres (href) window.location.href:</strong> ${window.location.href} <br>
+		<p>działa zawsze — pokazuje pełną ścieżkę Pełny adres pliku lub strony</p>
+        <strong>Domena (hostname) window.location.hostname:</strong> ${window.location.hostname} <br>
+		<p> ❌ lokalny plik nie ma domeny  Domena serwera (np. localhost, example.com)</p>
+        <strong>Ścieżka (pathname) window.location.pathname:</strong> ${window.location.pathname} <br>
+		<p> działa, pokazuje ścieżkę do pliku Ścieżka pliku lub strony </p>
+        <strong>Protokół (protocol) window.location.protocol:</strong> ${window.location.protocol}
+		<p> pokazuje file: bo to plik z dysku Protokół (np. http: / https: / file:)</p>
+      `;
+      document.getElementById("wynik").innerHTML = tekst;
+    }
+
+    function przejdzDoNowej() {
+      // Załaduj nową stronę (np. Wikipedia)
+      window.location.assign("https://pl.wikipedia.org/");
+    }
+  </script>
+</body>
+</html>
