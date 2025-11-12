@@ -119,7 +119,7 @@ ETAP 2 - CECHY WITRYNY (Twoja wersja)
 - Blok nagłówkowy zawiera:
 -- Nagłówek H2: „SKLEP INTERNETOWY – ANALIZA DANYCH SQL”
 -- Zegar + aktualna data i czas w UTF (JavaScript). Aktualny czas i data zawsze jest prezentowana bez względu na ukrywanie się/pokazanie się menu lewego - zadanie na ocenę 6
--- Z lewej strony jest przycisk << (ukrywający/pokazujacy menu lewe). Po kliknieciu przycisku <<  menu lewe ukrywa się i pojawia się na jego miejscu  przycisk >> . Po kliknieciu przycisku >> menu lewe pojawia się i pokazuję się przycisk >> w miejsce poprzedniego przycisku. Dodatkow linki z menu lewego pojawiają się w bloku nagłówkowym ułożone poziomo w 2 liniajch. Czyli po schowaniu menu lewego linki pojawiają się w bloku nagłowkowym , a po pokazaniu się menu lewego linki nie są widoczne w bloku nagłówkowym. 
+-- Z lewej strony jest przycisk << (ukrywający/pokazujacy << / >> menu lewe). Po kliknieciu przycisku <<  menu lewe ukrywa się i pojawia się na jego miejscu przycisk >> . Po kliknieciu przycisku >> menu lewe pojawia się i pokazuję się przycisk << w miejsce poprzedniego przycisku. Dodatkowo linki z menu lewego pojawiają się w bloku nagłówkowym ułożone poziomo w 2 liniajch. Czyli po schowaniu menu lewego linki pojawiają się w bloku nagłowkowym , a po pokazaniu się menu lewego linki nie są widoczne w bloku nagłówkowym. 
 
 
 Menu lewe (30% szerokości):
