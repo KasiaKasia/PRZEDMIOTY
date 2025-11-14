@@ -1,4 +1,4 @@
-// Sprawdzian testowy - Elementy Programowania
+// Sprawdzian testowy   - Elementy Programowania  
  
 // GRUPA A
 /*
