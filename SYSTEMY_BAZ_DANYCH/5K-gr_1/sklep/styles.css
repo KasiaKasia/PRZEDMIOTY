@@ -1,0 +1,160 @@
+/* Domyślne ustawienia */
+* {
+    font-family: 'Roboto', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Ciało strony */
+body { 
+    margin: 0;
+    padding: 0;
+}
+
+/* Nagłówek */
+#naglowek {
+    background-image: linear-gradient(to right, #13cdcd, #17310a);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+ 
+#naglowek-gora {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Tytuł */
+#naglowek h2 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 22px;
+}
+
+/* Przyciski menu po lewej stronie */
+#menu-przyciski button {
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+#menu-przyciski button:hover {
+    background-color: #315a7b;
+}
+
+/* Zegar po prawej stronie */
+#czas {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* Linki w nagłówku po schowaniu menu */
+#linki-naglowek {
+    display: none;  
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#linki-naglowek a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: rgb(53, 90, 53);
+    border-radius: 4px;
+}
+ 
+main {
+    display: flex;
+    min-height: 80vh;
+}
+ 
+#menu-lewe {
+    visibility: visible;
+    width: 30%;
+  
+    padding: 20px;
+    border-right: 2px solid #17310a;
+}
+
+#menu-lewe ul {
+    list-style: none;
+    padding: 0;
+}
+
+#menu-lewe li {
+     margin: 8px 0;
+	background-color: rgb(53, 90, 53);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+#menu-lewe a {
+    text-decoration: none;
+    color: #17310a;
+    font-weight: bold;
+}
+
+#menu-lewe a:hover {
+    color: #4682b4;
+}
+
+/* Blok główny */
+#blok-glowny {
+    width: 70%;
+    padding: 20px; 
+}
+
+/* Tabela wyników */
+table {
+    margin: 20px auto;
+    width: 60%;
+    border-collapse: collapse;
+    border: 1px solid #4682b4;
+}
+
+th, td {
+    border: 1px solid #4682b4;
+    padding: 8px;
+}
+
+tr:hover {
+    background-color: #4682b4;
+    color: white;
+}
+
+/* Stopka */
+#stopka {
+    background-color: #17310a;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsywność */
+@media (max-width: 800px) {
+    #naglowek-gora {
+        flex-direction: column;
+        gap: 8px;
+    }
+    main {
+        flex-direction: column;
+    }
+    #menu-lewe {
+        width: 100%;
+    }
+    #blok-glowny {
+        width: 100%;
+    }
+}
