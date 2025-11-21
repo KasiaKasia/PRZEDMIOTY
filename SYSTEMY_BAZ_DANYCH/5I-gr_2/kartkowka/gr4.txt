@@ -1,0 +1,37 @@
+ZADANIE 1
+
+Co zwraca metoda 
+SELECT CURDATE();
+
+
+
+ZADANIE 2
+
+Co nalezy podać w parametrze dla metody 
+QUARTER()
+
+
+
+ZADANIE 3
+
+co zwróci metoda
+SELECT TIMESTAMPDIFF(DAY,'2024-01-01','2024-01-10');
+
+
+
+
+
+ZADANIE 4
+
+co zwróci metoda
+SELECT INSERT('abcdef', 3, 2, 'XYZ'); 
+
+
+
+ZADANIE 5
+
+co zwróci metoda
+SELECT LOCATE('b','abc');
+
+
+

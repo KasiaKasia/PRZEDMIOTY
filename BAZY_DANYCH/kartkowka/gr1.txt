@@ -1,0 +1,32 @@
+ZADANIE 1
+
+Co zwraca metoda 
+SELECT CURTIME();  
+
+
+
+ZADANIE 2
+
+Co nalezy podać w parametrze dla metody 
+QUARTER()
+
+
+
+ZADANIE 3
+
+co zwróci metoda
+SELECT CHAR_LENGTH('Łódź'); 
+
+
+
+ZADANIE 4
+
+co zwróci metoda
+SELECT INSTR('abcabc','ca');
+
+
+
+ZADANIE 5
+
+co zwróci metoda
+SELECT LOWER('TEST');

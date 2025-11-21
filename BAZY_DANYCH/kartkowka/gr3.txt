@@ -1,0 +1,29 @@
+ZADANIE 1
+
+Co zwraca metoda 
+SELECT ADDTIME('10:00:00','02:30:00');
+  
+  
+ZADANIE 2
+
+Co nalezy podać w parametrze dla metody 
+MONTHNAME()
+
+
+ZADANIE 3
+
+co zwróci metoda
+SELECT TIME_FORMAT('12:30:45','%H:%i');
+
+
+
+ZADANIE 4
+
+co zwróci metoda
+SELECT FORMAT(12345.678, 2);
+
+
+ZADANIE 5
+
+co zwróci metoda
+SELECT LEFT('abcdef', 3); 
