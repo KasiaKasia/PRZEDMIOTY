@@ -18,7 +18,7 @@ body {
     gap: 10px;
 }
  
-#naglowek-gora {
+#naglowek-gorny {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,14 +53,14 @@ body {
 }
 
 /* Linki w nagłówku po schowaniu menu */
-#linki-naglowek {
+#menu-zadan{
     display: none;  
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 10px;
 }
 
-#linki-naglowek a {
+#menu-zadan a {
     color: white;
     text-decoration: none;
     padding: 5px 10px;
@@ -141,7 +141,7 @@ tr:hover {
 
 /* Responsywność */
 @media (max-width: 800px) {
-    #naglowek-gora {
+    #naglowek-gorny {
         flex-direction: column;
         gap: 8px;
     }

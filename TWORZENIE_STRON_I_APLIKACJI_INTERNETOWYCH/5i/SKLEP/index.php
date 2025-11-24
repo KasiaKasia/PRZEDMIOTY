@@ -18,7 +18,7 @@
             const menuLewe = document.getElementById('menu-lewe');
             const przyciskUkryj = document.getElementById('ukryj-menu');
             const przyciskPokaz = document.getElementById('pokaz-menu');
-            const linkiNaglowek = document.getElementById('linki-naglowek');
+            const linkiNaglowek = document.getElementById('menu-zadan');
 
             if (menuLewe.style.display === 'none') {
                 menuLewe.style.display = 'block';
@@ -38,7 +38,7 @@
             const menuLewe = document.getElementById('menu-lewe');
             const przyciskUkryj = document.getElementById('ukryj-menu');
             const przyciskPokaz = document.getElementById('pokaz-menu');
-            const linkiNaglowek = document.getElementById('linki-naglowek');
+            const linkiNaglowek = document.getElementById('menu-zadan');
             const blokGlowny = document.getElementById('blok-glowny');
  
             if (menuLewe.style.visibility === 'hidden') {
@@ -65,7 +65,7 @@
 <body onload="aktualizujCzas()">
 
     <header id="naglowek">
-        <div id="naglowek-gora">
+        <div id="naglowek-gorny">
             <div id="menu-przyciski">
                 <button id="ukryj-menu" onclick="pokazUkryj()"><<</button>
                 <button id="pokaz-menu" onclick="pokazUkryj()" style="display:none;">>></button>
@@ -76,27 +76,15 @@
             <div id="czas"></div>
         </div>
 
-        <nav id="linki-naglowek">
-            <a href="#">Zadanie 1</a>
-            <a href="#">Zadanie 2</a>
-            <a href="#">Zadanie 3</a>
-            <a href="#">Zadanie 4</a>
-            <a href="#">Zadanie 5</a>
-			<a href="#">Zadanie 6</a>
-            <a href="#">Zadanie 7</a>
-            <a href="#">Zadanie 8</a>
-            <a href="#">Zadanie 9</a>
-            <a href="#">Zadanie 10</a>
-			<a href="#">Zadanie 11</a>
-            <a href="#">Zadanie 12</a>
-            <a href="#">Zadanie 13</a>
-            <a href="#">Zadanie 14</a>
-            <a href="#">Zadanie 15</a>
-			<a href="#">Zadanie 16</a>
-            <a href="#">Zadanie 17</a>
-            <a href="#">Zadanie 18</a>
-            <a href="#">Zadanie 19</a>
-            <a href="#">Zadanie 20</a>
+        <nav id="menu-zadan">
+        
+                <?php
+				
+                for ($numerZad = 1; $numerZad <= 20; $numerZad++) {
+                    echo "<a href='?zadanie=$numerZad'>Zadanie $numerZad</a>";
+                }
+				 
+                ?>
         </nav>
     </header>
 
@@ -192,36 +180,34 @@ if (isset($_GET['zadanie'])) {
         default:
             $sql = "SELECT 'Brak zapytania dla tego numeru' AS komunikat;";
     }
-
-    // Wysłanie zapytania
+ 
     $wynik = mysqli_query($polaczenie, $sql);
-
+    $wiersze = mysqli_num_rows($wynik);
+    $kolumny = mysqli_num_fields($wynik);
     if (!$wynik) {
         echo "<p>Błąd zapytania: " . mysqli_error($polaczenie) . "</p>";
-    } else if (mysqli_num_rows($wynik) > 0) {
+    } else if ( $wiersze > 0) {
 
         echo "<table border='1'><tr>";
+ 
 
-        // Nagłówki kolumn
-        $liczbaKolumn = mysqli_num_fields($wynik);
+
         $naglowki = mysqli_fetch_fields($wynik);
+        $liczbaKolumn = count($naglowki);
 
-        foreach ($naglowki as $naglowek) {
-            echo "<th>" . $naglowek->name . "</th>";
+        for ($i = 0; $i < $liczbaKolumn; $i++) {
+            echo "<th>" . $naglowki[$i]->name . "</th>";
         }
-
         echo "</tr>";
-
-        // Wiersze tabeli
-        while ($wiersz = mysqli_fetch_array($wynik)) {
+ 
+        for ($r = 0; $r < $wiersze; $r++) {
+            $wiersz = mysqli_fetch_row($wynik); // tablica numeryczna
             echo "<tr>";
-            foreach ($wiersz as $klucz => $wartosc) {
-
-                // Pomijamy duplikaty w mysqli_fetch_array (numeryczne)
-                if (is_numeric($klucz)) continue;
-
-                echo "<td>$wartosc</td>";
+ 
+            for ($c = 0; $c < $kolumny; $c++) {
+                echo "<td>ss" . $wiersz[$c] . "</td>";
             }
+
             echo "</tr>";
         }
 
