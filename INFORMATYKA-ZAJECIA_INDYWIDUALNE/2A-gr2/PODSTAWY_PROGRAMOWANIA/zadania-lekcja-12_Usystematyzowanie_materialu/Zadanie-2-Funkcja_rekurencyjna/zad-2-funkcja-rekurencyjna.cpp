@@ -14,7 +14,7 @@ int main() {
 
      cin >> n;
 	 if(n<0) {
-		 cout << "podałeś liczbę nieujemna: "; 
+		 cout << "podałeś liczbę ujemna: "; 
 	 } else {
 		 
 		 cout << " " << factorial(n)<< endl;
