@@ -80,54 +80,35 @@
 
     <div class="main">
         <h2>NOTATKI</h2>
-		
-  
-
         <?php 
         $polaczenie = mysqli_connect("localhost", "root", "", "sklep_internetowy");
 
-        if (!$polaczenie) {
-            die("Błąd połączenia: " . mysqli_error($polaczenie));
-        }
- 
-        mysqli_select_db($polaczenie, "sklep_internetowy");
+        if (!$polaczenie) {die("Błąd połączenia: " . mysqli_error($polaczenie));       }
  
         $zapytanie = "SELECT * FROM zakupy";
         $wynik = mysqli_query($polaczenie, $zapytanie);
 
-        if (!$wynik) {
-            die("Błąd zapytania: " . mysqli_error($polaczenie));
-        }
- 
+        if (!$wynik) {   die("Błąd zapytania: " . mysqli_error($polaczenie));    } 
         $liczbaWierszy = mysqli_num_rows($wynik);
-        $liczbaKolumn = mysqli_num_fields($wynik);
- 
-        echo "<table>";
- 
+        $liczbaKolumn = mysqli_num_fields($wynik); 
+        echo "<table>"; 
         echo "<tr>";
         $informacjeKolumn = mysqli_fetch_fields($wynik);
-
         for ($i = 0; $i < count($informacjeKolumn); $i++) {
             echo "<th>" . $informacjeKolumn[$i]->name . "</th>";
         }
         echo "</tr>";
-
         // Reset wskaźnika wyników
         mysqli_data_seek($wynik, 0);
  
         for ($wiersz = 0; $wiersz < $liczbaWierszy; $wiersz++) {
-
             $daneWiersza = mysqli_fetch_row($wynik);
-
             echo "<tr>";
-
             for ($kolumna = 0; $kolumna < $liczbaKolumn; $kolumna++) {
                 echo "<td>" . $daneWiersza[$kolumna] . "</td>";
             }
-
             echo "</tr>";
         }
-
         echo "</table>";
 		?> 
          <form method="POST">
