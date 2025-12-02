@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadania JavaScript</title>
+</head>
+<body>
+
+     
+	<p id="zadanie4">To jest tekst w paragrafie.</p>
+    <p id="zadanie6">Stary tekst</p>
+
+	<button onclick="zadanie7()">Kliknij mnie</button>
+	<p id="zadanie7"></p>
+	<button onclick="zadanie8()">Dodaj nowy DIV</button>
+	
+	
+	<div id="zadanie9Parent">
+		<p id="zadanie9child">To jest element dziecko</p>
+	</div>
+
+	<button onclick="zadanie9usun()">Usuń element dziecko</button>
+
+
+
+	<div id="zadanie10rodzic">
+		<p>Istniejący element w rodzicu</p>
+	</div>
+	<button onclick="zadanie10dodajElement()">Dodaj nowy element</button>
+
+    <script>
+        // ---------------------------
+        // Rozwiązanie Zadania 1
+        // Jak zadeklarujesz zmienną blokową w JavaScript?
+        // ---------------------------
+
+        let zmiennaBlokowa = 10;   // zmienna blokowa
+        const stalaBlokowa = 20;   // stała blokowa
+
+        console.log("Zadanie 1:");
+        console.log("Przykład zmiennej blokowej:", zmiennaBlokowa);
+        console.log("Przykład stałej blokowej:", stalaBlokowa);
+
+
+        // ---------------------------
+        // Rozwiązanie Zadania 2
+        // Kod wykonany tylko wtedy, gdy warunek jest fałszywy
+        // ---------------------------
+
+        let warunek = true;
+
+        if (!warunek) {
+            console.log("Zadanie 2:");
+            console.log("Warunek jest fałszywy — kod został wykonany.");
+        }
+		
+		// ---------------------------
+        // Rozwiązanie Zadania 3
+        // Jak wygląda podstawowa składnia pętli for w JavaScript? 
+        // ---------------------------
+
+		/*
+		for (inicjalizacja; warunek; zwiększanie) {
+			// kod wykonywany w każdej iteracji
+		}
+		*/
+		
+		for (let i = 0; i < 5; i++) {
+			console.log(i);
+		}
+		 
+		// ---------------------------
+        // Rozwiązanie Zadania 5
+		// Co zwróci document.getElementById()?
+		// ---------------------------
+		let element = document.getElementById("zadanie4");
+		console.log(element);
+		
+		// zwraca obiekt elementu DOM (Document Object Model)
+		/*
+		Dla <div id="zadanie4"> – obiekt typu HTMLDivElement (odpowiadający blokowi kontenerowemu).
+		Dla <span id="zadanie4"> – obiekt typu HTMLSpanElement (odpowiadający inline'owemu kontenerowi tekstu).
+		*/
+
+
+		// ---------------------------
+        // Rozwiązanie Zadania 6
+		// Jak zmienić treść elementu o id par1 na „Nowy tekst”?
+		// ---------------------------
+		
+		 document.getElementById("zadanie6").innerText = "Nowy tekst";
+		
+		
+		// ---------------------------
+        // Rozwiązanie Zadania 7
+		// Jakie zdarzenie HTML uruchamia się po kliknięciu myszką?
+		// ---------------------------
+		function zadanie7() {
+			document.getElementById("zadanie7").textContent = "Przycisk został kliknięty!";
+		}
+		
+		// ---------------------------
+        // Rozwiązanie Zadania 8
+		// Jak utworzysz nowy element <div> w JavaScript?
+		// ---------------------------
+		
+		
+		function dodajDiv() {
+		// 1. Tworzymy nowy element div
+			const nowyDiv = document.createElement("div");
+
+			// 2. Dodajemy tekst do środka
+			nowyDiv.textContent = "To jest nowo utworzony DIV!";
+
+			// 3. Dodajemy go do dokumentu (np. na końcu body)
+			document.body.appendChild(nowyDiv);
+		}
+		
+		// ---------------------------
+        // Rozwiązanie Zadania 9 
+		// Jak usunąć element dziecko z elementu nadrzędnego w DOM?
+		// ---------------------------
+		
+		
+		function zadanie9usun() {
+			const parent = document.getElementById("zadanie9Parent");
+			const child = document.getElementById("zadanie9child");
+
+			parent.removeChild(child); // usuwa <p id="zadanie9child">
+		}
+		
+		// ---------------------------
+        // Rozwiązanie Zadania 10
+		// Jak dodać nowo utworzony element do elementu rodzica?
+		// ---------------------------
+		
+		
+		function zadanie10dodajElement() {
+			// Tworzymy nowy element <div>
+			const nowyDiv = document.createElement("div");
+			nowyDiv.textContent = "To jest nowy element dziecko!";
+
+			// Pobieramy element rodzica
+			const rodzic = document.getElementById("zadanie10rodzic");
+
+			// Dodajemy nowy element do rodzica
+			rodzic.appendChild(nowyDiv);
+		}
+    </script>
+
+</body>
+</html>
