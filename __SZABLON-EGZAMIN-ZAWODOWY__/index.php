@@ -6,15 +6,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Szablon HTML5</title>
+    <title>INF.03</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body> 
     <header>
         <nav aria-label="Główna nawigacja">
             <ul>
-                <li><a href="#home">Strona główna</a></li>           
-                <li><a href="#services">Usługi</a></li>
+                <li><a href="#start">Strona główna</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
         </nav>
