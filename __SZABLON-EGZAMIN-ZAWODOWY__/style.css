@@ -1,0 +1,71 @@
+* {
+	font-family: 'Trebuchet MS',sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+	background-color: #283593;
+	padding: 30px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 50px; 
+}
+
+aside {
+    background-color:  #C5CAE9;
+    width: 40%;
+    height: 600px;
+    overflow: auto;
+    float: left;
+}
+
+.pierwszy, .drugi{
+	width: 60%;
+	height: 300px;
+	float: right;
+}
+
+.pierwszy {
+    background-color: #9FA8DA; 
+}
+
+.drugi {
+    background-color: #7986CB; 
+}
+
+.produkt {
+    background-color: #9FA8DA;
+    margin: 40px;
+    border-style: dotted;
+    border-width: 2px;
+    border-color:  #283593;
+    border-radius: 30px;
+}
+ 
+h1, h2, h3, h4, h5 {
+    text-align: center;
+    color: white;
+}
+
+h3{
+    background-color: #7986CB;
+	font-size: 140%;
+	padding: 15px;
+}
+
+a {    
+	color: white; 
+	text-decoration: none;
+}
+ 
+footer{
+	background-color: #283593;   
+	color: white;
+	padding: 20px;
+	clear: both;
+}
