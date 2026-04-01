@@ -395,6 +395,11 @@ To zmniejszenie wartości zmiennej o 1
 
 ## 8. Wyszukiwanie elementów w dokumencie
 
+document to część tzw. DOM (Document Object Model) — czyli „drzewo” reprezentujące całą stronę.
+
+HTML = struktura strony
+document = interfejs JS do tej struktury
+
 1) `document.getElementById(id)`
 
 **Zwraca jeden element** o konkretnym identyfikatorze (atrybut `id`).
