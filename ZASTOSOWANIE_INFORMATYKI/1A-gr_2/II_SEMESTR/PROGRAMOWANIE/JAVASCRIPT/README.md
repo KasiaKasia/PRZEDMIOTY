@@ -921,10 +921,12 @@ element.style.borderColor = "green";
 
 element.style.margin = "20px";      // zewnętrzny odstęp
 element.style.padding = "10px";     // wewnętrzny odstęp
+```
 
-## 🧩 Tworzenie tablicy w JavaScript
+## 🧩 6. Tworzenie tablicy w JavaScript
 
-W JavaScript tablica (ang. array) to specjalny typ **obiektu**, który może przechowywać **wiele wartości** w jednej zmiennej
+W JavaScript tablica (ang. array) to specjalny typ **obiektu** , który może przechowywać **wiele wartości** w jednej zmiennej
+
 
 🔹 **Przykład 1 – utworzenie tablicy za pomocą nawiasów kwadratowych:**
 
