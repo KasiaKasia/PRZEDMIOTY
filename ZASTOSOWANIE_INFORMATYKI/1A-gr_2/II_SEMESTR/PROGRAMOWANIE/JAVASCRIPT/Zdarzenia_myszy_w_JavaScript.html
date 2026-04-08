@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zdarzenia JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        button, input, select, div, p {
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .box {
+            width: 200px;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Zdarzenia myszy i klawiatury</h1>
+
+<!-- ZDARZENIA MYSZY -->
+<section>
+    <h2>🖱️ Zdarzenia myszy</h2>
+
+    <!-- onclick -->
+    <button onclick="alert('Kliknięto przycisk!')">
+        Kliknij mnie (onclick)
+    </button>
+
+    <!-- ondblclick -->
+    <p ondblclick="this.style.color='red'">
+        Kliknij mnie dwa razy (ondblclick)
+    </p>
+
+    <!-- onmouseover -->
+    <div class="box" onmouseover="this.style.backgroundColor='lightgreen'">
+        Najedź na mnie (onmouseover)
+    </div>
+
+    <!-- onmouseout -->
+    <div class="box" onmouseover="this.style.backgroundColor='lightgreen'"
+         onmouseout="this.style.backgroundColor='lightgray'">
+        Najedź i opuść (onmouseover + onmouseout)
+    </div>
+
+    <!-- onmousedown -->
+    <button onmousedown="this.style.backgroundColor='yellow'">
+        Naciśnij i przytrzymaj (onmousedown)
+    </button>
+
+    <!-- onmouseup -->
+    <button onmouseup="this.style.backgroundColor='lightblue'">
+        Puść przycisk (onmouseup)
+    </button>
+</section>
+
+<!-- ZDARZENIA KLAWIATURY -->
+<section>
+    <h2>⌨️ Zdarzenia klawiatury</h2>
+
+    <!-- onkeydown -->
+    <input type="text"
+           placeholder="onkeydown"
+           onkeydown="console.log('Wciśnięto klawisz')">
+
+    <!-- onkeypress -->
+    <input type="text"
+           placeholder="onkeypress"
+           onkeypress="console.log('Naciśnięto znak')">
+
+    <!-- onkeyup -->
+    <input type="text"
+           placeholder="onkeyup"
+           onkeyup="console.log('Puszczono klawisz')">
+
+    <!-- oninput -->
+    <input type="text"
+           placeholder="oninput"
+           oninput="console.log('Zmiana wartości (pisanie/wklejanie)')">
+
+    <!-- onchange -->
+    <select onchange="alert('Wybrano nową opcję')">
+        <option>Polska</option>
+        <option>Niemcy</option>
+        <option>Francja</option>
+    </select>
+</section>
+
+</body>
+</html>
