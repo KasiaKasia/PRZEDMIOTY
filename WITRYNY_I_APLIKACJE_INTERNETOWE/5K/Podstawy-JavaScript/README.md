@@ -921,6 +921,7 @@ element.style.borderColor = "green";
 
 element.style.margin = "20px";      // zewnętrzny odstęp
 element.style.padding = "10px";     // wewnętrzny odstęp
+```
 
 ## 🧩 Tworzenie tablicy w JavaScript
 
