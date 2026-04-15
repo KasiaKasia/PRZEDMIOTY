@@ -89,7 +89,7 @@
         function szukajClass() {
             const sekcje = document.getElementsByClassName("sekcja");
             console.log('sekcje: ', sekcje);
-            sekcje[1].style.backgroundColor = "#e0f7fa";
+            sekcje[1].style.backgroundColor = "red";
             wynik.textContent = "Podświetlono drugą sekcje (.sekcja) za pomocą getElementsByClassName.";
         }
 
@@ -97,7 +97,7 @@
         function szukajName() {
             const radio = document.getElementsByName("kolor");
             console.log('radio: ', radio);
-            radio[1].checked = true;
+            radio[0].checked = true;
             wynik.textContent = "Zaznaczono przycisk radiowy o name='kolor' (zielony).";
         }
 
@@ -120,6 +120,8 @@
         // 7 closest
         function szukajClosest() {
             const akapit = document.querySelector(".tekst");
+                        console.log('akapit: ', akapit);
+
             const kontener = akapit.closest(".sekcja");
             console.log('kontener: ', kontener);
             kontener.style.border = "5px solid green";

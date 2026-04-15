@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🖱️ Test wszystkich zdarzeń myszy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .demo-box {
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    #log { height: 400px; overflow-y: auto; }
+    .log-line { animation: fadeIn 0.3s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+  <div class="max-w-7xl mx-auto p-8">
+    <h1 class="text-4xl font-bold text-center mb-2 flex items-center justify-center gap-3">
+      🖱️ Test wszystkich zdarzeń myszy
+    </h1>
+    <p class="text-center text-gray-400 mb-10">Poruszaj, klikaj, najeżdżaj i przewijaj – zobaczysz wszystko na żywo!</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- DEMO PANEL -->
+      <div class="lg:col-span-7 space-y-8">
+
+        <!-- Grupa 1: Kliknięcia -->
+        <div class="bg-gray-800 rounded-2xl p-6">
+          <h2 class="text-xl font-semibold mb-4 text-emerald-400">1–2. Kliknięcia</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div id="click-box" class="demo-box bg-emerald-600 hover:bg-emerald-500 text-center py-12 rounded-xl text-2xl font-medium cursor-pointer">
+              onclick + ondblclick<br>
+              <span class="text-sm opacity-75">(kliknij raz / dwa razy)</span>
+            </div>
+            <div id="down-up-box" class="demo-box bg-violet-600 hover:bg-violet-500 text-center py-12 rounded-xl text-2xl font-medium cursor-pointer">
+              onmousedown + onmouseup<br>
+              <span class="text-sm opacity-75">(naciśnij i przytrzymaj)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grupa 2: Hover -->
+        <div class="bg-gray-800 rounded-2xl p-6">
+          <h2 class="text-xl font-semibold mb-4 text-cyan-400">3–4 + 8–9. Hover (najechanie)</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div id="hover-classic" class="demo-box bg-cyan-600 text-center py-10 rounded-xl text-xl">
+              onmouseover / onmouseout
+            </div>
+            <div id="hover-modern" class="demo-box bg-cyan-700 text-center py-10 rounded-xl text-xl">
+              onmouseenter / onmouseleave<br>
+              <span class="text-sm opacity-75">(nowocześniejsza wersja)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grupa 3: Ruch i kółko -->
+        <div class="bg-gray-800 rounded-2xl p-6">
+          <h2 class="text-xl font-semibold mb-4 text-amber-400">7 + 11. Ruch i kółko</h2>
+          <div id="move-area" class="demo-box bg-gradient-to-br from-amber-500 to-orange-600 h-64 rounded-2xl flex items-center justify-center text-2xl font-medium text-center relative overflow-hidden">
+            <div class="text-center z-10">
+              onmousemove<br>
+              <span class="text-sm opacity-90">+ onwheel (przewiń kółkiem)</span>
+            </div>
+            <div id="coords" class="absolute bottom-4 left-4 bg-black/50 px-3 py-1 rounded text-xs font-mono"></div>
+          </div>
+        </div>
+
+        <!-- Grupa 4: Kontekst -->
+        <div class="bg-gray-800 rounded-2xl p-6">
+          <h2 class="text-xl font-semibold mb-4 text-red-400">10. oncontextmenu</h2>
+          <div id="context-box" class="demo-box bg-red-600 hover:bg-red-500 text-center py-12 rounded-xl text-2xl font-medium cursor-context-menu">
+            Kliknij <strong>prawym przyciskiem</strong> tutaj
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LOG PANEL -->
+      <div class="lg:col-span-5">
+        <div class="bg-gray-800 rounded-3xl p-6 sticky top-8">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold">📜 Log zdarzeń</h2>
+            <button onclick="clearLog()" 
+                    class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-xl text-sm font-medium">
+              Wyczyść
+            </button>
+          </div>
+          
+          <div id="log" class="font-mono text-sm bg-black/60 p-4 rounded-2xl text-emerald-300 overflow-y-auto"></div>
+          
+          <div class="mt-4 text-xs text-gray-500 text-center">
+            Wszystkie zdarzenia są rejestrowane w czasie rzeczywistym.<br>
+            onmousemove i onwheel generują dużo wpisów – to normalne.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center text-gray-500 text-sm mt-12">
+      Szablon używa <strong>addEventListener</strong> – nowoczesnego i zalecanego sposobu.<br>
+      Możesz go swobodnie modyfikować i dodawać własne elementy.
+    </div>
+  </div>
+
+  <script>
+    // Inicjalizacja Tailwind
+    tailwind.config = { content: ["*"] }
+
+    const logEl = document.getElementById('log')
+
+    function logEvent(name, info = '') {
+      const time = new Date().toLocaleTimeString('pl-PL', { hour12: false })
+      const entry = document.createElement('div')
+      entry.className = 'log-line flex justify-between py-1 border-b border-gray-700 last:border-0'
+      entry.innerHTML = `
+        <span class="text-emerald-400">[${time}] <strong>${name}</strong></span>
+        <span class="text-gray-400">${info}</span>
+      `
+      logEl.appendChild(entry)
+      logEl.scrollTop = logEl.scrollHeight
+
+      // Ogranicz do 50 linii
+      if (logEl.children.length > 50) logEl.removeChild(logEl.children[0])
+    }
+
+    function clearLog() {
+      logEl.innerHTML = ''
+    }
+
+    // === PODŁĄCZANIE ZDARZEŃ ===
+
+    // 1. onclick + ondblclick
+    const clickBox = document.getElementById('click-box')
+    clickBox.addEventListener('click', () => logEvent('onclick', 'lewy przycisk'))
+    clickBox.addEventListener('dblclick', () => logEvent('ondblclick', 'podwójne kliknięcie'))
+
+    // 5-6. mousedown + mouseup
+    const downUpBox = document.getElementById('down-up-box')
+    downUpBox.addEventListener('mousedown', (e) => {
+      logEvent('onmousedown', `przycisk: ${e.button === 0 ? 'lewy' : e.button === 2 ? 'prawy' : 'środkowy'}`)
+      downUpBox.style.transform = 'scale(0.95)'
+    })
+    downUpBox.addEventListener('mouseup', () => {
+      logEvent('onmouseup', 'przycisk puszczony')
+      downUpBox.style.transform = 'scale(1)'
+    })
+
+    // 3-4. onmouseover / onmouseout
+    const hoverClassic = document.getElementById('hover-classic')
+    hoverClassic.addEventListener('mouseover', () => {
+      hoverClassic.style.backgroundColor = '#22d3ee'
+      logEvent('onmouseover')
+    })
+    hoverClassic.addEventListener('mouseout', () => {
+      hoverClassic.style.backgroundColor = '#06b67f'
+      logEvent('onmouseout')
+    })
+
+    // 8-9. onmouseenter / onmouseleave (nowocześniejsze)
+    const hoverModern = document.getElementById('hover-modern')
+    hoverModern.addEventListener('mouseenter', () => {
+      hoverModern.style.backgroundColor = '#67e8f9'
+      logEvent('onmouseenter')
+    })
+    hoverModern.addEventListener('mouseleave', () => {
+      hoverModern.style.backgroundColor = '#0e7490'
+      logEvent('onmouseleave')
+    })
+
+    // 7. onmousemove + współrzędne
+    const moveArea = document.getElementById('move-area')
+    const coordsEl = document.getElementById('coords')
+    moveArea.addEventListener('mousemove', (e) => {
+      const rect = moveArea.getBoundingClientRect()
+      const x = Math.round(e.clientX - rect.left)
+      const y = Math.round(e.clientY - rect.top)
+      coordsEl.textContent = `X: ${x}  Y: ${y}`
+      // Logujemy co 8 ruchów, żeby nie zalać logu
+      if (Math.random() < 0.125) logEvent('onmousemove', `X:${x} Y:${y}`)
+    })
+
+    // 11. onwheel
+    moveArea.addEventListener('wheel', (e) => {
+      logEvent('onwheel', `deltaY: ${e.deltaY.toFixed(0)}`)
+      // lekkie efekt wizualny
+      moveArea.style.transform = 'scale(0.98)'
+      setTimeout(() => moveArea.style.transform = 'scale(1)', 80)
+    })
+
+    // 10. oncontextmenu
+    const contextBox = document.getElementById('context-box')
+    contextBox.addEventListener('contextmenu', (e) => {
+      e.preventDefault() // blokujemy domyślne menu
+      logEvent('oncontextmenu', 'prawy przycisk – menu zablokowane')
+      
+      // fajny efekt
+      contextBox.style.backgroundColor = '#f43f5e'
+      setTimeout(() => {
+        contextBox.style.backgroundColor = '#e11d48'
+      }, 300)
+    })
+
+    // Powitanie na start
+    logEvent('START', 'Szablon gotowy – testuj myszkę! 🎉')
+  </script>
+</body>
+</html>

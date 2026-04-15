@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <title>Zdarzenia JavaScript</title>
@@ -8,90 +9,190 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
+
         section {
             margin-bottom: 30px;
         }
-        button, input, select, div, p {
+
+        button,
+        input,
+        select,
+        div,
+        p {
             margin: 10px 0;
             padding: 10px;
         }
+
         .box {
             width: 200px;
             background-color: lightgray;
         }
+
+        #log-panel {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            /* wyśrodkowanie pionowe */
+
+            width: 300px;
+            max-height: 400px;
+
+            background: #1f2937;
+            color: white;
+            border-radius: 15px;
+            padding: 15px;
+
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #log {
+            background: black;
+            color: #34d399;
+            font-family: monospace;
+            font-size: 12px;
+
+            height: 250px;
+            overflow-y: auto;
+
+            padding: 10px;
+            border-radius: 10px;
+        }
     </style>
 </head>
+
 <body>
 
-<h1>Zdarzenia myszy i klawiatury</h1>
+    <h1>Zdarzenia myszy i klawiatury</h1>
 
-<!-- ZDARZENIA MYSZY -->
-<section>
-    <h2>🖱️ Zdarzenia myszy</h2>
+    <!-- ZDARZENIA MYSZY -->
+    <section>
+        <h2>🖱️ Zdarzenia myszy</h2>
 
-    <!-- onclick -->
-    <button onclick="alert('Kliknięto przycisk!')">
-        Kliknij mnie (onclick)
-    </button>
+        <!-- onclick -->
+        <button onclick="logEvent('onclick')">
+            Kliknij mnie (onclick)
+        </button>
 
-    <!-- ondblclick -->
-    <p ondblclick="this.style.color='red'">
-        Kliknij mnie dwa razy (ondblclick)
-    </p>
+        <!-- ondblclick -->
+        <p ondblclick="this.style.color='red'; logEvent('ondblclick')">
+            Kliknij mnie dwa razy
+        </p>
+        <!-- onmouseover -->
+        <div class="box" onmouseover="this.style.backgroundColor='lightgreen'; logEvent('onmouseover')">
+            Najedź na mnie (onmouseover)
+        </div>
 
-    <!-- onmouseover -->
-    <div class="box" onmouseover="this.style.backgroundColor='lightgreen'">
-        Najedź na mnie (onmouseover)
+        <!-- onmouseout -->
+        <div class="box" onmouseover="this.style.backgroundColor='lightgreen'; logEvent('onmouseover')"
+            onmouseout="this.style.backgroundColor='lightgray'; logEvent('onmouseout')">
+            Najedź i opuść (onmouseover + onmouseout)
+        </div>
+
+        <!-- onmousedown -->
+        <button onmousedown="this.style.backgroundColor='yellow'; logEvent('onmousedown')">
+            Naciśnij i przytrzymaj (onmousedown)
+        </button>
+
+        <!-- onmouseup -->
+        <button onmouseup="this.style.backgroundColor='lightblue'; logEvent('onmouseup')">
+            Puść przycisk (onmouseup)
+        </button>
+    </section>
+
+    <!-- ZDARZENIA KLAWIATURY -->
+    <section>
+        <h2>⌨️ Zdarzenia klawiatury</h2>
+
+        <!-- onkeydown 
+         uruchamia się gdy naciskasz klawisz
+
+        ✔ działa dla:
+        liter
+        cyfr
+        Shift, Ctrl, Alt
+        strzałek
+        Backspace, Delete itd.
+        🧠 moment działania:
+
+        natychmiast po wciśnięciu klawisza 
+        
+        -->
+        <input type="text" placeholder="onkeydown" onkeydown="console.log('Wciśnięto klawisz'); logEvent('onkeydown')">
+
+        <!-- onkeypress 
+         onkeypress jest deprecated (przestarzałe)
+        Działa dla:
+            litery (a, b, c)
+            cyfr
+
+        NIE działa dla:
+            Shift, Ctrl, Alt
+            strzałek
+            Backspace
+        Moment działania:
+            gdy wpisywany jest znak (char)
+        -->
+        <input type="text" placeholder="onkeypress" onkeypress="console.log('Naciśnięto znak'); logEvent('onkeypress')">
+
+        <!-- onkeyup 
+        onkeyup uruchamia się w momencie, gdy puszczasz klawisz na klawiaturze.
+
+        Krok po kroku:
+            naciskasz klawisz → keydown
+            znak pojawia się w polu
+            puszczasz klawisz → keyup ✔
+        
+        -->
+        <input type="text" placeholder="onkeyup" onkeyup="console.log('Puszczono klawisz'); logEvent('onkeyup')">
+
+        <!-- oninput 
+        oninput uruchamia się ZA KAŻDYM razem, gdy zmienia się wartość pola.
+ 
+        Działa gdy:
+
+            wpisujesz literę
+            kasujesz znak (Backspace)
+            wklejasz tekst
+            przeciągasz suwak (range)
+            czasem nawet przy auto-fill
+        
+        oninput reaguje na KAŻDĄ zmianę treści pola 
+        
+        -->
+        <input type="text" placeholder="oninput"
+            oninput="console.log('Zmiana wartości (pisanie/wklejanie)'); logEvent('oninput')">
+
+        <!-- onchange -->
+        <select onchange="alert('Wybrano nową opcję'); logEvent('onchange')">
+            <option>Polska</option>
+            <option>Niemcy</option>
+            <option>Francja</option>
+        </select>
+    </section>
+    <div id="log-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong>📜 Log zdarzeń</strong>
+            <button onclick="clearLog()">Wyczyść</button>
+        </div>
+
+        <div id="log"></div>
     </div>
+    <script>
+        function logEvent(eventName) {
+            const log = document.getElementById("log");
+            const time = new Date().toLocaleTimeString();
 
-    <!-- onmouseout -->
-    <div class="box" onmouseover="this.style.backgroundColor='lightgreen'"
-         onmouseout="this.style.backgroundColor='lightgray'">
-        Najedź i opuść (onmouseover + onmouseout)
-    </div>
+            const entry = document.createElement("div");
+            entry.textContent = `[${time}] ${eventName}`;
 
-    <!-- onmousedown -->
-    <button onmousedown="this.style.backgroundColor='yellow'">
-        Naciśnij i przytrzymaj (onmousedown)
-    </button>
+            log.prepend(entry); // najnowsze na górze
+        }
 
-    <!-- onmouseup -->
-    <button onmouseup="this.style.backgroundColor='lightblue'">
-        Puść przycisk (onmouseup)
-    </button>
-</section>
-
-<!-- ZDARZENIA KLAWIATURY -->
-<section>
-    <h2>⌨️ Zdarzenia klawiatury</h2>
-
-    <!-- onkeydown -->
-    <input type="text"
-           placeholder="onkeydown"
-           onkeydown="console.log('Wciśnięto klawisz')">
-
-    <!-- onkeypress -->
-    <input type="text"
-           placeholder="onkeypress"
-           onkeypress="console.log('Naciśnięto znak')">
-
-    <!-- onkeyup -->
-    <input type="text"
-           placeholder="onkeyup"
-           onkeyup="console.log('Puszczono klawisz')">
-
-    <!-- oninput -->
-    <input type="text"
-           placeholder="oninput"
-           oninput="console.log('Zmiana wartości (pisanie/wklejanie)')">
-
-    <!-- onchange -->
-    <select onchange="alert('Wybrano nową opcję')">
-        <option>Polska</option>
-        <option>Niemcy</option>
-        <option>Francja</option>
-    </select>
-</section>
-
+        function clearLog() {
+            document.getElementById("log").innerHTML = "";
+        }
+    </script>
 </body>
+
 </html>
