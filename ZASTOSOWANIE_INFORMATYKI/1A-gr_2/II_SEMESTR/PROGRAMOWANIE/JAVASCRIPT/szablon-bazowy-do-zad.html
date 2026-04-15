@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ćwiczenia JavaScript</title>
+    <style>
+        .sekcja { padding: 10px; border: 1px solid #ccc; margin: 10px 0; }
+        .item { cursor: pointer; padding: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="tytul">Mój tytuł strony</h1>
+</header>
+
+<nav>
+    <ul>
+        <li class="item">Strona główna</li>
+        <li class="item">O nas</li>
+        <li class="item">Kontakt</li>
+    </ul>
+</nav>
+
+<main>
+    <section class="sekcja">
+        <p>Paragraf 1</p>
+        <p>Paragraf 2</p>
+    </section>
+
+    <section class="sekcja">
+        <p>Paragraf 3</p>
+        <p>Paragraf 4</p>
+    </section>
+
+    <form>
+        <label><input type="radio" name="kolor" value="red"> Czerwony</label>
+        <label><input type="radio" name="kolor" value="green"> Zielony</label>
+        <label><input type="radio" name="kolor" value="blue"> Niebieski</label>
+    </form>
+
+    <button id="btn">Kliknij mnie</button>
+</main>
+
+<footer>
+    <p>Stopka</p>
+</footer>
+
+<script src="script.js">
+/* 
+Zadanie 1 – getElementById
+
+  Zmień tekst nagłówka po kliknięciu przycisku
+  
+  Podpowiedź:
+  document.getElementById("btn").onclick = function() {
+     
+  };
+*/
+
+/*
+Zadanie 2 – getElementsByTagName
+
+   Zmień kolor wszystkich paragrafów na niebieski
+   
+   Podpowiedź:
+   for (let i = 0; i < paragrafy.length; i++) {
+  
+   }
+
+*/
+
+/*
+Zadanie 3 – getElementsByClassName
+
+	Zmień tło wszystkich sekcj
+	
+	Podpowiedź:
+	let sekcje = document.getElementsByClassName("sekcja");
+*/
+
+/*
+Zadanie 4 - getElementsByName
+
+	Po kliknięciu w radio zmień kolor tła strony.
+
+	Podpowiedź:
+	let kolory = document.getElementsByName("kolor");
+
+	for (let k of kolory) {
+	
+	
+	}
+*/
+
+/*
+Zadanie 5 - querySelectorAll
+
+	Dodaj zdarzenie kliknięcia do wszystkich elementów menu
+
+	let items = document.querySelectorAll(".item");
+
+*/
+
+/*
+Zadanie 6 – onclick
+
+	Kliknięcie zmienia kolor przycisku
+	Podpowiedź:
+	document.getElementById("btn").onclick = function() {
+	
+	}
+*/
+
+/*
+Zadanie 7 – ondblclick
+
+	Podwójne kliknięcie usuwa tekst
+
+*/
+
+/*
+Zadanie 8 – onmouseover
+
+	Najedź na sekcję → zmienia kolor
+	Podpowiedź:
+	
+	let sekcje = document.getElementsByClassName("sekcja");
+
+	for (let sekcja of sekcje) {
+
+	}
+
+*/
+
+/*
+Zadanie 9 – onmouseout
+
+	Po opuszczeniu wraca kolor
+
+	Podpowiedź:
+	for (let sekcja of sekcje) {
+	
+	}
+*/
+
+/*
+Zadanie 10 – onmousedown
+
+	Przytrzymanie myszy zmienia tekst
+
+*/
+/*
+Zadanie 11 – onmouseup
+
+	Po puszczeniu myszy wraca tekst
+
+*/
+</script>
+</body>
+</html>
