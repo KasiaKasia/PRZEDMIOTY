@@ -1,0 +1,57 @@
+✅ 📘 WERSJA A (łatwiejsza – z rozwiązaniami)
+🔹 Zadanie 1
+
+Zmień tekst nagłówka po kliknięciu przycisku.
+
+document.getElementById("btn").onclick = function() {
+    document.getElementById("tytul").innerText = "Nowy tytuł";
+};
+🔹 Zadanie 2
+
+Ustaw kolor wszystkich paragrafów na czerwony.
+
+let p = document.getElementsByTagName("p");
+
+for (let i = 0; i < p.length; i++) {
+    p[i].style.color = "red";
+}
+🔹 Zadanie 3
+
+Zmień tło wszystkich sekcji.
+
+let sekcje = document.getElementsByClassName("sekcja");
+
+for (let s of sekcje) {
+    s.style.backgroundColor = "lightgray";
+}
+🔹 Zadanie 4
+
+Po kliknięciu w radio zmień kolor tła strony.
+
+let kolory = document.getElementsByName("kolor");
+
+for (let k of kolory) {
+    k.onclick = function() {
+        document.body.style.backgroundColor = this.value;
+    };
+}
+🔹 Zadanie 5
+
+Kliknięcie elementu menu wyświetla alert.
+
+let items = document.querySelectorAll(".item");
+
+items.forEach(function(item) {
+    item.onclick = function() {
+        alert(this.innerText);
+    };
+});
+🔹 Zadanie 6
+
+Najedź na sekcję → zmiana koloru.
+
+for (let s of sekcje) {
+    s.onmouseover = function() {
+        this.style.backgroundColor = "yellow";
+    };
+}
