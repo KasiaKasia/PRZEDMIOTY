@@ -1,57 +1,178 @@
-✅ 📘 WERSJA A (łatwiejsza – z rozwiązaniami)
-🔹 Zadanie 1
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ćwiczenia JavaScript</title>
+    <style>
+        .sekcja { padding: 10px; border: 1px solid #ccc; margin: 10px 0; }
+        .item { cursor: pointer; padding: 5px; }
+    </style>
+</head>
 
-Zmień tekst nagłówka po kliknięciu przycisku.
+<body>
+
+<header>
+    <h1 id="tytul">Mój tytuł strony</h1>
+</header>
+
+<nav>
+    <ul>
+        <li class="item">Strona główna</li>
+        <li class="item">O nas</li>
+        <li class="item">Kontakt</li>
+    </ul>
+</nav>
+
+<main>
+    <section class="sekcja">
+        <p>Paragraf 1</p>
+        <p>Paragraf 2</p>
+    </section>
+
+    <section class="sekcja">
+        <p>Paragraf 3</p>
+        <p>Paragraf 4</p>
+    </section>
+
+    <form>
+        <label><input type="radio" name="kolor" value="red"> Czerwony</label>
+        <label><input type="radio" name="kolor" value="green"> Zielony</label>
+        <label><input type="radio" name="kolor" value="blue"> Niebieski</label>
+    </form>
+
+    <button id="btn">Kliknij mnie</button>
+</main>
+
+<footer>
+    <p>Stopka</p>
+</footer>
+<script>
+
+/* 
+Zadanie 1 – getElementById
+Zmień tekst nagłówka po kliknięciu przycisku
 
 document.getElementById("btn").onclick = function() {
-    document.getElementById("tytul").innerText = "Nowy tytuł";
+    document.getElementById("tytul").innerText = "Nowy tytuł po kliknięciu";
 };
-🔹 Zadanie 2
+*/
+// lub 
+let btn = document.getElementById("btn");
 
-Ustaw kolor wszystkich paragrafów na czerwony.
+// Zadanie 1
+btn.addEventListener("click", function() {
+    document.getElementById("tytul").innerText = "Nowy tytuł po kliknięciu";
+}); 
 
-let p = document.getElementsByTagName("p");
 
-for (let i = 0; i < p.length; i++) {
-    p[i].style.color = "red";
+
+/*
+Zadanie 2 – getElementsByTagName
+Zmień kolor wszystkich paragrafów na niebieski
+*/
+let paragrafy = document.getElementsByTagName("p");
+
+for (let i = 0; i < paragrafy.length; i++) {
+    paragrafy[i].style.color = "blue";
 }
-🔹 Zadanie 3
 
-Zmień tło wszystkich sekcji.
 
+/*
+Zadanie 3 – getElementsByClassName
+Zmień tło wszystkich sekcji
+*/
 let sekcje = document.getElementsByClassName("sekcja");
 
-for (let s of sekcje) {
-    s.style.backgroundColor = "lightgray";
+for (let sekcja of sekcje) {
+    sekcja.style.backgroundColor = "#f0f0f0";
 }
-🔹 Zadanie 4
 
+
+/*
+Zadanie 4 - getElementsByName
 Po kliknięciu w radio zmień kolor tła strony.
-
+*/
 let kolory = document.getElementsByName("kolor");
 
 for (let k of kolory) {
     k.onclick = function() {
-        document.body.style.backgroundColor = this.value;
+        document.body.style.backgroundColor = k.value;
     };
 }
-🔹 Zadanie 5
 
-Kliknięcie elementu menu wyświetla alert.
 
+/*
+Zadanie 5 - querySelectorAll
+Dodaj obsługę kliknięcia (onclick) do wszystkich elementów menu (<li class="item">), tak aby po kliknięciu wyświetliła się informacja, który element został kliknięty.
+*/
 let items = document.querySelectorAll(".item");
 
-items.forEach(function(item) {
+for (let item of items) {
     item.onclick = function() {
-        alert(this.innerText);
-    };
-});
-🔹 Zadanie 6
-
-Najedź na sekcję → zmiana koloru.
-
-for (let s of sekcje) {
-    s.onmouseover = function() {
-        this.style.backgroundColor = "yellow";
+        alert("Kliknięto: " + item.innerText);
     };
 }
+
+
+/*
+Zadanie 6 – onclick
+Kliknięcie zmienia kolor przycisku
+*/
+document.getElementById("btn").onclick = function() {
+    this.style.backgroundColor = "yellow";
+};
+
+
+/*
+Zadanie 7 – ondblclick
+	Podwójne kliknięcie przycisku <button id="btn">Kliknij mnie</button> ma usunąc tekst wewnątrz tego przycisku
+
+*/
+document.getElementById("btn").ondblclick = function() {
+    this.innerText = "";
+};
+
+
+/*
+Zadanie 8 – onmouseover
+Najedź myszką na sekcję → zmienia się kolor tła całej sekcji
+*/
+for (let sekcja of sekcje) {
+    sekcja.onmouseover = function() {
+        this.style.backgroundColor = "lightblue";
+    };
+}
+
+
+/*
+Zadanie 9 – onmouseout
+Po opuszczeniu kursorem myszy sekcji <section class="sekcja"> wraca pierwotny kolor tła tej sekcji.
+*/
+for (let sekcja of sekcje) {
+    sekcja.onmouseout = function() {
+        this.style.backgroundColor = "#f0f0f0";
+    };
+}
+
+
+/*
+Zadanie 10 – onmousedown
+	Gdy kursor myszy opuści obszar elementu <section class="sekcja">, tło tej konkretnej sekcji wraca do pierwotnego (domyślnego) koloru, jaki miała przed najechaniem myszą.
+
+*/
+document.getElementById("btn").onmousedown = function() {
+    this.innerText = "Trzymasz przycisk!";
+};
+
+
+/*
+Zadanie 11 – onmouseup
+Po puszczeniu myszy (onmouseup) tekst przycisku wraca do pierwotnego napisu „Kliknij mnie”.
+*/
+document.getElementById("btn").onmouseup = function() {
+    this.innerText = "Kliknij mnie";
+};
+
+</script>
+</body>
+</html>

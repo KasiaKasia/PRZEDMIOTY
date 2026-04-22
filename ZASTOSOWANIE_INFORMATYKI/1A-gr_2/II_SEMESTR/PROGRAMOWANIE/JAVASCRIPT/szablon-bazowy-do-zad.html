@@ -96,7 +96,7 @@ Zadanie 4 - getElementsByName
 /*
 Zadanie 5 - querySelectorAll
 
-	Dodaj zdarzenie kliknięcia do wszystkich elementów menu
+	Dodaj obsługę kliknięcia (onclick) do wszystkich elementów menu (<li class="item">), tak aby po kliknięciu wyświetliła się informacja, który element został kliknięty.
 
 	let items = document.querySelectorAll(".item");
 
@@ -105,7 +105,8 @@ Zadanie 5 - querySelectorAll
 /*
 Zadanie 6 – onclick
 
-	Kliknięcie zmienia kolor przycisku
+	Podwójne kliknięcie przycisku <button id="btn">Kliknij mnie</button> zmienia kolor tła przycisku
+
 	Podpowiedź:
 	document.getElementById("btn").onclick = function() {
 	
@@ -115,14 +116,14 @@ Zadanie 6 – onclick
 /*
 Zadanie 7 – ondblclick
 
-	Podwójne kliknięcie usuwa tekst
+	Podwójne kliknięcie przycisku <button id="btn">Kliknij mnie</button> ma usunąc tekst wewnątrz tego przycisku
 
 */
 
 /*
 Zadanie 8 – onmouseover
 
-	Najedź na sekcję → zmienia kolor
+	Najedź myszką na sekcję → zmienia się kolor tła całej sekcji
 	Podpowiedź:
 	
 	let sekcje = document.getElementsByClassName("sekcja");
@@ -136,7 +137,7 @@ Zadanie 8 – onmouseover
 /*
 Zadanie 9 – onmouseout
 
-	Po opuszczeniu wraca kolor
+	Po opuszczeniu kursorem myszy sekcji <section class="sekcja"> wraca pierwotny kolor tła tej sekcji.
 
 	Podpowiedź:
 	for (let sekcja of sekcje) {
@@ -147,13 +148,13 @@ Zadanie 9 – onmouseout
 /*
 Zadanie 10 – onmousedown
 
-	Przytrzymanie myszy zmienia tekst
+	Gdy kursor myszy opuści obszar elementu <section class="sekcja">, tło tej konkretnej sekcji wraca do pierwotnego (domyślnego) koloru, jaki miała przed najechaniem myszą.
 
 */
 /*
 Zadanie 11 – onmouseup
 
-	Po puszczeniu myszy wraca tekst
+	Po puszczeniu myszy (onmouseup) tekst przycisku wraca do pierwotnego napisu „Kliknij mnie”.
 
 */
 </script>
