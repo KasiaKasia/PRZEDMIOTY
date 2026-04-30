@@ -486,7 +486,7 @@ class User(BaseModel):
 ```    
 
 
-## **1. Mutowalność (mutable) vs niemutowalność (immutable)**
+## **Mutowalność (mutable) vs niemutowalność (immutable)**
 
 | Typ | Mutowalność  | Czy można zmienić po utworzeniu?  |
 |:-----|:----:|:------|
