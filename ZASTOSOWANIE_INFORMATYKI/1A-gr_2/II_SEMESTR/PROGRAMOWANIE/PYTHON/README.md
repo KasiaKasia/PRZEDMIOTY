@@ -484,3 +484,69 @@ class User(BaseModel):
     age: int
     email: str
 ```    
+
+
+## **1. Mutowalność (mutable) vs niemutowalność (immutable)**
+
+| Typ | Mutowalność  | Czy można zmienić po utworzeniu?  |
+|:-----|:----:|:------|
+| list  | mutowalna    | ✅ można dodawać, usuwać, zmieniać elementy   |
+| dict | mutowalny   | ✅ można dodawać, usuwać, zmieniać pary klucz-wartość   |
+| set | mutowalny | ✅ można dodawać, usuwać elementy |
+| tuple | niemutowalna | ❌ NIE można zmienić! Jest jak "zamrożona lista" |
+
+**1. List (lista) – MUTOWALNA**
+
+```Python
+my_list = [1, 2, 3] 
+ 
+my_list[0] = 100      	# zmiana elementu 
+my_list.append(4)     	# dodanie elementu 
+ 
+print(my_list)  		# [100, 2, 3, 4] 
+```
+ 
+
+**2. Dict (słownik) – MUTOWALNY**
+
+```Python
+my_dict = {"a": 1, "b": 2} 
+ 
+my_dict["a"] = 100     	# zmiana wartości 
+my_dict["c"] = 3       	# dodanie nowego klucza 
+ 
+print(my_dict)  		# {'a': 100, 'b': 2, 'c': 3} 
+```
+ 
+
+**3. Set (zbiór) – MUTOWALNY**
+
+```Python
+my_set = {1, 2, 3} 
+ 
+my_set.add(4) 
+my_set.remove(2) 
+ 
+print(my_set)  		# {1, 3, 4} 
+```
+ 
+
+**4. Tuple (krotka) – NIEMUTOWALNA**
+
+```Python
+my_tuple = (1, 2, 3) 
+ 
+# my_tuple[0] = 100   	# ❌ BŁĄD 
+```
+ 
+
+**Ważny przypadek (tuple z listą w środku)**
+```Python
+my_tuple = (1, [2, 3]) 
+ 
+my_tuple[1].append(4) 
+ 
+print(my_tuple)  		# (1, [2, 3, 4]) 
+```
+
+Krotka jest niemutowalna, ale obiekt w środku (lista) już nie. 
