@@ -550,3 +550,36 @@ print(my_tuple)  		# (1, [2, 3, 4])
 ```
 
 Krotka jest niemutowalna, ale obiekt w środku (lista) już nie. 
+
+
+Podstawowe użycie range()
+## range(start, stop, step) - służy do generowania ciągu liczb.
+
+oznacza:
+
+- Zacznij od start,
+- dodawaj step,
+- zatrzymaj się przed stop.
+
+```Python
+print("range(5):")
+for i in range(5):
+ print(i) # 0, 1, 2, 3, 4
+# range(start, stop) - od start do stop-1
+print("\nrange(2, 7):")
+for i in range(2, 7):
+ print(i) # 2, 3, 4, 5, 6
+# range(start, stop, step) - z krokiem
+print("\nrange(0, 10, 2):")
+for i in range(0, 10, 2):
+ print(i) # 0, 2, 4, 6, 8
+# Ujemny krok - liczenie wstecz
+print("\nrange(10, 0, -2):")
+for i in range(10, 0, -2):
+ print(i) # 10, 8, 6, 4, 2
+``` 
+**range() nie tworzy listy**
+```Python
+x = range(5)
+print(x) # Wynik: range(0, 5)
+```
