@@ -552,8 +552,8 @@ print(my_tuple)  		# (1, [2, 3, 4])
 Krotka jest niemutowalna, ale obiekt w środku (lista) już nie. 
 
 
-Podstawowe użycie range()
-## range(start, stop, step) - służy do generowania ciągu liczb.
+## Podstawowe użycie range()
+*range(start, stop, step)* - służy do generowania ciągu liczb.
 
 oznacza:
 
@@ -587,3 +587,142 @@ for i in range(10, 0, -2):
 x = range(5)
 print(x) # Wynik: range(0, 5)
 ```
+
+
+### W Pythonie istnieją dwie główne pętle:
+
+`for` – do iterowania po sekwencjach
+`while` – pętla warunkowa (wykonuje się dopóki warunek jest prawdziwy)
+
+## 1. `for`
+
+Najczęściej używana pętla w Pythonie. Służy do przejścia po elementach kolekcji (lista, krotka, string, range, słownik itp.).
+Podstawowe przykłady:
+
+```Python
+# 1. Po liście
+owoce = ["jabłko", "banan", "wiśnia"]
+for owoc in owoce:
+    print(owoc)
+
+# 2. Z range() – najczęściej używane
+for i in range(5):           # 0, 1, 2, 3, 4
+    print(i)
+
+for i in range(1, 11):       # od 1 do 10
+    print(i)
+
+for i in range(0, 21, 2):    # co drugi (parzyste)
+    print(i)
+
+# Z enumerate (indeks + wartość)
+imiona = ["Ania", "Kasia", "Tomek"]
+for i, imie in enumerate(imiona, start=1):
+    print(f"{i}. {imie}")
+
+# Po słowniku
+osoba = {"imie": "Jan", "nazwisko": "Kowalski", "wiek": 32}
+for klucz, wartosc in osoba.items():
+    print(f"{klucz}: {wartosc}")    
+```
+
+## 2. `while`
+
+Wykonuje się tak długo, jak warunek jest prawdziwy.
+
+```Python
+# Prosty licznik
+licznik = 0
+while licznik < 5:
+    print(licznik)
+    licznik += 1
+
+# Z inputem od użytkownika
+haslo = ""
+while haslo != "1234":
+    haslo = input("Podaj hasło: ")
+print("Hasło poprawne!")
+```
+Nieskończona pętla
+
+```Python
+while True:
+    print("Działa bez końca")
+```
+
+## 3. Instrukcje sterujące w pętlach
+
+| Instrukcja | Działanie | Przykład użycia |
+|:-----|:----|:------|:------|
+| `break` | Przerywa pętlę | Znaleziono element → wychodzimy |
+| `continue` | Pomija resztę iteracji | Pomijamy nieparzyste liczby |
+| `else` | Wykonuje się jeśli pętla nie została przerwana break | Szukanie elementu – nie znaleziono |
+| `pass` | Nic nie robi (placeholder)| Pusta pętla / przyszły kod |
+
+## 1. `break` – przerywa pętlę całkowicie
+Instrukcja break natychmiast wychodzi z pętli, nawet jeśli warunek pętli jest jeszcze spełniony.
+
+```Python
+# Przykład: szukamy pierwszej parzystej liczby większej niż 10
+liczby = [1, 3, 7, 12, 15, 18, 22]
+
+for liczba in liczby:
+    if liczba > 10 and liczba % 2 == 0:
+        print(f"Znaleziono pierwszą parzystą liczbę > 10: {liczba}")
+        break          # przerywamy pętlę
+    print(liczba)
+
+print("Koniec pętli")
+```
+
+## 2. `continue` – pomija resztę bieżącej iteracji
+Przechodzi od razu do następnej iteracji pętli.
+
+```Python
+# Przykład: pomijamy liczby ujemne
+liczby = [5, -2, 8, -4, 10, -1, 7]
+
+for liczba in liczby:
+    if liczba < 0:
+        continue          # pomijamy ujemne liczby
+    print(liczba)
+```    
+
+## 3. `else` w pętli – wykonuje się, gdy pętla nie została przerwana break
+Klauzula else przy pętli działa tylko wtedy, gdy pętla skończyła się normalnie (bez break).
+
+```Python
+# Przykład: szukamy liczby parzystej
+liczby = [1, 3, 5, 7, 9]
+
+for liczba in liczby:
+    if liczba % 2 == 0:
+        print(f"Znaleziono parzystą: {liczba}")
+        break
+else:
+    print("Nie znaleziono żadnej liczby parzystej!")
+```
+
+## 4. `pass` – "nic nie rób" (placeholder)
+Używany, gdy składnia wymaga bloku kodu, ale nie chcesz nic robić (np. planujesz kod na później).
+
+```Python
+for i in range(10):
+    if i % 2 == 0:
+        pass          # później tu coś dodam
+    else:
+        print(i)
+```        
+
+Porównanie w jednym przykładzie
+
+```Python
+for i in range(1, 11):
+    if i == 3:
+        continue          # pomiń 3
+    if i == 8:
+        break             # przerwij przy 8
+    print(i)
+else:
+    print("Pętla zakończona normalnie")
+```    
