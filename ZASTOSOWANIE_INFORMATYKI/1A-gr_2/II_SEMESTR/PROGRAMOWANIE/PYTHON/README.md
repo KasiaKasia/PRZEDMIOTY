@@ -754,7 +754,7 @@ status = "pełnoletni" if wiek >= 18 else "niepełnoletni"
 print(status)
 ```
 ## Funkcje
-
+Funkcja to **blok kodu, który wykonuje określone zadanie** i może być wielokrotnie używany.
 Składnia: 
 
 ```Python
@@ -762,7 +762,7 @@ def nazwa_funkcji(parametry):
    """Dokumentacja (opcjonalna)""" 
    # ciało funkcji 
    return wartość  # opcjonalnie 
-```   
+```
 
 Przykłady: 
 ```Python
@@ -780,9 +780,10 @@ def dodaj(a, b):
    return wynik 
 ```
 
+
 **Argumenty funkcji**   
 
-1. Argumenty pozycyjne - najprostsze, kolejność ma znaczenie: 
+1. Argumenty pozycyjne - kolejność ma znaczenie: 
 
 ```Python
 def opisz_osobe(imie, wiek, miasto): 
@@ -791,9 +792,8 @@ def opisz_osobe(imie, wiek, miasto):
 opisz_osobe("Anna", 25, "Warszawa")  # OK 
 ``` 
 
-2. Argumenty nazwane (keyword arguments): 
-
-Można podawać w dowolnej kolejności 
+2. Argumenty nazwane (keyword arguments) - kolejność nie ma znaczenia
+ 
 `opisz_osobe(miasto="Kraków", imie="Piotr", wiek=30)`
 
 3. Argumenty domyślne: 
@@ -814,10 +814,10 @@ print(powitaj("John", "angielski"))
 
 ⚠️ Ważne: Argumenty domyślne muszą być na końcu listy parametrów: 
 
-# Poprawnie 
+Poprawnie 
 def funkcja(a, b=10): ... 
  
-# Błędnie - parametr domyślny przed wymaganym 
+Błędnie - parametr domyślny przed wymaganym 
 def funkcja(a=10, b): ...  # SyntaxError 
 
 4. *args - dowolna liczba argumentów pozycyjnych: 
@@ -867,3 +867,27 @@ Kolejność parametrów musi być:
 - *args 
 - Argumenty domyślne/nazwane 
 - **kwargs 
+
+## lambda pozwala tworzyć małe, anonimowe funkcje (czyli funkcje bez nazwy) 
+
+Czyli zamiast: 
+
+```Python
+def dodaj(a, b): 
+   wynik = a + b 
+   return wynik 
+```
+ 
+
+Skrótowa wersja w lambda: 
+
+`lambda a, b: a + b` 
+
+Składnia: 
+
+`lambda argumenty: wyrażenie `
+
+Istotne: 
+
+- Zawierać może tylko jedno wyrażenie 
+- Nie możesz używać w niej instrukcji typu if, for, while, return 
