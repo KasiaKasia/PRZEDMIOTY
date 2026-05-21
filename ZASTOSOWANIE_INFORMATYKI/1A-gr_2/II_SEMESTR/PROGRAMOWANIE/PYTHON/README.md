@@ -589,7 +589,7 @@ print(x) # Wynik: range(0, 5)
 ```
 
 
-### W Pythonie istnieją dwie główne pętle:
+## W Pythonie istnieją dwie główne pętle:
 
 `for` – do iterowania po sekwencjach
 `while` – pętla warunkowa (wykonuje się dopóki warunek jest prawdziwy)
@@ -650,7 +650,7 @@ while True:
     print("Działa bez końca")
 ```
 
-## 3. Instrukcje sterujące w pętlach
+## 3. **Instrukcje sterujące w pętlach**
 
 | Instrukcja | Działanie | Przykład użycia |
 |:-----|:----|:------|
@@ -699,8 +699,8 @@ for liczba in liczby:
     if liczba % 2 == 0:
         print(f"Znaleziono parzystą: {liczba}")
         break
-else:
-    print("Nie znaleziono żadnej liczby parzystej!")
+    else:
+        print("Nie znaleziono żadnej liczby parzystej!")
 ```
 
 ## 4. `pass` – "nic nie rób" (placeholder)
@@ -726,3 +726,144 @@ for i in range(1, 11):
 else:
     print("Pętla zakończona normalnie")
 ```    
+## Ternary operator (operator warunkowy) w Pythonie
+
+Ternary w Pythonie to skrótowy zapis instrukcji if/else w jednej linijce.
+
+**Składnia**
+wartość_jeśli_true if warunek else wartość_jeśli_false
+
+Przykład podstawowy
+```Python
+wiek = 20
+
+if wiek >= 18:
+    status = "pełnoletni"
+else:
+    status = "niepełnoletni"
+
+print(status)
+```
+
+To samo w ternary:
+```Python
+wiek = 20
+
+status = "pełnoletni" if wiek >= 18 else "niepełnoletni"
+
+print(status)
+```
+## Funkcje
+
+Składnia: 
+
+```Python
+def nazwa_funkcji(parametry): 
+   """Dokumentacja (opcjonalna)""" 
+   # ciało funkcji 
+   return wartość  # opcjonalnie 
+```   
+
+Przykłady: 
+```Python
+# Prosta funkcja bez parametrów 
+def przywitaj(): 
+   print("Cześć!") 
+ 
+# Funkcja z parametrem 
+def powitaj(imie): 
+   print(f"Cześć, {imie}!") 
+ 
+# Funkcja zwracająca wartość 
+def dodaj(a, b): 
+   wynik = a + b 
+   return wynik 
+```
+
+**Argumenty funkcji**   
+
+1. Argumenty pozycyjne - najprostsze, kolejność ma znaczenie: 
+
+```Python
+def opisz_osobe(imie, wiek, miasto): 
+   print(f"{imie}, lat {wiek}, z {miasto}") 
+ 
+opisz_osobe("Anna", 25, "Warszawa")  # OK 
+``` 
+
+2. Argumenty nazwane (keyword arguments): 
+
+Można podawać w dowolnej kolejności 
+`opisz_osobe(miasto="Kraków", imie="Piotr", wiek=30)`
+
+3. Argumenty domyślne: 
+ 
+```Python
+def powitaj(imie, jezyk="polski"): 
+   if jezyk == "polski": 
+
+       return f"Cześć, {imie}!"  
+   elif jezyk == "angielski": 
+       return f"Hello, {imie}!" 
+   else: 
+       return f"Witaj, {imie}!" 
+ 
+print(powitaj("Anna"))  # używa domyślnego "polski" 
+print(powitaj("John", "angielski")) 
+```
+
+⚠️ Ważne: Argumenty domyślne muszą być na końcu listy parametrów: 
+
+# Poprawnie 
+def funkcja(a, b=10): ... 
+ 
+# Błędnie - parametr domyślny przed wymaganym 
+def funkcja(a=10, b): ...  # SyntaxError 
+
+4. *args - dowolna liczba argumentów pozycyjnych: 
+
+przekazywane bez nazw. Nie piszemy sumuj_wszystko(a=10, b=20) 
+
+```Python
+def sumuj_wszystko(*liczby): 
+   """Przyjmuje dowolną liczbę argumentów""" 
+   return sum(liczby) 
+ 
+print(sumuj_wszystko(1, 2, 3))     # 6 
+print(sumuj_wszystko(10, 20))      # 30 
+print(sumuj_wszystko(1, 2, 3, 4, 5))  # 15 
+```
+
+5. **kwargs - dowolna liczba argumentów nazwanych: 
+
+```Python
+def pokaz_dane(**dane): 
+   """Przyjmuje dowolną liczbę argumentów nazwanych""" 
+   for klucz, wartosc in dane.items(): 
+       print(f"{klucz}: {wartosc}") 
+ 
+pokaz_dane(imie="Anna", wiek=25, miasto="Warszawa") 
+# Wyświetli: 
+# imie: Anna 
+# wiek: 25 
+# miasto: Warszawa 
+```
+
+6. Łączenie różnych typów argumentów: 
+
+```Python
+def skomplikowana_funkcja(a, b, *args, opcja=None, **kwargs): 
+   print(f"a={a}, b={b}") # pamietać o wcięciach 
+   print(f"args={args}") 
+   print(f"opcja={opcja}") 
+   print(f"kwargs={kwargs}") 
+```
+
+Przykład wywołania: 
+`skomplikowana_funkcja(1, 2, 3, 4, 5, opcja="test", x=100, y=200)`
+
+Kolejność parametrów musi być:
+- Argumenty pozycyjne 
+- *args 
+- Argumenty domyślne/nazwane 
+- **kwargs 
