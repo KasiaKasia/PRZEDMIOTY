@@ -653,7 +653,7 @@ while True:
 ## 3. Instrukcje sterujące w pętlach
 
 | Instrukcja | Działanie | Przykład użycia |
-|:-----|:----|:------|:------|
+|:-----|:----|:------|
 | `break` | Przerywa pętlę | Znaleziono element → wychodzimy |
 | `continue` | Pomija resztę iteracji | Pomijamy nieparzyste liczby |
 | `else` | Wykonuje się jeśli pętla nie została przerwana break | Szukanie elementu – nie znaleziono |
