@@ -1,0 +1,9 @@
+{
+    "imie": "Anna",
+    "nazwisko": "Nowak",
+    "wiek": 28,
+    "hobby": [
+        "czytanie",
+        "bieganie"
+    ]
+}

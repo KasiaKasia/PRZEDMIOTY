@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osoby>
+    <osoba id="1">
+        <imie>Anna</imie>
+        <wiek>28</wiek>
+    </osoba>
+
+    <osoba id="2">
+        <imie>Jan</imie>
+        <wiek>35</wiek>
+    </osoba>
+
+    <osoba id="3">
+        <imie>Kasia</imie>
+        <wiek>22</wiek>
+    </osoba>
+
+    <osoba id="4">
+        <imie>Piotr</imie>
+        <wiek>40</wiek>
+    </osoba>
+</osoby>

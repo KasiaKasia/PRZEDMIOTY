@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pracownicy>
+    <osoba id="1">
+        <imie>Jan</imie>
+        <nazwisko>Kowalski</nazwisko>
+        <pensja>7500</pensja>
+    </osoba>
+</pracownicy>
