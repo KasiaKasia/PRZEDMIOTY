@@ -822,7 +822,7 @@ Błędnie - parametr domyślny przed wymaganym
 
 def funkcja(a=10, b): ...  # SyntaxError 
 
-**4. *args - dowolna liczba argumentów pozycyjnych:**
+**4. `*args` - dowolna liczba argumentów pozycyjnych:**
 
 przekazywane bez nazw. Nie piszemy sumuj_wszystko(a=10, b=20) 
 
@@ -836,7 +836,7 @@ print(sumuj_wszystko(10, 20))      # 30
 print(sumuj_wszystko(1, 2, 3, 4, 5))  # 15 
 ```
 
-**5. **kwargs - dowolna liczba argumentów nazwanych:**
+**5. `**kwargs` - dowolna liczba argumentów nazwanych:**
 
 ```Python
 def pokaz_dane(**dane): 
