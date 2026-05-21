@@ -815,9 +815,11 @@ print(powitaj("John", "angielski"))
 ⚠️ Ważne: Argumenty domyślne muszą być na końcu listy parametrów: 
 
 Poprawnie 
+
 def funkcja(a, b=10): ... 
  
 Błędnie - parametr domyślny przed wymaganym 
+
 def funkcja(a=10, b): ...  # SyntaxError 
 
 4. *args - dowolna liczba argumentów pozycyjnych: 
