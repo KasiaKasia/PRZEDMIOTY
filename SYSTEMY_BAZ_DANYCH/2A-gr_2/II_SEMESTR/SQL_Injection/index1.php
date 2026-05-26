@@ -8,66 +8,114 @@ if ($mysqli->connect_error) {
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-   $username = $_POST['login'] ?? '';
 
-    // Proste podatne zapytanie
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $username = $_POST['login'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    // Debug
-    echo "<div style='background:#fff3cd; padding:15px; margin:15px 0; border:2px solid #ffc107; font-family:monospace;'>";
-    echo "<strong>Zapytanie SQL:</strong><br>" . htmlspecialchars($sql);
+    // BEZPIECZNE zapytanie - prepared statement
+    $stmt = $mysqli->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+
+    if (!$stmt) {
+        die("Błąd prepare: " . $mysqli->error);
+    }
+
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    // Debug SQL (bez danych użytkownika)
+    echo "<div style='background:#fff3cd;padding:15px;margin-bottom:20px;border:1px solid #ffc107;'>";
+    echo "<strong>Zapytanie:</strong> Prepared Statement (bez SQL Injection)";
     echo "</div>";
 
-    $result = $mysqli->query($sql);
-
     if ($result && $result->num_rows > 0) {
-        $message = "<p style='color:green; font-weight:bold; font-size:20px;'>✅ ZALOGOWANO POMYŚLNIE!<br>
-                    Znaleziono " . $result->num_rows . " rekordów</p>";
+        $user = $result->fetch_assoc();
+
+        $message = "
+        <div style='padding:15px;background:#d4edda;color:#155724;border:1px solid #c3e6cb;'>
+            <h2>✅ Zalogowano!</h2>
+            <p>Witaj: <strong>{$user['username']}</strong></p>
+        </div>";
     } else {
-        $message = "<p style='color:red; font-weight:bold;'>❌ Błędny login lub hasło.</p>";
+        $message = "
+        <div style='padding:15px;background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;'>
+            ❌ Błędny login lub hasło
+        </div>";
     }
+
+    $stmt->close();
 }
 ?>
-
-<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Injection Test</title>
+    <title>Secure Login</title>
+
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
-        .container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 12px; margin: 8px 0; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; padding: 14px; background: #0066cc; color: white; border: none; font-size: 16px; cursor: pointer; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #28a745;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Logowanie — podatne na SQL Injection</h1>
-    
+
+    <h1>Bezpieczne logowanie (SQL Injection ZABLOKOWANE)</h1>
+
     <?= $message ?>
 
     <form method="POST">
-        <label><strong>Login:</strong></label><br>
-        <input type="text" name="login" required><br><br>
-        
-        <label><strong>Hasło:</strong> (może być puste)</label><br>
-        <input type="text" name="password" value=""><br><br>
-        
-        <button type="submit">Zaloguj się</button>
+
+        <label>Login:</label>
+        <input type="text" name="login" required>
+
+        <label>Hasło:</label>
+        <input type="password" name="password">
+
+        <button type="submit">Zaloguj</button>
+
     </form>
 
     <hr>
-    <h3>🔥 Wpisz dokładnie w polu Login (skopiuj i wklej):</h3>
-    <ul>
-        <li><code>' OR 1=1</code> ← **najprostszy i najlepszy**</li>
-        <li><code>' OR '1'='1</code></li>
-        <li><code>janek' OR '1'='1</code></li>
-    </ul>
-    <p><strong>Nie dodawaj na końcu -- ani # przy tym teście.</strong></p>
+
+    <p><strong>Ten kod jest bezpieczny, ponieważ używa prepared statements.</strong></p>
+
 </div>
 
 </body>
