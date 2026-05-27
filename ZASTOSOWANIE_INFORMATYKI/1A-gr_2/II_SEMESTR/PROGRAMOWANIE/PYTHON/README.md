@@ -864,6 +864,12 @@ def skomplikowana_funkcja(a, b, *args, opcja=None, **kwargs):
 Przykład wywołania: 
 `skomplikowana_funkcja(1, 2, 3, 4, 5, opcja="test", x=100, y=200)`
 
+Wynik:
+a=1, b=2
+args=(3, 4, 5)
+opcja=test
+kwargs={'x': 100, 'y': 200}
+
 Kolejność parametrów musi być:
 - Argumenty pozycyjne 
 - *args 
@@ -893,3 +899,97 @@ Istotne:
 
 - Zawierać może tylko jedno wyrażenie 
 - Nie możesz używać w niej instrukcji typu if, for, while, return 
+
+## Zasięg zmiennych
+
+Zasięg zmiennych (ang. scope) określa, gdzie dana zmienna jest dostępna i z jakiego miejsca w kodzie możesz z niej korzystać.
+
+Python szuka zmiennych według reguły **LEGB**:
+
+L – Local
+E – Enclosing
+G – Global
+B – Built-in
+
+Lokalny (wewnątrz funkcji)
+Otaczający (funkcja w funkcji)
+Globalny (na poziomie pliku)
+Wbudowany (np. len, print)
+
+
+1. Scope lokalny (Local)
+Zmienne stworzone wewnątrz funkcji:
+
+```Python
+def foo():
+    x = 10
+    print(x)
+
+foo()
+print(x)  # błąd NameError: name 'x' is not defined
+```
+
+2. Scope globalny
+
+Zmienne poza funkcją:
+
+```Python
+x = 100
+
+def foo():
+    print(x) # 100
+    x = x + 1 # UnboundLocalError: cannot access local variable 'x' where it is not associated with a value
+
+foo()
+```
+
+```Python
+x = 10
+
+def foo():
+    global x
+    x = x + 1
+    print(x)
+foo()
+``` 
+
+3. Enclosing scope (funkcja w funkcji)
+
+```Python
+def outer(): 
+    x = 5
+
+    def inner(): 
+        print(x)  # 5
+    inner() # inner() widzi x z outer()
+
+outer()
+```
+
+Modyfikacja 
+
+```Python
+def outer():
+    x = 5
+    print(x) # 5
+    
+    def inner():
+        nonlocal x
+        x = 10
+        print(x) # 10
+    inner()
+    print(x) # 10
+
+outer()
+```
+
+4. Built-in scope
+
+To są funkcje wbudowane:
+len, print, range itd.
+
+```Python
+print(len("abc")) 
+```
+
+Python zawsze je widzi.
