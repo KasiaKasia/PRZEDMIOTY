@@ -865,10 +865,12 @@ Przykład wywołania:
 `skomplikowana_funkcja(1, 2, 3, 4, 5, opcja="test", x=100, y=200)`
 
 Wynik:
+```Python
 a=1, b=2
 args=(3, 4, 5)
 opcja=test
 kwargs={'x': 100, 'y': 200}
+```
 
 Kolejność parametrów musi być:
 - Argumenty pozycyjne 
@@ -906,15 +908,11 @@ Zasięg zmiennych (ang. scope) określa, gdzie dana zmienna jest dostępna i z j
 
 Python szuka zmiennych według reguły **LEGB**:
 
-L – Local
-E – Enclosing
-G – Global
-B – Built-in
+- L – Local     - Lokalny (wewnątrz funkcji)
+- E – Enclosing - Otaczający (funkcja w funkcji)
+- G – Global    - Globalny (na poziomie pliku)
+- B – Built-in  - Wbudowany (np. len, print)
 
-Lokalny (wewnątrz funkcji)
-Otaczający (funkcja w funkcji)
-Globalny (na poziomie pliku)
-Wbudowany (np. len, print)
 
 
 1. Scope lokalny (Local)
