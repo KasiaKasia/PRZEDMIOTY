@@ -859,10 +859,9 @@ def skomplikowana_funkcja(a, b, *args, opcja=None, **kwargs):
    print(f"args={args}") 
    print(f"opcja={opcja}") 
    print(f"kwargs={kwargs}") 
-```
 
-Przykład wywołania: 
-`skomplikowana_funkcja(1, 2, 3, 4, 5, opcja="test", x=100, y=200)`
+skomplikowana_funkcja(1, 2, 3, 4, 5, opcja="test", x=100, y=200)   
+```
 
 Wynik:
 ```Python
