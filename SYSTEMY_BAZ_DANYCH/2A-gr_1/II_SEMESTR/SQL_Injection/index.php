@@ -2,7 +2,19 @@
 session_start(); 
 $mysqli = new mysqli("localhost", "root", "", "CTF");
 
-// ❌ Bez ujawniania szczegółów błędów
+/*
+Ujawnianie szczegółów błędów jest bardzo niebezpieczne, ponieważ może dostarczyć atakującemu cennych informacji o:
+
+    nazwę bazy danych
+    nazwę użytkownika
+    strukturę systemu
+    technologię
+    wersję serwera
+    ścieżki systemowe
+    konfigurację
+
+To są bardzo cenne informacje dla atakującego.
+*/
 if ($mysqli->connect_error) {
     die("Błąd połączenia z bazą danych.");
 }
@@ -12,7 +24,7 @@ $message = "";
 // =======================
 // CSRF TOKEN - Cross-Site Request Forgery
 // random_bytes(32) - generuje 32 losowe bajty (silna kryptografia)
-// bin2hex(...) - zamienia bajty na zapis HEX:
+// bin2hex(...) - zamienia bajty na zapis HEX (system szesnastkowy):
 // =======================
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -20,6 +32,10 @@ if (empty($_SESSION['csrf_token'])) {
 
 // =======================
 // BRUTE FORCE PROTECTION
+/*
+Atak brute force polega na tym, że ktoś próbuje wiele haseł jedno po drugim.
+Robi to automatycznie (skrypt/bot), aż trafi poprawne hasło
+*/
 // =======================
 if (!isset($_SESSION['login_attempts'])) {
     $_SESSION['login_attempts'] = 0;
@@ -40,6 +56,7 @@ if (time() < $_SESSION['blocked_until']) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // CSRF CHECK
+    // isset(...) - sprawdza czy zmienna jest ustawiona i nie jest NULL
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die("Nieprawidłowy token CSRF.");
     }
@@ -83,7 +100,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$stmt) {
             $message = "❌ Wystąpił błąd systemu.";
         } else {
-
+            /*
+                "s" oznacza string
+                $username trafia do ?
+            */
             $stmt->bind_param("s", $username);
             $stmt->execute();
 
@@ -109,10 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // reset prób po sukcesie
                 $_SESSION['login_attempts'] = 0;
-/*
-htmlspecialchars() w PHP służy do zamiany znaków specjalnych na bezpieczne encje HTML, 
-żeby zapobiec m.in. atakom XSS (Cross-Site Scripting).
-*/
+                /*
+                htmlspecialchars() w PHP służy do zamiany znaków specjalnych na bezpieczne encje HTML, 
+                żeby zapobiec m.in. atakom XSS (Cross-Site Scripting).
+                */
                 $message = "
                 <div style='padding:15px;background:#d4edda;color:#155724;border:1px solid #c3e6cb;'>
                     <h2>✅ Zalogowano!</h2>
