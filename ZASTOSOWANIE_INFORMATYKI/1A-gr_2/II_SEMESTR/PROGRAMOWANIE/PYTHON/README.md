@@ -107,6 +107,13 @@ print(s.lower())     # "hello, world!"
 print(s.split(','))  # ['Hello', ' World!']
 print(s.replace('World', 'Python'))  # "Hello, Python!"
 
+powitanie = "Cześć, " + imie + "!"  # konkatenacja (łączenie) 
+print(powitanie)  # Cześć, Anna! 
+ 
+powtorzenie = "git" * 3  # powielanie 
+print(powtorzenie)  # gitgitgit
+
+
 # Slices (wycinanie)
 text = "Python Programming"
 print(text[0:6])    # "Python"
@@ -122,6 +129,81 @@ path = "/home/user/documents/file.txt"
 html = "<div>Hello</div>"
 sql = "SELECT * FROM users WHERE id = 123"
 
+```
+
+**METODY STRINGÓW** 
+
+**split()** - dzielenie stringa na listę 
+```Python
+# Podstawowe split() 
+zdanie = "Python jest świetny" 
+slowa = zdanie.split() 
+print(slowa)  # ['Python', 'jest', 'świetny'] 
+ 
+# Split z własnym separatorem 
+data = "2024-01-15" 
+czesc_daty = data.split("-") 
+print(czesc_daty)  # ['2024', '01', '15'] 
+ 
+# Split z limitem podziałów 
+tekst = "jabłko,gruszka,banan,wiśnia" 
+owoce = tekst.split(",", 2) 
+print(owoce)  # ['jabłko', 'gruszka', 'banan,wiśnia'] 
+ 
+# Praktyczny przykład - parsowanie danych 
+dane_logowania = "user:haslo123" 
+login, haslo = dane_logowania.split(":") 
+print(f"Login: {login}, Hasło: {haslo}") 
+```
+ 
+
+**join()** - łączenie listy w string 
+
+```Python
+# Podstawowe join() 
+owoce = ['jabłko', 'gruszka', 'banan'] 
+tekst = ", ".join(owoce) 
+print(tekst)  # jabłko, gruszka, banan 
+ 
+# Różne separatory 
+slowa = ['Python', 'jest', 'fajny'] 
+print(" ".join(slowa))   # Python jest fajny 
+print("-".join(slowa))   # Python-jest-fajny 
+print("".join(slowa))    # Pythonjestfajny 
+ 
+# Łączenie z transformacją 
+liczby = [1, 2, 3, 4, 5] 
+# Najpierw musimy zamienić liczby na stringi 
+tekst = ", ".join(str(x) for x in liczby) 
+print(tekst)  # 1, 2, 3, 4, 5 
+ 
+# Praktyczny przykład - tworzenie ścieżki 
+katalogi = ['home', 'user', 'dokumenty'] 
+sciezka = '/'.join(katalogi) 
+print(sciezka)  # home/user/dokumenty 
+```
+ 
+
+**replace()** - zamiana fragmentów stringa 
+
+```Python
+tekst = "Lubię koty. Koty są fajne." 
+nowy_tekst = tekst.replace("koty", "psy") 
+print(nowy_tekst)  
+ 
+tekst = "Lubię koty. Koty są fajne." 
+nowy_tekst = tekst.replace("koty", "psy").replace("Koty", "Psy") 
+print(nowy_tekst) 
+ 
+tekst = "jabłko jabłko jabłko" 
+print(tekst.replace("jabłko", "gruszka", 2))  
+tekst = "Hello, World!!!" 
+czysty = tekst.replace(",", "").replace("!", "") 
+print(czysty) 
+ 
+numer_telefonu = "+48 123-456-789" 
+czysty_numer = numer_telefonu.replace("+48 ", "").replace("-", "") 
+print(czysty_numer)
 ```
 
 ### **3. Typy sekwencyjne (kolekcje)**
@@ -990,3 +1072,230 @@ print(len("abc"))
 ```
 
 Python zawsze je widzi.
+
+## Programowanie obiektowe (OOP)
+
+**Programowanie obiektowe (OOP)** w Pythonie to **paradygmat** programowania, który pozwala na **organizowanie kodu wokół "obiektów"** zamiast funkcji i procedur. Jest to jedna z kluczowych cech Pythona, czyniąca go elastycznym i łatwym w utrzymaniu dla dużych projektów. 
+
+**Kluczowe pojęcia OOP**
+
+**1. Klasa (Class)**
+
+**Klasa to szablon** lub blueprint **definiujący strukturę i zachowanie obiektów**. Definiuje, jakie atrybuty (dane) i metody (funkcje) będą miały obiekty stworzone na jej podstawie. Klasa sama w sobie nie przechowuje danych – to robią jej instancje (obiekty). 
+
+```Python
+class Pies:  
+   pass  # klasa nic nie robi, czyli blok istnieje ale jest pusty   
+ 
+moj_pies = Pies() 
+print(type(moj_pies)) 
+```
+
+**2. Obiekt (Object)**
+
+**Obiekt to instancja** (konkretny egzemplarz) **klasy**. **Obiekt ma własne atrybuty i może wywoływać metody zdefiniowane w klasie**. Tworzysz obiekt wywołując klasę jak funkcję (np. Klasa()). Obiekty są unikalne, nawet jeśli pochodzą z tej samej klasy. 
+
+```Python
+class Pies: 
+   def szczekaj(self):   
+       print("Hau hau!") 
+ 
+moj_pies = Pies()       
+inny_pies = Pies()     
+ 
+moj_pies.szczekaj()     
+print(moj_pies == inny_pies)    
+```
+
+**2.a) self**
+
+**self to odniesienie (referencja) do bieżącej instancji klasy** (konkretnego obiektu). To sposób, w jaki obiekt "widzi samego siebie" i może operować na swoich własnych danych. 
+
+ 
+
+Kiedy definiujesz metodę wewnątrz klasy, **Python automatycznie przekazuje instancję obiektu jako pierwszy argument tej metody. self pozwala metodzie odwoływać się do atrybutów i innych metod tej konkretnej instancji**. 
+
+Bez self metoda nie wiedziałaby, do którego obiektu się odnosi – czy do atrybutów klasy, czy instancji. 
+
+```Python
+class Osoba: 
+   def przedstaw_sie(self): 
+       print(f"Jestem obiektem: {self}") 
+       print(f"Mój typ to: {type(self)}") 
+ 
+osoba1 = Osoba() 
+osoba2 = Osoba() 
+ 
+print("Wywołanie dla osoby1:") 
+osoba1.przedstaw_sie()  # self = osoba1 
+ 
+print("\nWywołanie dla osoby2:") 
+osoba2.przedstaw_sie()  # self = osoba2 
+```
+
+Wynik:
+```Python
+Wywołanie dla osoby1: Jestem obiektem: <__main__.Osoba object at 0x7c84a9049be0> 
+Mój typ to: <class '__main__.Osoba'> 
+Wywołanie dla osoby2: Jestem obiektem: <__main__.Osoba object at 0x7c84a9049c10>  
+Mój typ to: <class '__main__.Osoba'> 
+```
+ 
+**self w __init__**
+
+Metoda **__init__ jest wywoływana automatycznie podczas tworzenia obiektu**. self w __init__ odnosi się do nowo tworzonego obiektu.
+
+```Python
+class Pracownik: 
+   def __init__(self, imie, pensja): 
+       print(f"1. Tworzę obiekt: {self}") 
+       print(f"2. Przypisuję imię '{imie}' do self.imie") 
+        
+       self.imie = imie 
+       self.pensja = pensja 
+        
+       print(f"3. Obiekt po inicjalizacji: imię={self.imie}, pensja={self.pensja}") 
+       print(f"4. ID obiektu: {id(self)}") 
+ 
+p = Pracownik("Anna", 5000) 
+print(f"\nUtworzony obiekt: {p}") 
+print(f"ID obiektu z zewnątrz: {id(p)}") 
+```
+
+Wynik: 
+```Python
+Tworzę obiekt: <__main__.Pracownik object at 0x7fa10867db50> 
+Przypisuję imię 'Anna' do self.imie 
+Obiekt po inicjalizacji: imię=Anna, pensja=5000
+ID obiektu: 140329607486288 
+Utworzony obiekt: <__main__.Pracownik object at 0x7fa10867db50>  
+ID obiektu z zewnątrz: 140329607486288 
+```
+ 
+self odwołuje się do atrybutów obiektu 
+```Python
+class Samochod: 
+   def __init__(self, marka):        
+       self.marka = marka 
+       self.predkosc = 0 
+    
+   def przyspiesz(self, wartosc): 
+       # self.predkosc - odwołanie do atrybutu 
+       self.predkosc += wartosc 
+       print(f"{self.marka}: jadę z prędkością {self.predkosc} km/h") 
+    
+   def hamuj(self): 
+       # self.predkosc - modyfikacja atrybutu 
+       self.predkosc = 0 
+       print(f"{self.marka}: zatrzymałem się") 
+ 
+auto = Samochod("Toyota") 
+auto.przyspiesz(50)  # self to auto 
+auto.hamuj()         # self to auto 
+```
+ 
+
+self pozwala odróżnić atrybuty obiektu od zmiennych lokalnych 
+
+```Python
+class Przyklad: 
+   def __init__(self, wartosc): 
+       # wartosc - to parametr (zmienna lokalna) 
+       # self.wartosc - to atrybut obiektu 
+       self.wartosc = wartosc 
+        
+   def pokaz(self, wartosc): 
+       # wartosc - to parametr metody 
+       # self.wartosc - to atrybut obiektu 
+       print(f"Parametr metody: {wartosc}") 
+       print(f"Atrybut obiektu: {self.wartosc}") 
+ 
+ob = Przyklad(100) 
+ob.pokaz(50)  # Parametr: 50, Atrybut: 100 
+```
+ 
+
+Python automatycznie przekazuje obiekt jako pierwszy argument przy wywołaniu metody:
+
+```Python
+class Test: 
+   def metoda(self, arg1, arg2): 
+       print(f"self: {self}") 
+       print(f"arg1: {arg1}, arg2: {arg2}") 
+ 
+t = Test() 
+ 
+# Te dwa wywołania są RÓWNOWAŻNE: 
+t.metoda(10, 20)           # Python automatycznie wstawia self 
+Test.metoda(t, 10, 20)     # Ręczne przekazanie obiektu jako self 
+```
+
+**3. Metody (Methods)**
+
+**Metody to funkcje zdefiniowane wewnątrz klasy, które operują na obiektach. Pierwszy parametr metody to zawsze self** (odwołuje się do bieżącego obiektu). 
+
+Metody pozwalają na interakcję z obiektem. Mogą modyfikować atrybuty lub zwracać wartości. Są wywoływane na obiekcie: obiekt.metoda(). 
+
+ 
+```Python
+class Samochod: 
+   def jedz(self, predkosc): 
+       print(f"Samochód jedzie z prędkością {predkosc} km/h.") 
+    
+   def zatrzymaj(self):        
+       print("Samochód się zatrzymał.") 
+ 
+moj_samochod = Samochod()  # Obiekt 
+moj_samochod.jedz(100)     # Wyjście: Samochód jedzie z prędkością 100 km/h. 
+moj_samochod.zatrzymaj()   # Wyjście: Samochód się zatrzymał. 
+```
+
+**4. Atrybuty (Attributes)**
+
+**Atrybuty to zmienne związane z klasą lub obiektem. Mogą być atrybutami klasy** (wspólne dla wszystkich obiektów) lub **instancji** (unikalne dla każdego obiektu). 
+
+Atrybuty przechowują dane. Dostęp do nich: obiekt.atrybut. Mogą być ustawiane w __init__ lub bezpośrednio. 
+
+```Python
+class Osoba: 
+   gatunek = "Człowiek"  # Atrybut klasy (wspólny) 
+ 
+   def __init__(self, imie):  # Więcej o __init__ poniżej 
+       self.imie = imie      # Atrybut instancji (unikalny) 
+ 
+jan = Osoba("Jan")            # Obiekt 
+print(jan.imie)               # Wyjście: Jan 
+print(jan.gatunek)            # Wyjście: Człowiek 
+ 
+anna = Osoba("Anna") 
+print(anna.imie)              # Wyjście: Anna 
+print(anna.gatunek)           # Wyjście: Człowiek (wspólny) 
+```
+
+**5. init (Konstruktor)**
+
+**__init__ to specjalna metoda (konstruktor), która jest wywoływana automatycznie przy tworzeniu obiektu. Służy do inicjalizacji atrybutów obiektu. Nie zwraca wartości, ale ustawia początkowe stany**. Pierwszy parametr to self. Możesz podać argumenty przy tworzeniu obiektu. 
+
+```Python
+class Ksiazka: 
+   def __init__(self, tytul, autor, rok=2023):  # Konstruktor z domyślnym parametrem 
+       self.tytul = tytul                       # Inicjalizacja atrybutów 
+       self.autor = autor 
+       self.rok = rok 
+ 
+   def opis(self):  # Funkcja używająca atrybutów 
+       return f"{self.tytul} autorstwa {self.autor} ({self.rok})" 
+ 
+moja_ksiazka = Ksiazka("Python dla początkujących", "Jan Kowalski")  # Tworzenie z argumentami 
+print(moja_ksiazka.opis())  # Wyjście: Python dla początkujących autorstwa Jan Kowalski (2023) 
+ 
+inna_ksiazka = Ksiazka("Zaawansowany Python", "Anna Nowak", 2024) 
+print(inna_ksiazka.opis())  # Wyjście: Zaawansowany Python autorstwa Anna Nowak (2024) 
+```
+
+ 
+
+ 
+
+ 
+  
