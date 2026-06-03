@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>onkeydown – test</title>
+    <style>
+        .box {
+            padding: 20px;
+            border: 2px solid #aaa;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2 id="info">Czekam na wpisanie znaku...</h2>
+</header>
+
+<main>
+
+    <div class="box">
+        <input type="text" id="pole" placeholder="Wpisz znak...">
+    </div>
+
+</main>
+
+<script>
+let pole = document.getElementById("pole");
+let info = document.getElementById("info");
+
+pole.onkeydown = function () {
+    info.innerText = "Wykryto naciśnięcie klawisza!";
+    info.style.color = "green";
+};
+</script>
+
+</body>
+</html>
