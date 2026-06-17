@@ -200,6 +200,9 @@ usuń:
 prefiks +48
 wszystkie myślniki
 
+podpowiedź: użyj   
+    .replace(/-/g, "")
+    .replace(/\s/g, "");
 Wynik:
 123456789
 
