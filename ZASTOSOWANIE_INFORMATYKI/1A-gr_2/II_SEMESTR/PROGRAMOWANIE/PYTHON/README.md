@@ -676,7 +676,7 @@ print(x) # Wynik: range(0, 5)
 `for` – do iterowania po sekwencjach
 `while` – pętla warunkowa (wykonuje się dopóki warunek jest prawdziwy)
 
-## 1. `for`
+**1. `for`**
 
 Najczęściej używana pętla w Pythonie. Służy do przejścia po elementach kolekcji (lista, krotka, string, range, słownik itp.).
 Podstawowe przykłady:
@@ -708,7 +708,7 @@ for klucz, wartosc in osoba.items():
     print(f"{klucz}: {wartosc}")    
 ```
 
-## 2. `while`
+**2. `while`**
 
 Wykonuje się tak długo, jak warunek jest prawdziwy.
 
@@ -732,7 +732,7 @@ while True:
     print("Działa bez końca")
 ```
 
-## 3. **Instrukcje sterujące w pętlach**
+## **Instrukcje sterujące w pętlach**
 
 | Instrukcja | Działanie | Przykład użycia |
 |:-----|:----|:------|
@@ -741,7 +741,7 @@ while True:
 | `else` | Wykonuje się jeśli pętla nie została przerwana break | Szukanie elementu – nie znaleziono |
 | `pass` | Nic nie robi (placeholder)| Pusta pętla / przyszły kod |
 
-## 1. `break` – przerywa pętlę całkowicie
+**1. `break` – przerywa pętlę całkowicie**
 Instrukcja break natychmiast wychodzi z pętli, nawet jeśli warunek pętli jest jeszcze spełniony.
 
 ```Python
@@ -757,7 +757,7 @@ for liczba in liczby:
 print("Koniec pętli")
 ```
 
-## 2. `continue` – pomija resztę bieżącej iteracji
+**2. `continue` – pomija resztę bieżącej iteracji**
 Przechodzi od razu do następnej iteracji pętli.
 
 ```Python
@@ -770,7 +770,7 @@ for liczba in liczby:
     print(liczba)
 ```    
 
-## 3. `else` w pętli – wykonuje się, gdy pętla nie została przerwana break
+**3. `else` w pętli – wykonuje się, gdy pętla nie została przerwana break**
 Klauzula else przy pętli działa tylko wtedy, gdy pętla skończyła się normalnie (bez break).
 
 ```Python
@@ -785,7 +785,7 @@ for liczba in liczby:
         print("Nie znaleziono żadnej liczby parzystej!")
 ```
 
-## 4. `pass` – "nic nie rób" (placeholder)
+**4. `pass` – "nic nie rób" (placeholder)**
 Używany, gdy składnia wymaga bloku kodu, ale nie chcesz nic robić (np. planujesz kod na później).
 
 ```Python
@@ -898,11 +898,11 @@ print(powitaj("John", "angielski"))
 
 Poprawnie 
 
-def funkcja(a, b=10): ... 
+`def funkcja(a, b=10): ... `
  
 Błędnie - parametr domyślny przed wymaganym 
 
-def funkcja(a=10, b): ...  # SyntaxError 
+`def funkcja(a=10, b): ...  # SyntaxError `
 
 **4. `*args` - dowolna liczba argumentów pozycyjnych:**
 
@@ -933,7 +933,7 @@ pokaz_dane(imie="Anna", wiek=25, miasto="Warszawa")
 # miasto: Warszawa 
 ```
 
-6. Łączenie różnych typów argumentów: 
+**6. Łączenie różnych typów argumentów:**
 
 ```Python
 def skomplikowana_funkcja(a, b, *args, opcja=None, **kwargs): 
@@ -943,14 +943,14 @@ def skomplikowana_funkcja(a, b, *args, opcja=None, **kwargs):
    print(f"kwargs={kwargs}") 
 
 skomplikowana_funkcja(1, 2, 3, 4, 5, opcja="test", x=100, y=200)   
-```
+ 
 
-Wynik:
-```Python
-a=1, b=2
-args=(3, 4, 5)
-opcja=test
-kwargs={'x': 100, 'y': 200}
+# Wyświetli:
+ 
+# a=1, b=2
+# args=(3, 4, 5)
+# opcja=test
+# kwargs={'x': 100, 'y': 200}
 ```
 
 Kolejność parametrów musi być:
