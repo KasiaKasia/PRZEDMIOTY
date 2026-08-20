@@ -544,27 +544,47 @@ def process(obj):
     # Nie sprawdzamy typu, tylko interfejs
 ```
 
-### **Sprawdzanie typów**
+### **Konwersja i sprawdzanie typów**
 
 ```Python
-# type() - podstawowy
-print(type(42))        # <class 'int'>
-print(type("text"))    # <class 'str'>
 
-# isinstance() - zalecany (uwzględnia dziedziczenie)
-print(isinstance(42, int))      # True
-print(isinstance("text", str))  # True
+# KONWERSJA TYPÓW
 
-# issubclass() - sprawdzanie hierarchii
-print(issubclass(bool, int))  # True (bool dziedziczy po int)
+wiek = int("18")          # str -> int
+cena = float("19.99")     # str -> float
+tekst = str(123)          # int -> str
+wartosc = bool(1)         # int -> bool
 
-# type hints w praktyce (mypy, pydantic)
-from pydantic import BaseModel
+print(wiek)       # 18
+print(cena)       # 19.99
+print(tekst)      # 123
+print(wartosc)    # True
 
-class User(BaseModel):
-    name: str
-    age: int
-    email: str
+
+# SPRAWDZANIE TYPÓW
+# type() - zwraca typ obiektu
+
+print(type(42))          # <class 'int'>
+print(type(3.14))        # <class 'float'>
+print(type("Python"))    # <class 'str'>
+print(type(True))        # <class 'bool'>
+print(type([1, 2, 3]))   # <class 'list'>
+
+
+# isinstance() - sprawdza, czy obiekt należy do określonego typu lub typów
+liczba = 42
+
+print(isinstance(liczba, int))    # True
+print(isinstance(liczba, float))  # False
+
+tekst = "Python"
+
+print(isinstance(tekst, str))     # True
+
+# SPRAWDZANIE kilku typów: 
+wartosc = 10
+
+print(isinstance(wartosc, (int, float)))  # True
 ```    
 
 
@@ -1297,5 +1317,347 @@ print(inna_ksiazka.opis())  # Wyjście: Zaawansowany Python autorstwa Anna Nowak
 
  
 
+## Dziedziczenie
+
+**Dziedziczenie** to mechanizm programowania obiektowego (OOP), który pozwala utworzyć nową klasę na podstawie już istniejącej klasy.
+
+Nowa klasa, nazywana **klasą pochodną**, może korzystać z atrybutów i metod zdefiniowanych w **klasie bazowej**, bez konieczności ponownego definiowania tego samego kodu.
+
+Klasa pochodna może również:
+
+* dodawać własne atrybuty i metody,
+* rozszerzać funkcjonalność klasy bazowej,
+* nadpisywać metody odziedziczone z klasy bazowej.
+
+Dziedziczenie umożliwia ponowne wykorzystanie kodu oraz tworzenie hierarchii klas.
+
+Przykładowa hierarchia:
+
+```text
+Zwierze
+   |
+   +--- Pies
+   |
+   +--- Kot
+```
+
+Klasy `Pies` i `Kot` mogą dziedziczyć wspólne właściwości i metody z klasy `Zwierze`.
+
+### Kluczowe pojęcia
+
+**Klasa bazowa (base class / parent class)** – klasa, z której dziedziczą inne klasy. Może zawierać wspólne atrybuty i metody wykorzystywane przez klasy pochodne.
+
+**Klasa pochodna (derived class / child class)** – klasa dziedzicząca po klasie bazowej. Może korzystać z jej metod i atrybutów, a także dodawać własne lub nadpisywać odziedziczone metody.
+
+**Nadpisywanie metod (method overriding)** – zdefiniowanie w klasie pochodnej metody o tej samej nazwie jak metoda znajdująca się w klasie bazowej. Dzięki temu klasa pochodna może zmienić zachowanie odziedziczonej metody.
+
+**`super()`** – wbudowana funkcja pozwalająca uzyskać dostęp do metod znajdujących się dalej w hierarchii dziedziczenia zgodnie z kolejnością MRO. Jest często wykorzystywana w metodzie `__init__()` klasy pochodnej w celu wykonania kodu konstruktora klasy bazowej.
+
+**MRO (Method Resolution Order)** – kolejność, w jakiej Python przeszukuje klasy podczas wyszukiwania metod i innych atrybutów. Ma szczególne znaczenie w przypadku dziedziczenia wielokrotnego.
+
+---
+
+### 1. Podstawowe dziedziczenie
+
+Nazwę klasy bazowej zapisujemy w nawiasach podczas definiowania klasy pochodnej:
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} makes a sound."
+
+
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} barks."
+
+
+dog = Dog("Rex")
+
+print(dog.name)       # Rex
+print(dog.speak())    # Rex barks.
+```
+
+Klasa:
+
+```python
+class Dog(Animal):
+```
+
+oznacza, że `Dog` dziedziczy po klasie `Animal`.
+
+Obiekt klasy `Dog` może korzystać z konstruktora `__init__()` zdefiniowanego w klasie `Animal`.
+
+Metoda `speak()` została natomiast **nadpisana** w klasie `Dog`.
+
+---
+
+### 2. Sprawdzanie dziedziczenia – `issubclass()`
+
+Funkcja **`issubclass()`** pozwala sprawdzić, czy jedna klasa dziedziczy po drugiej.
+
+Składnia:
+
+```python
+issubclass(klasa_pochodna, klasa_bazowa)
+```
+
+Przykład:
+
+```python
+class Animal:
+    pass
+
+
+class Dog(Animal):
+    pass
+
+
+print(issubclass(Dog, Animal))  # True
+print(issubclass(Animal, Dog))  # False
+```
+
+`Dog` jest klasą pochodną klasy `Animal`, dlatego:
+
+```python
+issubclass(Dog, Animal)
+```
+
+zwraca:
+
+```text
+True
+```
+
+Możemy również wykorzystać `isinstance()` do sprawdzenia obiektu:
+
+```python
+dog = Dog()
+
+print(isinstance(dog, Dog))     # True
+print(isinstance(dog, Animal))  # True
+```
+
+Warto zapamiętać:
+
+```text
+isinstance()  → obiekt + klasa
+issubclass()  → klasa + klasa
+```
+
+Jako ciekawostka:
+
+```python
+print(issubclass(bool, int))  # True
+```
+
+W Pythonie `bool` jest podklasą `int`.
+
+---
+
+### 3. Użycie `super()` w konstruktorze
+
+Jeżeli klasa pochodna posiada własny konstruktor `__init__()`, możemy za pomocą `super()` wywołać kod konstruktora znajdującego się wcześniej w hierarchii dziedziczenia.
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)
+        self.breed = breed
+
+    def info(self):
+        return f"{self.name} is a {self.breed}."
+
+
+dog = Dog("Rex", "Labrador")
+
+print(dog.info())
+```
+
+Wynik:
+
+```text
+Rex is a Labrador.
+```
+
+Instrukcja:
+
+```python
+super().__init__(name)
+```
+
+powoduje wykonanie odpowiedniej metody `__init__()` znajdującej się dalej w kolejności dziedziczenia.
+
+Dzięki temu nie musimy ponownie pisać:
+
+```python
+self.name = name
+```
+
+w klasie `Dog`.
+
+---
+
+### 4. Wielokrotne dziedziczenie
+
+Python umożliwia również dziedziczenie po więcej niż jednej klasie bazowej.
+
+```python
+class Flyer:
+    def fly(self):
+        return "Flying high!"
+
+
+class Swimmer:
+    def swim(self):
+        return "Swimming fast!"
+
+
+class Duck(Flyer, Swimmer):
+    def quack(self):
+        return "Quack!"
+
+
+duck = Duck()
+
+print(duck.fly())
+print(duck.swim())
+print(duck.quack())
+
+# Wynik:
+# Flying high!
+# Swimming fast!
+# Quack!
+```
+
+Klasa:
+
+```python
+class Duck(Flyer, Swimmer):
+```
+
+dziedziczy po dwóch klasach:
+
+```text
+Flyer
+Swimmer
+```
+
+Dlatego obiekt `duck` może korzystać zarówno z metody `fly()`, jak i `swim()`.
+
+---
+
+### 5. MRO – Method Resolution Order
+
+W przypadku dziedziczenia Python musi wiedzieć, w jakiej kolejności przeszukiwać klasy.
+
+Kolejność tę możemy sprawdzić za pomocą:
+
+```python
+print(Duck.mro())
+```
+
+Przykładowy wynik:
+
+```text
+[
+    <class '__main__.Duck'>,
+    <class '__main__.Flyer'>,
+    <class '__main__.Swimmer'>,
+    <class 'object'>
+]
+```
+
+Oznacza to, że podczas wyszukiwania metody Python sprawdza klasy w kolejności:
+
+```text
+Duck
+↓
+Flyer
+↓
+Swimmer
+↓
+object
+```
+
+`object` jest podstawową klasą, po której pośrednio lub bezpośrednio dziedziczą klasy w Pythonie.
+
+Przy bardziej złożonych hierarchiach dziedziczenia Python ustala MRO w taki sposób, aby jednoznacznie określić kolejność wyszukiwania metod.
+
+> **Informacja dodatkowa:** mechanizm stosowany przez Pythona do ustalania MRO w przypadku dziedziczenia wielokrotnego opiera się na algorytmie określanym jako **C3 linearization**. 
+
+---
+
+### 6. Praktyczny przykład dziedziczenia – Pydantic `BaseModel`
+
+Pydantic jest zewnętrzną biblioteką Pythona służącą między innymi do tworzenia modeli danych i ich walidacji.
+
+Modele Pydantic tworzy się poprzez dziedziczenie po klasie `BaseModel`.
+
+```python
+from pydantic import BaseModel
+
+
+class User(BaseModel):
+    name: str
+    age: int
+    email: str
+
+
+user = User(
+    name="Anna",
+    age=18,
+    email="anna@example.com"
+)
+
+print(user)
+```
+
+Klasa:
+
+```python
+class User(BaseModel):
+```
+
+oznacza, że `User` dziedziczy po klasie `BaseModel` dostarczonej przez bibliotekę Pydantic.
+
+Możemy to sprawdzić za pomocą `issubclass()`:
+
+```python
+print(issubclass(User, BaseModel))  # True
+```
+
+Możemy również sprawdzić utworzony obiekt:
+
+```python
+print(isinstance(user, User))       # True
+print(isinstance(user, BaseModel))  # True
+```
+
+Pydantic wykorzystuje adnotacje typów:
+
+```python
+name: str
+age: int
+email: str
+```
+
+do opisu i walidacji danych modelu.
+
+Ponieważ Pydantic nie należy do biblioteki standardowej Pythona, przed użyciem należy go zainstalować, np.:
+
+```bash
+pip install pydantic
+```
+
+Przykład z `BaseModel` jest praktycznym zastosowaniem dziedziczenia, ale najlepiej omawiać go **dopiero po zrozumieniu zwykłego dziedziczenia, `isinstance()` i `issubclass()`**.
  
   
