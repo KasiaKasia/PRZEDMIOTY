@@ -1660,4 +1660,761 @@ pip install pydantic
 
 Przykład z `BaseModel` jest praktycznym zastosowaniem dziedziczenia, ale najlepiej omawiać go **dopiero po zrozumieniu zwykłego dziedziczenia, `isinstance()` i `issubclass()`**.
  
-  
+## Klasy abstrakcyjne
+
+**Klasa abstrakcyjna** to klasa bazowa, której głównym zadaniem jest określenie wspólnej struktury i zachowania dla klas pochodnych.
+
+Może definiować:
+
+* atrybuty,
+* zwykłe metody z gotową implementacją,
+* metody abstrakcyjne, których implementację powinny dostarczyć klasy pochodne.
+
+Klasa posiadająca co najmniej jedną niezrealizowaną metodę abstrakcyjną **nie może być bezpośrednio instancjonowana**, czyli nie można utworzyć jej obiektu.
+
+Klasy abstrakcyjne są ściśle związane z **dziedziczeniem**.
+
+Przykładowa hierarchia:
+
+```text
+PaymentProcessor
+       |
+       +---- StripeProcessor
+       |
+       +---- PayPalProcessor
+```
+
+`PaymentProcessor` może określić, jakie operacje powinien obsługiwać każdy procesor płatności, natomiast klasy `StripeProcessor` i `PayPalProcessor` określają, **w jaki sposób** te operacje zostaną wykonane.
+
+---
+ 
+
+**Klasy abstrakcyjne stosujemy** wtedy, gdy kilka klas powinno posiadać **wspólny zestaw metod**, ale ich sposób działania będzie różny.
+
+Przykładowo każdy system płatności powinien umożliwiać:
+
+```text
+przetworzenie płatności
+zwrot płatności
+```
+
+ale Stripe i PayPal mogą wykonywać te operacje zupełnie inaczej.
+
+Klasa abstrakcyjna może więc określić:
+
+> „Każdy procesor płatności ma posiadać metodę `process_payment()` oraz `refund()`”.
+
+Nie określa natomiast, jak dokładnie Stripe lub PayPal mają te operacje wykonać.
+
+Dzięki temu klasy abstrakcyjne pozwalają:
+
+* określić wspólny interfejs dla klas pochodnych,
+* wymusić implementację wymaganych operacji,
+* ponownie wykorzystywać wspólny kod,
+* uporządkować hierarchię klas,
+* zmniejszyć ryzyko pominięcia wymaganej metody.
+
+---
+
+### Moduł `abc`
+
+Python udostępnia moduł `abc` czyli **Abstract Base Classes**.
+
+Do tworzenia klas abstrakcyjnych najczęściej wykorzystujemy:
+
+```python
+from abc import ABC, abstractmethod
+```
+
+`ABC` służy jako klasa bazowa pomagająca tworzyć klasy abstrakcyjne.
+
+`@abstractmethod` jest dekoratorem oznaczającym metodę jako abstrakcyjną.
+
+Podstawowy schemat:
+
+```python
+from abc import ABC, abstractmethod
+
+
+class PaymentProcessor(ABC):
+
+    @abstractmethod
+    def process_payment(self, amount):
+        pass
+```
+
+---
+
+### Metoda abstrakcyjna
+
+**Metoda abstrakcyjna** określa, że dana operacja powinna istnieć w klasach konkretnych dziedziczących po klasie abstrakcyjnej.
+
+Oznaczamy ją dekoratorem `@abstractmethod`
+
+Przykład:
+
+```python
+from abc import ABC, abstractmethod
+
+class PaymentProcessor(ABC):
+
+    @abstractmethod
+    def process_payment(self, amount: float, currency: str) -> str:
+        pass
+```
+
+Klasa `PaymentProcessor` określa, że procesor płatności powinien posiadać metodę `process_payment()`
+
+Nie określa jednak jeszcze sposobu wykonania płatności.
+
+---
+
+### Przykład klasy abstrakcyjnej
+
+Utwórzmy klasę abstrakcyjną reprezentującą procesor płatności:
+
+```python
+from abc import ABC, abstractmethod
+
+
+class PaymentProcessor(ABC):
+
+    @abstractmethod
+    def process_payment(self, amount: float, currency: str) -> str:
+        pass
+
+    @abstractmethod
+    def refund(self, transaction_id: str) -> bool:
+        pass
+```
+
+Klasa posiada dwie metody abstrakcyjne: `process_payment()`, `refund()`
+
+Dlatego nie możemy utworzyć jej obiektu:
+
+```python
+processor = PaymentProcessor()
+```
+
+Python zgłosi błąd:
+
+```text
+TypeError: Can't instantiate abstract class PaymentProcessor without an implementation for abstract methods 'process_payment', 'refund'
+```
+
+Klasa posiada bowiem niezrealizowane metody abstrakcyjne.
+
+---
+
+### Implementacja metod abstrakcyjnych w klasie pochodnej
+
+Teraz utworzymy konkretną klasę:
+
+```python
+class StripeProcessor(PaymentProcessor):
+
+    def process_payment(self, amount: float, currency: str) -> str:
+        transaction_id = "stripe_123"
+
+        print(f"Stripe: płatność {amount} {currency} przyjęta")
+
+        return transaction_id
+
+    def refund(self, transaction_id: str) -> bool:
+        print(f"Stripe: zwrot transakcji {transaction_id}")
+
+        return True
+```
+
+Klasa `StripeProcessor` dziedziczy po `PaymentProcessor` i implementuje obie wymagane metody `process_payment()`, `refund()`
+
+Dlatego możemy utworzyć jej obiekt:
+
+```python
+stripe = StripeProcessor()
+
+transaction_id = stripe.process_payment(99.99, "PLN")
+stripe.refund(transaction_id)
+```
+
+Przykładowy wynik:
+
+```text
+Stripe: płatność 99.99 PLN przyjęta
+Stripe: zwrot transakcji stripe_123
+```
+
+---
+
+### Brak implementacji wszystkich metod abstrakcyjnych
+
+Załóżmy, że utworzymy klasę `PayPalProcessor`, ale zaimplementujemy tylko jedną metodę:
+
+```python
+class PayPalProcessor(PaymentProcessor):
+
+    def process_payment(self, amount: float, currency: str) -> str:
+        return "paypal_123"
+```
+
+Brakuje implementacji `refund()` Dlatego utworzenie obiektu
+
+```python
+paypal = PayPalProcessor()
+```
+
+spowoduje błąd:
+
+```text
+TypeError: Can't instantiate abstract class PayPalProcessor without an implementation for abstract method 'refund'
+```
+
+Klasa `PayPalProcessor` nadal posiada niezrealizowaną metodę abstrakcyjną, więc **sama pozostaje klasą abstrakcyjną**.
+
+### Ważne
+
+Klasa pochodna nie musi implementować wszystkich odziedziczonych metod abstrakcyjnych już w momencie jej definiowania.
+
+Jeżeli jednak nie zaimplementuje wszystkich metod abstrakcyjnych, *sama pozostaje klasą abstrakcyjną* i *nie można tworzyć jej obiektów*.
+
+Aby klasa pochodna stała się klasą konkretną, z której można tworzyć obiekty, musi zaimplementować wszystkie odziedziczone metody abstrakcyjne.
+
+---
+
+### Klasa abstrakcyjna może zawierać zwykłe metody i atrybuty
+
+Klasa abstrakcyjna nie musi składać się wyłącznie z metod abstrakcyjnych.
+
+Może posiadać:
+
+* konstruktor `__init__()`,
+* atrybuty,
+* zwykłe metody,
+* metody abstrakcyjne.
+
+Przykład:
+
+```python
+from abc import ABC, abstractmethod
+
+
+class PaymentProcessor(ABC):
+
+    def __init__(self, provider_name: str):
+        self.provider_name = provider_name
+
+    @abstractmethod
+    def process_payment(self, amount: float, currency: str) -> str:
+        pass
+
+    def show_provider(self):
+        print(f"Dostawca płatności: {self.provider_name}")
+ 
+
+# Klasa pochodna: 
+class StripeProcessor(PaymentProcessor):
+
+    def process_payment(self, amount: float, currency: str) -> str:
+        return f"Stripe: płatność {amount} {currency} przyjęta"
+ 
+
+# Tworzymy obiekt: 
+stripe = StripeProcessor("Stripe")
+stripe.show_provider()
+
+print(stripe.process_payment(100, "PLN"))
+```
+
+Wynik:
+
+```text
+Dostawca płatności: Stripe
+Stripe: płatność 100 PLN przyjęta
+```
+
+Metody `show_provider()` nie musimy ponownie definiować w `StripeProcessor`, ponieważ jest to zwykła metoda odziedziczona po `PaymentProcessor`.
+
+Natomiast `process_payment()` musi zostać zaimplementowana, ponieważ została oznaczona jako abstrakcyjna.
+
+---
+
+### Klasa abstrakcyjna a dziedziczenie
+
+Klasy abstrakcyjne wykorzystują zwykły mechanizm dziedziczenia.
+
+Możemy więc użyć poznanych wcześniej funkcji:
+
+```python
+issubclass()
+isinstance()
+```
+
+Przykład:
+
+```python
+print(issubclass(StripeProcessor, PaymentProcessor))
+```
+
+Wynik:
+
+```text
+True
+```
+
+Ponieważ:
+
+```python
+class StripeProcessor(PaymentProcessor):
+```
+
+oznacza, że `StripeProcessor` dziedziczy po `PaymentProcessor`.
+
+Możemy również sprawdzić obiekt:
+
+```python
+stripe = StripeProcessor("Stripe")
+
+print(isinstance(stripe, StripeProcessor))
+print(isinstance(stripe, PaymentProcessor))
+```
+
+Wynik:
+
+```text
+True
+True
+```
+
+Warto zapamiętać:
+
+```text
+isinstance()  → obiekt + klasa
+
+issubclass()  → klasa + klasa
+```
+
+---
+
+### Pełniejszy przykład – system płatności
+
+Klasa abstrakcyjna może zawierać zarówno wspólną implementację, jak i metody abstrakcyjne.
+
+```python
+from abc import ABC, abstractmethod
+from datetime import datetime
+
+
+class PaymentProcessor(ABC):
+
+    def __init__(self, api_key: str):
+        self.api_key = api_key
+        self.transaction_log = []
+
+    @abstractmethod
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+        pass
+
+    @abstractmethod
+    def refund(
+        self,
+        transaction_id: str
+    ) -> bool:
+        pass
+
+    def log_transaction(
+        self,
+        transaction_id: str,
+        amount: float
+    ):
+        self.transaction_log.append({
+            "id": transaction_id,
+            "amount": amount,
+            "timestamp": datetime.now()
+        })
+
+        print(f"Zalogowano transakcję: {transaction_id}")
+ 
+
+# Implementacja Stripe:
+ 
+class StripeProcessor(PaymentProcessor):
+
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+
+        transaction_id = (
+            f"stripe_{int(datetime.now().timestamp())}"
+        )
+
+        print(
+            f"Stripe: płatność {amount} "
+            f"{currency} przyjęta"
+        )
+
+        self.log_transaction(
+            transaction_id,
+            amount
+        )
+
+        return transaction_id
+
+    def refund(
+        self,
+        transaction_id: str
+    ) -> bool:
+
+        print(
+            f"Stripe: zwrot dla {transaction_id}"
+        )
+
+        return True
+ 
+
+# Implementacja PayPal:
+
+class PayPalProcessor(PaymentProcessor):
+
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+
+        transaction_id = (
+            f"paypal_{int(datetime.now().timestamp())}"
+        )
+
+        print(
+            f"PayPal: płatność {amount} "
+            f"{currency} przyjęta"
+        )
+
+        self.log_transaction(
+            transaction_id,
+            amount
+        )
+
+        return transaction_id
+
+    def refund(
+        self,
+        transaction_id: str
+    ) -> bool:
+
+        print(
+            f"PayPal: zwrot dla {transaction_id}"
+        )
+
+        return True
+ 
+
+# Utworzenie obiektów: 
+stripe = StripeProcessor("sk_test_12345")
+paypal = PayPalProcessor("paypal_key_999")
+ 
+# Wykonanie płatności: 
+trans_id1 = stripe.process_payment(99.99, "PLN")
+trans_id2 = paypal.process_payment(49.50, "EUR")
+
+# Zwrot: 
+stripe.refund(trans_id1)
+ 
+
+# Nie możemy natomiast utworzyć:
+# processor = PaymentProcessor("abc123")
+# ponieważ `PaymentProcessor` posiada niezrealizowane metody abstrakcyjne.
+```
+---
+
+### Najczęstsze zastosowania klas abstrakcyjnych
+
+| Zastosowanie       | Przykładowa klasa abstrakcyjna | Klasy pochodne                                |
+| ------------------ | ------------------------------ | --------------------------------------------- |
+| System płatności   | `PaymentProcessor`             | `StripeProcessor`, `PayPalProcessor`          |
+| Eksport raportów   | `ReportExporter`               | `PDFExporter`, `ExcelExporter`, `CSVExporter` |
+| Modele AI          | `AIModel`                      | różne implementacje modeli                    |
+| Obsługa urządzeń   | `DeviceDriver`                 | `USBDriver`, `BluetoothDriver`                |
+| Pluginy            | `Plugin`                       | różne rozszerzenia aplikacji                  |
+| Repozytoria danych | `Repository`                   | `UserRepository`, `ProductRepository`         |
+
+Klasa abstrakcyjna jest szczególnie przydatna wtedy, gdy wiele klas powinno wykonywać **te same rodzaje operacji**, ale każda z nich realizuje je w inny sposób.
+
+---
+
+### Abstrakcyjne właściwości – `@property` i `@abstractmethod`
+
+Klasa abstrakcyjna może wymagać od klas pochodnych nie tylko metod, ale również właściwości.
+
+Możemy połączyć: `@property` z `@abstractmethod`
+
+Przykład:
+
+```python
+from abc import ABC, abstractmethod
+
+
+class PaymentProcessor(ABC):
+
+    @property
+    @abstractmethod
+    def provider_name(self) -> str:
+        pass
+
+    @abstractmethod
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+        pass
+
+    def log(self, message: str):
+        print(
+            f"[{self.provider_name}] {message}"
+        )
+
+# Klasa Stripe:
+ 
+class StripeProcessor(PaymentProcessor):
+
+    @property
+    def provider_name(self) -> str:
+        return "Stripe"
+
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+
+        self.log(
+            f"Przetwarzam płatność "
+            f"{amount} {currency}"
+        )
+
+        return "stripe_tx_123"
+ 
+
+# Użycie: 
+stripe = StripeProcessor()
+print(stripe.provider_name)
+print(stripe.process_payment( 99.99, "PLN"))
+```
+
+Klasa `PaymentProcessor` określa więc, że każda konkretna implementacja powinna udostępniać właściwość `provider_name` oraz metodę `process_payment()`
+
+---
+
+### Klasa abstrakcyjna a zwykła klasa bazowa
+
+Nie każda klasa bazowa musi być klasą abstrakcyjną.
+
+Zwykła klasa bazowa:
+
+```python
+class Animal:
+
+    def speak(self):
+        print("Dźwięk")
+```
+
+może być instancjonowana:
+
+```python
+animal = Animal()
+```
+
+Natomiast klasa posiadająca metodę abstrakcyjną:
+
+```python
+from abc import ABC, abstractmethod
+
+
+class Animal(ABC):
+
+    @abstractmethod
+    def speak(self):
+        pass
+```
+
+nie może być instancjonowana:
+
+```python
+# animal = Animal()
+```
+
+dopóki metoda `speak()` pozostaje abstrakcyjna.
+
+---
+
+### Klasa abstrakcyjna a `Protocol`
+
+## Materiał dodatkowy
+
+Python udostępnia również `typing.Protocol`
+
+`Protocol` **nie jest nowszą wersją klasy abstrakcyjnej**.
+
+Jest innym mechanizmem, wykorzystywanym przede wszystkim do **strukturalnego typowania**.
+
+W przypadku klasy abstrakcyjnej najczęściej mamy jawne dziedziczenie:
+
+```python
+class StripeProcessor(PaymentProcessor):
+    ...
+```
+
+W przypadku protokołu klasa nie musi dziedziczyć po protokole.
+
+Wystarczy, że posiada odpowiednie atrybuty i metody.
+
+Przykład:
+
+```python
+from typing import Protocol
+
+class PaymentProcessor(Protocol):
+
+    @property
+    def provider_name(self) -> str:
+        ...
+
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+        ...
+
+
+# Klasa Stripe:
+class StripeProcessor:
+
+    @property
+    def provider_name(self) -> str:
+        return "Stripe"
+
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+
+        return "stripe_tx_123"
+ 
+
+# Klasa testowa:
+class FakeTestProcessor:
+
+    @property
+    def provider_name(self) -> str:
+        return "Testowy"
+
+    def process_payment(
+        self,
+        amount: float,
+        currency: str
+    ) -> str:
+
+        return "test_ok"
+
+'''
+Żadna z tych klas nie dziedziczy jawnie po `PaymentProcessor`
+Mimo to obie mają strukturę zgodną z protokołem.
+Możemy napisać:
+'''
+ 
+def wykonaj_platnosc(processor: PaymentProcessor,kwota: float):
+
+    print(f"Procesor: " f"{processor.provider_name}")
+
+    tx = processor.process_payment(kwota,"PLN")
+
+    print(f"Transakcja: {tx}")
+
+
+# Następnie:
+stripe = StripeProcessor()
+testowy = FakeTestProcessor()
+
+wykonaj_platnosc(stripe, 149.99)
+
+wykonaj_platnosc(testowy, 9.99)
+```
+
+## `ABC` a `Protocol`
+
+| ABC                                                                           | Protocol                                                                           |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| opiera się na dziedziczeniu                                                   | opiera się głównie na zgodności struktury                                          |
+| klasa zwykle jawnie dziedziczy po klasie abstrakcyjnej                        | nie wymaga jawnego dziedziczenia                                                   |
+| może zawierać wspólną implementację                                           | służy przede wszystkim do określania wymaganego interfejsu                         |
+| może uniemożliwić utworzenie obiektu przy brakujących metodach abstrakcyjnych | samo w sobie nie wymusza implementacji metod podczas zwykłego wykonywania programu |
+| przydatne do projektowania hierarchii klas                                    | szczególnie przydatne przy type hints i statycznym sprawdzaniu typów               |
+
+`Protocol` dobrze współpracuje z narzędziami do statycznej analizy typów, takimi jak:
+
+```text
+mypy
+pyright
+```
+
+Można go traktować jako formalny sposób opisania zasady:
+
+> „Nie interesuje mnie, po jakiej klasie dziedziczysz. Interesuje mnie, czy posiadasz wymagane metody i właściwości”.
+
+Jest to związane z koncepcją **duck typing**.
+
+---
+
+### Najważniejsze informacje do zapamiętania
+
+**Klasa abstrakcyjna:**
+
+* jest wykorzystywana jako klasa bazowa,
+* może posiadać metody abstrakcyjne,
+* może posiadać zwykłe metody i atrybuty,
+* wykorzystuje `ABC` i `@abstractmethod`,
+* klasa posiadająca niezrealizowane metody abstrakcyjne nie może być instancjonowana,
+* klasa pochodna musi zaimplementować wszystkie wymagane metody abstrakcyjne, jeśli ma stać się klasą konkretną,
+* pozwala określić wspólny interfejs dla wielu klas,
+* wykorzystuje mechanizm dziedziczenia.
+
+Podstawowy schemat:
+
+```python
+from abc import ABC, abstractmethod
+
+class Base(ABC):
+
+    @abstractmethod
+    def method(self):
+        pass
+
+class Child(Base):
+
+    def method(self):
+        print("Implementacja")
+```
+
+Teraz:
+
+```python
+obj = Child()
+obj.method()
+```
+
+jest poprawne. Natomiast:
+
+```python
+# obj = Base()
+```
+
+spowoduje błąd, ponieważ `Base` posiada niezrealizowaną metodę abstrakcyjną.
