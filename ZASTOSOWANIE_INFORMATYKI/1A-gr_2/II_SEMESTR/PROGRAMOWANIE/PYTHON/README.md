@@ -1805,6 +1805,174 @@ print(product.price) # 100
 ```
 Mimo że rzeczywista wartość znajduje się w `self._price` użytkownik klasy korzysta z `product.price`. To pozwala później dodać dodatkową logikę bez zmieniania sposobu korzystania z klasy.
 
+
+
+## Gettery i settery
+
+**Getter** to metoda służąca do odczytywania wartości atrybutu, a **setter** to metoda służąca do ustawiania lub zmiany jego wartości.
+Stosujemy je wtedy, gdy chcemy kontrolować dostęp do danych obiektu, np. sprawdzać poprawność wartości przed jej zapisaniem.
+
+Przykład bez gettera i settera:
+
+```python
+class Product:
+    def __init__(self, price):
+        self.price = price
+
+
+product = Product(100)
+
+print(product.price)
+
+product.price = -50
+
+print(product.price)
+```
+
+Python pozwoli przypisać: -50 mimo że ujemna cena nie ma sensu.
+Możemy temu zapobiec za pomocą gettera i settera.
+
+
+**Getter i setter jako zwykłe metody**:
+
+```python
+class Product:
+    def __init__(self, price):
+        self._price = price
+
+    def get_price(self):
+        return self._price
+
+    def set_price(self, value):
+        if value < 0:
+            raise ValueError("Cena nie może być ujemna.")
+
+        self._price = value
+
+product = Product(100)
+print(product.get_price()) # 100
+
+product.set_price(150)
+print(product.get_price()) # 150       
+```
+
+Jeżeli spróbujemy:
+
+```python
+product.set_price(-50)
+```
+otrzymamy błąd:
+
+```text
+ValueError: Cena nie może być ujemna.
+```
+
+Tutaj `get_price()` jest getterem, ponieważ odczytuje wartość.
+
+Natomiast `set_price()` jest setterem, ponieważ ustawia nową wartość.
+
+
+**Getter i setter z użyciem `@property`**
+
+W Pythonie częściej stosuje się `@property`, ponieważ pozwala korzystać z gettera i settera tak, jakbyśmy pracowali ze zwykłym atrybutem.
+
+```python
+class Product:
+    def __init__(self, price):
+        self._price = price
+
+
+    @property
+    def price(self):
+        return self._price
+
+
+    @price.setter
+    def price(self, value):
+        if value < 0:
+            raise ValueError("Cena nie może być ujemna.")
+
+
+        self._price = value
+
+product = Product(100)
+print(product.price) # 100
+
+product.price = 150
+print(product.price) # 150        
+```
+Zwróć uwagę, że nie piszemy:
+
+```python
+product.get_price()
+product.set_price(150)
+```
+
+tylko:
+
+```python
+product.price
+product.price = 150
+```
+
+Kod wygląda więc tak, jakby `price` było zwykłym atrybutem, ale w rzeczywistości jego odczyt i modyfikacja są kontrolowane przez metody.
+
+**Getter z `@property`**
+
+Ten fragment:
+
+```python
+@property
+def price(self):
+    return self._price
+```
+pełni rolę **gettera**. Gdy wykonujemy `print(product.price)` Python wywołuje metodę `price()` oznaczoną dekoratorem `@property`.
+
+
+**Setter z `@property`**
+
+Setter definiujemy za pomocą: `@price.setter`
+Przykład:
+
+```python
+@price.setter
+def price(self, value):
+    if value < 0:
+        raise ValueError("Cena nie może być ujemna.")
+
+
+    self._price = value
+```
+
+Gdy wykonujemy `product.price = 150` Python wywołuje setter i przekazuje wartość 150 do parametru `value` Dzięki temu możemy sprawdzić wartość przed jej zapisaniem.
+
+**Ważny błąd — nieskończona rekurencja**
+
+W setterze nie należy pisać:
+
+```python
+@price.setter
+def price(self, value):
+    self.price = value
+```
+
+ponieważ 
+
+```python 
+self.price = value
+```
+ponownie wywoła setter `price`, który znowu wykona: `self.price = value` i proces będzie się powtarzał.
+
+Dlatego używamy osobnego atrybutu `self._price = value`
+
+Poprawnie:
+
+```python
+@price.setter
+def price(self, value):
+    self._price = value
+```    
+
 ## Klasy abstrakcyjne
 
 **Klasa abstrakcyjna** to klasa bazowa, której głównym zadaniem jest określenie wspólnej struktury i zachowania dla klas pochodnych.
