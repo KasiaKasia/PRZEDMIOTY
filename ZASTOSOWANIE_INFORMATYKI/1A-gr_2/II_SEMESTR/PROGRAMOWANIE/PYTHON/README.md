@@ -1423,13 +1423,7 @@ print(issubclass(Animal, Dog))  # False
 `Dog` jest klasą pochodną klasy `Animal`, dlatego:
 
 ```python
-issubclass(Dog, Animal)
-```
-
-zwraca:
-
-```text
-True
+issubclass(Dog, Animal) # True
 ```
 
 Możemy również wykorzystać `isinstance()` do sprawdzenia obiektu:
@@ -1605,7 +1599,6 @@ Modele Pydantic tworzy się poprzez dziedziczenie po klasie `BaseModel`.
 ```python
 from pydantic import BaseModel
 
-
 class User(BaseModel):
     name: str
     age: int
@@ -1660,6 +1653,158 @@ pip install pydantic
 
 Przykład z `BaseModel` jest praktycznym zastosowaniem dziedziczenia, ale najlepiej omawiać go **dopiero po zrozumieniu zwykłego dziedziczenia, `isinstance()` i `issubclass()`**.
  
+## @property
+**@property** to **dekorator**, który pozwala korzystać z metody klasy tak, jakby była zwykłym atrybutem obiektu.
+
+Oznacza to, że metoda nadal może wykonywać obliczenia lub inną logikę, ale podczas korzystania z niej nie zapisujemy nawiasów ().
+
+Przykład bez @property:
+
+```python
+class Product:
+    def __init__(self, price):
+        self.price = price
+
+
+    def get_price_with_tax(self):
+        return self.price * 1.23
+
+
+product = Product(100)
+
+print(product.get_price_with_tax()) # 123.0
+```
+ 
+
+Ponieważ `get_price_with_tax()` jest zwykłą metodą, musimy użyć nawiasów: `product.get_price_with_tax()`
+
+Ten sam przykład z `@property`:
+
+```python
+class Product:
+    def __init__(self, price):
+        self.price = price
+
+
+    @property
+    def price_with_tax(self):
+        return self.price * 1.23
+
+
+product = Product(100)
+
+print(product.price_with_tax) # 123.0
+```
+ 
+
+
+Teraz korzystamy z `product.price_with_tax` zamiast `product.price_with_tax()`. Metoda `def price_with_tax(self):` dzięki dekoratorowi `@property` jest dostępna jak właściwość obiektu.
+
+`@property` jest przydatne, gdy chcemy, aby wartość wyglądała dla użytkownika klasy jak zwykły atrybut, ale w rzeczywistości była **obliczana lub kontrolowana przez metodę**.
+
+Przykład:
+
+```python
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+
+    @property
+    def area(self):
+        return self.width * self.height
+
+rectangle = Rectangle(5, 4) 
+print(rectangle.area) # 20
+```
+
+
+Nie przechowujemy osobno pola `self.area` Pole powierzchni jest obliczane na podstawie
+
+```python
+self.width
+self.height
+```
+
+za każdym razem, gdy użyjemy `rectangle.area`
+
+
+`@property` a **zwykły atrybut**
+
+
+Zwykły atrybut:
+
+```python
+class User:
+    def __init__(self, name):
+        self.name = name
+
+user = User("Anna")
+print(user.name)
+```
+
+`name` przechowuje konkretną wartość.
+
+Natomiast `@property`:
+
+```python
+class User:
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+
+user = User("Anna", "Kowalska")
+print(user.full_name)
+```
+
+`full_name` nie musi być przechowywane jako osobny atrybut. Jego wartość jest tworzona na podstawie innych danych.
+
+
+## Ważne
+
+Metodę z `@property` odczytujemy bez nawiasów:
+
+```python
+print(user.full_name)       # poprawnie
+```
+
+a nie:
+
+```python
+print(user.full_name())     # błąd
+```
+
+
+`@property` **może również kontrolować dostęp do danych**
+
+Częstym zastosowaniem `@property` jest kontrolowanie sposobu odczytu i zmiany wartości.
+
+Na przykład:
+
+```python
+class Product:
+    def __init__(self, price):
+        self._price = price
+
+
+    @property
+    def price(self):
+        return self._price
+ 
+
+product = Product(100)
+
+print(product.price) # 100
+```
+Mimo że rzeczywista wartość znajduje się w `self._price` użytkownik klasy korzysta z `product.price`. To pozwala później dodać dodatkową logikę bez zmieniania sposobu korzystania z klasy.
+
 ## Klasy abstrakcyjne
 
 **Klasa abstrakcyjna** to klasa bazowa, której głównym zadaniem jest określenie wspólnej struktury i zachowania dla klas pochodnych.
