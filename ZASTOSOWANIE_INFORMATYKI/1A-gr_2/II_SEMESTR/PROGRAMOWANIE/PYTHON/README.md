@@ -979,29 +979,7 @@ Kolejność parametrów musi być:
 - Argumenty domyślne/nazwane 
 - **kwargs 
 
-## lambda pozwala tworzyć małe, anonimowe funkcje (czyli funkcje bez nazwy) 
 
-Czyli zamiast: 
-
-```Python
-def dodaj(a, b): 
-   wynik = a + b 
-   return wynik 
-```
- 
-
-Skrótowa wersja w lambda: 
-
-`lambda a, b: a + b` 
-
-Składnia: 
-
-`lambda argumenty: wyrażenie `
-
-Istotne: 
-
-- Zawierać może tylko jedno wyrażenie 
-- Nie możesz używać w niej instrukcji typu if, for, while, return 
 
 ## Zasięg zmiennych
 
@@ -1090,8 +1068,205 @@ len, print, range itd.
 ```Python
 print(len("abc")) 
 ```
-
 Python zawsze je widzi.
+
+## Funkcje zaawansowane
+
+**lambda** pozwala tworzyć małe, **anonimowe funkcje** (czyli funkcje bez nazwy), które można definiować w jednej linii. Przydatne do tworzenia prostych funkcji na potrzeby jednorazowego użycia, np. W **połączeniu z innymi funkcjami jak map, filter czy sorted. Nie mają nazwy i składają się z słowa kluczowego lambda, argumentów, dwukropka i wyrażenia**. 
+
+Czyli zamiast: 
+
+```Python
+def dodaj(a, b): 
+   wynik = a + b 
+   return wynik 
+```
+Skrótowa wersja w lambda: 
+`lambda a, b: a + b` 
+
+Składnia: 
+`lambda argumenty: wyrażenie `
+
+Istotne: 
+- Zawierać może tylko jedno wyrażenie 
+- Nie możesz używać w niej instrukcji typu if, for, while, return 
+
+
+**Przykład zastosowania**: Sortowanie listy słowników po wartości klucza. Załóżmy, że mamy listę osób i chcemy posortować je po wieku. 
+
+```python
+osoby = [{'imie': 'Anna', 'wiek': 25}, {'imie': 'Jan', 'wiek': 30}, {'imie': 'Maria', 'wiek': 22}] 
+posortowane = sorted(osoby, key=lambda x: x['wiek']) 
+print(posortowane) 
+```
+
+Przykład: Obliczenie kwadratów liczb w liście. 
+ 
+```python
+kwadraty = list(map(lambda x: x**2, [1, 2, 3, 4])) 
+print(kwadraty) 
+```
+ 
+
+**Funkcja map** stosuje podaną funkcję do każdego elementu iterowalnego (np. listy, tupli) i zwraca iterator z wynikami. Często łączy się ją z lambdami dla zwięzłości. 
+
+ 
+
+**Przykład zastosowania**: Podwojenie elementów listy. 
+
+ 
+```python
+liczby = [1, 2, 3, 4] 
+podwojone = list(map(lambda x: x * 2, liczby)) 
+print(podwojone) 
+```
+ 
+Przykład: Konwersja temperatur z Celsjusza na Fahrenheita dla listy wartości. 
+
+Konwersja z **Celsjusza (°C)** na **Fahrenheita (°F)** działa według prostego wzoru matematycznego:  **°F=(°C×9/5 )+32**
+Skale różnią się w dwóch rzeczach: 
+
+1. Wielkość stopnia 
+```text
+    100°C = 180°F 
+    → 1°C = 9/5°F (czyli 1.8°F) 
+```
+
+2. Punkt zerowy 
+
+```text
+0°C = 32°F 
+→ dlatego dodajemy +32 
+```
+ 
+
+Przykłady:
+```text
+0°C → (0×9/5)+32=32°F  
+25°C → (25×9/5)+32=77°F
+100°C → (100×9/5)+32=212°F
+```
+
+```python
+celsjusze = [0, 10, 20, 30] 
+fahrenheit = list(map(lambda c: (c * 9/5) + 32, celsjusze)) 
+print(fahrenheit) 
+```
+**Funkcja filter** filtruje elementy iterowalnego na podstawie warunku podanego w funkcji (zwracającej True/False). Zwraca iterator z elementami spełniającymi warunek. 
+
+ 
+
+**Przykład zastosowania**: Wybór parzystych liczb z listy. 
+```python
+liczby = [1, 2, 3, 4, 5, 6] 
+parzyste = list(filter(lambda x: x % 2 == 0, liczby)) 
+print(parzyste) 
+```
+
+Przykład: Filtrowanie słów dłuższych niż 3 litery z listy. 
+```python
+slowa = ['kot', 'pies', 'slon', 'ptak', 'ryba'] 
+dlugie = list(filter(lambda s: len(s) > 3, slowa)) 
+print(dlugie) 
+```
+
+**Funkcja reduce** (z modułu functools) redukuje iterowalny do pojedynczej wartości, stosując funkcję kumulacyjną do elementów. Wymaga importu: from functools  import reduce. 
+
+Ogólna składnia 
+```text
+reduce(function, iterable) 
+```
+- function → funkcja z dwoma argumentami 
+- iterable → lista / tuple / inna kolekcja 
+
+Python bierze elementy po kolei i łączy je w jeden wynik. 
+
+
+**Przykład zastosowania**: Obliczenie sumy elementów listy. 
+```python
+from functools import reduce 
+liczby = [1, 2, 3, 4] 
+suma = reduce(lambda x, y: x + y, liczby) 
+print(suma) 
+```
+
+Przykład: Znalezienie maksymalnej wartości w liście. 
+```python
+from functools import reduce 
+liczby = [1, 3, 2, 5, 4] 
+maks = reduce(lambda x, y: x if x > y else y, liczby) 
+print(maks) 
+```
+## Dekoratory 
+
+**Dekoratory** to funkcje, które modyfikują lub rozszerzają zachowanie innych funkcji bez zmiany ich kodu. Definiuje się je z użyciem **`@dekorator` nad funkcją**. Są meta-funkcjami, które zwracają nową funkcję. 
+
+ 
+
+Idea dekoratora 
+
+Dekorator: 
+
+- bierze **funkcję jako argument** 
+- **opakowuje ją dodatkową logiką** 
+- zwraca **nową funkcję** 
+
+Czyli zamiast zmieniać funkcję, **dodajemy warstwę wokół niej**.
+
+Przykład 
+```python
+def moj_dekorator(func): 
+    def wrapper(): 
+        print("Coś przed funkcją") 
+        func() 
+        print("Coś po funkcji") 
+    return wrapper 
+ 
+@moj_dekorator 
+def powitanie(): 
+    print("Witaj!") 
+ 
+powitanie() 
+```
+
+**Przykład zastosowania**: Dekorator mierzący czas wykonania funkcji. 
+
+ 
+```python
+import time 
+ 
+def miernik_czasu(func): 
+   def wrapper(*args, **kwargs): 
+       start = time.time() 
+       wynik = func(*args, **kwargs) 
+       koniec = time.time() 
+       print(f"Czas wykonania: {koniec - start} sekund") 
+       return wynik 
+   return wrapper 
+ 
+@miernik_czasu 
+def wolna_funkcja(n): 
+   time.sleep(n) 
+   return "Gotowe" 
+ 
+print(wolna_funkcja(2)) 
+```
+
+Przykład: Dekorator dodający logowanie. 
+
+```python
+def loguj(func): 
+   def wrapper(*args, **kwargs): 
+       print(f"Wywołano {func.__name__} z argumentami {args}") 
+       return func(*args, **kwargs) 
+   return wrapper 
+ 
+@loguj 
+def dodaj(a, b): 
+   return a + b 
+ 
+print(dodaj(3, 5)) 
+```
 
 ## Programowanie obiektowe (OOP)
 
