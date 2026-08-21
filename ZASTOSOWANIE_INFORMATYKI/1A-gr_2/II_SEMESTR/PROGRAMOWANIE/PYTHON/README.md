@@ -914,7 +914,111 @@ for i in range(1, 11):
 else:
     print("Pętla zakończona normalnie")
 ```    
-## Ternary operator (operator warunkowy) w Pythonie
+## List comprehensions (wyrażenia listowe)
+
+**List comprehension** to zwięzły sposób tworzenia nowej listy na podstawie elementów innego obiektu iterowalnego, np. listy lub range().
+
+Często pozwala zastąpić pętlę for, w której tworzymy pustą listę i dodajemy do niej kolejne elementy za pomocą append().
+
+Przykład tradycyjny:
+```python
+kwadraty = []
+
+for x in range(10):
+    kwadraty.append(x**2)
+
+print(kwadraty) # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+```
+ 
+
+
+**To samo za pomocą list comprehension**:
+```python
+kwadraty = [x**2 for x in range(10)]
+print(kwadraty)
+```
+
+Podstawowa składnia:
+```text
+[wyrażenie for element in iterable]
+```
+ 
+
+Przykład:
+```python
+liczby = [1, 2, 3, 4, 5]
+podwojone = [x * 2 for x in liczby]
+print(podwojone) # [2, 4, 6, 8, 10]
+```
+ 
+
+**List comprehension z warunkiem**
+
+Możemy również dodać warunek if.
+
+Składnia:
+```text
+[wyrażenie for element in iterable if warunek]
+```
+
+Przykład — tylko liczby parzyste:
+```python
+parzyste = [x for x in range(10) if x % 2 == 0]
+print(parzyste) # [0, 2, 4, 6, 8]
+```
+ 
+**Zagnieżdżone list comprehensions**
+List comprehensions mogą być również zagnieżdżane.
+
+Przykład — macierz 3 × 4 wypełniona zerami:
+```python
+macierz = [
+    [0 for _ in range(4)]
+    for _ in range(3)
+]
+print(macierz)
+'''
+wynik:
+[
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+]
+'''
+```
+
+List comprehension jest dobrym rozwiązaniem, gdy operacja jest krótka i czytelna.
+
+Na przykład:
+```python
+kwadraty = [x**2 for x in range(10)]
+```
+jest bardziej zwięzłe niż:
+```python
+kwadraty = []
+for x in range(10):
+    kwadraty.append(x**2)
+```
+Jeżeli jednak wyrażenie zawiera wiele warunków albo skomplikowaną logikę, zwykła pętla for może być bardziej czytelna.
+
+**Zalety i ograniczenia**
+
+**Zalety**:
+
+- krótszy zapis,
+- często bardzo czytelny,
+- naturalny i często stosowany w Pythonie,
+- nie wymaga ręcznego tworzenia pustej listy i używania append().
+
+**Ograniczenie**:
+
+List comprehension tworzy całą **listę w pamięci**.
+
+Przy bardzo **dużej liczbie danych może więc zużywać dużo pamięci**.
+
+
+
+## Ternary operator (operator warunkowy) 
 
 Ternary w Pythonie to skrótowy zapis instrukcji if/else w jednej linijce.
 
