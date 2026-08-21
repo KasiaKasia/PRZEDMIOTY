@@ -3411,3 +3411,208 @@ mleko
 chleb 
 masło 
 jajka     
+
+## Polimorfizm
+Python jest językiem obiektowym i w pełni wspiera polimorfizm oraz enkapsulację (hermetyzację).  
+
+**Polimorfizm** w Pythonie to zdolność obiektów różnych klas do reagowania na te same metody w sposób odpowiedni dla ich typu. Oznacza to, że ta sama operacja może zachowywać się inaczej w zależności od typu obiektu, na którym jest wykonywana. 
+
+1. **Polimorfizm funkcji wbudowanych**
+
+**Funkcja len() działa z różnymi typami**
+```python
+print(len("Hello")) # 5 (string)  
+
+print(len([1, 2, 3, 4])) # 4 (lista)  
+
+print(len({'a': 1, 'b': 2})) # 2 (słownik) 
+```
+ 
+
+2. **Polimorfizm z klasami i metodami**
+
+**Polimorfizm - ta sama metoda, różne zachowania**
+```python
+class Pies:  
+
+    def dzwiek(self):  
+        return "Hau hau!"  
+   
+
+    def opis(self):  
+        return "Jestem psem"  
+ 
+
+class Kot:  
+
+    def dzwiek(self):
+        return "Miau!"  
+
+    def opis(self):
+        return "Jestem kotem"  
+ 
+
+class Krowa:  
+
+    def dzwiek(self):  
+        return "Muuu!"  
+
+    def opis(self):
+        return "Jestem krową"  
+
+
+def wydaj_dzwiek(zwierze):  
+
+    print(zwierze.dzwiek())  
+
+ 
+pies = Pies()  
+kot = Kot()  
+krowa = Krowa()  
+
+wydaj_dzwiek(pies)  
+wydaj_dzwiek(kot) 
+wydaj_dzwiek(krowa) 
+```
+
+3. **Polimorfizm z dziedziczeniem**
+
+1. Przykład 
+```python
+class Figura:  
+
+    def pole(self):  
+        pass      
+
+    def obwod(self):  
+        pass  
+ 
+
+class Prostokat(Figura):  
+
+    def __init__(self, szerokosc, wysokosc):  
+        self.szerokosc = szerokosc  
+        self.wysokosc = wysokosc      
+
+    def pole(self):  
+        return self.szerokosc * self.wysokosc  
+
+    def obwod(self):  
+        return 2 * (self.szerokosc + self.wysokosc)  
+
+ 
+class Kolo(Figura):  
+
+    def __init__(self, promien):  
+        self.promien = promien      
+
+    def pole(self):  
+        return 3.14 * self.promien ** 2     
+
+    def obwod(self):  
+        return 2 * 3.14 * self.promien  
+ 
+
+class Trojkat(Figura):  
+
+    def __init__(self, a, b, c):  
+        self.a = a  
+        self.b = b  
+        self.c = c  
+
+    def pole(self):  
+    # Wzór Herona  
+        s = (self.a + self.b + self.c) / 2  
+        return (s * (s - self.a) * (s - self.b) * (s - self.c)) ** 0.5  
+
+    def obwod(self):  
+        return self.a + self.b + self.c  
+
+
+# Użycie polimorfizmu  
+figury = [ Prostokat(5, 10), Kolo(7), Trojkat(3, 4, 5) ]  
+
+for figura in figury:  
+    print(f"Pole: {figura.pole():.2f}")  
+    print(f"Obwód: {figura.obwod():.2f}")  
+    print("---") 
+```
+ 
+
+Wyjście: 
+
+Pole: 50.00 
+Obwód: 30.00 
+--- 
+Pole: 153.86 
+Obwód: 43.96 
+--- 
+Pole: 6.00 
+Obwód: 12.00 
+--- 
+
+
+4. **Polimorfizm z operatorami (przeciążanie operatorów)** 
+
+**Przeciążenie operatorów  (Operator Overloading)** to mechanizm, dzięki któremu możemy zmienić zachowanie standardowych operatorów (+, -, *, /, ==, >, [] itd.) dla naszych własnych klas. 
+
+Dzięki temu zamiast pisać: 
+```python
+v3 = v1.add(v2) 
+```
+ 
+
+możemy pisać naturalnie: 
+```python
+v3 = v1 + v2 
+```
+Python umożliwia to poprzez **specjalne metody** (tzw. **dunder methods – double underscore**), które zaczynają i kończą się na **__**. 
+
+Przykład: 
+```python
+class Wektor:  
+
+    def __init__(self, x, y):
+        self.x = x  
+        self.y = y   
+
+    def __add__(self, other):
+        # Przeciążenie operatora +
+        return Wektor(self.x + other.x, self.y + other.y)  
+
+    def __str__(self):  
+        return f"Wektor({self.x}, {self.y})"  
+
+    def __mul__(self, scalar):  
+        # Mnożenie przez skalar
+        return Wektor(self.x * scalar, self.y * scalar)  
+
+v1 = Wektor(2, 3)  
+v2 = Wektor(5, 7)  
+v3 = v1 + v2 # Używamy przeciążonego operatora +  
+
+ 
+
+print(v3) # Wektor(7, 10)  
+print(v1 * 3) # Wektor(6, 9) 
+
+ 
+'''
+Pod spodem  
+
+v1 + v2 → Python szuka metody __add__ w klasie Wektor 
+print(v3) → Python szuka metody __str__ 
+v1 * 3 → Python szuka metody __mul__ 
+'''
+```
+
+5. **Polimorfizm operatorów**
+
+Przykład:
+```python
+print(2 + 3) # 5 
+print("2" + "3") # "23" 
+```
+ 
+
+ 
