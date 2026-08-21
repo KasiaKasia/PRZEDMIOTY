@@ -689,7 +689,110 @@ for i in range(10, 0, -2):
 x = range(5)
 print(x) # Wynik: range(0, 5)
 ```
+## Operatory `==` i `is`
 
+**Operator ==** porównuję wartość. Inaczej mówiąc **sprawdza, czy wartości dwóch obiektow są takie same. Nie bierze pod uwagę, czy obiekty są przechowywane w tym samym miejscu w pamięci – liczy się tylko zawartość**. Jest to porównanie semantyczne, oparte na metodzie __eq__ obiektu. 
+
+Przykłady 
+```python
+a = 5 
+b = 5 
+print(a == b) 
+
+
+a = [1, 2, 3] 
+b = [1, 2, 3] 
+
+print(a == b) 
+```
+
+
+**Operator is** porównanie obiektu w pamięci. Inaczej mówiąc sprawdza, czy dwie zmienne wskazują na ten sam obiekt w pamięci. 
+```python
+Przykłady
+
+a = [1, 2, 3] 
+b = [1, 2, 3] 
+
+print(a is b) 
+
+
+a = [1, 2, 3] 
+b = a 
+
+print(a is b) 
+```
+
+
+Python ma mechanizm zwany **internowaniem małych liczb całkowitych** (integer caching). 
+
+- Dla liczb z zakresu **-5 do 256** Python **przechowuje jedną wspólną instancję**,
+- Czyli np. liczba 10 istnieje tylko raz w pamięci 
+
+```python
+a = 10  
+b = int("10")  
+
+print(a is b) # True 
+  
+
+c = 256 # -5 do 256 
+d = int("256") 
+
+print(c is d) # True 
+  
+
+e = 1000 
+f = int("1000") 
+
+print(e is f) # False 
+```
+ 
+
+ 
+
+Przykład – list 
+```python
+a = [1, 2, 3] 
+b = [1, 2, 3] 
+ 
+print(a == b) 
+print(a is b) 
+```
+ 
+
+Przykład – dict 
+```python
+a = {"name": "Jan"} 
+b = {"name": "Jan"} 
+ 
+print(a == b) 
+print(a is b) 
+```
+ 
+
+Przykład – set 
+```python
+a = {1, 2, 3} 
+b = {1, 2, 3} 
+ 
+print(a == b) 
+print(a is b) 
+```    
+ 
+
+Przykład – is – None 
+```python
+x = None 
+
+if x is None: 
+
+ print("brak wartości") 
+``` 
+
+ 
+
+ 
 
 ## W Pythonie istnieją dwie główne pętle:
 
@@ -1197,6 +1300,44 @@ liczby = [1, 3, 2, 5, 4]
 maks = reduce(lambda x, y: x if x > y else y, liczby) 
 print(maks) 
 ```
+
+## Rekurencja 
+
+**Rekurencja** to technika programowania, w której **funkcja wywołuje samą siebie, aby rozwiązać problem. Zamiast używać pętli** (jak for czy while), **funkcja dzieli problem na mniejsze podproblemy**, aż dojdzie do prostego przypadku, który można rozwiązać bezpośrednio.  Kluczowe elementy funkcji rekurencyjnej: 
+
+**Przypadek bazowy (base case)**: Warunek, który kończy rekurencję. Bez niego funkcja będzie się wywoływać w nieskończoność, co spowoduje błąd (RecursionError w Pythonie, bo przekroczony zostanie limit rekurencji, domyślnie ok. 1000 wywołań). 
+
+**Przypadek rekurencyjny (recursive case)**: Część, w której funkcja wywołuje siebie z mniejszymi argumentami, zbliżając się do przypadku bazowego. 
+
+Rekurencja jest przydatna w problemach, które mają strukturę drzewiastą lub dzielą się na podproblemy, np. obliczanie silni, przeszukiwanie drzew, sortowanie (jak quicksort) czy generowanie fraktali. 
+
+ 
+**Przykład**: Obliczanie silni 
+```python
+def silnia(n): 
+    if n == 0 or n == 1:  # Przypadek bazowy: 0! = 1, 1! = 1 
+        return 1 
+    else:  # Przypadek rekurencyjny 
+        return n * silnia(n - 1) 
+```
+ 
+
+Jak działa, wyjaśnienie:
+```text
+Dla silnia(5): Wywołuje 5 * silnia(4) 
+
+silnia(4): Wywołuje 4 * silnia(3) 
+
+silnia(3): Wywołuje 3 * silnia(2) 
+
+silnia(2): Wywołuje 2 * silnia(1) 
+
+silnia(1): Zwraca 1 (przypadek bazowy) 
+```
+
+Teraz "wspinamy się" z powrotem: 2 * 1 = 2, 3 * 2 = 6, 4 * 6 = 24, 5 * 24 = 120. 
+
+
 ## Dekoratory 
 
 **Dekoratory** to funkcje, które modyfikują lub rozszerzają zachowanie innych funkcji bez zmiany ich kodu. Definiuje się je z użyciem **`@dekorator` nad funkcją**. Są meta-funkcjami, które zwracają nową funkcję. 
