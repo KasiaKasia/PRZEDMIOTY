@@ -3244,3 +3244,170 @@ jest poprawne. Natomiast:
 ```
 
 spowoduje błąd, ponieważ `Base` posiada niezrealizowaną metodę abstrakcyjną.
+
+
+## Obsługi plików
+
+Python ma bardzo prosty i **bezpieczny sposób pracy z plikami dzięki wbudowanej funkcji open() oraz menedżerowi kontekstu with. Dzięki temu nie musisz pamiętać o ręcznym zamykaniu pliku (close())**, a kod jest czytelniejszy i mniej podatny na błędy. 
+
+1. **Otwieranie pliku – with open(...)** 
+
+Zalecany sposób: 
+```python
+with open('nazwa_pliku.txt', 'tryb') as plik: 
+    # tutaj pracujemy z plikiem 
+    # po wyjściu z bloku with plik jest automatycznie zamykany 
+```
+ 
+
+**with** - automatycznie zamyka plik nawet jeśli wystąpi błąd (wyjątek). Kod jest krótszy i czytelniejszy. Nie musisz pamiętać o plik.close(). 
+
+2. **Tryby otwierania plików (mode)**
+
+- **'r'**– read (domyślny)   
+Otwiera plik tylko do odczytu. Plik musi istnieć, inaczej dostaniesz błąd. 
+ 
+- **'w'** – write   
+Tworzy nowy plik lub całkowicie nadpisuje istniejący. 
+ 
+- **'a'** – append   
+Dopisuje dane na końcu pliku. Jeśli plik nie istnieje – automatycznie go tworzy. 
+
+Dodatkowo często spotykane: 
+
+**'r+'** – odczyt + zapis 
+**'w+'** – odczyt + zapis (nadpisuje) 
+**'a+'** – odczyt + dopisywanie 
+
+Przykład otwierania w różnych trybach: 
+```python 
+with open('dane.txt', 'r') as plik:     # tylko odczyt 
+    ... 
+ 
+with open('wyniki.txt', 'w') as plik:   # nadpisanie 
+    ... 
+ 
+with open('log.txt', 'a') as plik:      # dopisywanie 
+    ... 
+```
+
+3. **Czytanie pliku – metody `read()`, `readline()`, `readlines()`** 
+ 
+Przykład - czytanie całego pliku: 
+```python
+with open('dane.txt', 'r', encoding='utf-8') as plik: 
+    # 1. Odczyt całego pliku naraz (najprostsze) 
+    zawartosc = plik.read() 
+    print(zawartosc) 
+
+ 
+    plik.seek(0) # wróc na poczatek pliku    
+    # 2. Odczyt linia po linii (najlepsze dla dużych plików) 
+    for linia in plik: 
+        print(linia.strip())          # strip() usuwa \n na końcu 
+ 
+
+    plik.seek(0) # wróc na poczatek pliku 
+    # 3. Odczyt jako lista linii 
+    linie = plik.readlines() 
+    print(linie)  
+```
+ 
+**Praktyczne przykłady zastosowania**: 
+
+```python
+'''
+Zawartość pliku config.txt: 
+
+host = localhost 
+port = 8080 
+username = admin 
+password = sekret 
+debug = true 
+timeout = 30 
+'''
+
+# x.strip() usuwa białe znaki z początku i końca napisu (czyli spacje i \n). 
+ 
+with open('config.txt', 'r', encoding='utf-8') as plik: 
+    for linia in plik: 
+        if '=' in linia: 
+            klucz, wartosc = [x.strip() for x in linia.split('=', 1)] 
+            print(f"{klucz} = {wartosc}") 
+''' 
+
+Zawartość pliku zakupy.txt: 
+
+mleko 
+chleb 
+jajka 
+maslo 
+ser 
+'''  
+```
+
+**Przykład 2: Wczytanie listy zakupów do listy Pythona**
+```python
+with open('zakupy.txt', 'r', encoding='utf-8') as plik: 
+    lista_zakupow = [linia.strip() for linia in plik if linia.strip()] 
+    print(lista_zakupow) 
+```
+4. **Zapis pliku – metoda `write()` i `writelines()`**
+  
+**Tryb 'w' → nadpisuje plik**
+```python 
+with open('wyniki.txt', 'w', encoding='utf-8') as plik: 
+    plik.write("Wynik obliczeń: 42\n") 
+    plik.write("Druga linia tekstu\n") 
+     
+    # Można też zapisać wiele linii naraz 
+    linie = ["Pierwsza\n", "Druga\n", "Trzecia\n"] 
+    plik.writelines(linie) 
+``` 
+
+Zapisze plik wyniki.txt z taką zawartością: 
+```text
+Wynik obliczeń: 42 
+Druga linia tekstu 
+Pierwsza 
+Druga 
+Trzecia 
+```
+ 
+**Tryb 'a' → dopisuje na końcu (idealny do logów)**
+```python
+import datetime 
+ 
+with open('log.txt', 'a', encoding='utf-8') as plik: 
+    czas = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+    plik.write(f"[{czas}] Użytkownik zalogował się\n") 
+    plik.write(f"[{czas}] Błąd: coś poszło nie tak\n")   
+```
+
+**Praktyczne przykłady zastosowania**: 
+
+```python
+import datetime 
+
+# Przykład 1: Zapis listy zakupów (nadpisanie) 
+zakupy = ["mleko", "chleb", "masło", "jajka"] 
+ 
+with open('lista_zakupow.txt', 'w', encoding='utf-8') as plik: 
+    for produkt in zakupy: 
+        plik.write(produkt + '\n') 
+ 
+# Przykład 2: Logowanie błędów (dopisywanie) 
+try: 
+    1 / 0 
+except Exception as e: 
+    with open('errors.log', 'a', encoding='utf-8') as plik: 
+        plik.write(f"[{datetime.datetime.now()}] BŁĄD: {e}\n") 
+```
+ 
+
+Wynik: 
+Utworzy plik lista_zakupow.txt z zawartością: 
+mleko 
+chleb 
+masło 
+jajka     
