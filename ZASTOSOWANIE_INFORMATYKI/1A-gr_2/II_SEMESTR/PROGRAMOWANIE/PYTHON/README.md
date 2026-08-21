@@ -266,8 +266,8 @@ locations = { (50.1, 19.9): "Kraków" }  # tuple współrzędnych jako klucz
 
 ```Python
 # Tworzenie
-r1 = range(5)      # 0, 1, 2, 3, 4
-r2 = range(2, 8)   # 2, 3, 4, 5, 6, 7
+r1 = range(5)         # 0, 1, 2, 3, 4
+r2 = range(2, 8)      # 2, 3, 4, 5, 6, 7
 r3 = range(1, 10, 2)  # 1, 3, 5, 7, 9 (krok 2)
 r4 = range(10, 0, -1) # 10, 9, 8, ..., 1
 
@@ -652,6 +652,668 @@ print(my_tuple)  		# (1, [2, 3, 4])
 ```
 
 Krotka jest niemutowalna, ale obiekt w środku (lista) już nie. 
+
+## METODY LIST, TUPLE, SET I DICT
+### Lista
+
+**Lista** to uporządkowana kolekcja elementów, która pozwala na duplikaty i ma indeksy. 
+ 
+**append(x)** 
+
+Dodaje element na koniec listy. 
+```python
+numbers = [1, 2, 3]
+numbers.append(4) 
+print(numbers)      # [1,2,3,4]
+```
+ 
+
+**extend(iterable)** 
+
+Dodaje wiele elementów naraz. 
+```python
+numbers = [1, 2, 3]
+numbers.extend([5,6])
+print(numbers)      # [1, 2, 3, 5, 6]
+``` 
+
+
+**insert(index, x)** 
+
+Wstawia element w określone miejsce. 
+```python
+numbers = [1, 2, 3]
+numbers.insert(1, 10) 
+print(numbers)      # [1, 10, 2, 3]
+```
+ 
+
+**remove(x)** 
+
+Usuwa pierwsze wystąpienie elementu. 
+```python
+numbers = [1, 2, 3]
+numbers.remove(2) 
+print(numbers)      # [1, 3]
+```
+ 
+
+**pop([index])** 
+
+Usuwa element i zwraca go. 
+```python
+numbers = [1, 2, 3, 4] 
+
+numbers.pop()       # usuwa ostatni  
+print(numbers)      # [1, 2, 3]
+
+numbers.pop(1)      # usuwa element z indeksu
+print(numbers)      # [1, 3]
+``` 
+ 
+
+**clear()** 
+
+Usuwa wszystkie elementy. 
+```python
+numbers = [1,2,3,4] 
+
+numbers.clear() 
+print(numbers)      # [] 
+```
+ 
+
+**index(x)** 
+
+Zwraca indeks pierwszego wystąpienia. 
+```python
+numbers = [1,2,3,4] 
+
+i = numbers.index(3)
+print(i)        # 2 
+```
+ 
+
+**count(x)** 
+
+Liczy ile razy element występuje. 
+```python
+numbers = [1,1,2,3]  
+
+c = numbers.count(1)
+print(c) # 2 
+```
+ 
+
+**sort() - metoda listy** 
+
+Sortuje istniejącą listę, zmieniając jej kolejność, i nie zwraca nowej listy. Zwracaną wartością jest None.
+```python
+numbers = [3,1,2]
+numbers.sort()   
+
+print(numbers)      # [1,2,3] 
+
+result = numbers.sort()
+print(result)       # None
+
+numbers = [3, 1, 5, 2]
+numbers.sort(reverse=True)
+print(numbers)      # [5, 3, 2, 1]
+```
+**sorted() - funkcja wbudowana**
+
+Jest funkcją wbudowaną, która tworzy i zwraca nową posortowaną listę. Oryginalna lista pozostaje bez zmian.
+
+```python
+numbers2 = [5, 4, 2, 6]
+
+result2 = sorted(numbers2)
+
+print(result2)   # [2, 4, 5, 6]
+print(numbers2)  # [5, 4, 2, 6]
+
+numbers = [3, 1, 5, 2]
+
+result = sorted(numbers, reverse=True)
+
+print(result)   # [5, 3, 2, 1]
+print(numbers)  # [3, 1, 5, 2]
+```
+
+**reverse()** 
+
+Odwraca kolejność. 
+```python
+numbers = [3,1,2]  
+
+numbers.reverse() 
+print(numbers) # [2, 1, 3] 
+```
+ 
+
+**copy()** 
+
+Tworzy kopię listy ( płytką kopię kolekcji). W przypadku zagnieżdżonych mutowalnych obiektów elementy wewnętrzne mogą być nadal współdzielone.
+```python
+numbers = [3,1,2]  
+
+new_list = numbers.copy()  
+
+numbers.append(6) 
+
+new_list.append(5) 
+
+print(numbers)  # [3, 1, 2, 6] 
+print(new_list) # [3, 1, 2, 5]
+```
+
+### Tuple
+
+**Krotka (tuple)** to uporządkowana kolekcja elementów. Może zawierać duplikaty i posiada indeksy, ale jest niemutowalna, czyli po utworzeniu nie można dodawać, usuwać ani zmieniać jej elementów.
+
+**count(x)**
+Zwraca liczbę wystąpień podanej wartości w krotce.
+
+```python
+numbers = (1, 2, 3, 2, 4, 2)
+
+result = numbers.count(2)
+
+print(result)  # 3
+```
+
+**index(x)**
+
+Zwraca indeks pierwszego wystąpienia podanej wartości w krotce.
+
+```python
+numbers = (10, 20, 30, 40)
+
+result = numbers.index(30)
+
+print(result)  # 2
+
+numbers = (10, 20, 30)
+
+# numbers.index(50)         # ValueError: tuple.index(x): x not in tuple
+```
+
+**Ważne**
+
+Tuple ma znacznie mniej metod niż list, ponieważ krotka jest niemutowalna.
+
+Dlatego nie posiada metod takich jak:
+```text
+append()
+extend()
+insert()
+remove()
+pop()
+clear()
+sort()
+reverse()
+```
+które zmieniałyby jej zawartość.
+
+### Set
+
+Set to nieuporządkowany zbiór bez duplikatów. 
+
+
+**add(x)** 
+
+Dodaje element. Element 4 zostaje dodany do zbioru, ale nie wiadomo w jakiej kolejności. Zbiór nie ma uporządkowania, więc nie można powiedzieć, że element jest „na końcu” ani „na początku”. 
+
+ 
+```python
+A = {1,2,3}  
+
+A.add(4)  
+print(A)  # {1, 2, 3, 4}   
+```
+ 
+
+**update(iterable)**
+
+Dodaje wiele elementów. Elementy zostaną dodane do zbioru, jeśli ich tam jeszcze nie było. Nie wiadomo w jakiej kolejności się pojawią przy wyświetleniu. 
+
+```python 
+A = {1, 2, 3}  
+
+A.update({7, 8})    # set  
+print(A)            # {1, 2, 3, 7, 8}
+
+A.update((9, 10))   # tuple  
+print(A)            # {1, 2, 3, 7, 8, 9, 10}
+
+A.update("ab")      # string → dodaje 'a' i 'b' 
+print(A)            # {1, 2, 3, 7, 8, 9, 'a', 10, 'b'}
+```
+ 
+
+**remove(x)** 
+
+Usuwa element (błąd jeśli nie istnieje). 
+```python
+A = {1, 2, 3}  
+
+A.remove(2)  
+print(A)        # {1, 3}
+``` 
+
+**discard(x)** 
+
+Usuwa element bez błędu. 
+```python
+A = {1, 2, 3}  
+
+A.discard(4)  
+print(A)        # {1, 2, 3} 
+```
+ 
+
+**pop()** 
+
+usuwa i zwraca dowolny element zbioru. Nie należy zakładać, który element zostanie usunięty, ponieważ `set` nie zachowuje określonej kolejności elementów.
+```python
+A = {1, 2, 3, 4} 
+
+x = A.pop()  
+
+print(x)        # 1 
+print(A)        # {2, 3, 4} 
+```
+ 
+
+**clear()** 
+
+Czyści zbiór. 
+```python
+A = {1, 2, 3, 4} 
+
+A.clear() 
+print(A)        # set()
+```
+ 
+
+**copy()** 
+Tworzy kopię zbioru.
+
+```python
+A = {1, 2, 3, 4} 
+
+B = A.copy()    # tworzy osobny zbiór
+
+A.add(6) 
+B.add(7) 
+
+print(A)        # {1, 2, 3, 4, 6} 
+print(B)        # {1, 2, 3, 4, 7} 
+```
+
+ 
+
+Operacje zbiorów 
+
+**union()** 
+
+Łączy zbiory. 
+```python
+A = {1,2}  
+B = {2,3}  
+
+print(A.union(B)) # {1,2,3} 
+```
+ 
+
+**intersection()** 
+
+Część wspólna. 
+```python
+A = {1,2}  
+B = {2,3}  
+
+print(A.intersection(B)) # {2} 
+```
+ 
+**intersection_update()**
+
+Zmienia istniejący zbiór, pozostawiając w nim tylko elementy wspólne z drugim zbiorem.
+```python
+A = {1, 2, 3, 4}
+B = {3, 4, 5}
+
+A.intersection_update(B)
+print(A)  # {3, 4}
+```
+**Różnica**:
+
+`A.intersection(B)` zwraca nowy zbiór, 
+natomiast:
+`A.intersection_update(B)` zmienia zbiór A.
+
+
+**difference()** 
+
+Różnica zbiorów. 
+```python
+A = {1,2}  
+B = {2,3}  
+
+print(A.difference(B)) # {1} 
+```
+
+
+**difference_update()**
+
+Usuwa ze zbioru elementy, które znajdują się również w drugim zbiorze.
+```python
+A = {1, 2, 3, 4}
+B = {3, 4, 5}
+
+A.difference_update(B)
+print(A)  # {1, 2}
+```
+
+**symmetric_difference()** 
+
+Zwraca nowy zbiór zawierający elementy, które są w A lub w B, ale nie w obu naraz. 
+
+Formuła matematyczna: 
+
+A △ B = (A - B) ∪ (B - A) 
+
+ 
+```python
+A = {1,2}  
+B = {2,3}  
+
+print(A.symmetric_difference(B)) # {1,3} 
+```
+
+**symmetric_difference_update()**
+
+Zmienia zbiór tak, aby pozostały w nim elementy występujące w jednym ze zbiorów, ale nie w obu jednocześnie.
+```python
+A = {1, 2, 3}
+B = {3, 4, 5}
+
+A.symmetric_difference_update(B)
+
+print(A)  # {1, 2, 4, 5} 
+```
+
+**issubset()** 
+Zwraca True, jeśli każdy element zbioru A jest też w zbiorze B. 
+
+Zwraca False, jeśli choć jeden element A nie występuje w B. 
+
+```python
+A = {1,2}  
+B = {2,3}  
+
+print(A.issubset(B))
+C = {1, 2}  
+D = {1, 2, 3, 4}  
+
+print(C.issubset(D)) # True  
+```
+
+ 
+
+**issuperset()** 
+
+Zwraca True, jeśli wszystkie elementy zbioru B są też w A. 
+
+Zwraca False, jeśli choć jeden element B nie występuje w A. 
+
+Innymi słowy: A jest nadzbiorem B. 
+
+ 
+```python
+A = {1, 2, 3, 4}  
+B = {2, 3}  
+
+print(A.issuperset(B)) # True 
+```
+ 
+
+ 
+
+**isdisjoint()** 
+ 
+Zwraca True, jeśli żaden element A nie występuje w B. 
+
+Zwraca False, jeśli jest przynajmniej jeden wspólny element. 
+
+Sprawdza czy zbiory nie mają części wspólnej. 
+
+ 
+```python
+# Przykład – brak wspólnych elementów 
+
+A = {1, 2, 3} 
+B = {4, 5, 6} 
+ 
+print(A.isdisjoint(B))  # True 
+```
+### DICTIONARY (dict) Słownik to para klucz → wartość. 
+ 
+**fromkeys()**
+Tworzy nowy słownik na podstawie podanych kluczy. Wszystkie klucze otrzymują początkowo tę samą wartość.
+
+```python
+keys = ["name", "age", "city"]
+
+person = dict.fromkeys(keys)
+
+print(person)       # {'name': None, 'age': None, 'city': None}
+keys = ["a", "b", "c"]
+
+data = dict.fromkeys(keys, 0)
+
+print(data)         # {'a': 0, 'b': 0, 'c': 0}
+```
+
+**get(key)** 
+
+Pobiera wartość bez błędu. 
+```python
+person = {  
+    "name": "Jan",  
+    "age": 30  
+}  
+
+print(person.get("name")) 
+```
+ 
+
+**keys()** 
+Zwraca wszystkie klucze
+
+```python
+person = {  
+    "name": "Jan",  
+    "age": 30  
+}  
+print(person.keys()) # dict_keys(['name', 'age']) 
+```
+  
+
+**values()** 
+Zwraca wartości
+```python
+person = {  
+    "name": "Jan",  
+    "age": 30  
+}  
+print(person.values()) # dict_values(['Jan', 30]) 
+```
+ 
+
+**items()** 
+zwraca pary (key,value)
+
+```python
+person = {  
+    "name": "Jan",  
+    "age": 30  
+}  
+print(person.items()) # dict_items([('name', 'Jan'), ('age', 30)]) 
+```
+
+
+**update()** 
+Służy do dodawania nowych par klucz–wartość do słownika lub aktualizowania wartości już istniejących kluczy.
+
+```python
+person = {  
+    "name": "Jan",  
+    "age": 30  
+}  
+
+person.update({"city":"Warsaw"})  
+
+print(person ) # {'name': 'Jan', 'age': 30, 'city': 'Warsaw'} 
+# Jeżeli klucz już istnieje, update() zmieni jego wartość:
+person.update({"age": 31})
+
+print(person) # {'name': 'Jan', 'age': 31, 'city': 'Warsaw'}
+
+# Można też dodać lub zmienić kilka elementów jednocześnie:
+person.update({
+    "age": 32,
+    "country": "Poland"
+})
+
+print(person) # {'name': 'Jan', 'age': 32, 'city': 'Warsaw', 'country': 'Poland'}
+
+```
+ 
+
+**pop(key)** 
+
+Usuwa ze słownika element o podanym kluczu i jednocześnie zwraca jego wartość.
+Jeżeli podany klucz nie istnieje, pop() domyślnie spowoduje błąd.
+ 
+```python
+person = {
+    "name": "Jan",
+    "age": 30
+}
+
+age = person.pop("age")
+
+print(age)     # 30
+print(person)  # {'name': 'Jan'}
+
+# Jeżeli podany klucz nie istnieje, pop() domyślnie spowoduje błąd KeyError:
+# person.pop("city") # KeyError: 'city'
+
+city = person.pop("city", "Brak")
+
+print(city)  # Brak
+```
+ 
+
+**popitem()** 
+
+usuwa i zwraca ostatnio dodaną parę klucz: wartość ze słownika.
+Jeśli słownik jest pusty, popitem() spowoduje błąd KeyError.
+
+```python
+person = {
+    "name": "Jan",
+    "first": "Kowalski",
+    "age": 30,
+    "gender": "M"
+}
+
+p = person.popitem()
+
+print(p)       # ('gender', 'M')
+print(person)  # {'name': 'Jan', 'first': 'Kowalski', 'age': 30}
+
+# klucz i wartość osobno:
+key, value = person.popitem()
+
+print(key) # age
+print(value) # 30
+
+nic = {}
+
+# nic.popitem()
+# KeyError: 'popitem(): dictionary is empty'
+```
+
+**setdefault()** 
+
+Sprawdza, czy podany klucz istnieje w słowniku.
+
+- jeśli klucza nie ma → dodaje go z podaną wartością,
+- jeśli klucz już istnieje → nie zmienia jego wartości,
+- zwraca wartość przypisaną do danego klucza.
+
+```python
+person = {
+    "name": "Jan",
+    "age": 30
+}
+
+person.setdefault("country", "Poland")
+print(person)           # {'name': 'Jan', 'age': 30, 'country': 'Poland'}
+
+person.setdefault("age", 40)
+print(person)           # {'name': 'Jan', 'age': 30, 'country': 'Poland'}
+
+value = person.setdefault("country", "Germany")
+print(value)  # Poland
+```
+
+ 
+
+**clear()** 
+Usuwa wszystkie elementy ze słownika.
+`clear()` nie usuwa samej zmiennej person. **Usuwa tylko zawartość słownika**.
+
+```python
+person = {
+    "name": "Jan",
+    "age": 30
+}
+
+person.clear()
+
+print(person)  # {}
+```
+ 
+
+**copy()** 
+Tworzy nowy słownik zawierający te same pary `klucz`: `wartość` co słownik oryginalny.
+Zmiany wykonywane bezpośrednio w jednym słowniku nie wpływają na drugi.
+`copy()` wykonuje tzw. płytką kopię (shallow copy). Ma to znaczenie przede wszystkim wtedy, gdy słownik zawiera zagnieżdżone listy, słowniki lub inne mutowalne obiekty.
+
+```python
+person = {
+    "name": "Jan",
+    "age": 30,
+    "city": "Warsaw"
+}
+
+new_person = person.copy()
+
+new_person["age"] = 31
+new_person["post-code"] = "12-333"
+
+print(person)           # {'name': 'Jan', 'age': 30, 'city': 'Warsaw'}
+print(new_person)       # {'name': 'Jan', 'age': 31, 'city': 'Warsaw', 'post-code': '12-333'}
+```
+
+
+ 
+
+  
 
 
 ## Podstawowe użycie range()
