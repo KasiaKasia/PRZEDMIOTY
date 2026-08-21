@@ -1652,8 +1652,126 @@ pip install pydantic
 ```
 
 Przykład z `BaseModel` jest praktycznym zastosowaniem dziedziczenia, ale najlepiej omawiać go **dopiero po zrozumieniu zwykłego dziedziczenia, `isinstance()` i `issubclass()`**.
- 
+
+## Modyfikatory dostępu
+
+
+**Modyfikatory dostępu** określają, w jaki sposób można korzystać z atrybutów i metod klasy.
+
+W Pythonie nie ma formalnych modyfikatorów public, protected, private jak np. w Javie. Stosuje się głównie **konwencje nazewnictwa**:
+
+```text
+name      → publiczny
+_name     → chroniony umownie
+__name    → prywatny poprzez name mangling
+```
+**name mangling** = zmiana nazwy przez Pythona.
+
+Przykład:
+
+```python
+class User:
+    def __init__(self, name, email, password):
+        self.name = name
+        self._email = email
+        self.__password = password
+
+    def show_info(self):
+        print(f"Imię: {self.name}")
+        print(f"E-mail: {self._email}")
+
+    def check_password(self, password):
+        return self.__password == password
+
+
+
+class UserService:
+    def show_data(self, user):
+        print("Dane użytkownika:")
+        print(user.name)       # publiczny - dostęp OK
+        print(user._email)     # dostęp możliwy, ale niezalecany
+
+        # print(user.__password)
+        # AttributeError - brak bezpośredniego dostępu
+
+    def login(self, user, password):
+        if user.check_password(password):
+            print("Logowanie poprawne")
+        else:
+            print("Niepoprawne hasło")
+
+
+user = User( "Anna", "anna@example.com", "tajne123")
+service = UserService()
+
+service.show_data(user)
+
+service.login(user, "tajne123")
+service.login(user, "inne_haslo")
+# wynik:
+# Dane użytkownika:
+# Anna
+# anna@example.com
+# Logowanie poprawne
+# Niepoprawne hasło
+
+```
+Jeżeli odkomentujesz:
+
+`print(user.__password)`
+
+otrzymasz błąd:
+```text
+AttributeError: 'User' object has no attribute '_UserService__password'
+```
+
+Najważniejsze jest tutaj to, że UserService **nie próbuje odczytać** `__password` **bezpośrednio**. Zamiast tego korzysta z publicznej metody `user.check_password(password)`
+
+Metoda `check_password()` należy do klasy User, dlatego wewnątrz niej można odwołać się do `self.__password`
+
+Czyli `user.name` jest publiczne i dostępne z drugiej klasy, jest technicznie dostępne, ale zgodnie z konwencją jest elementem wewnętrznym, a `user.__password` nie jest bezpośrednio dostępne z `UserService`.
+
+
+
+**name mangling** istnieje przede wszystkim po to, aby **uniknąć przypadkowych konfliktów nazw w klasach i klasach potomnych**, a nie po to, żeby zapewnić prawdziwe zabezpieczenie danych.
+
+Na przykład:
+```python
+class User:
+    def __init__(self):
+        self.__value = 10
+```
+
+Python przechowuje:
+```text
+_User__value
+```
+
+A jeżeli druga klasa ma:
+```python
+class Admin:
+    def __init__(self):
+        self.__value = 20
+```
+
+to Python utworzy:
+```text
+_Admin__value
+```
+
+Dzięki temu te dwie nazwy się nie mieszają. 
+
+**Ważne**: nie dotyczy to nazw typu:
+```python
+__init__
+__str__
+```
+
+bo są to specjalne metody Pythona, a nie atrybuty podlegające name mangling.
+
+
 ## @property
+
 **@property** to **dekorator**, który pozwala korzystać z metody klasy tak, jakby była zwykłym atrybutem obiektu.
 
 Oznacza to, że metoda nadal może wykonywać obliczenia lub inną logikę, ale podczas korzystania z niej nie zapisujemy nawiasów ().
