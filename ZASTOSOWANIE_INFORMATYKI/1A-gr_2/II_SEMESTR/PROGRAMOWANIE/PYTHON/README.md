@@ -689,7 +689,7 @@ for i in range(10, 0, -2):
 x = range(5)
 print(x) # Wynik: range(0, 5)
 ```
-## Operatory `==` i `is`
+## Operatory == i is
 
 **Operator ==** porównuję wartość. Inaczej mówiąc **sprawdza, czy wartości dwóch obiektow są takie same. Nie bierze pod uwagę, czy obiekty są przechowywane w tym samym miejscu w pamięci – liczy się tylko zawartość**. Jest to porównanie semantyczne, oparte na metodzie __eq__ obiektu. 
 
@@ -699,10 +699,8 @@ a = 5
 b = 5 
 print(a == b) 
 
-
 a = [1, 2, 3] 
 b = [1, 2, 3] 
-
 print(a == b) 
 ```
 
@@ -713,13 +711,10 @@ Przykłady
 
 a = [1, 2, 3] 
 b = [1, 2, 3] 
-
 print(a is b) 
-
 
 a = [1, 2, 3] 
 b = a 
-
 print(a is b) 
 ```
 
@@ -732,25 +727,17 @@ Python ma mechanizm zwany **internowaniem małych liczb całkowitych** (integer 
 ```python
 a = 10  
 b = int("10")  
-
 print(a is b) # True 
-  
 
 c = 256 # -5 do 256 
 d = int("256") 
-
 print(c is d) # True 
-  
 
 e = 1000 
 f = int("1000") 
-
 print(e is f) # False 
 ```
  
-
- 
-
 Przykład – list 
 ```python
 a = [1, 2, 3] 
@@ -784,13 +771,9 @@ print(a is b)
 Przykład – is – None 
 ```python
 x = None 
-
 if x is None: 
-
- print("brak wartości") 
+    print("brak wartości") 
 ``` 
-
- 
 
  
 
@@ -1095,8 +1078,6 @@ Python szuka zmiennych według reguły **LEGB**:
 - G – Global    - Globalny (na poziomie pliku)
 - B – Built-in  - Wbudowany (np. len, print)
 
-
-
 1. Scope lokalny (Local)
 Zmienne stworzone wewnątrz funkcji:
 
@@ -1174,7 +1155,7 @@ print(len("abc"))
 Python zawsze je widzi.
 
 ## Funkcje zaawansowane
-
+### lambda
 **lambda** pozwala tworzyć małe, **anonimowe funkcje** (czyli funkcje bez nazwy), które można definiować w jednej linii. Przydatne do tworzenia prostych funkcji na potrzeby jednorazowego użycia, np. W **połączeniu z innymi funkcjami jak map, filter czy sorted. Nie mają nazwy i składają się z słowa kluczowego lambda, argumentów, dwukropka i wyrażenia**. 
 
 Czyli zamiast: 
@@ -1210,13 +1191,10 @@ kwadraty = list(map(lambda x: x**2, [1, 2, 3, 4]))
 print(kwadraty) 
 ```
  
-
+### map
 **Funkcja map** stosuje podaną funkcję do każdego elementu iterowalnego (np. listy, tupli) i zwraca iterator z wynikami. Często łączy się ją z lambdami dla zwięzłości. 
 
- 
-
 **Przykład zastosowania**: Podwojenie elementów listy. 
-
  
 ```python
 liczby = [1, 2, 3, 4] 
@@ -1255,9 +1233,9 @@ celsjusze = [0, 10, 20, 30]
 fahrenheit = list(map(lambda c: (c * 9/5) + 32, celsjusze)) 
 print(fahrenheit) 
 ```
-**Funkcja filter** filtruje elementy iterowalnego na podstawie warunku podanego w funkcji (zwracającej True/False). Zwraca iterator z elementami spełniającymi warunek. 
 
- 
+### filter
+**Funkcja filter** filtruje elementy iterowalnego na podstawie warunku podanego w funkcji (zwracającej True/False). Zwraca iterator z elementami spełniającymi warunek. 
 
 **Przykład zastosowania**: Wybór parzystych liczb z listy. 
 ```python
@@ -1272,6 +1250,8 @@ slowa = ['kot', 'pies', 'slon', 'ptak', 'ryba']
 dlugie = list(filter(lambda s: len(s) > 3, slowa)) 
 print(dlugie) 
 ```
+
+### reduce
 
 **Funkcja reduce** (z modułu functools) redukuje iterowalny do pojedynczej wartości, stosując funkcję kumulacyjną do elementów. Wymaga importu: from functools  import reduce. 
 
@@ -1321,18 +1301,13 @@ def silnia(n):
         return n * silnia(n - 1) 
 ```
  
-
 Jak działa, wyjaśnienie:
 ```text
 Dla silnia(5): Wywołuje 5 * silnia(4) 
-
-silnia(4): Wywołuje 4 * silnia(3) 
-
-silnia(3): Wywołuje 3 * silnia(2) 
-
-silnia(2): Wywołuje 2 * silnia(1) 
-
-silnia(1): Zwraca 1 (przypadek bazowy) 
+    silnia(4): Wywołuje 4 * silnia(3) 
+    silnia(3): Wywołuje 3 * silnia(2) 
+    silnia(2): Wywołuje 2 * silnia(1) 
+    silnia(1): Zwraca 1 (przypadek bazowy) 
 ```
 
 Teraz "wspinamy się" z powrotem: 2 * 1 = 2, 3 * 2 = 6, 4 * 6 = 24, 5 * 24 = 120. 
@@ -3250,7 +3225,7 @@ spowoduje błąd, ponieważ `Base` posiada niezrealizowaną metodę abstrakcyjn�
 
 Python ma bardzo prosty i **bezpieczny sposób pracy z plikami dzięki wbudowanej funkcji open() oraz menedżerowi kontekstu with. Dzięki temu nie musisz pamiętać o ręcznym zamykaniu pliku (close())**, a kod jest czytelniejszy i mniej podatny na błędy. 
 
-1. **Otwieranie pliku – with open(...)** 
+### 1. **Otwieranie pliku – with open(...)** 
 
 Zalecany sposób: 
 ```python
@@ -3262,7 +3237,7 @@ with open('nazwa_pliku.txt', 'tryb') as plik:
 
 **with** - automatycznie zamyka plik nawet jeśli wystąpi błąd (wyjątek). Kod jest krótszy i czytelniejszy. Nie musisz pamiętać o plik.close(). 
 
-2. **Tryby otwierania plików (mode)**
+### 2. **Tryby otwierania plików (mode)**
 
 - **'r'**– read (domyślny)   
 Otwiera plik tylko do odczytu. Plik musi istnieć, inaczej dostaniesz błąd. 
@@ -3291,7 +3266,7 @@ with open('log.txt', 'a') as plik:      # dopisywanie
     ... 
 ```
 
-3. **Czytanie pliku – metody `read()`, `readline()`, `readlines()`** 
+### 3. **Czytanie pliku – metody `read()`, `readline()`, `readlines()`** 
  
 Przykład - czytanie całego pliku: 
 ```python
@@ -3352,7 +3327,7 @@ with open('zakupy.txt', 'r', encoding='utf-8') as plik:
     lista_zakupow = [linia.strip() for linia in plik if linia.strip()] 
     print(lista_zakupow) 
 ```
-4. **Zapis pliku – metoda `write()` i `writelines()`**
+### 4. **Zapis pliku – metoda `write()` i `writelines()`**
   
 **Tryb 'w' → nadpisuje plik**
 ```python 
@@ -3417,7 +3392,7 @@ Python jest językiem obiektowym i w pełni wspiera polimorfizm oraz enkapsulacj
 
 **Polimorfizm** w Pythonie to zdolność obiektów różnych klas do reagowania na te same metody w sposób odpowiedni dla ich typu. Oznacza to, że ta sama operacja może zachowywać się inaczej w zależności od typu obiektu, na którym jest wykonywana. 
 
-1. **Polimorfizm funkcji wbudowanych**
+### 1. **Polimorfizm funkcji wbudowanych**
 
 **Funkcja len() działa z różnymi typami**
 ```python
@@ -3429,7 +3404,7 @@ print(len({'a': 1, 'b': 2})) # 2 (słownik)
 ```
  
 
-2. **Polimorfizm z klasami i metodami**
+### 2. **Polimorfizm z klasami i metodami**
 
 **Polimorfizm - ta sama metoda, różne zachowania**
 ```python
@@ -3475,7 +3450,7 @@ wydaj_dzwiek(kot)
 wydaj_dzwiek(krowa) 
 ```
 
-3. **Polimorfizm z dziedziczeniem**
+### 3. **Polimorfizm z dziedziczeniem**
 
 1. Przykład 
 ```python
@@ -3535,24 +3510,24 @@ figury = [ Prostokat(5, 10), Kolo(7), Trojkat(3, 4, 5) ]
 for figura in figury:  
     print(f"Pole: {figura.pole():.2f}")  
     print(f"Obwód: {figura.obwod():.2f}")  
-    print("---") 
+    print("\n") 
 ```
  
 
 Wyjście: 
-
+```text
 Pole: 50.00 
 Obwód: 30.00 
---- 
+  
 Pole: 153.86 
 Obwód: 43.96 
---- 
+ 
 Pole: 6.00 
 Obwód: 12.00 
---- 
+```
+ 
 
-
-4. **Polimorfizm z operatorami (przeciążanie operatorów)** 
+### 4. **Polimorfizm z operatorami (przeciążanie operatorów)** 
 
 **Przeciążenie operatorów  (Operator Overloading)** to mechanizm, dzięki któremu możemy zmienić zachowanie standardowych operatorów (+, -, *, /, ==, >, [] itd.) dla naszych własnych klas. 
 
@@ -3591,8 +3566,6 @@ v1 = Wektor(2, 3)
 v2 = Wektor(5, 7)  
 v3 = v1 + v2 # Używamy przeciążonego operatora +  
 
- 
-
 print(v3) # Wektor(7, 10)  
 print(v1 * 3) # Wektor(6, 9) 
 
@@ -3606,7 +3579,7 @@ v1 * 3 → Python szuka metody __mul__
 '''
 ```
 
-5. **Polimorfizm operatorów**
+### 5. **Polimorfizm operatorów**
 
 Przykład:
 ```python
