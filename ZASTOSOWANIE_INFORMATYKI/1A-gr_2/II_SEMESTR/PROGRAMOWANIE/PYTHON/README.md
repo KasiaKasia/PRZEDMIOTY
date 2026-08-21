@@ -1337,6 +1337,85 @@ silnia(1): Zwraca 1 (przypadek bazowy)
 
 Teraz "wspinamy się" z powrotem: 2 * 1 = 2, 3 * 2 = 6, 4 * 6 = 24, 5 * 24 = 120. 
 
+## Wyjątki 
+
+**Wyjątki** to mechanizm, **który pozwala programowi radzić sobie z błędami w czasie wykonania (runtime errors), np. dzielenie przez zero, brak pliku czy nieoczekiwane dane. Zamiast crashować program, możesz "złapać" błąd i obsłużyć go elegancko**. To kluczowe dla robustnego kodu. Python ma wbudowane wyjątki (np. ZeroDivisionError, FileNotFoundError), ale możesz też tworzyć własne. Podstawowa struktura to blok try-except, z opcjonalnymi else i finally.  
+
+**Podstawowa struktura: try-except**
+- **try**: W tym bloku umieszczasz kod, który może spowodować błąd. 
+- **except**: Łapie wyjątek i obsługuje go. Możesz sprecyzować typ wyjątku (np. except ValueError:) lub złapać wszystkie (except: – ale to niezalecane, bo maskuje błędy). 
+
+
+Przykład 
+```python
+try: 
+    liczba = int(input("Podaj liczbę: "))  # Może rzucić ValueError, jeśli nie liczba 
+    wynik = 10 / liczba  # Może rzucić ZeroDivisionError 
+    print(wynik) 
+except ValueError: 
+    print("To nie jest liczba!") 
+except ZeroDivisionError: 
+    print("Nie dziel przez zero!") 
+```
+
+**Dodatkowe bloki: else i finally** 
+
+- **else**: Wykonuje się tylko, jeśli w try NIE wystąpił żaden wyjątek. Przydatne do kodu, który ma działać po sukcesie. 
+- **finally**: Zawsze się wykonuje, niezależnie od tego, czy był wyjątek czy nie. Idealne do czyszczenia zasobów (np. zamykanie plików). 
+
+Przykład 
+```python
+try: 
+    a = int(input("Podaj pierwszą liczbę: "))  # Może rzucić ValueError 
+    b = int(input("Podaj drugą liczbę: "))   # Może rzucić ValueError 
+    wynik = a / b                           # Może rzucić ZeroDivisionError 
+except ValueError: 
+    print("Jedna z wartości nie jest liczbą całkowitą!") 
+except ZeroDivisionError: 
+    print("Nie można dzielić przez zero!") 
+except Exception as e: 
+    print(f"Nieoczekiwany błąd: {e}") 
+else: 
+    print(f"Wynik dzielenia: {wynik}") 
+    print("Obliczenia zakończone sukcesem.") 
+finally: 
+    print("Program zakończył przetwarzanie wejścia – zawsze to się wyświetli.") 
+```
+
+**Raise**: Rzucanie wyjątków raise pozwala ręcznie "rzucić" wyjątek, np. gdy chcesz przerwać wykonanie przy niepoprawnych danych. Możesz raise'ować wbudowany wyjątek lub własny. 
+
+Przykład:  
+```python
+def sprawdz_wiek(wiek): 
+    if wiek < 18: 
+        raise ValueError("Jesteś za młody!")  # Rzuca wyjątek z komunikatem 
+    return "OK" 
+ 
+try: 
+    sprawdz_wiek(15) 
+except ValueError as e: 
+    print(e)  # Wyjście: Jesteś za młody! 
+```
+
+**Custom exceptions**: Własne wyjątki Możesz tworzyć własne klasy wyjątków, dziedzicząc po Exception (lub podklasach jak ValueError). To przydatne w dużych projektach, by mieć specyficzne błędy.Przykład tworzenia i użycia: 
+
+ 
+```python
+class MojBlad(Exception):  # Dziedziczy po Exception 
+    def __init__(self, wiadomosc="To mój custom błąd!"): 
+        self.wiadomosc = wiadomosc 
+        super().__init__(self.wiadomosc) 
+ 
+def funkcja(): 
+    raise MojBlad("Coś poszło nie tak.") 
+ 
+try: 
+    funkcja() 
+except MojBlad as e: 
+    print(e)  # Wyjście: To mój custom błąd! 
+
+```
+
 
 ## Dekoratory 
 
