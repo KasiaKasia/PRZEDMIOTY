@@ -107,6 +107,7 @@ print(s.lower())     # "hello, world!"
 print(s.split(','))  # ['Hello', ' World!']
 print(s.replace('World', 'Python'))  # "Hello, Python!"
 
+imie = "Anna"
 powitanie = "Cześć, " + imie + "!"  # konkatenacja (łączenie) 
 print(powitanie)  # Cześć, Anna! 
  
@@ -921,8 +922,8 @@ A = {1, 2, 3, 4}
 
 x = A.pop()  
 
-print(x)        # 1 
-print(A)        # {2, 3, 4} 
+print(x)  # jeden z elementów zbioru
+print(A)  # zbiór bez usuniętego elementu
 ```
  
 
@@ -1367,66 +1368,85 @@ print(a == b)
 ```
 
 
-**Operator is** porównanie obiektu w pamięci. Inaczej mówiąc sprawdza, czy dwie zmienne wskazują na ten sam obiekt w pamięci. 
-```python
-Przykłady
+**Operator `is`** sprawdza tożsamość obiektów. Inaczej mówiąc, sprawdza, czy dwie zmienne wskazują na **dokładnie ten sam obiekt w pamięci**.
 
-a = [1, 2, 3] 
-b = [1, 2, 3] 
-print(a is b) 
+Operatora `is` nie należy używać do porównywania wartości liczb, napisów, list, słowników ani zbiorów. Do porównywania ich wartości używamy `==`.
+```python 
 
-a = [1, 2, 3] 
-b = a 
-print(a is b) 
+a = [1, 2, 3]
+b = [1, 2, 3]
+
+print(a == b)  # True
+print(a is b)  # False
+
+a = [1, 2, 3]
+b = a
+
+print(a == b)  # True
+print(a is b)  # True
 ```
 
 
 Python ma mechanizm zwany **internowaniem małych liczb całkowitych** (integer caching). 
 
-- Dla liczb z zakresu **-5 do 256** Python **przechowuje jedną wspólną instancję**,
-- Czyli np. liczba 10 istnieje tylko raz w pamięci 
+CPython stosuje optymalizację nazywaną cache'owaniem małych liczb całkowitych (small integer caching).
+
+W standardowej implementacji CPython obiekty reprezentujące liczby całkowite z zakresu **od `-5` do `256` są tworzone wcześniej i ponownie wykorzystywane**. Dzięki temu Python nie musi za każdym razem tworzyć nowego obiektu dla często używanych małych liczb.
+
+Z tego powodu dwie zmienne zawierające taką samą małą liczbę mogą wskazywać na ten sam obiekt.
+
+CPython to najczęściej używana implementacja języka Python. To właśnie CPython jest standardowo pobierany ze strony python.org.
+Python  → język programowania
+CPython → program, który wykonuje kod napisany w Pythoni
 
 ```python
-a = 10  
-b = int("10")  
-print(a is b) # True 
+a = 10
+b = int("10")
 
-c = 256 # -5 do 256 
-d = int("256") 
-print(c is d) # True 
+print(a == b)  # True
+print(a is b)  # True
 
-e = 1000 
-f = int("1000") 
-print(e is f) # False 
+c = 256
+d = int("256")
+
+print(c == d)  # True
+print(c is d)  # True
+
+e = 1000
+f = int("1000")
+
+print(e == f)  # True
+print(e is f)  # False
 ```
+**Ważne**: cache małych liczb jest optymalizacją CPythona. Nie używamy operatora is do porównywania wartości liczb. Do tego służy operator ==.
  
 Przykład – list 
 ```python
-a = [1, 2, 3] 
-b = [1, 2, 3] 
- 
-print(a == b) 
-print(a is b) 
+a = [1, 2, 3]
+b = [1, 2, 3]
+
+print(a == b)  # True
+print(a is b)  # False
 ```
  
 
 Przykład – dict 
 ```python
-a = {"name": "Jan"} 
-b = {"name": "Jan"} 
- 
-print(a == b) 
-print(a is b) 
+a = {"name": "Jan"}
+b = {"name": "Jan"}
+
+print(a == b)  # True
+print(a is b)  # False
 ```
  
 
 Przykład – set 
 ```python
-a = {1, 2, 3} 
-b = {1, 2, 3} 
- 
-print(a == b) 
-print(a is b) 
+a = {1, 2, 3}
+b = {1, 2, 3}
+
+print(a == b)  # True
+print(a is b)  # False
 ```    
  
 
@@ -1436,7 +1456,7 @@ x = None
 if x is None: 
     print("brak wartości") 
 ``` 
-
+W przypadku `None` zalecane jest używanie `x is None` zamiast `x == None`
  
 
 ## W Pythonie istnieją dwie główne pętle:
