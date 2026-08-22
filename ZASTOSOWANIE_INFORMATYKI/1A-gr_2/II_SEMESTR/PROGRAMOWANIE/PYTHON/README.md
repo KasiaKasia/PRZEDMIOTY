@@ -6,19 +6,19 @@
 
 ```Python
 # To jest komentarz jednowierszowy 
-x = 10  # To też jest komentarz - po kodzi  
+x = 10  # To też jest komentarz - po kodzie 
 ```
   
-🔹Komentarz wielowierszowy - używamy trzech cudzysłowów ''' lub """ 
+ 🔹Komentarz wielowierszowy  
+Python nie posiada osobnej składni komentarza wielowierszowego.
+Jeżeli chcemy zapisać komentarz w kilku liniach, każdą linię poprzedzamy znakiem #.
 
-```Python
-'''
-  To jest komentarz wielowierszowy. 
-  Może zawierać wiele linii tekstu. 
-  Często używany na początku pliku 
-  lub do dokumentowania funkcji
-'''
-``` 
+```python
+# To jest komentarz
+# zapisany w kilku
+# liniach.
+```
+
 ## **Typy danych**
 
 ### **1. Typy numeryczne**
