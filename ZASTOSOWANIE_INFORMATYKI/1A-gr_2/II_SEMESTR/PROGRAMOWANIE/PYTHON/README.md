@@ -1354,7 +1354,7 @@ print(x) # Wynik: range(0, 5)
 ```
 ## Operatory == i is
 
-**Operator ==** porównuję wartość. Inaczej mówiąc **sprawdza, czy wartości dwóch obiektow są takie same. Nie bierze pod uwagę, czy obiekty są przechowywane w tym samym miejscu w pamięci – liczy się tylko zawartość**. Jest to porównanie semantyczne, oparte na metodzie __eq__ obiektu. 
+**Operator ==** porównuję wartości. Inaczej mówiąc **sprawdza, czy wartości dwóch obiektów są takie same. Nie bierze pod uwagę, czy obiekty są przechowywane w tym samym miejscu w pamięci – liczy się tylko zawartość**. Jest to porównanie semantyczne, oparte na metodzie __eq__ obiektu. 
 
 Przykłady 
 ```python
@@ -1397,7 +1397,7 @@ Z tego powodu dwie zmienne zawierające taką samą małą liczbę mogą wskazyw
 
 CPython to najczęściej używana implementacja języka Python. To właśnie CPython jest standardowo pobierany ze strony python.org.
 Python  → język programowania
-CPython → program, który wykonuje kod napisany w Pythoni
+CPython → program, który wykonuje kod napisany w Pythonie
 
 ```python
 a = 10
@@ -1569,8 +1569,8 @@ for liczba in liczby:
     if liczba % 2 == 0:
         print(f"Znaleziono parzystą: {liczba}")
         break
-    else:
-        print("Nie znaleziono żadnej liczby parzystej!")
+else:
+    print("Nie znaleziono żadnej liczby parzystej!")
 ```
 
 **4. `pass` – "nic nie rób" (placeholder)**
@@ -1942,25 +1942,45 @@ Python zawsze je widzi.
 
 ## Funkcje zaawansowane
 ### lambda
-**lambda** pozwala tworzyć małe, **anonimowe funkcje** (czyli funkcje bez nazwy), które można definiować w jednej linii. Przydatne do tworzenia prostych funkcji na potrzeby jednorazowego użycia, np. W **połączeniu z innymi funkcjami jak map, filter czy sorted. Nie mają nazwy i składają się z słowa kluczowego lambda, argumentów, dwukropka i wyrażenia**. 
 
-Czyli zamiast: 
+**`lambda`** pozwala tworzyć małe, **anonimowe funkcje**, czyli funkcje definiowane bez użycia instrukcji `def`.
 
-```Python
-def dodaj(a, b): 
-   wynik = a + b 
-   return wynik 
+Najczęściej stosuje się je do krótkich, prostych operacji, np. w połączeniu z funkcjami `map()`, `filter()` czy `sorted()`.
+
+Funkcja `lambda` składa się ze słowa kluczowego `lambda`, argumentów, dwukropka i jednego wyrażenia.
+
+Czyli zamiast:
+
+```python
+def dodaj(a, b):
+    wynik = a + b
+    return wynik
 ```
+
+możemy zapisać:
+```python
+dodaj = lambda a, b: a + b
+print(dodaj(2, 3))  # 5
+```
+
 Skrótowa wersja w lambda: 
 `lambda a, b: a + b` 
 
 Składnia: 
 `lambda argumenty: wyrażenie `
 
-Istotne: 
-- Zawierać może tylko jedno wyrażenie 
-- Nie możesz używać w niej instrukcji typu if, for, while, return 
+Istotne:
 
+- lambda może zawierać tylko jedno wyrażenie,
+- nie można umieszczać w niej instrukcji takich jak return, while, for ani zwykłego bloku if,
+- można jednak używać wyrażenia warunkowego wartość1 if warunek else wartość2.
+
+```python
+parzystosc = lambda x: "parzysta" if x % 2 == 0 else "nieparzysta"
+
+print(parzystosc(4))  # parzysta
+print(parzystosc(5))  # nieparzysta
+```
 
 **Przykład zastosowania**: Sortowanie listy słowników po wartości klucza. Załóżmy, że mamy listę osób i chcemy posortować je po wieku. 
 
@@ -2173,7 +2193,7 @@ def funkcja():
 try: 
     funkcja() 
 except MojBlad as e: 
-    print(e)  # Wyjście: To mój custom błąd! 
+    print(e)  # Wyjście: Coś poszło nie tak.
 
 ```
 
@@ -2818,8 +2838,8 @@ W Pythonie nie ma formalnych modyfikatorów public, protected, private jak np. w
 
 ```text
 name      → publiczny
-_name     → chroniony umownie
-__name    → prywatny poprzez name mangling
+_name     → niepubliczny / wewnętrzny zgodnie z konwencją
+__name    → podlega mechanizmowi name mangling
 ```
 **name mangling** = zmiana nazwy przez Pythona.
 
@@ -4007,7 +4027,7 @@ jest poprawne. Natomiast:
 spowoduje błąd, ponieważ `Base` posiada niezrealizowaną metodę abstrakcyjną.
 
 
-## Obsługi plików
+## Obsługa plików
 
 Python ma bardzo prosty i **bezpieczny sposób pracy z plikami dzięki wbudowanej funkcji open() oraz menedżerowi kontekstu with. Dzięki temu nie musisz pamiętać o ręcznym zamykaniu pliku (close())**, a kod jest czytelniejszy i mniej podatny na błędy. 
 
