@@ -3173,7 +3173,7 @@ W Pythonie częściej stosuje się `@property`, ponieważ pozwala korzystać z g
 ```python
 class Product:
     def __init__(self, price):
-        self._price = price
+        self.price = price
 
 
     @property
