@@ -2491,8 +2491,6 @@ print(inna_ksiazka.opis())  # Wyjście: Zaawansowany Python autorstwa Anna Nowak
 
  
 
- 
-
 ## Dziedziczenie
 
 **Dziedziczenie** to mechanizm programowania obiektowego (OOP), który pozwala utworzyć nową klasę na podstawie już istniejącej klasy.
@@ -2828,6 +2826,284 @@ pip install pydantic
 ```
 
 Przykład z `BaseModel` jest praktycznym zastosowaniem dziedziczenia, ale najlepiej omawiać go **dopiero po zrozumieniu zwykłego dziedziczenia, `isinstance()` i `issubclass()`**.
+
+## Moduły i pakiety
+Moduł to plik z rozszerzeniem `.py`, który zawiera kod Pythona, np. funkcje, klasy, zmienne lub inne instrukcje.
+
+Dzięki modułom możemy dzielić program na mniejsze, logiczne części, wielokrotnie wykorzystywać napisany kod oraz łatwiej organizować większe projekty.
+
+
+### 1. Importowanie modułu – import 
+```python
+import math           
+import random 
+import os 
+
+ 
+print(math.pi)              
+print(math.sqrt(16))        
+ 
+
+liczba = random.randint(1, 10) 
+print(liczba) 
+
+print(f"Aktualny katalog roboczy: {os.getcwd()}")   
+```
+
+Po zastosowaniu `import math` uzyskujemy dostęp do elementów modułu poprzez jego nazwę:
+
+`nazwa_modułu.nazwa_elementu`
+
+### 2. Importowanie konkretnych elementów – `from ... import ...` 
+
+```python
+from math import sqrt, pi 
+from random import randint, choice 
+from os import getcwd 
+ 
+
+print(sqrt(25))         
+print(pi) 
+ 
+losowa = randint(1, 100) 
+print(losowa)  
+
+print(f"Aktualny katalog roboczy: {getcwd()}")    
+
+kolor = choice(["czerwony", "zielony", "niebieski"])
+print(kolor)
+```
+
+Można również zastosować import z użyciem `*`, jednak taki sposób importowania jest **niezalecany**:
+```python
+from math import *
+```
+Taki zapis importuje wiele nazw bezpośrednio do bieżącej przestrzeni nazw. Jest niezalecany, ponieważ utrudnia ustalenie, z którego modułu pochodzi dana funkcja lub zmienna i może prowadzić do konfliktów nazw.
+
+### 3. Tworzenie własnych modułów 
+
+Struktura:
+```text
+moj_projekt/
+├── main.py
+├── obliczenia.py
+└── utils.py
+```
+
+Plik obliczenia.py (moduł): 
+```python
+# obliczenia.py 
+
+ 
+
+def dodaj(a, b): 
+    return a + b 
+
+ 
+def odejmij(a, b): 
+    return a - b 
+ 
+
+def pomnoz(a, b): 
+    return a * b 
+
+ 
+# zmienne na poziomie modułu 
+
+PI = 3.14159 
+TAX_RATE = 0.23 
+
+
+class Kalkulator: 
+
+    def __init__(self): 
+        self.wynik = 0 
+
+     
+    def dodaj(self, x): 
+        self.wynik += x 
+        return self.wynik 
+```        
+
+Plik main.py (używamy modułu): 
+```python
+import obliczenia 
+from obliczenia import dodaj, Kalkulator 
+
+ 
+print(obliczenia.dodaj(5, 7))           # 12 
+print(dodaj(10, 20))                    # 30 
+ 
+
+kalk = Kalkulator() 
+print(kalk.dodaj(100))                  # 100 
+print(kalk.dodaj(50))                   # 150 
+```
+W pierwszym przypadku odwołujemy się do funkcji przez nazwę modułu `obliczenia.dodaj()`
+
+W drugim funkcja `dodaj()` została zaimportowana bezpośrednio, dlatego możemy użyć jej bez nazwy modułu.
+
+### 4. Aliasy – `as`
+Słowo kluczowe `as` pozwala nadać importowanemu modułowi, funkcji lub klasie inną nazwę, nazywaną aliasem.
+
+```python
+import random as rnd
+
+liczba = rnd.randint(1, 10)
+print(liczba)
+```
+Możemy również utworzyć alias dla konkretnego elementu modułu:
+```python
+from math import sqrt as pierwiastek
+
+print(pierwiastek(25))
+```
+
+### 5. Pakiety (packages) – struktura z wieloma modułami 
+
+**Pakiet** pozwala organizować wiele powiązanych modułów w strukturze katalogów.
+
+Tradycyjny pakiet Pythona zawiera plik `__init__.py`.
+
+Od Pythona 3.3 istnieją również tzw. **namespace packages**, które mogą działać bez pliku `__init__.py`. W typowych projektach edukacyjnych i w zwykłych pakietach nadal często stosuje się `__init__.py`.
+
+W przedstawionych dalej przykładach będziemy korzystać ze zwykłych pakietów zawierających plik `__init__.py`
+
+Przykład struktury pakietu: 
+```text
+sklep/ 
+├── __init__.py 
+├── produkty.py 
+├── zamowienia.py 
+├── platnosci/ 
+│   ├── __init__.py 
+│   ├── karta.py 
+│   └── przelew.py 
+└── utils/ 
+    ├── __init__.py 
+    └── helpers.py 
+```
+ 
+
+Plik sklep/produkty.py: 
+```python
+# sklep/produkty.py 
+
+
+class Produkt: 
+    def __init__(self, nazwa, cena): 
+        self.nazwa = nazwa 
+        self.cena = cena 
+
+
+def stworz_produkt(nazwa, cena): 
+    return Produkt(nazwa, cena) 
+``` 
+
+Plik sklep/zamowienia.py: 
+```python
+# sklep/zamowienia.py 
+
+from .produkty import Produkt   # import względny 
+
+
+class Zamowienie: 
+    def __init__(self): 
+        self.produkty = [] 
+    
+
+    def dodaj_produkt(self, produkt: Produkt):
+        if isinstance(produkt, Produkt):
+            self.produkty.append(produkt)
+``` 
+
+Plik sklep/__init__.py 
+```python
+# sklep/__init__.py  
+
+from .produkty import Produkt, stworz_produkt 
+from .zamowienia import Zamowienie # Kropka . oznacza bieżący pakiet.
+ 
+
+__all__ = ['Produkt', 'stworz_produkt', 'Zamowienie'] 
+```
+Kod zapisany w `__init__.py` jest wykonywany podczas importowania pakietu. Z tego powodu nie należy umieszczać tam niepotrzebnych operacji wykonywanych automatycznie.
+Użycie pakietu w main.py: 
+
+ 
+```python
+# main.py 
+import sklep 
+from sklep import Produkt, stworz_produkt, Zamowienie 
+ 
+
+p1 = stworz_produkt("Laptop", 4999) 
+p2 = Produkt("Myszka", 89) 
+ 
+zam1 = Zamowienie() 
+zam1.dodaj_produkt(p1) 
+zam1.dodaj_produkt(p2) 
+
+print(f"Złożono zamówienie na {len(zam1.produkty)} produktów")
+
+
+p3 = sklep.stworz_produkt("Laptop", 4999)
+p4 = sklep.Produkt("Myszka", 89)
+
+zam2 = sklep.Zamowienie()
+zam2.dodaj_produkt(p3) 
+zam2.dodaj_produkt(p4) 
+
+print(f"Złożono zamówienie na {len(zam2.produkty)} produktów")
+
+
+```
+
+### 6. Rola pliku `__init__.py` 
+
+Plik `__init__.py` ma kilka ważnych funkcji: 
+
+- Pozwala utworzyć zwykły pakiet Pythona – obecność `__init__.py` powoduje, że katalog jest traktowany jako regularny pakiet. 
+- Kod inicjalizujący – kod znajdujący się w `__init__.py` jest wykonywany podczas pierwszego importu danego pakietu w danym uruchomieniu programu.
+- Udostępnianie wygodnego interfejsu pakietu – możemy zaimportować wybrane klasy lub funkcje z podmodułów i udostępnić je bezpośrednio z poziomu pakietu
+- Definiowanie `__all__` – określa nazwy brane pod uwagę przy użyciu `from pakiet import *`.
+  
+
+
+### 7. Uruchamianie modułu a jego importowanie – `__name__`
+
+Każdy moduł Pythona posiada specjalną zmienną:
+
+`__name__`
+
+Jeżeli plik zostanie uruchomiony bezpośrednio, jej wartością jest:
+
+`"__main__"`
+
+Dlatego często stosuje się zapis:
+
+```python
+def main():
+    print("Program został uruchomiony bezpośrednio.")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Jeżeli natomiast plik zostanie zaimportowany jako moduł, warunek:
+
+`if __name__ == "__main__":`
+
+nie zostanie spełniony, dlatego kod znajdujący się wewnątrz tego bloku nie zostanie wykonany.
+
+### Pojęcia
+
+**Biblioteka standardowa** – zbiór modułów i pakietów dostarczanych razem z Pythonem, np. `math`, `random`, `os`.
+
+**Własne moduły** – pliki `.py` utworzone przez programistę.
+
+**Biblioteki zewnętrzne** – pakiety instalowane dodatkowo, najczęściej za pomocą `pip`, np. `requests`, `numpy`, `pandas`.
 
 ## Modyfikatory dostępu
 
