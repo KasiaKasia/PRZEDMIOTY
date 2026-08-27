@@ -3,9 +3,11 @@
 
 ## INF.03.1.1 Warunki i organizacja pracy zapewniająca wymagany poziom ochrony zdrowia i życia przed zagrożeniami występującymi w środowisku pracy
 
+### **Bezpieczeństwo i higiena pracy**
+
 **Bezpieczeństwo i higiena pracy (BHP)** to zbiór zasad i przepisów dotyczących organizacji pracy w taki sposób, aby ograniczyć ryzyko wypadków, urazów i chorób związanych z wykonywaną pracą.
 
-**Przepisy prawa dotyczące bezpieczeństwa i higieny pracy, ochrony przeciwpożarowej, ochrony środowiska i ergonomii**
+### **Przepisy prawa dotyczące bezpieczeństwa i higieny pracy, ochrony przeciwpożarowej, ochrony środowiska i ergonomii**
 
 Do podstawowych przepisów należą m.in.:
 
@@ -86,7 +88,7 @@ Mogą to być np.:
 
 **Przykład**: pracownik pracowni komputerowej powinien znać zasady bezpiecznego korzystania ze sprzętu elektrycznego oraz sposób ewakuacji z budynku.
 
-**Zasady ochrony przeciwpożarowej w środowisku pracy**
+### **Zasady ochrony przeciwpożarowej w środowisku pracy**
 
 **Ochrona przeciwpożarowa** obejmuje działania mające zapobiegać powstawaniu pożaru oraz ograniczać jego skutki.
 
@@ -117,13 +119,13 @@ Nie należy podejmować próby gaszenia pożaru, jeżeli może to narazić osob�
 
 Jeżeli pracownik zauważy dym wydobywający się z urządzenia komputerowego, powinien przerwać jego użytkowanie, a jeżeli można to zrobić bezpiecznie – odłączyć zasilanie i poinformować odpowiednie osoby. W przypadku rozwijającego się pożaru należy wszcząć alarm i rozpocząć ewakuację.
 
-**Określa wymagania ergonomiczne na stanowisku pracy**
+### **Określa wymagania ergonomiczne na stanowisku pracy**
 
 **Ergonomia stanowiska** pracy polega na takim zorganizowaniu miejsca pracy, aby ograniczyć zmęczenie, bóle kręgosłupa, przeciążenie mięśni oraz zmęczenie wzroku.
 
 Na stanowisku komputerowym należy zwrócić uwagę przede wszystkim na:
 
-1. Monitor
+**1. Monitor**
 
 Monitor powinien być ustawiony tak, aby użytkownik mógł patrzeć na ekran wygodnie, bez pochylania głowy i bez skręcania szyi.
 
@@ -141,7 +143,7 @@ monitor nie powinien stać **na wprost okna**, ani tyłem do okna, jeśli powodu
 ekran powinien być ustawiony tak, aby **nie odbijało się w nim światło**,
 czcionka i elementy na ekranie powinny być czytelne bez mrużenia oczu.
 
-2. Krzesło
+**2. Krzesło**
 
 Krzesło powinno zapewniać stabilne siedzenie oraz odpowiednie podparcie dla pleców.
 
@@ -159,7 +161,7 @@ Krzesło powinno zapewniać stabilne siedzenie oraz odpowiednie podparcie dla pl
 - dobrze, jeśli krzesło ma **podłokietniki**, ale nie mogą one wymuszać uniesienia barków,
 - barki powinny być **rozluźnione**, nie uniesione.
 
-3. Biurko
+**3. Biurko**
 
 Biurko powinno zapewniać odpowiednią ilość miejsca na nogi i swobodne ustawienie sprzętu.
 
@@ -175,7 +177,7 @@ blat powinien być na tyle duży, aby można było swobodnie ustawić - monitor,
 - jeśli jest zbyt niskie, użytkownik pochyla się do przodu.
 
 
-4. Klawiatura i mysz
+**4. Klawiatura i mysz**
 
 Klawiatura i mysz powinny być ustawione tak, aby ręce pracowały w naturalnej, niewymuszonej pozycji.
 
@@ -192,7 +194,7 @@ podczas pisania nie należy stale opierać nadgarstków o twardą krawędź,
 mysz i klawiatura powinny być ustawione na tej samej wysokości,
 jeśli pracownik dużo korzysta z dokumentów, warto używać podstawki na dokumenty.
 
-5. Oświetlenie
+**5. Oświetlenie**
 
 Oświetlenie powinno zapewniać komfort widzenia i nie powodować odblasków.
 
@@ -207,7 +209,7 @@ Oświetlenie powinno zapewniać komfort widzenia i nie powodować odblasków.
 - przy zbyt silnym świetle warto używać rolet lub żaluzji,
 - przy słabym oświetleniu przydaje się lampka biurkowa.
 
-6. Pozycja ciała
+**6. Pozycja ciała**
 
 Najlepsza pozycja to taka, która jest wygodna, naturalna i nie powoduje przeciążenia mięśni.
 
@@ -225,7 +227,7 @@ Najlepsza pozycja to taka, która jest wygodna, naturalna i nie powoduje przeci�
 - trzeba zmieniać ułożenie ciała,
 - warto co jakiś czas wstać, przeciągnąć się i zrobić kilka kroków.
 
-7. Przerwy w pracy
+**7. Przerwy w pracy**
 
 Nawet dobrze ustawione stanowisko nie wystarczy, jeśli pracuje się bez przerw.
 
@@ -238,7 +240,6 @@ Nawet dobrze ustawione stanowisko nie wystarczy, jeśli pracuje się bez przerw.
     - patrzeć na obiekt oddalony o około 20 stóp, czyli ok. 6 metrów.
 
 To pomaga zmniejszyć zmęczenie oczu.
-
 
 
 **Stosuje zasady postępowania z odpadami niebezpiecznymi**
@@ -261,9 +262,11 @@ To pomaga zmniejszyć zmęczenie oczu.
 
 ## INF.03.1.2 Zadania i uprawnienia instytucji oraz służb działających w zakresie ochrony pracy i ochrony środowiska
 
+### **Instytucje oraz służby działające w zakresie ochrony pracy i ochrony środowiska**
+
 Instytucje oraz służby działające w zakresie ochrony pracy i ochrony środowiska najważniejsze z nich to:
 
-8 **Państwowa Inspekcja Pracy (PIP)**
+- **Państwowa Inspekcja Pracy (PIP)**
 Kontroluje przestrzeganie prawa pracy, w szczególności przepisów dotyczących BHP.
 
 - **Państwowa Inspekcja Sanitarna (Sanepid)**
@@ -295,7 +298,7 @@ W uproszczeniu:
 
 ## INF.03.1.3 Prawa i obowiązki pracownika oraz pracodawcy w zakresie bezpieczeństwa i higieny pracy
 
-**Obowiązki pracodawcy i pracowników w zakresie bezpieczeństwa i higieny pracy**
+### **Obowiązki pracodawcy i pracowników w zakresie bezpieczeństwa i higieny pracy**
 
 **Pracodawca powinien m.in.:**
 
@@ -320,18 +323,20 @@ W uproszczeniu:
 
 > Pracownik ma również prawo powstrzymać się od wykonywania pracy, jeżeli jej warunki stwarzają bezpośrednie zagrożenie dla zdrowia lub życia.
 
-**Rodzaje profilaktycznych badań lekarskich**
+### **Rodzaje profilaktycznych badań lekarskich**
 
 Podstawowe badania pracowników to:
 
-**wstępne** – wykonywane przede wszystkim przed rozpoczęciem pracy,
-**okresowe** – wykonywane regularnie podczas zatrudnienia,
-**kontrolne** – wykonywane po dłuższej niezdolności do pracy spowodowanej chorobą.
+- **wstępne** – wykonywane przede wszystkim przed rozpoczęciem pracy,
+
+- **okresowe** – wykonywane regularnie podczas zatrudnienia,
+
+- **kontrolne** – wykonywane po dłuższej niezdolności do pracy spowodowanej chorobą.
 
 Na badania kieruje pracodawca i pokrywa ich koszt.
 
 
-**Rodzaje obligatoryjnych szkoleń z zakresu bezpieczeństwa i higieny pracy**
+### **Rodzaje obligatoryjnych szkoleń z zakresu bezpieczeństwa i higieny pracy**
 
 Wyróżniamy:
 
@@ -344,7 +349,7 @@ Wyróżniamy:
 
 Przed dopuszczeniem do pracy pracownik powinien posiadać odpowiednie przeszkolenie BHP
 
-**System kar dla pracownika z tytułu nieprzestrzegania przepisów bezpieczeństwa i higieny pracy**
+### **System kar dla pracownika z tytułu nieprzestrzegania przepisów bezpieczeństwa i higieny pracy**
 
 Za nieprzestrzeganie przepisów BHP pracodawca może zastosować:
 
@@ -354,7 +359,7 @@ Za nieprzestrzeganie przepisów BHP pracodawca może zastosować:
 
 Dotyczy to m.in. nieprzestrzegania przepisów BHP oraz przepisów przeciwpożarowych.
 
-**Obowiązki pracownika i pracodawcy w zakresie zapobiegania wypadkom przy pracy i chorobom zawodowym**
+### **Obowiązki pracownika i pracodawcy w zakresie zapobiegania wypadkom przy pracy i chorobom zawodowym**
 
 **Pracodawca** powinien rozpoznawać zagrożenia, oceniać ryzyko i stosować środki ograniczające zagrożenia.
 
@@ -376,7 +381,7 @@ Osobie ubezpieczonej mogą przysługiwać m.in.:
 
 ## INF.03.1.4 Skutki oddziaływania czynników szkodliwych na organizm człowieka
 
-**Zagrożenia występujące w środowisku pracy**
+### **Zagrożenia występujące w środowisku pracy**
 
 **Zagrożenie** to czynnik lub sytuacja, która może spowodować uraz, pogorszenie zdrowia albo wypadek.
 
@@ -391,7 +396,7 @@ W pracy biurowej i informatycznej mogą występować np.:
 - nieprawidłowa pozycja ciała,
 - stres i nadmierne obciążenie psychiczne.
 
-**Skutki oddziaływania czynników fizycznych na organizm człowieka**
+### **Skutki oddziaływania czynników fizycznych na organizm człowieka**
 
 **Czynniki fizyczne** to np. hałas, niewłaściwa temperatura, drgania, nieodpowiednie oświetlenie czy promieniowanie.
 
@@ -405,7 +410,7 @@ Mogą powodować m.in.:
 - przegrzanie lub wychłodzenie organizmu.
 
 
-**skutki oddziaływania czynników psychofizycznych na organizm człowieka**
+### **Skutki oddziaływania czynników psychofizycznych na organizm człowieka**
 
 Do czynników psychofizycznych należą np.:
 
@@ -424,7 +429,7 @@ Ich skutkiem może być:
 - większa liczba popełnianych błędów,
 - obniżenie wydajności pracy.
 
-**Skutki oddziaływania czynników niebezpiecznych i uciążliwych na organizm człowieka**
+### **Skutki oddziaływania czynników niebezpiecznych i uciążliwych na organizm człowieka**
 
 **Czynniki niebezpieczne, szkodliwe i uciążliwe** to czynniki występujące w środowisku pracy, które mogą mieć negatywny wpływ na zdrowie lub bezpieczeństwo pracownika. Różnią się przede wszystkim tym, jak szybko i w jaki sposób powodują skutki.
 
@@ -488,7 +493,7 @@ Przykład: pracownik potyka się podczas wykonywania obowiązków służbowych, 
 ## INF.03.1.5 Środki ochrony indywidualnej i zbiorowej podczas wykonywania zadań zawodowych
  
 
-**Środki ochrony zbiorowej chronią jednocześnie więcej niż jedną osobę przed występującym zagrożeniem.**
+### **Środki ochrony zbiorowej chronią jednocześnie więcej niż jedną osobę przed występującym zagrożeniem.**
 
 Przykłady:
 
@@ -500,7 +505,7 @@ Przykłady:
 
 **Środki ochrony indywidualnej** są natomiast przeznaczone dla konkretnej osoby, np. rękawice ochronne, okulary ochronne lub ochronniki słuchu, jeśli rodzaj pracy wymaga ich stosowania.
 
-**Środki ochrony zabezpieczające przed hałasem w pracy biurowej**
+### **Środki ochrony zabezpieczające przed hałasem w pracy biurowej**
 
 W pracy biurowej można ograniczać hałas przez:
 
@@ -549,7 +554,7 @@ Wentylacja lub klimatyzacja nie powinna powodować:
 - przegrzewania pomieszczenia,
 - kierowania silnego strumienia powietrza bezpośrednio na stanowisko pracy.
 
-**Środki ochrony zapobiegające porażeniu prądem w pracy biurowej**
+### **Środki ochrony zapobiegające porażeniu prądem w pracy biurowej**
 
 Do podstawowych zabezpieczeń należą:
 
@@ -565,7 +570,7 @@ Pracownik nie powinien:
 - dotykać urządzeń elektrycznych mokrymi rękami,
 - samodzielnie naprawiać urządzeń znajdujących się pod napięciem.
 
-**Środki ochrony zapobiegające pogorszeniu wzroku i zniekształceniu kręgosłupa**
+### **Środki ochrony zapobiegające pogorszeniu wzroku i zniekształceniu kręgosłupa**
 
 Podstawą jest ergonomiczne stanowisko:
 
@@ -579,7 +584,7 @@ Podstawą jest ergonomiczne stanowisko:
 Przepisy dotyczące stanowisk z monitorami wymagają takiego rozmieszczenia wyposażenia, aby nie powodowało ono nadmiernego obciążenia układu mięśniowo-szkieletowego oraz wzroku.
 
 ## INF.03.1.6 Pierwsza pomoc w stanach nagłego zagrożenia zdrowotnego
-
+### **Pierwsza pomoc** 
 **Pierwsza pomoc** to podstawowe czynności wykonywane wobec osoby, której zdrowie lub życie jest zagrożone, do czasu przybycia profesjonalnych służb ratunkowych.
 
 **Podstawowe symptomy wskazujące na stany nagłego zagrożenia zdrowotnego**
@@ -593,7 +598,7 @@ Do objawów wymagających szybkiej reakcji należą m.in.:
 - zaburzenia mowy lub nagłe osłabienie jednej strony ciała,
 - poważne oparzenie lub uraz.
 
-**Sytuację poszkodowanego na podstawie analizy objawów obserwowanych u poszkodowanego**
+### **Sytuację poszkodowanego na podstawie analizy objawów obserwowanych u poszkodowanego**
 
 Należy przede wszystkim sprawdzić:
 
@@ -646,7 +651,7 @@ Podczas zgłoszenia należy podać przede wszystkim:
 - co się wydarzyło,
 - liczbę i stan poszkodowanych.
 
-**Udzielanie pierwszej pomocy w urazowych stanach nagłego zagrożenia zdrowotnego**
+### **Udzielanie pierwszej pomocy w urazowych stanach nagłego zagrożenia zdrowotnego**
 
 **Krwotok** – zastosować bezpośredni ucisk na ranę i wezwać pomoc przy poważnym krwawieniu.
 
@@ -680,9 +685,9 @@ W przypadku podejrzenia udaru należy jak najszybciej wezwać pomoc.
 
 należy wezwać pomoc i rozpocząć **RKO** – **resuscytację krążeniowo-oddechową**.
 
-**Podstawowy schemat dla osoby dorosłej:**
+### **Podstawowy schemat dla osoby dorosłej:**
 
-**30 uciśnięć klatki piersiowej → 2 oddechy ratownicze → 30 uciśnięć → 2 oddechy...**
+> **30 uciśnięć klatki piersiowej → 2 oddechy ratownicze → 30 uciśnięć → 2 oddechy...**
 
 **Podczas uciskania klatki piersiowej:**
 
