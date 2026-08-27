@@ -308,8 +308,7 @@ W uproszczeniu:
 - zapewnić odpowiednie środki ochrony,
 - zapewnić możliwość udzielenia pierwszej pomocy.
 
-**Pracownik powinien m.in.:
-**
+**Pracownik powinien m.in.:**
 - przestrzegać przepisów i zasad BHP,
 - uczestniczyć w szkoleniach BHP,
 - wykonywać wymagane badania lekarskie,
@@ -606,8 +605,8 @@ Nie należy narażać własnego bezpieczeństwa podczas udzielania pomocy.
 
 **Zabezpieczenie siebie, poszkodowanego i miejsce wypadku**
 
-**Przed rozpoczęciem pomocy należy sprawdzić, czy miejsce jest bezpieczne.
-**
+**Przed rozpoczęciem pomocy należy sprawdzić, czy miejsce jest bezpieczne.**
+
 **Przykład:** jeśli poszkodowany został porażony prądem, nie należy go dotykać, dopóki źródło zasilania nie zostanie bezpiecznie odłączone.
 
 
@@ -621,7 +620,7 @@ Nie należy narażać własnego bezpieczeństwa podczas udzielania pomocy.
 można ułożyć w pozycji bezpiecznej, jeżeli jej stan i rodzaj urazu na to pozwalają.
 
 
-**Pozycja bezpieczna **(inaczej pozycja boczna ustalona) to ułożenie nieprzytomnej osoby na boku, jeśli oddycha prawidłowo i ma zachowane oznaki krążenia, więc nie trzeba wykonywać resuscytacji krążeniowo-oddechowej. Jej głównym celem jest utrzymanie drożnych dróg oddechowych i zmniejszenie ryzyka zakrztuszenia się np. śliną lub wymiocinami.
+**Pozycja bezpieczna** (inaczej pozycja boczna ustalona) to ułożenie nieprzytomnej osoby na boku, jeśli oddycha prawidłowo i ma zachowane oznaki krążenia, więc nie trzeba wykonywać resuscytacji krążeniowo-oddechowej. Jej głównym celem jest utrzymanie drożnych dróg oddechowych i zmniejszenie ryzyka zakrztuszenia się np. śliną lub wymiocinami.
 
 Najważniejsze jest to, że osoba nie leży płasko na plecach. W pozycji bezpiecznej:
 
