@@ -429,3 +429,183 @@ Imię – tekst,
 Nazwisko – tekst,
 Wiek – liczba całkowita,
 Kierunek – tekst.
+
+### 📝 **4. Klucze**
+
+#### 📝 **Klucz główny (Primary Key, PK)**
+To unikalny identyfikator rekordu w tabeli.
+Gwarantuje, że każdy wiersz można jednoznacznie odróżnić.
+
+Kluczem głównym może być:
+liczba całkowita (np. ID = 1, 2, 3...),
+unikalny kod (np. PESEL, NIP),
+
+👉 W tabeli Studenci:
+ID Imię Nazwisko Wiek
+1 Anna Kowalska 21
+
+Tutaj ID jest kluczem głównym.
+
+#### 📝 **Klucz obcy (Foreign Key, FK)**
+To pole w tabeli, które wskazuje na klucz główny w innej tabeli.
+Dzięki temu możemy powiązać dane między tabelami.
+
+👉 Przykład:
+Tabela Zapisy (które kursy student wybrał) może mieć klucze obce:
+- StudentID → odwołanie do tabeli Studenci(ID),
+- KursID → odwołanie do tabeli Kursy(ID).
+
+
+## **Relacje między tabelami**
+
+**Relacje między tabelami** określają, w jaki sposób dane z jednej tabeli są powiązane z danymi w drugiej tabeli.
+
+Najczęściej wyróżnia się trzy rodzaje relacji:
+
+### 1. Relacja jeden do jednego — 1:1
+
+Jeden rekord z pierwszej tabeli jest powiązany z **jednym rekordem** z drugiej tabeli.
+
+**Przykład:**
+
+Mamy tabelę `pracownicy`:
+
+| id_pracownika | imie | nazwisko |
+| ------------: | ---- | -------- |
+|             1 | Anna | Kowalska |
+|             2 | Jan  | Nowak    |
+
+oraz tabelę `karty_pracownika`:
+
+| id_karty | id_pracownika | numer_karty |
+| -------: | ------------: | ----------- |
+|        1 |             1 | K001        |
+|        2 |             2 | K002        |
+
+Jeden pracownik ma jedną kartę, a jedna karta należy do jednego pracownika.
+
+Schemat:
+
+```text
+Pracownik 1 ───────── 1 Karta
+```
+
+Czyli:
+
+**1 : 1**
+
+---
+
+### 2. Relacja jeden do wielu — 1:N
+
+Jeden rekord z pierwszej tabeli może być powiązany z **wieloma rekordami** z drugiej tabeli.
+
+To bardzo częsty typ relacji.
+
+**Przykład: klient i zamówienia**
+
+Tabela `klienci`:
+
+| id_klienta | imie | nazwisko |
+| ---------: | ---- | -------- |
+|          1 | Anna | Kowalska |
+|          2 | Jan  | Nowak    |
+
+Tabela `zamowienia`:
+
+| id_zamowienia | id_klienta | data       |
+| ------------: | ---------: | ---------- |
+|           101 |          1 | 2026-08-01 |
+|           102 |          1 | 2026-08-10 |
+|           103 |          2 | 2026-08-12 |
+
+Klient Anna Kowalska ma dwa zamówienia:
+
+```text
+Anna
+ ├── zamówienie 101
+ └── zamówienie 102
+```
+
+Natomiast każde konkretne zamówienie należy do jednego klienta.
+
+Schemat:
+
+```text
+Klient 1 ───────── N Zamówień
+```
+
+czyli:
+
+**1 : N**
+
+W tabeli `zamowienia` znajduje się `id_klienta`, czyli **klucz obcy**, który wskazuje klienta.
+
+---
+
+### 3. Relacja wiele do wielu — N:M
+
+Wiele rekordów z pierwszej tabeli może być powiązanych z wieloma rekordami z drugiej tabeli.
+
+**Przykład: uczniowie i przedmioty**
+
+Jeden uczeń może uczęszczać na wiele przedmiotów.
+
+Jednocześnie na jeden przedmiot może uczęszczać wielu uczniów.
+
+```text
+Anna ───── Matematyka
+  │
+  └────── Programowanie
+
+Jan ───── Matematyka
+  │
+  └────── Bazy danych
+```
+
+Mamy więc:
+
+```text
+Uczeń N ───────── M Przedmiot
+```
+
+W relacyjnej bazie danych takiej relacji zazwyczaj **nie tworzy się bezpośrednio**. Tworzy się dodatkową tabelę pośrednią.
+
+Na przykład:
+
+Tabela `uczniowie`:
+
+| id_ucznia | imie |
+| --------: | ---- |
+|         1 | Anna |
+|         2 | Jan  |
+
+Tabela `przedmioty`:
+
+| id_przedmiotu | nazwa         |
+| ------------: | ------------- |
+|             1 | Matematyka    |
+|             2 | Programowanie |
+
+Tabela pośrednia `uczen_przedmiot`:
+
+| id_ucznia | id_przedmiotu |
+| --------: | ------------: |
+|         1 |             1 |
+|         1 |             2 |
+|         2 |             1 |
+
+Dzięki tabeli pośredniej relacja N:M zostaje rozbita na dwie relacje 1:N.
+
+```text
+Uczeń
+  │
+  │ 1:N
+  ▼
+Uczeń_Przedmiot
+  ▲
+  │ N:1
+  │
+Przedmiot
+```
+ 
