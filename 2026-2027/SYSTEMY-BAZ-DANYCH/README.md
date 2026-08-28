@@ -372,7 +372,7 @@ ponieważ każde z tych określeń opisuje inną cechę systemu.
 
 
 **RODZAJE I MODELE BAZ DANYCH**
-
+```text
 1. MODELE DANYCH
    ├── hierarchiczny
    ├── sieciowy
@@ -401,7 +401,7 @@ ponieważ każde z tych określeń opisuje inną cechę systemu.
 4. INNE ROZWIĄZANIA
    ├── in-memory
    └── wielomodelowe
-
+```
 ## **Omówienie podstawowych koncepcji: tabele, rekordy, pola**   
 
 ### 📝 **1. Tabela**
