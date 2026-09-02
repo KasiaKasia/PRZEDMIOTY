@@ -403,10 +403,12 @@ Bootstrap automatycznie zmienia maksymalną szerokość `.container`:
 ≥ 768 px    → 720 px
 ≥ 992 px    → 960 px
 ≥ 1200 px   → 1140 px
+Dla przykładu cały ekran: 1200 px
+
+| 30 px |-------- container 1140 px --------| 30 px |
 ≥ 1400 px   → 1320 px
 ```
 
-### Kiedy używać?
 
 `.container` jest dobrym wyborem dla głównej zawartości strony, np.:
 
@@ -456,11 +458,9 @@ Przykład:
 </div>
 ```
 
+ 
 
-
-### Kiedy używać?
-
-Na przykład dla:
+### `container` najlepiej używać na przykład dla:
 
 * banera,
 * nagłówka,
@@ -512,191 +512,19 @@ Dostępne są:
 .container-xxl
 ```
 
+
 | Klasa kontenera    | Extra small `<576px` | Small `≥576px` | Medium `≥768px` | Large `≥992px` | X-Large `≥1200px` | XX-Large `≥1400px` |
 | ------------------ | -------------------: | -------------: | --------------: | -------------: | ----------------: | -----------------: |
-| `.container`       |                 100% |          540px |           720px |          960px |            1140px |             1320px |
-| `.container-sm`    |                 100% |          540px |           720px |          960px |            1140px |             1320px |
-| `.container-md`    |                 100% |           100% |           720px |          960px |            1140px |             1320px |
-| `.container-lg`    |                 100% |           100% |            100% |          960px |            1140px |             1320px |
-| `.container-xl`    |                 100% |           100% |            100% |           100% |            1140px |             1320px |
-| `.container-xxl`   |                 100% |           100% |            100% |           100% |              100% |             1320px |
+| `.container`       |                 100% |     max. 540px |      max. 720px |     max. 960px |       max. 1140px |        max. 1320px |
+| `.container-sm`    |                 100% |     max. 540px |      max. 720px |     max. 960px |       max. 1140px |        max. 1320px |
+| `.container-md`    |                 100% |           100% |      max. 720px |     max. 960px |       max. 1140px |        max. 1320px |
+| `.container-lg`    |                 100% |           100% |            100% |     max. 960px |       max. 1140px |        max. 1320px |
+| `.container-xl`    |                 100% |           100% |            100% |           100% |       max. 1140px |        max. 1320px |
+| `.container-xxl`   |                 100% |           100% |            100% |           100% |              100% |        max. 1320px |
 | `.container-fluid` |                 100% |           100% |            100% |           100% |              100% |               100% |
 
 
----
-
-## `.container-sm`
-
-```html
-<div class="container-sm">
-    Treść
-</div>
-```
-
-Kontener zajmuje 100% szerokości na najmniejszych ekranach.
-
-Od breakpointu:
-
-```text
-sm ≥ 576 px
-```
-
-zaczyna otrzymywać maksymalną szerokość podobnie jak `.container`.
-
-W praktyce `.container-sm` zachowuje się bardzo podobnie do zwykłego `.container`.
-
----
-
-## `.container-md`
-
-```html
-<div class="container-md">
-    Treść
-</div>
-```
-
-Działa następująco:
-
-```text
-< 576 px    → 100%
-576–767 px  → 100%
-
-≥ 768 px    → max-width: 720 px
-≥ 992 px    → max-width: 960 px
-≥ 1200 px   → max-width: 1140 px
-≥ 1400 px   → max-width: 1320 px
-```
-
-Czyli:
-
-> do breakpointu `md` kontener zajmuje całą szerokość, a od `md` zaczyna mieć ograniczoną maksymalną szerokość.
-
-Przykład:
-
-```html
-<div class="container-md bg-light">
-
-    <h2>Aktualności</h2>    
-</div>
-```
-
-Na telefonie:
-
-```text
-|────────────────────────|
-|      Aktualności       |
-|────────────────────────|
-```
-
-Na większym ekranie:
-
-```text
-|     ┌────────────────────────────┐     |
-|     │        Aktualności         │     |
-|     └────────────────────────────┘     |
-```
-
----
-
-## `.container-lg`
-
-```html
-<div class="container-lg">
-    Treść
-</div>
-```
-
-Tutaj kontener zajmuje 100% szerokości aż do breakpointu `lg`.
-
-Czyli:
-
-```text
-xs → 100%
-sm → 100%
-md → 100%
-
-lg ≥ 992 px
-→ kontener otrzymuje max-width
-```
-
-Przykład:
-
-```html
-<div class="container-lg bg-warning p-3">
-
-    <h2>Produkty</h2>
-
-</div>
-```
-
-Może być przydatny, jeśli chcemy, aby zawartość na telefonach i tabletach wykorzystywała całą szerokość, a dopiero na komputerach była ograniczona.
-
----
-
-## `.container-xl`
-
-```html
-<div class="container-xl">
-    Treść
-</div>
-```
-
-Zajmuje 100% szerokości dla:
-
-```text
-xs
-sm
-md
-lg
-```
-
-Dopiero od:
-
-```text
-xl ≥ 1200 px
-```
-
-zaczyna otrzymywać ograniczoną maksymalną szerokość.
-
----
-
-## `.container-xxl`
-
-```html
-<div class="container-xxl">
-    Treść
-</div>
-```
-
-Zajmuje 100% szerokości aż do:
-
-```text
-xxl ≥ 1400 px
-```
-
-Dopiero na bardzo dużych ekranach maksymalna szerokość wynosi:
-
-```text
-1320 px
-```
-
----
-
-# Porównanie
-
-| Klasa              | Kiedy zajmuje 100% szerokości? |
-| ------------------ | ------------------------------ |
-| `.container`       | tylko poniżej `576 px`         |
-| `.container-sm`    | poniżej `576 px`               |
-| `.container-md`    | poniżej `768 px`               |
-| `.container-lg`    | poniżej `992 px`               |
-| `.container-xl`    | poniżej `1200 px`              |
-| `.container-xxl`   | poniżej `1400 px`              |
-| `.container-fluid` | **zawsze 100%**                |
-
----
-
-# Przykład pokazujący wszystkie kontenery
+## Przykład pokazujący wszystkie kontenery
 
 Można przygotować uczniom taką stronę:
 
@@ -730,11 +558,219 @@ Dzięki temu można zobaczyć, kiedy poszczególne kontenery:
 * zaczynają mieć ograniczoną szerokość,
 * pozostawiają wolne miejsce po bokach.
 
+
+## System siatkowy Grid  
+ 
+**System siatkowy (Grid)** w Bootstrap służy do tworzenia układu strony za pomocą **wierszy i kolumn**.
+
+Bootstrap dzieli każdy wiersz na **12 części**.
+
+Podstawowa struktura wygląda następująco:
+
+```html
+<div class="container">
+
+    <div class="row">
+
+        <div class="col">
+            Treść
+        </div>
+    </div>
+</div>
+```
+
+Czyli:
+
+```text
+container
+   ↓
+  row
+   ↓
+  col
+   ↓
+treść
+```
+
+* `.container` – określa obszar strony,
+* `.row` – tworzy wiersz,
+* `.col` – tworzy kolumnę.
+
 ---
 
-# Kontener + Grid
+### 1. System 12 kolumn
 
-Najczęściej kontener jest dopiero początkiem układu.
+Każdy wiersz możemy traktować jak podzielony na:
+
+```text
+12 części
+```
+
+Na przykład:
+
+```html
+<div class="row">
+
+    <div class="col-6">
+        Lewa
+    </div>
+
+    <div class="col-6">
+        Prawa
+    </div>
+
+</div>
+```
+
+Ponieważ:
+
+```text
+6 + 6 = 12
+```
+
+otrzymujemy dwie równe kolumny:
+
+```text
+|----------- 6 -----------|----------- 6 -----------|
+|          50%            |           50%           |
+```
+
+---
+
+Możemy również zrobić:
+
+```html
+<div class="row">
+
+    <div class="col-4">
+        Lewa
+    </div>
+
+    <div class="col-8">
+        Prawa
+    </div>
+
+</div>
+```
+
+czyli:
+
+```text
+|------ 4 ------|------------- 8 -------------|
+|     około     |                            |
+|      33%      |          około 67%         |
+```
+
+---
+
+Trzy równe kolumny:
+
+```html
+<div class="row">
+
+    <div class="col-4">
+        HTML
+    </div>
+
+    <div class="col-4">
+        CSS
+    </div>
+
+    <div class="col-4">
+        JavaScript
+    </div>
+
+</div>
+```
+
+Ponieważ:
+
+```text
+4 + 4 + 4 = 12
+```
+ 
+ 
+---
+
+### 2. Rozmiary siatki – breakpointy
+
+Bootstrap posiada **6 poziomów Grid**:
+
+| Nazwa             | Oznaczenie | Szerokość viewportu | Klasa        |
+| ----------------- | ---------- | ------------------: | ------------ |
+| Extra small       | `xs`       |          `< 576 px` | `.col-*`     |
+| Small             | `sm`       |          `≥ 576 px` | `.col-sm-*`  |
+| Medium            | `md`       |          `≥ 768 px` | `.col-md-*`  |
+| Large             | `lg`       |          `≥ 992 px` | `.col-lg-*`  |
+| Extra large       | `xl`       |         `≥ 1200 px` | `.col-xl-*`  |
+| Extra extra large | `xxl`      |         `≥ 1400 px` | `.col-xxl-*` |
+
+W miejscu `*` wpisujemy liczbę od `1` do `12`.
+
+Przykładowo:
+
+```text
+.col-6
+.col-sm-6
+.col-md-6
+.col-lg-6
+.col-xl-6
+.col-xxl-6
+```
+ 
+ 
+ 
+**Przykład działania**:
+
+```text
+< 576 px
+→ col-12
+→ 100%
+
+≥ 576 px
+→ col-sm-6
+→ 50%
+```
+
+Jeżeli mamy dwa elementy:
+
+```html
+<div class="row">
+
+    <div class="col-12 col-sm-6">
+        Produkt 1
+    </div>
+
+    <div class="col-12 col-sm-6">
+        Produkt 2
+    </div>
+
+</div>
+```
+
+Na ekranie mniejszym niż `576 px`:
+
+```text
+┌─────────────────────┐
+│      Produkt 1      │
+├─────────────────────┤
+│      Produkt 2      │
+└─────────────────────┘
+```
+
+Od `576 px`:
+
+```text
+┌───────────┬───────────┐
+│ Produkt 1 │ Produkt 2 │
+└───────────┴───────────┘
+```
+
+---
+
+
+### 3. Łączenie różnych rozmiarów siatki
+
+Największą zaletą Bootstrap jest możliwość połączenia kilku breakpointów w jednej klasie.
 
 Przykład:
 
@@ -743,12 +779,291 @@ Przykład:
 
     <div class="row">
 
-        <div class="col-12 col-md-6">
-            HTML
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 bg-primary text-white">
+            Produkt 1
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 bg-success text-white  ">
+            Produkt 2
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3   bg-danger text-white  ">
+            Produkt 3
+        </div>
+     </div>
+</div>
+```
+
+Oznacza:
+
+#### Extra small
+
+```text
+< 576 px
+
+col-12
+12 / 12 = 100%
+
+1 element w wierszu
+```
+
+```text
+┌───────────────────────────────┐
+│           Produkt 1           │
+├───────────────────────────────┤
+│           Produkt 2           │
+├───────────────────────────────┤
+│           Produkt 3           │
+└───────────────────────────────┘
+```
+
+---
+
+#### Small
+
+```text
+≥ 576 px
+
+col-sm-6
+6 / 12 = 50%
+
+2 elementy w wierszu
+```
+
+```text
+┌───────────────┬───────────────┐
+│   Produkt 1   │   Produkt 2   │
+├───────────────┼───────────────┴
+│   Produkt 3   │               
+└───────────────┴
+```
+
+---
+
+#### Medium
+
+```text
+≥ 768 px
+
+col-md-4
+4 / 12 ≈ 33%
+
+3 elementy w wierszu
+```
+
+```text
+┌───────────┬───────────┬───────────┐
+│ Produkt 1 │ Produkt 2 │ Produkt 3 │
+└───────────┴───────────┴───────────┘
+```
+
+---
+
+#### Large
+
+```text
+≥ 992 px
+
+col-lg-3
+3 / 12 = 25%
+
+4 elementy w wierszu
+```
+
+```text
+┌─────────┬─────────┬─────────┬─────────┐
+│Produkt 1│Produkt 2│Produkt 3│         │
+└─────────┴─────────┴─────────┴─────────┘
+```
+
+---
+
+###s Co dzieje się na `xl` i `xxl`?
+
+W naszym kodzie nie podaliśmy:
+
+```text
+col-xl-*
+```
+
+ani:
+
+```text
+col-xxl-*
+```
+
+Dlatego nadal obowiązuje ostatnia ustawiona wartość:
+
+```text
+col-lg-3
+```
+
+Czyli również na `xl` i `xxl`:
+
+```text
+3 / 12 = 25%
+```
+
+---
+
+### 4. Możemy określić wszystkie breakpointy
+
+Przykład:
+
+```html
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1 bg-primary text-white border">
+                Produkt 1
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1 bg-success text-white border">
+                Produkt 2
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1 bg-danger text-white border">
+                Produkt 3
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1 bg-warning border">
+                Produkt 4
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1 bg-info border">
+                Produkt 5
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1 bg-secondary text-white border">
+                Produkt 6
+            </div>
+
+        </div>
+    </div>
+```
+
+Działanie:
+
+| Szerokość | Klasa       | Szerokość elementu |
+| --------- | ----------- | -----------------: |
+| `<576px`  | `col-12`    |               100% |
+| `≥576px`  | `col-sm-6`  |                50% |
+| `≥768px`  | `col-md-4`  |         ok. 33,33% |
+| `≥992px`  | `col-lg-3`  |                25% |
+| `≥1200px` | `col-xl-2`  |         ok. 16,67% |
+| `≥1400px` | `col-xxl-1` |          ok. 8,33% |
+
+Czyli teoretycznie:
+
+```text
+xs  → 1 element
+sm  → 2 elementy
+md  → 3 elementy
+lg  → 4 elementy
+xl  → 6 elementów
+xxl → 12 elementów,  xxl-1 oznacza 1 z 12 kolumn siatki. Jest 6 elementów, więc łącznie zajmują: 6 × 1 = 6 kolumn z 12, czyli 6 / 12 = 50%
+
+| 1         | 1         | 1         | 1         | 1         | 1         |                 |
+| Produkt 1 | Produkt 2 | Produkt 3 | Produkt 4 | Produkt 5 | Produkt 6 |   puste miejsce |
+```
+
+w jednym wierszu.
+ 
+---
+
+### 5. Automatyczne kolumny – `.col`
+
+Nie zawsze musimy podawać liczbę.
+
+Możemy napisać:
+
+```html
+<div class="row">
+
+    <div class="col">
+        HTML
+    </div>
+
+    <div class="col">
+        CSS
+    </div>
+
+    <div class="col">
+        JavaScript
+    </div>
+
+</div>
+```
+
+Bootstrap automatycznie podzieli dostępną przestrzeń na trzy równe części:
+
+```text
+|      HTML      |       CSS       |   JavaScript   |
+```
+
+Każda kolumna będzie miała około:
+
+```text
+33,33%
+```
+
+---
+
+## 6. Suma przekroczy 12 KOLUMN
+
+Przykład:
+
+```html
+<div class="row">
+
+    <div class="col-8">
+        Element 1
+    </div>
+
+    <div class="col-8">
+        Element 2
+    </div>
+
+</div>
+```
+
+Pierwszy element zajmuje: `8 / 12`. Drugi również chce zająć: `8 / 12`
+
+Czyli: `8 + 8 = 16`
+
+Nie mieszczą się razem w 12 kolumnach.
+
+Drugi element przejdzie więc do następnego wiersza.
+
+---
+
+## 6. Praktyczny przykład
+
+```html
+<div class="container">
+
+    <div class="row g-3">
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="p-3 bg-primary text-white">
+                HTML
+            </div>
         </div>
 
-        <div class="col-12 col-md-6">
-            CSS
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-success text-white">
+                CSS
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-warning">
+                JavaScript
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-info">
+                Bootstrap
+            </div>
         </div>
 
     </div>
@@ -756,71 +1071,25 @@ Przykład:
 </div>
 ```
 
-Tutaj:
+ ## klasy row-cols-*
 
+ W Bootstrap 5.3 gotowe klasy row-cols-* są generowane maksymalnie do 6 kolumn w jednym wierszu. Oficjalnie wynika to z ustawienia Sass:
+
+`$grid-row-columns: 6 !default;`
+
+Czyli możesz użyć m.in.:
 ```text
-.container
+row-cols-1
+row-cols-2
+row-cols-3
+row-cols-4
+row-cols-5
+row-cols-6
 ```
-
-określa obszar, w którym znajduje się zawartość,
-
+oraz wersji responsywnych:
 ```text
-.row
+row-cols-sm-6
+row-cols-md-6
+row-cols-lg-6
 ```
-
-tworzy wiersz,
-
-a:
-
-```text
-.col-12
-.col-md-6
-```
-
-określają szerokość kolumn.
-
-Na małym ekranie:
-
-```text
-┌───────────────────────────┐
-│            HTML           │
-├───────────────────────────┤
-│            CSS            │
-└───────────────────────────┘
-```
-
-Od `md`:
-
-```text
-┌──────────────┬──────────────┐
-│     HTML     │      CSS     │
-└──────────────┴──────────────┘
-```
-
----
-
-## Najważniejsze do zapamiętania
-
-```text
-.container
-```
-
-→ responsywny kontener o ograniczonej szerokości
-
-```text
-.container-fluid
-```
-
-→ zawsze 100% szerokości
-
-```text
-.container-md
-```
-
-→ 100% szerokości poniżej `md`, a od `md` ograniczana szerokość
-
-```text
-.container-lg
-```
-
-→ 100% szerokości poniżej `lg`, a od `lg` ograniczana szerokość
+**Nie zadziała domyślnie `row-cols-50`**
