@@ -1093,3 +1093,58 @@ row-cols-md-6
 row-cols-lg-6
 ```
 **Nie zadziała domyślnie `row-cols-50`**
+
+## Gutters
+**Gutters** to **odstępy pomiędzy kolumnami** w systemie Grid Bootstrap. Są tworzone głównie za pomocą poziomego padding wewnątrz kolumn. Domyślny gutter ma szerokość **1.5rem**, czyli zwykle **24 px**.
+
+
+Najważniejsze klasy:
+
+```text
+gx-*  → odstępy poziome między kolumnami
+gy-*  → odstępy pionowe między wierszami kolumn
+g-*   → odstępy poziome i pionowe jednocześnie
+```
+
+**Przykład poziomy**:
+```html
+<div class="row gx-5">
+    <div class="col">Kolumna 1</div>
+    <div class="col">Kolumna 2</div>
+</div>
+```
+`gx-5` zwiększa odstęp w poziomie pomiędzy kolumnami.
+
+**Przykład pionowy**:
+```html
+<div class="row gy-5">
+    <div class="col-6">1</div>
+    <div class="col-6">2</div>
+    <div class="col-6">3</div>
+    <div class="col-6">4</div>
+</div>
+```
+`gy-5` zwiększa odstęp w pionie, gdy kolumny przechodzą do kolejnych wierszy.
+
+**Przykład w obu kierunkach**:
+```html
+<div class="row g-2">
+    <div class="col-6">1</div>
+    <div class="col-6">2</div>
+    <div class="col-6">3</div>
+    <div class="col-6">4</div>
+</div>
+```
+`g-2` ustawia odstępy zarówno poziome, jak i pionowe.
+
+Dla gutterów Bootstrap udostępnia standardowo wartości:
+```text
+g-0
+g-1
+g-2
+g-3
+g-4
+g-5
+```
+
+> Jeśli potrzebowałabyś wartości większej niż 5, np. odpowiadającej Twojemu 34, trzeba utworzyć własną klasę CSS albo zmodyfikować skalę Bootstrap przez Sass.
