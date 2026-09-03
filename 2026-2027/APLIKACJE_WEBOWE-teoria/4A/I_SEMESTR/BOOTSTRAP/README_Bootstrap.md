@@ -1148,3 +1148,123 @@ g-5
 ```
 
 > Jeśli potrzebowałabyś wartości większej niż 5, np. odpowiadającej Twojemu 34, trzeba utworzyć własną klasę CSS albo zmodyfikować skalę Bootstrap przez Sass.
+
+
+## Utilities for layout
+
+**Utilities** to gotowe klasy pomocnicze Bootstrap, które pozwalają szybko zmieniać wygląd i układ elementów.
+
+### 1. `display`
+
+Klasy `d-*` zmieniają sposób wyświetlania elementu.
+
+**Przykłady**:
+```html
+<div class="d-block">Element blokowy</div>
+<div class="d-inline">Element liniowy</div>
+<div class="d-none">Element ukryty</div>
+```
+
+Można je też stosować responsywnie:
+```html
+<div class="d-none d-md-block">
+    Widoczny od szerokości md
+</div>
+```
+Czyli:
+
+< 768 px  → ukryty
+≥ 768 px  → widoczny
+
+2. **Flexbox**
+
+Klasa: `d-flex` ustawia:
+
+`display: flex;`
+
+Przykład:
+
+```html
+<div class="d-flex">
+    <div>HTML</div>
+    <div>CSS</div>
+    <div>JavaScript</div>
+</div>
+```
+
+3. **Margin i padding**
+
+Bootstrap ma gotowe klasy do ustawiania odstępów.
+
+Na przykład:
+```html
+<div class="m-3">
+    Element
+</div>
+```
+
+`m-3` oznacza margin.
+```html
+<div class="p-3">
+    Element
+</div>
+```
+`p-3` oznacza padding.
+
+Można określić konkretną stronę:
+```text
+mt-* → margin-top
+mb-* → margin-bottom
+
+ms-* → margin-start
+me-* → margin-end
+
+pt-* → padding-top
+pb-* → padding-bottom
+
+ps-* → padding-start
+pe-* → padding-end
+```
+Przykład:
+```html
+<div class="mt-3 p-4">
+    Treść
+</div>
+```
+czyli:
+
+mt-3 → margines u góry
+p-4  → padding ze wszystkich stron
+
+Można też używać breakpointów:
+
+`<div class="p-2 p-md-5">`
+
+czyli:
+
+małe ekrany → p-2
+od md       → p-5
+
+4. **Widoczność**
+
+Bootstrap ma też klasy:
+
+- `visible`
+- `invisible`
+
+Na przykład:
+```html
+<div class="invisible">
+    Ukryty element
+</div>
+```
+Ważna różnica:
+
+`d-none`
+**usuwa element z układu strony,**
+
+natomiast:
+
+`invisible`
+
+**ukrywa go wizualnie, ale miejsce po nim nadal pozosta**je.
