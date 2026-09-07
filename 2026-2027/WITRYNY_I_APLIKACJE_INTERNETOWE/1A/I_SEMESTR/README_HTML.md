@@ -288,12 +288,12 @@ Coffee
 ### Znaczniki liniowe i blokowe
 
 **Znaczniki blokowe (display: block)**
-> ● Definicja: Elementy blokowe zajmują całą dostępną szerokość swojego kontenera nadrzędnego, tworząc "blok", który zaczyna się od nowej linii i rozciąga się na całą szerokość. Każdy kolejny element blokowy pojawia się poniżej poprzedniego.
-> ● Cechy:
-    > ○ Zajmują 100% szerokości rodzica (chyba że zmieniono to np. przez width).
-    > ○ Zawsze zaczynają się od nowej linii.
-    > ○ Mogą mieć ustawione właściwości takie jak width, height, margin, padding w sposób pełny.
-    > ○ Przykłady domyślnych elementów blokowych: <div>, <p>, <h1>–<h6>, <ul>, <li>, <section>, <article>, <form>.
+● Definicja: Elementy blokowe zajmują całą dostępną szerokość swojego kontenera nadrzędnego, tworząc "blok", który zaczyna się od nowej linii i rozciąga się na całą szerokość. Każdy kolejny element blokowy pojawia się poniżej poprzedniego.
+● Cechy:
+     ○ Zajmują 100% szerokości rodzica (chyba że zmieniono to np. przez width).
+     ○ Zawsze zaczynają się od nowej linii.
+     ○ Mogą mieć ustawione właściwości takie jak width, height, margin, padding w sposób pełny.
+     ○ Przykłady domyślnych elementów blokowych: <div>, <p>, <h1>–<h6>, <ul>, <li>, <section>, <article>, <form>.
 
 
 **Znaczniki liniowe (display: inline)**
