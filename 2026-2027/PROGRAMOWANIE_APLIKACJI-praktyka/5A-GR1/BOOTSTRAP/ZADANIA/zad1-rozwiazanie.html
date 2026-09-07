@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <title>Zadanie 1 - Bootstrap Grid</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+</head>
+<!--
+Zadanie 1 
+Utwórz stronę przedstawiającą 12 kafelków z nazwami technologii, np. HTML + BOOTSTRAP 
+Umieść wszystkie kafelki w jednym elemencie .row. Każdy kafelek powinien zmieniać swoją szerokość zależnie od szerokości ekranu.
+
+Zastosuj:
+
+col-12
+col-sm-6
+col-md-4
+col-lg-3
+col-xl-2
+col-xxl-1
+
+Układ powinien działać następująco:
+| Szerokość ekranu | Klasa       | Oczekiwany układ      |
+| ---------------- | ----------- | --------------------- |
+| `< 576 px`       | `col-12`    | 1 kafelek w wierszu   |
+| `≥ 576 px`       | `col-sm-6`  | 2 kafelki w wierszu   |
+| `≥ 768 px`       | `col-md-4`  | 3 kafelki w wierszu   |
+| `≥ 992 px`       | `col-lg-3`  | 4 kafelki w wierszu   |
+| `≥ 1200 px`      | `col-xl-2`  | 6 kafelków w wierszu  |
+| `≥ 1400 px`      | `col-xxl-1` | 12 kafelków w wierszu |
+
+-->
+<body>
+
+    <div class="container mt-4">
+
+        <h1 class="mb-4">
+            Technologie programistyczne
+        </h1>
+
+        <div class="row g-2">
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    HTML
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    CSS
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    JavaScript
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    TypeScript
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    Bootstrap
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    Angular
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    React
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    Node.js
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    Python
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    MySQL
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    Git
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
+                <div class="p-3 border text-center">
+                    Docker
+                </div>
+            </div>
+
+        </div>
+
+
+        <h2 class="mt-5">
+            Automatyczne kolumny .col
+        </h2>
+
+        <div class="row">
+
+            <div class="col">
+                <div class="p-3 border text-center">
+                    HTML
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="p-3 border text-center">
+                    CSS
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="p-3 border text-center">
+                    JavaScript
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
