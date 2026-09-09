@@ -261,3 +261,17 @@ Następnie:
 1 GiB = 1024 MiB
 1 TiB = 1024 GiB
 ```
+
+## 📝Monitor (Wyświetlacz/Ekran)
+
+**Monitor (wyświetlacz, ekran)** to urządzenie wyjściowe komputera, które służy do **wyświetlania obrazu i informacji przetwarzanych przez komputer**.
+
+Do ważnych parametrów monitora należą:
+
+- przekątna ekranu – np. 24", 27", 32",
+- rozdzielczość – np. Full HD 1920 × 1080, QHD 2560 × 1440, 4K 3840 × 2160,
+- częstotliwość odświeżania – np. 60 Hz, 144 Hz,
+- typ matrycy – np. IPS, VA, OLED,
+- jasność,
+- czas reakcji,
+- złącza – np. HDMI, DisplayPort, USB-C.
