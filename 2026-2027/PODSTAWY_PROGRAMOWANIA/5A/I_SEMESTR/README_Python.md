@@ -1,5 +1,35 @@
 # Podstawy Python
 
+**Python** jest **językiem interpretowanym**, ale **jego kod jest najpierw kompilowany do bytecode, który następnie wykonuje interpreter Pythona**.
+
+**Bytecode** to pośrednia postać kodu Pythona. Nie jest to już zwykły tekst z pliku .py, ale też nie jest to bezpośrednio kod maszynowy procesora.
+
+Schemat:
+```text
+kod Python
+   ↓
+bytecode
+   ↓
+Python Virtual Machine
+   ↓
+wykonanie programu
+```
+Przykład kodu:
+
+a = 2
+b = 3
+print(a + b)
+
+**Python najpierw przekształca go do bytecode**, czyli zestawu prostszych **instrukcji przeznaczonych dla maszyny wirtualnej Pythona**.
+
+**Python Virtual Machine (PVM)** to część interpretera Pythona, która wykonuje bytecode.
+
+
+## Uruchomienie skryptu
+
+Wykonaj polecenie, w katalogu skryptu Python:
+`python nazwa_skrypu.py`
+
 ## **Podstawowe typy komentarzy**
 
  🔹Komentarz jednowierszowy - zaczyna się od # 

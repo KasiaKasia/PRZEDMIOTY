@@ -195,4 +195,12 @@ new_tuple = my_tuple * 2
 # USUWANIE
 del my_tuple			    # Możesz usunąć tylko całą krotkę
 
+| Typ     | Przykład                     | Uporządkowany                      | Można zmieniać | Duplikaty                     |
+| ------- | ---------------------------- | ---------------------------------- | -------------- | ----------------------------- |
+| `list`  | `[1, 2, 3]`                  | tak                                | tak            | tak                           |
+| `tuple` | `(1, 2, 3)`                  | tak                                | nie            | tak                           |
+| `set`   | `{1, 2, 3}`                  | nie należy polegać na kolejności   | tak            | nie                           |
+| `dict`  | `{"name": "Jan", "age": 20}` | tak, zachowuje kolejność dodawania | tak            | klucze nie mogą się powtarzać |
+
+
 '''
