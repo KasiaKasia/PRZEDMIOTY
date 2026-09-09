@@ -151,13 +151,6 @@ Najczęściej używane wartości:
 | `_parent` | Otwiera link w kontekście nadrzędnym, np. przy użyciu ramek. |
 | `_top`    | Otwiera link w najwyższym kontekście przeglądania.           |
 
-Wyobraź sobie taką strukturę:
-```text
-Strona główna
-└── iframe
-    └── strona.html
-```
-
 
 Jeśli link znajduje się wewnątrz strona.html, to:
 
@@ -166,19 +159,85 @@ Jeśli link znajduje się wewnątrz strona.html, to:
 | `_parent` | Otwiera link w **elemencie nadrzędnym**, czyli w stronie zawierającej iframe. |
 | `_top`    | Otwiera link w **najwyższej stronie**, czyli usuwa wszystkie poziomy iframe.  |
 
-Przykład _parent
-```html
-<a href="kontakt.html" target="_parent">Kontakt</a>
+Przykład dla `_parent` i `_top`
+Struktura:
+```text
+index.html
+│
+└── iframe1.html
+    │
+    └── iframe2.html
 ```
-Jeżeli link znajduje się w iframe, kontakt.html zostanie otwarty **zamiast strony, która bezpośrednio zawiera ten iframe**.
-
-Przykład _top
+Strona główna: `index.html`
 ```html
-<a href="kontakt.html" target="_top">Kontakt</a>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+</head>
+<body>
+
+    <h1>INDEX.HTML</h1>
+
+    <iframe
+        src="iframe1.html"
+        width="700"
+        height="400">
+    </iframe>
+
+</body>
+</html>
 ```
 
-kontakt.html zostanie otwarty w **całym oknie przeglądarki**, nawet gdy link znajduje się w iframe zagnieżdżonym w innym iframe.
 
+Plik `iframe1.html` jest wyświetlany wewnątrz `index.html`, ale dodatkowo zawiera kolejny `iframe`:
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Iframe 1</title>
+</head>
+<body>
+
+    <h2>IFRAME1.HTML</h2>
+
+    <iframe
+        src="iframe2.html"
+        width="500"
+        height="250">
+    </iframe>
+
+</body>
+</html>
+```
+
+Plik `iframe2.html` w którym znajdują się linki z `_parent` i `_top`:
+```html:
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Iframe 2</title>
+</head>
+<body>
+
+    <h3>IFRAME2.HTML</h3>
+
+    <a href="https://example.com" target="_parent">
+        Otwórz za pomocą _parent
+    </a>
+
+    <br><br>
+
+    <a href="https://example.com" target="_top">
+        Otwórz za pomocą _top
+    </a>
+
+</body>
+</html>
+```
 
 
 Atrybut `rel` **określa relację między bieżącą stroną a stroną lub zasobem, do którego prowadzi link**. Może zawierać kilka wartości jednocześnie, oddzielonych spacjami.
@@ -293,21 +352,20 @@ Coffee
 
 ● Cechy:
      ○ Zajmują 100% szerokości rodzica (chyba że zmieniono to np. przez width).
-
      ○ Zawsze zaczynają się od nowej linii.
-
      ○ Mogą mieć ustawione właściwości takie jak width, height, margin, padding w sposób pełny.
-
      ○ Przykłady domyślnych elementów blokowych: <div>, <p>, <h1>–<h6>, <ul>, <li>, <section>, <article>, <form> Mardines pocamI.
 ```
 
 **Znaczniki liniowe (display: inline)**
-> ● Definicja: Elementy liniowe zajmują tylko tyle miejsca, ile jest potrzebne do wyświetlenia ich zawartości, i nie zaczynają się od nowej linii. Są ułożone obok siebie w tej samej linii, o ile pozwala na to przestrzeń.
-> ● Cechy:
-    > ○ Nie można ustawić dla nich pełnych właściwości width i height (rozmiar zależy od zawartości).
-    > ○ Marginesy (margin) i wypełnienia (padding) działają tylko w poziomie (lewo/prawo), nie w pionie.
-    > ○ Przykłady domyślnych elementów liniowych: <span>, <a>, <strong>, <em>, <img>, <b>, <i>.
+```text
+● Definicja: Elementy liniowe zajmują tylko tyle miejsca, ile jest potrzebne do wyświetlenia ich zawartości, i nie zaczynają się od nowej linii. Są ułożone obok siebie w tej samej linii, o ile pozwala na to przestrzeń.
 
+● Cechy:
+    ○ Nie można ustawić dla nich pełnych właściwości width i height (rozmiar zależy od zawartości).
+    ○ Marginesy (margin) i wypełnienia (padding) działają tylko w poziomie (lewo/prawo), nie w pionie.
+    ○ Przykłady domyślnych elementów liniowych: <span>, <a>, <strong>, <em>, <img>, <b>, <i>.
+```
 
 Przykład:
 ```html
