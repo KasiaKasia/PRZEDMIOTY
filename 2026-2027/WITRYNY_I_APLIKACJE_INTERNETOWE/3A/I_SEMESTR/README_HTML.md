@@ -246,8 +246,8 @@ Najczęściej używane wartości `rel`
 
 | Wartość                 | Znaczenie                                                                                                                                        |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `"noopener"`            | Zapobiega uzyskaniu przez otwartą stronę dostępu do strony, z której użytkownik przeszedł. Często stosowany z `target="_blank"`.                 |
-| `"noreferrer"`          | Powoduje, że strona docelowa nie otrzymuje informacji o adresie strony, z której użytkownik przeszedł. Dodatkowo działa podobnie jak `noopener`. |
+| `"noopener"`            | Ppowoduje, że nowo otwarta strona nie ma dostępu do obiektu `window.opener`. Czyli strona otwarta w nowej karcie nie może sterować stroną, z której została otwarta. Bez `noopener` potencjalnie mogłaby np. próbować zmienić adres strony nadrzędnej. Często stosowany z `target="_blank"`.                 |
+| `"noreferrer"`          | Powoduje, że strona docelowa nie otrzymuje informacji o adresie strony, z której użytkownik przeszedł. Dodatkowo działa podobnie jak `noopener`, czyli nie ma dostępu do obiektu `window.opener`. |
 | `"noopener noreferrer"` | Łączy działanie obu powyższych wartości.                                                                                                         |
 | `"nofollow"`            | Informuje wyszukiwarki, że nie powinny traktować linku jako rekomendacji strony docelowej.                                                       |
 | `"sponsored"`           | Oznacza link reklamowy, sponsorowany lub płatny.                                                                                                 |
