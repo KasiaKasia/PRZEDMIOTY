@@ -54,7 +54,7 @@ TypeScript (.ts)  →  kompilator TypeScript  →  JavaScript (.js)  →  przegl
 
 **TypeScript nie zastępuje JavaScriptu.** Po kompilacji kod TypeScript staje się JavaScriptem. Typy TypeScript służą przede wszystkim programiście i **nie istnieją już w gotowym kodzie JavaScript**.
 
-### Uruchomienie prostego pliku TypeScript?
+### Uruchomienie prostego pliku TypeScript
 Wcześniej musisz mieć zainstalowany Node.js i wykonać instrukcję:
 
 `npm install -g typescript`
@@ -76,6 +76,12 @@ Powstanie plik `app.js`, który może zostać wykonany przez przeglądarkę lub 
 
 W projekcie Angular kompilacją TypeScriptu zajmują się narzędzia Angulara, więc zwykle nie uruchamiamy ręcznie `tsc` dla każdego pliku.
 
+### Uruchomienie pliku JavaScript
+W katalogu skryptu wykonujesz polecenie 
+
+```bash
+node nazwa_skrypu_javascript.js
+```
 ---
 
 **W JavaScript możemy umieścić kod na kilka sposobów:**
@@ -327,10 +333,11 @@ switch (color) {
 - **break** zatrzymuje wykonywanie kolejnych przypadków (bez niego przejdzie dalej).
 - **default** — wykona się, jeśli żaden case nie pasuje
 
+### Porównuje wartości dwóch zmiennych
 
 **🔸 == (operator porównania z konwersją typów)**
 
-**Porównuje wartości dwóch zmiennych, ignorując ich typy.
+**Porównuje wartości dwóch zmiennych, ignorując ich typy**.
 Jeśli typy są różne, **JavaScript spróbuje je przekonwertować** (tzw. type coercion), **zanim porówna wartości**.
 
 ```JS
