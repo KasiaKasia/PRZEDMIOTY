@@ -403,28 +403,17 @@ Bootstrap automatycznie zmienia maksymalną szerokość `.container`:
 ≥ 768 px    → 720 px
 ≥ 992 px    → 960 px
 ≥ 1200 px   → 1140 px
+≥ 1400 px   → 1320 px
+
+
 Dla przykładu cały ekran: 1200 px
 
-| 30 px |-------- container 1140 px --------| 30 px |
-≥ 1400 px   → 1320 px
+| 30 px |--------padding 12 container 1116  px padding 12 --------| 30px | 
+| 30 px |----------------- 12 + 12 + 1116 = 1140 -----------------| 30px |
+
 ```
 
-
-`.container` jest dobrym wyborem dla głównej zawartości strony, np.:
-
-```html
-<div class="container">
-
-    <h1>Lista produktów</h1>
-
-    <p>
-        Tutaj znajduje się główna treść strony.
-    </p>
-
-</div>
-```
-
----
+  
 
 ## 2. `.container-fluid`
 
@@ -529,25 +518,37 @@ Dostępne są:
 Można przygotować uczniom taką stronę:
 
 ```html
-<div class="container bg-primary text-white p-3 mb-3">
-    .container
-</div>
+    <div class="container bg-primary text-white">
+        container
+    </div>
 
-<div class="container-md bg-success text-white p-3 mb-3">
+
+    <div class="container-fluid bg-secondary text-white">
+        container-fluid
+    </div>
+
+<hr>
+
+    <div class="container-sm bg-primary text-white ">
+    .container-sm
+  </div>
+
+  <div class="container-md bg-success text-white  ">
     .container-md
-</div>
+  </div>
 
-<div class="container-lg bg-warning p-3 mb-3">
+  <div class="container-lg bg-danger text-white  ">
     .container-lg
-</div>
+  </div>
 
-<div class="container-xl bg-info p-3 mb-3">
+  <div class="container-xl bg-warning text-dark  ">
     .container-xl
-</div>
+  </div>
 
-<div class="container-fluid bg-dark text-white p-3">
-    .container-fluid
-</div>
+  <div class="container-xxl bg-info text-dark  ">
+    .container-xxl
+  </div>
+ 
 ```
 
 Następnie należy **zmniejszać i zwiększać szerokość przeglądarki**.
@@ -697,7 +698,7 @@ Bootstrap posiada **6 poziomów Grid**:
 
 | Nazwa             | Oznaczenie | Szerokość viewportu | Klasa        |
 | ----------------- | ---------- | ------------------: | ------------ |
-| Extra small       | `xs`       |          `< 576 px` | `.col-*`     |
+| Extra small       |            |          `< 576 px` | `.col-*`     |
 | Small             | `sm`       |          `≥ 576 px` | `.col-sm-*`  |
 | Medium            | `md`       |          `≥ 768 px` | `.col-md-*`  |
 | Large             | `lg`       |          `≥ 992 px` | `.col-lg-*`  |
