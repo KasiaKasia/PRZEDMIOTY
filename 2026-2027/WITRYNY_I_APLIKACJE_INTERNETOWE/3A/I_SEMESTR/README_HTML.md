@@ -10,8 +10,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <!--Poniższy znacznik mówi przeglądarce mobilnej, jak ma wyświetlać stronę na ekranie telefonu lub tabletu. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!--
+    name="viewport"    - pozwala poprawnie wyświetlać responsywną stronę na urządzeniach mobilnych.
+    width=device-width - szerokość strony ma odpowiadać szerokości ekranu urządzenia. Jeśli telefon ma węższy ekran, przeglądarka dopasuje obszar strony do tej szerokości.
+    initial-scale=1.0  - strona ma być wyświetlana bez początkowego powiększenia lub pomniejszenia (skala startowa wynosi 100%)
+    -->
     <title>Moja pierwsza strona</title>
 </head>
 
