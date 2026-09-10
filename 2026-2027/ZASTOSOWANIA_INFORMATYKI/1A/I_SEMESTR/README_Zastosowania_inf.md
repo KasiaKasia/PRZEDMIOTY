@@ -228,6 +228,7 @@ Nie ma ruchomych części, dlatego:
 **Najmniejszą jednostką jest bit**.
 
 **1 bit (b) – może przyjąć wartość 0 albo 1**
+
 **1 bajt (B) to 8 bitów (b)**
 
 | Jednostka | Wartość |
