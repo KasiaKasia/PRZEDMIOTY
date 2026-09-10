@@ -13,9 +13,11 @@
     <!--Poniższy znacznik mówi przeglądarce mobilnej, jak ma wyświetlać stronę na ekranie telefonu lub tabletu. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--
-    name="viewport"    - pozwala poprawnie wyświetlać responsywną stronę na urządzeniach mobilnych.
+    name="viewport"    - pozwala poprawnie wyświetlać responsywną stronę na urządzeniach mobilnych. Ustawia szerokość viewportu równą szerokości urządzenia
     width=device-width - szerokość strony ma odpowiadać szerokości ekranu urządzenia. Jeśli telefon ma węższy ekran, przeglądarka dopasuje obszar strony do tej szerokości.
     initial-scale=1.0  - strona ma być wyświetlana bez początkowego powiększenia lub pomniejszenia (skala startowa wynosi 100%)
+
+    
     -->
     <title>Moja pierwsza strona</title>
 </head>
@@ -39,6 +41,20 @@
 | `<meta>`          | dodatkowe informacje o dokumencie                                                                                                             |
 | `<title>`         | tytuł widoczny na karcie przeglądarki                                                                                                         |
 | `<body>`          | zawartość strony widoczna dla użytkownika                                                                                                     |
+
+
+Inne wartości dla atrybutu `content` w znaczniku `meta`:
+
+| Ustawienie      | Przykład             | Znaczenie                                                                      |
+| --------------- | -------------------- | ------------------------------------------------------------------------------ |
+| `width`         | `width=device-width` | Ustawia szerokość viewportu równą szerokości urządzenia                        |
+| `width`         | `width=980`          | Ustawia konkretną szerokość viewportu, np. 980 px                              |
+| `initial-scale` | `initial-scale=1.0`  | Początkowy poziom powiększenia strony                                          |
+| `minimum-scale` | `minimum-scale=0.5`  | Najmniejsze dozwolone pomniejszenie                                            |
+| `maximum-scale` | `maximum-scale=3.0`  | Największe dozwolone powiększenie                                              |
+| `user-scalable` | `user-scalable=yes`  | Pozwala użytkownikowi powiększać stronę                                        |
+| `user-scalable` | `user-scalable=no`   | Blokuje ręczne powiększanie strony                                             |
+| `viewport-fit`  | `viewport-fit=cover` | Pozwala stronie wykorzystać cały ekran, również obszary przy wycięciach ekranu |
 
 
 ## Podstawowe znaczniki HTML
@@ -251,8 +267,8 @@ Najczęściej używane wartości `rel`
 
 | Wartość                 | Znaczenie                                                                                                                                        |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `"noopener"`            | Ppowoduje, że nowo otwarta strona nie ma dostępu do obiektu `window.opener`. Czyli strona otwarta w nowej karcie nie może sterować stroną, z której została otwarta. Bez `noopener` potencjalnie mogłaby np. próbować zmienić adres strony nadrzędnej. Często stosowany z `target="_blank"`.                 |
-| `"noreferrer"`          | Powoduje, że strona docelowa nie otrzymuje informacji o adresie strony, z której użytkownik przeszedł. Dodatkowo działa podobnie jak `noopener`, czyli nie ma dostępu do obiektu `window.opener`. |
+| `"noopener"`            | Powoduje, że nowo otwarta strona nie ma dostępu do obiektu `window.opener`. Czyli strona otwarta w nowej karcie nie może sterować stroną, z której została otwarta. Bez `noopener` potencjalnie mogłaby np. próbować zmienić adres strony nadrzędnej. Często stosowany z `target="_blank"`.                 |
+| `"noreferrer"`          |  Działa podobnie jak `noopener`, czyli nie ma dostępu do obiektu `window.opener`. Dodatkowo ukrywa informację, z jakiej strony użytkownik przyszedł.  |
 | `"noopener noreferrer"` | Łączy działanie obu powyższych wartości.                                                                                                         |
 | `"nofollow"`            | Informuje wyszukiwarki, że nie powinny traktować linku jako rekomendacji strony docelowej.                                                       |
 | `"sponsored"`           | Oznacza link reklamowy, sponsorowany lub płatny.                                                                                                 |
