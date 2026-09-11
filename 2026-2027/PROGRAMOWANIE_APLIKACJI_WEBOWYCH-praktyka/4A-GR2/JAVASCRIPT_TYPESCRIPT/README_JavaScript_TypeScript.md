@@ -54,7 +54,7 @@ TypeScript (.ts)  →  kompilator TypeScript  →  JavaScript (.js)  →  przegl
 
 **TypeScript nie zastępuje JavaScriptu.** Po kompilacji kod TypeScript staje się JavaScriptem. Typy TypeScript służą przede wszystkim programiście i **nie istnieją już w gotowym kodzie JavaScript**.
 
-### Uruchomienie prostego pliku TypeScript
+### Uruchomienie prostego pliku TypeScript?
 Wcześniej musisz mieć zainstalowany Node.js i wykonać instrukcję:
 
 `npm install -g typescript`
@@ -199,14 +199,27 @@ W TypeScript, tak samo jak w nowoczesnym JavaScript, zaleca się używanie przed
 
 
 ## 2. **Definiowanie stałych**
-🔹 `const` – stała (niezmienna wartość)
+🔹 `const` – stała (niezmienna wartość).  Działa tak samo jak w JavaScript. TypeScript dodatkowo kontroluje typ przypisanej wartości.
 
 Używana, gdy wartość nie powinna się zmieniać po przypisaniu.
 ```JS
 const pi = 3.14159;
 console.log(pi); // 3.14159
 
-// pi = 3.14; ❌ Błąd: nie można zmieniać wartości stałej
+// pi = 3.14; ❌ Błąd: nie można zmieniać wartości stałej 
+```
+```TS
+const liczbaPi: number = 3.14159;
+const school: string = "Technikum";
+```
+
+> `const` oznacza, że nie można przypisać do zmiennej **nowej wartości**. Nie oznacza jednak, że obiekt lub tablica stają się całkowicie niezmienne.
+
+```TS
+const user = { name: "Anna", age: 18 };
+user.age = 19; // ✅ można zmienić właściwość obiektu
+
+// user = { name: "Jan", age: 20 }; // ❌ nie można przypisać nowego obiektu
 ```
 
 Cechy `const`:
@@ -249,25 +262,7 @@ console.log(j); // ❌ błąd — j is not defined
 ```
 
 
-
-### TypeScript – `const`
-
-`const` działa tak samo jak w JavaScript. TypeScript dodatkowo kontroluje typ przypisanej wartości.
-
-```TS
-const pi: number = 3.14159;
-const school: string = "Technikum";
-```
-
-> `const` oznacza, że nie można przypisać do zmiennej **nowej wartości**. Nie oznacza jednak, że obiekt lub tablica stają się całkowicie niezmienne.
-
-```TS
-const user = { name: "Anna", age: 18 };
-user.age = 19; // ✅ można zmienić właściwość obiektu
-
-// user = { name: "Jan", age: 20 }; // ❌ nie można przypisać nowego obiektu
-```
-
+ 
 
 ## 3.  **Instrukcje `if, else if, else`**
 
@@ -337,7 +332,7 @@ switch (color) {
 
 **🔸 == (operator porównania z konwersją typów)**
 
-**Porównuje wartości dwóch zmiennych, ignorując ich typy**.
+**Porównuje wartości dwóch zmiennych, ignorując ich typy.
 Jeśli typy są różne, **JavaScript spróbuje je przekonwertować** (tzw. type coercion), **zanim porówna wartości**.
 
 ```JS
@@ -612,6 +607,8 @@ let a = z++;
 
 console.log(z); // 6
 console.log(a); // 5
+a = a+1;
+cosole.log(a)
 ```
 
 ### TypeScript – `break`, `continue`, inkrementacja i dekrementacja

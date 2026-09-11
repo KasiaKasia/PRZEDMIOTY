@@ -76,6 +76,12 @@ Powstanie plik `app.js`, który może zostać wykonany przez przeglądarkę lub 
 
 W projekcie Angular kompilacją TypeScriptu zajmują się narzędzia Angulara, więc zwykle nie uruchamiamy ręcznie `tsc` dla każdego pliku.
 
+### Uruchomienie pliku JavaScript
+W katalogu skryptu wykonujesz polecenie 
+
+```bash
+node nazwa_skrypu_javascript.js
+```
 ---
 
 **W JavaScript możemy umieścić kod na kilka sposobów:**
@@ -193,14 +199,27 @@ W TypeScript, tak samo jak w nowoczesnym JavaScript, zaleca się używanie przed
 
 
 ## 2. **Definiowanie stałych**
-🔹 `const` – stała (niezmienna wartość)
+🔹 `const` – stała (niezmienna wartość).  Działa tak samo jak w JavaScript. TypeScript dodatkowo kontroluje typ przypisanej wartości.
 
 Używana, gdy wartość nie powinna się zmieniać po przypisaniu.
 ```JS
 const pi = 3.14159;
 console.log(pi); // 3.14159
 
-// pi = 3.14; ❌ Błąd: nie można zmieniać wartości stałej
+// pi = 3.14; ❌ Błąd: nie można zmieniać wartości stałej 
+```
+```TS
+const liczbaPi: number = 3.14159;
+const school: string = "Technikum";
+```
+
+> `const` oznacza, że nie można przypisać do zmiennej **nowej wartości**. Nie oznacza jednak, że obiekt lub tablica stają się całkowicie niezmienne.
+
+```TS
+const user = { name: "Anna", age: 18 };
+user.age = 19; // ✅ można zmienić właściwość obiektu
+
+// user = { name: "Jan", age: 20 }; // ❌ nie można przypisać nowego obiektu
 ```
 
 Cechy `const`:
@@ -243,25 +262,7 @@ console.log(j); // ❌ błąd — j is not defined
 ```
 
 
-
-### TypeScript – `const`
-
-`const` działa tak samo jak w JavaScript. TypeScript dodatkowo kontroluje typ przypisanej wartości.
-
-```TS
-const pi: number = 3.14159;
-const school: string = "Technikum";
-```
-
-> `const` oznacza, że nie można przypisać do zmiennej **nowej wartości**. Nie oznacza jednak, że obiekt lub tablica stają się całkowicie niezmienne.
-
-```TS
-const user = { name: "Anna", age: 18 };
-user.age = 19; // ✅ można zmienić właściwość obiektu
-
-// user = { name: "Jan", age: 20 }; // ❌ nie można przypisać nowego obiektu
-```
-
+ 
 
 ## 3.  **Instrukcje `if, else if, else`**
 
@@ -327,6 +328,7 @@ switch (color) {
 - **break** zatrzymuje wykonywanie kolejnych przypadków (bez niego przejdzie dalej).
 - **default** — wykona się, jeśli żaden case nie pasuje
 
+### Porównuje wartości dwóch zmiennych
 
 **🔸 == (operator porównania z konwersją typów)**
 
@@ -605,6 +607,8 @@ let a = z++;
 
 console.log(z); // 6
 console.log(a); // 5
+a = a+1;
+cosole.log(a)
 ```
 
 ### TypeScript – `break`, `continue`, inkrementacja i dekrementacja
