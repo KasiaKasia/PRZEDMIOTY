@@ -552,7 +552,7 @@ print(x) # Wynik: range(0, 5) To oznacza zakres liczb: 0, 1, 2, 3, 4
 Python przechowuje tylko informację:
 
 start = 0
-stop = 5
+stop - 1 = 5
 step = 1
 
 Dlatego: `print(type(x))` da: `<class 'range'>`

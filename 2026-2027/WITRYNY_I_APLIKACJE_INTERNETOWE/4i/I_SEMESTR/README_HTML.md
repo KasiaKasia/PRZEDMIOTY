@@ -434,6 +434,146 @@ Przykład:
 **Efekt**: Oba `<span>` pojawią się w tej samej linii, obok siebie, z tłem obejmującym tylko ich zawartość.
 
 
+## Podstawowe znaczniki tabeli
+
+| Znacznik     | Znaczenie                                    |
+| ------------ | -------------------------------------------- |
+| `<table>`    | tworzy całą tabelę                           |
+| `<caption>`  | tytuł/opis tabeli                            |
+| `<colgroup>` | grupuje kolumny, np. do wspólnego stylowania |
+| `<col>`      | reprezentuje kolumnę w `<colgroup>`          |
+| `<thead>`    | część nagłówkowa tabeli                      |
+| `<tbody>`    | główna zawartość tabeli                      |
+| `<tfoot>`    | stopka tabeli                                |
+| `<tr>`       | **table row** – wiersz tabeli                |
+| `<td>`       | **table data** – zwykła komórka              |
+| `<th>`       | **table header** – komórka nagłówkowa        |
+
+Przykład:
+```html
+
+<table>
+    <caption>Lista produktów</caption>
+    <colgroup>
+        <col style="width: 200px;">
+        <col style="width: 100px;">
+    </colgroup>
+
+    <thead>
+        <tr>
+            <th>Produkt</th>
+            <th>Cena</th>
+        </tr>
+    </thead>
+
+    <tbody>           
+        <tr>
+            <td>Laptop</td>
+            <td>3000 zł</td>
+        </tr>
+
+        <tr>
+            <td>Monitor</td>
+            <td>1000 zł</td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td>Razem</td>
+            <td>4000 zł</td>
+        </tr>
+    </tfoot>
+
+</table>
+```
+
+**Łączenie kolumn — `colspan`**
+
+```html
+<table>
+
+    <tr>
+        <th colspan="2">Dane ucznia</th>
+    </tr>
+
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+    </tr>
+
+    <tr>
+        <td>Jan</td>
+        <td>Kowalski</td>
+    </tr>
+
+</table>
+```
+Rezultat:
+```text
++-------------------------+
+|       Dane ucznia       |
++------------+------------+
+| Imię       | Nazwisko   |
++------------+------------+
+| Jan        | Kowalski   |
++------------+------------+
+```
+
+**Łączenie wierszy — `rowspan`**
+```html
+<table>
+
+    <tr>
+        <th>Klasa</th>
+        <th>Uczeń</th>
+    </tr>
+
+    <tr>
+        <td rowspan="2">3A</td>
+        <td>Anna</td>
+    </tr>
+
+    <tr>
+        <td>Jan</td>
+    </tr>
+
+</table>
+```
+Rezultat:
+```text
++-------+-------+
+| Klasa | Uczeń |
++-------+-------+
+|       | Anna  |
+|  3A   +-------+
+|       | Jan   |
++-------+-------+
+```
+**`colspan` i `rowspan` razem**
+Przykład:
+```html
+<table>
+
+    <tr>
+        <th rowspan="2">Uczeń</th>
+        <th colspan="2">Oceny</th>
+    </tr>
+
+    <tr>
+        <th>Matematyka</th>
+        <th>Informatyka</th>
+    </tr>
+
+    <tr>
+        <td>Anna</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+
+</table>
+```
+
 ### Znaczniki semantyczne
 
 **W HTML5 znaczniki semantyczne służą do opisywania struktury i znaczenia treści na stronie** w sposób bardziej czytelny dla przeglądarek, wyszukiwarek i programistów.

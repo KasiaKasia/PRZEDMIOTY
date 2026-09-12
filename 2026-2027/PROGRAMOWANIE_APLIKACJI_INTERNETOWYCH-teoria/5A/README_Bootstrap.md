@@ -522,7 +522,6 @@ Można przygotować uczniom taką stronę:
         container
     </div>
 
-
     <div class="container-fluid bg-secondary text-white">
         container-fluid
     </div>
@@ -1268,4 +1267,4 @@ natomiast:
 
 `invisible`
 
-**ukrywa go wizualnie, ale miejsce po nim nadal pozosta**je.
+**ukrywa go wizualnie, ale miejsce po nim nadal pozostaje**.

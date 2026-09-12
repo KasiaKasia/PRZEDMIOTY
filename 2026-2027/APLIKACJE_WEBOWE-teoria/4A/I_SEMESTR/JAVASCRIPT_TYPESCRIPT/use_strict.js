@@ -1,6 +1,4 @@
 
-
- // "use strict";
  
 // 1.  
 // Bez "use strict" działa:
@@ -17,14 +15,15 @@
 // show(); // undefined
 
 // 3.
+//"use strict";
 const person = {};
 
 Object.defineProperty(person, "name", {
     value: "Jan",
-    writable: true // false - wartość tylko do odczytu
+    writable: false // false - wartość tylko do odczytu
 });
 console.log(person.name); 
-// person.name = "Adam"; // W trybie "use strict" : TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+person.name = "Adam"; // W trybie "use strict" : TypeError: Cannot assign to read only property 'name' of object '#<Object>'
 console.log(person.name); 
 
 // 4. 
@@ -41,6 +40,6 @@ let osoba = {
     imie: "Kasia"
 };
 
-with (osoba) {
-    console.log(imie);
-} // W trybie "use strict" : SyntaxError: Strict mode code may not include a with statement
+// with (osoba) {
+//     console.log(imie);
+// } // W trybie "use strict" : SyntaxError: Strict mode code may not include a with statement
