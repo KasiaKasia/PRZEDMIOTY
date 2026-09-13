@@ -340,21 +340,40 @@ Jeśli typy są różne, **JavaScript spróbuje je przekonwertować** (tzw. type
 0 == false      // true   → false zostaje przekonwertowane na 0
 null == undefined // true → są traktowane jako "równe" przy == 
 ```
+
+```TS
+5 == "5"        // This comparison appears to be unintentional because the types 'number' and 'string' have no overlap.
+0 == false      // This comparison appears to be unintentional because the types 'number' and 'string' have no overlap.
+null == undefined // true → są traktowane jako "równe" przy == 
+```
+
 **🔸 === (operator ścisłego porównania)**
 
 Porównuje zarówno **wartość, jak i typ** danych.
 Nie dokonuje żadnej konwersji — wszystko musi się dokładnie zgadzać.
 
 ```JS
-5 === "5"      // false  → różne typy (number vs string)
+5 === "5"       // false  → różne typy (number vs string)
 0 === false     // false  → number vs boolean
 null === undefined // false → różne typy
 5 === 5         // true   → ten sam typ i wartość
 ```
 
+```TS
+console.log(5 === "5");       // This comparison appears to be unintentional because the types 'number' and 'boolean' have no overlap.
+console.log(0 === false);     // This comparison appears to be unintentional because the types 'number' and 'boolean' have no overlap.
+console.log(null === undefined); // false → różne typy
+console.log(5 === 5);         // true   → te same typy i wartości
+```
+
 ```JS
 null == undefined   // true  ✅ specjalny przypadek
 null === undefined  // false ❌ różne typy
+```
+
+```TS
+console.log(null == undefined);   // true  ✅ specjalny przypadek
+console.log(null === undefined);  // false ❌ różne typy
 ```
 
 Trudniejsze porównania
@@ -369,6 +388,34 @@ Trudniejsze porównania
 "5" == true   // false → true -> 1, "5" -> 5 → 5 != 1
 false == "0"  // true  → false -> 0, "0" -> 0
 ```
+```TS
+console.log("abc" == 0);        // This comparison appears to be unintentional because the types 'string' and 'number' have no overlap.
+console.log([1] == 1);          // This comparison appears to be unintentional because the types 'number[]' and 'number' have no overlap.
+console.log(["1"] == "1");      // This condition will always return 'false' since JavaScript compares objects by reference, not value.
+console.log([] == 0);           // This comparison appears to be unintentional because the types 'string[]' and 'string' have no overlap.
+console.log([null] == 0);       // This comparison appears to be unintentional because the types 'null[]' and 'number' have no overlap.
+console.log([1,2] == "1,2");    // This condition will always return 'false' since JavaScript compares objects by reference, not value.
+console.log("5" == true);       // This comparison appears to be unintentional because the types 'string' and 'boolean' have no overlap.
+console.log(false == "0");      // This comparison appears to be unintentional because the types 'boolean' and 'string' have no overlap.
+```
+```TS
+console.log('undefined === undefined', undefined === undefined) // true
+console.log('undefined == undefined ', undefined ==  undefined) // true
+
+console.log('null === null', null === null) // true
+console.log('null == null ', null ==  null) // true
+
+console.log('null === undefined', null ===  undefined) // false
+console.log('null == undefined ', null ==   undefined) // true
+ 
+console.log('NaN === NaN', NaN ===  NaN) // This condition will always return 'false'.
+console.log('NaN == NaN ', NaN ==   NaN) // This condition will always return 'false'.
+
+console.log(typeof null); // "object"
+console.log(typeof undefined); // "undefined"
+console.log(typeof NaN); // "number"
+```
+
 
 ```JS
 console.log('undefined === undefined', undefined === undefined) // true
