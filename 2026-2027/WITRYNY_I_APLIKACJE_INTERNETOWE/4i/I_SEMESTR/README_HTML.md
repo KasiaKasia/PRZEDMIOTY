@@ -38,8 +38,11 @@
 | `<!DOCTYPE html>` | informuje przeglądarkę, że dokument jest napisany w HTML5. Dzięki temu przeglądarka wie, jak poprawnie interpretować i wyświetlać stronę.     |
 | `<html>`          | główny element całej strony                                                                                                                   |
 | `<head>`          | informacje o stronie niewidoczne bezpośrednio na stronie                                                                                      |
+| `<base>`          | ustawia podstawowy adres URL dla wszystkich względnych linków i ścieżek w dokumencie                                                          |
+| `<link>`          | służy do dołączania zewnętrznych zasobów, np. pliku CSS                                                                                       |
 | `<meta>`          | dodatkowe informacje o dokumencie                                                                                                             |
 | `<title>`         | tytuł widoczny na karcie przeglądarki                                                                                                         |
+| `<style>`         | pozwala zapisać kod CSS bezpośrednio w dokumencie HTML                                                                                        |    
 | `<body>`          | zawartość strony widoczna dla użytkownika                                                                                                     |
 
 
@@ -144,6 +147,93 @@ H<sub>2</sub>O
 ```
 Rezultat: H₂O
 
+### Tekst przekreślony
+Oznacza tekst, który nie jest już aktualny lub prawdziwy.
+```html
+<s>Podkreślony tekst</s>
+```
+
+### Tekst poboczny
+Oznacza tekst poboczny, np. drobny druk, informację dodatkową, prawa autorskie. Przeglądarki zwykle wyświetlają go mniejszą czcionką.
+```html
+<small>small </small>
+```
+
+### Tytuł
+Oznacza tytuł dzieła, np. książki, filmu, artykułu, obrazu.
+```html
+<cite>Tytuł książki</cite>
+```
+### Cytat
+Oznacza krótki cytat wewnątrz tekstu. Przeglądarka zazwyczaj sama dodaje cudzysłowy.
+```html
+<q> cytat wewnątrz tekstu </q>
+```
+### `<dfn>`
+Oznacza termin, który jest właśnie definiowany.
+```html
+    <p>
+        <dfn>HTML</dfn>
+        jest językiem znaczników służącym do tworzenia struktury stron internetowych.
+    </p>
+```
+### `<abbr>`
+
+```html
+<p>
+    Uczymy się <abbr title="HyperText Markup Language">HTML</abbr>.
+</p>
+```
+### `<ruby>` , `<rt>`, `<rp>` 
+
+```html
+
+    <!-- ruby, rt, rp -->
+    <p>
+        Przykład japońskiego zapisu:
+
+        <ruby>
+            日本
+            <rp>(</rp>
+            <rt>にほん</rt>
+            <rp>)</rp>
+        </ruby>
+
+    </p>
+
+
+    <!--
+        rb - znacznik przestarzały. Nie stosować w nowych projektach.
+    -->
+
+    <p>
+        Przykład starego zapisu z rb:
+
+        <ruby>
+            <rb>漢字</rb>
+            <rt>かんじ</rt>
+        </ruby>
+    </p>
+
+
+    <!--
+        rtc - znacznik przestarzały. Nie stosować w nowych projektach.
+    -->
+
+    <p>
+        Przykład starego zapisu z rtc:
+
+        <ruby>
+            <rb>漢字</rb>
+
+            <rtc>
+                <rt>かんじ</rt>
+            </rtc>
+        </ruby>
+    </p>
+```
+
+
 ### Linki
 
 Do tworzenia linków służy znacznik `<a>`:
@@ -195,6 +285,7 @@ Strona główna: `index.html`
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona główna</title>
 </head>
 <body>
@@ -218,6 +309,7 @@ Plik `iframe1.html` jest wyświetlany wewnątrz `index.html`, ale dodatkowo zawi
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iframe 1</title>
 </head>
 <body>
@@ -240,6 +332,7 @@ Plik `iframe2.html` w którym znajdują się linki z `_parent` i `_top`:
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iframe 2</title>
 </head>
 <body>
@@ -395,6 +488,7 @@ Przykład:
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Div i span</title>
 
     <style>
@@ -433,8 +527,366 @@ Przykład:
 
 **Efekt**: Oba `<span>` pojawią się w tej samej linii, obok siebie, z tłem obejmującym tylko ich zawartość.
 
+## Znaczniki skryptów i szablonów
+| Znacznik     | Znaczenie                                                               |
+| ------------ | ----------------------------------------------------------------------- |
+| `<script>`   | Umieszcza lub dołącza skrypt, najczęściej JavaScript                    |
+| `<noscript>` | Wyświetla treść, gdy JavaScript jest wyłączony lub niedostępny          |
+| `<template>` | Przechowuje szablon HTML, który nie jest od razu wyświetlany na stronie. Jego zawartość można później skopiować i wstawić do dokumentu za pomocą JavaScript. |
+| `<slot>`     | Określa miejsce na treść przekazywaną do Web Componentu                 |
 
-## Podstawowe znaczniki tabeli
+```html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script i noscript</title>
+</head>
+
+<body>
+
+    <h1>Przykład JavaScript</h1>
+
+    <p id="wynik">
+        Oczekiwanie na JavaScript...
+    </p>
+
+    <script>
+        document.getElementById("wynik").textContent =
+            "JavaScript działa poprawnie!";
+    </script>
+
+    <noscript>
+        <p>
+            JavaScript jest wyłączony.
+            Włącz JavaScript, aby korzystać ze wszystkich funkcji strony.
+        </p>
+    </noscript>
+ 
+</body>
+</html>
+```
+Przykład dla `<template>`
+```html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Component i template</title>
+</head>
+
+<body>
+    <h1>Produkty</h1>
+    <!-- <karta-produktu></karta-produktu> -tworzy właśny znacznik HTML, a template zawiera szablon karta-produktu -->
+    <karta-produktu></karta-produktu>
+
+    <template id="produkt-template">
+
+        <article>
+            <h2>Produkt</h2>
+            <p> Cena: 100 zł </p>
+        </article>
+    </template>
+
+    <script>
+
+        class KartaProduktu extends HTMLElement {
+
+            constructor() {
+                super();
+
+                const shadow =
+                    this.attachShadow({
+                        mode: "open"
+                    }); // tworzy shadow DOM dla elementu
+
+                const template =
+                    document.getElementById(
+                        "produkt-template"
+                    );
+
+                const kopia =
+                    template.content.cloneNode(true); // tworzy kopię szablonu
+
+                shadow.appendChild(kopia); // wstawia kopię szablonu do shadow DOM
+            }
+        }
+        //Jeżeli znajdziesz w HTML <karta-produktu>, użyj klasy KartaProduktu.
+        customElements.define(
+            "karta-produktu",
+            KartaProduktu
+        );
+    </script>
+</body>
+</html>
+```
+
+
+## Znaczniki interaktywne
+
+| Znacznik     | Znaczenie                                                                     |
+| ------------ | ----------------------------------------------------------------------------- |
+| `<details>`  | Tworzy rozwijany i zwijany fragment treści                                    |
+| `<summary>`  | Tworzy widoczny nagłówek elementu `<details>`                                 |
+| `<dialog>`   | Tworzy okno dialogowe                                                         |
+| `<menu>`     | Grupuje elementy lub polecenia, obecnie zachowuje się podobnie do listy       |
+| `<menuitem>` | Dawny element menu; **przestarzały i nie należy go używać w nowych stronach** |
+
+```html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elementy interaktywne</title>
+</head>
+
+<body>
+
+    <h1>Kurs programowania</h1>
+
+
+    <!-- ROZWIJANA SEKCJA -->
+    <details>
+
+        <!-- NAGŁÓWEK ROZWIJANEJ SEKCJI -->
+        <summary>
+            Informacje o kursie
+        </summary>
+
+        <p>
+            Kurs obejmuje podstawy HTML, CSS
+            oraz JavaScript.
+        </p>
+
+        <p>
+            Cena kursu: 500 zł
+        </p>
+
+
+        <!-- PRZYCISK OTWIERAJĄCY DIALOG -->
+        <button
+            type="button"
+            onclick="okno.showModal()"
+        >
+            Zapisz się na kurs
+        </button>
+
+    </details>
+
+
+    <!-- OKNO DIALOGOWE -->
+    <dialog id="okno">
+
+        <h2>Potwierdzenie zapisu</h2>
+
+        <p>
+            Czy chcesz zapisać się na kurs
+            programowania?
+        </p>
+
+
+        <!-- MENU Z PRZYCISKAMI -->
+        <menu>
+
+            <li>
+                <button
+                    type="button"
+                    onclick="okno.close()"
+                >
+                    Anuluj
+                </button>
+            </li>
+
+            <li>
+                <button
+                    type="button"
+                    onclick="potwierdzZapis()"
+                >
+                    Zapisz się
+                </button>
+            </li>
+
+        </menu>
+
+
+        <!--
+            DAWNY, PRZESTARZAŁY ZAPIS:
+
+            <menuitem label="Anuluj"></menuitem>
+            <menuitem label="Zapisz się"></menuitem>
+
+            <menuitem> nie jest obecnie
+            obsługiwany przez współczesny HTML.
+        -->
+
+    </dialog>
+
+
+    <p id="wynik"></p>
+
+
+    <script>
+
+        function potwierdzZapis() {
+
+            document.getElementById("wynik").textContent =
+                "Zostałeś zapisany na kurs.";
+
+            okno.close();
+        }
+
+    </script>
+</body>
+</html>
+```
+
+## Znaczniki `<data>`, `<time>`, `<var>`, `<samp>`, `<kbd>`, `<mark>`, `<bdi>`, `<bdo>` i `<wbr>`. 
+
+| Znacznik | Znaczenie                                                                                                                         |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `<data>` | Łączy tekst widoczny dla użytkownika z wartością przeznaczoną do odczytu przez program, np. nazwę oceny z jej wartością liczbową. |
+| `<time>` | Oznacza datę lub czas. Atrybut `datetime` zapisuje tę datę lub czas w formacie zrozumiałym dla programu.                          |
+| `<var>`  | Oznacza zmienną, np. w matematyce lub programowaniu.                                                                              |
+| `<samp>` | Oznacza przykładowy wynik działania programu lub systemu.                                                                         |
+| `<kbd>`  | Oznacza dane wprowadzane przez użytkownika, najczęściej klawisz albo skrót klawiaturowy.                                          |
+| `<mark>` | Oznacza tekst wyróżniony jako szczególnie ważny w danym kontekście. Przeglądarka zwykle podświetla go na żółto.                   |
+| `<bdi>`  | Izoluje fragment tekstu o innym kierunku pisania, np. tekst arabski znajdujący się w zdaniu polskim.                              |
+| `<bdo>`  | Wymusza kierunek wyświetlania tekstu. Najczęściej używa się z `dir="rtl"` lub `dir="ltr"`.                                        |
+| `<wbr>`  | Wskazuje miejsce, w którym przeglądarka może złamać długi wyraz lub ciąg znaków do następnej linii.                               |
+
+
+Przykład
+```html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Znaczniki tekstowe HTML</title>
+</head>
+
+<body>
+ 
+    <p>
+        Ocena:
+        <data value="6">celujący</data>
+        <data value="5">bardzo dobry</data>
+    </p> 
+    <p>
+        Kurs rozpocznie się
+
+        <time datetime="2026-09-20">
+            20 września 2026
+        </time>.
+    </p>
+
+     
+
+
+    <!-- var -->
+    <p>
+        We wzorze
+        <var>x</var> + 5 = 10
+        zmienna <var>x</var> ma wartość 5.
+    </p>
+
+
+    <!-- samp -->
+    <p>
+        Program wyświetli:
+
+        <samp>
+            Hello World!
+        </samp>
+
+    </p>
+
+
+    <!-- kbd -->
+    <p>
+        Aby zapisać dokument, naciśnij
+
+        <kbd>Ctrl</kbd> + <kbd>S</kbd>.
+
+    </p>
+
+
+    <!-- mark -->
+    <p>
+        Na sprawdzianie
+        <mark>należy znać znaczniki semantyczne HTML</mark>.
+    </p>
+
+
+    <!-- bdi -->
+    <p>
+        Użytkownik:
+        <bdi>علي</bdi>
+        zdobył 100 punktów.
+    </p>
+
+
+    <!-- bdo -->
+    <p>
+        Normalny tekst:
+        ABCDEF
+    </p>
+
+    <p>
+        Tekst od prawej do lewej:
+
+        <bdo dir="rtl">
+            ABCDEF
+        </bdo>
+
+    </p>
+
+
+    <!-- wbr -->
+    <p>
+        Bardzo długa nazwa:
+
+        programowanie<wbr>aplikacji<wbr>internetowych<wbr>HTML
+
+    </p>
+
+</body>
+</html>
+```
+
+
+## Znaczniki opisywania tresci:
+ 
+**`<pre>`**, **`<code>`**
+
+`<pre>` oznacza preformatted text, czyli **tekst wstępnie sformatowany**
+`<code>` oznacza, że dany **fragment tekstu jest kodem programu**.
+```html
+<pre><code>
+const x = 10;
+console.log(x);
+</code></pre>
+```
+**`<blockquote>`**
+
+`<blockquote>` służy do oznaczania dłuższego cytatu pochodzącego z innego źródła.
+
+```html
+<blockquote cite="https://example.com/artykul">
+    Nauka programowania wymaga przede wszystkim
+    systematyczności i praktyki.
+</blockquote>
+```
+ 
+
+### Podstawowe znaczniki tabeli
 
 | Znacznik     | Znaczenie                                    |
 | ------------ | -------------------------------------------- |
@@ -451,7 +903,6 @@ Przykład:
 
 Przykład:
 ```html
-
 <table>
     <caption>Lista produktów</caption>
     <colgroup>
@@ -477,14 +928,12 @@ Przykład:
             <td>1000 zł</td>
         </tr>
     </tbody>
-
     <tfoot>
         <tr>
             <td>Razem</td>
             <td>4000 zł</td>
         </tr>
     </tfoot>
-
 </table>
 ```
 
@@ -573,6 +1022,519 @@ Przykład:
 
 </table>
 ```
+## Znaczniki formularza
+
+| Znacznik     | Znaczenie                                            |
+| ------------ | ---------------------------------------------------- |
+| `<form>`     | Formularz                                            |
+| `<label>`    | Etykieta opisująca pole formularza                   |
+| `<input>`    | Pole formularza, np. tekst, liczba, e-mail, checkbox |
+| `<button>`   | Przycisk                                             |
+| `<select>`   | Lista rozwijana                                      |
+| `<datalist>` | Lista podpowiedzi dla pola `<input>`                 |
+| `<optgroup>` | Grupa opcji na liście `<select>`. Przy większej liczbie opcji można je pogrupować |
+| `<option>`   | Pojedyncza opcja w `<select>` lub `<datalist>`       |
+| `<textarea>` | Wielowierszowe pole tekstowe                         |
+| `<output>`   | Pole prezentujące wynik obliczeń                     |
+| `<progress>` | Pasek postępu wykonywania zadania                    |
+| `<meter>`    | Pokazuje wartości w określonym zakresie              |
+| `<fieldset>` | Grupuje powiązane pola formularza                    |
+| `<legend>`   | Tytuł grupy `<fieldset>`                             |
+
+
+Rodzaje `input`:
+
+```html
+<input type="text">
+<input type="password">
+<input type="email">
+<input type="number">
+<input type="date">
+<input type="checkbox">
+<input type="radio">
+<input type="file">
+<input type="range">
+<input type="color">
+<input type="submit">
+```
+
+**Przykład formularza**
+
+```html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Znaczniki formularza</title>
+</head>
+
+<body>
+
+    <form
+        action="/zapis"
+        method="post"
+        oninput="wynik.value = Number(cena.value) * Number(liczbaMiesiecy.value)"
+    >
+
+        <!-- Grupa 1 -->
+        <fieldset>
+
+            <legend>Dane uczestnika</legend>
+
+            <label for="imie">Imię:</label>
+            <input
+                type="text"
+                id="imie"
+                name="imie"
+                value="Anna"
+            >
+
+            <br><br>
+
+            <label for="email">Adres e-mail:</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value="anna@example.com"
+            >
+
+            <br><br>
+
+            <label for="miasto">Miasto:</label>
+
+            <input
+                type="text"
+                id="miasto"
+                name="miasto"
+                list="lista-miast"
+                placeholder="Wybierz lub wpisz miasto"
+            >
+
+            <datalist id="lista-miast">
+                <option value="Warszawa">
+                <option value="Kraków">
+                <option value="Gdańsk">
+                <option value="Wrocław">
+            </datalist>
+
+        </fieldset>
+
+
+        <!-- Grupa 2 -->
+        <fieldset>
+
+            <legend>Wybór kursu</legend>
+
+            <label for="kurs">Kurs:</label>
+
+            <select id="kurs" name="kurs">
+
+                <optgroup label="Frontend">
+
+                    <option value="html">
+                        HTML i CSS
+                    </option>
+
+                    <option value="javascript">
+                        JavaScript
+                    </option>
+
+                    <option value="angular">
+                        Angular
+                    </option>
+
+                </optgroup>
+
+
+                <optgroup label="Backend">
+
+                    <option value="python">
+                        Python
+                    </option>
+
+                    <option value="java">
+                        Java
+                    </option>
+
+                </optgroup>
+
+            </select>
+
+            <br><br>
+
+            <label for="cena">Cena za miesiąc:</label>
+
+            <input
+                type="number"
+                id="cena"
+                name="cena"
+                value="300"
+            >
+
+            zł
+
+            <br><br>
+
+            <label for="liczbaMiesiecy">
+                Liczba miesięcy:
+            </label>
+
+            <input
+                type="number"
+                id="liczbaMiesiecy"
+                name="liczbaMiesiecy"
+                value="1"
+                min="1"
+                max="12"
+            >
+
+            <br><br>
+
+            Łączna cena:
+
+            <output name="wynik">
+                300
+            </output>
+
+            zł
+
+        </fieldset>
+
+
+        <!-- Grupa 3 -->
+        <fieldset>
+
+            <legend>Forma zajęć</legend>
+
+            <input
+                type="radio"
+                id="stacjonarne"
+                name="forma"
+                value="stacjonarne"
+                checked
+            >
+
+            <label for="stacjonarne">
+                Zajęcia stacjonarne
+            </label>
+
+            <br>
+
+            <input
+                type="radio"
+                id="online"
+                name="forma"
+                value="online"
+            >
+
+            <label for="online">
+                Zajęcia online
+            </label>
+
+            <br>
+
+            <input
+                type="radio"
+                id="hybrydowe"
+                name="forma"
+                value="hybrydowe"
+            >
+
+            <label for="hybrydowe">
+                Zajęcia hybrydowe
+            </label>
+
+        </fieldset>
+
+
+        <!-- Grupa 4 -->
+        <fieldset>
+
+            <legend>Dodatkowe opcje</legend>
+
+            <input
+                type="checkbox"
+                id="materialy"
+                name="materialy"
+                value="tak"
+            >
+
+            <label for="materialy">
+                Chcę otrzymywać dodatkowe materiały
+            </label>
+
+            <br>
+
+            <input
+                type="checkbox"
+                id="certyfikat"
+                name="certyfikat"
+                value="tak"
+                checked
+            >
+
+            <label for="certyfikat">
+                Chcę otrzymać certyfikat
+            </label>
+
+            <br>
+
+            <input
+                type="checkbox"
+                id="newsletter"
+                name="newsletter"
+                value="tak"
+            >
+
+            <label for="newsletter">
+                Chcę otrzymywać newsletter
+            </label>
+
+        </fieldset>
+
+
+        <!-- Grupa 5 -->
+        <fieldset>
+
+            <legend>Dodatkowe informacje</legend>
+
+            <label for="uwagi">
+                Uwagi do zgłoszenia:
+            </label>
+
+            <br>
+
+            <textarea
+                id="uwagi"
+                name="uwagi"
+                rows="5"
+                cols="40"
+                placeholder="Wpisz dodatkowe informacje..."
+            >Chciałabym uczestniczyć w zajęciach popołudniowych.</textarea>
+
+        </fieldset>
+
+
+        <!-- Grupa 6 -->
+        <fieldset>
+
+            <legend>Informacje o kursie</legend>
+
+            <label for="postep">
+                Postęp rejestracji:
+            </label>
+
+            <progress
+                id="postep"
+                value="75"
+                max="100"
+            >
+                75%
+            </progress>
+
+            <br><br>
+
+            <label for="ocena">
+                Ocena kursu:
+            </label>
+
+            <meter
+                id="ocena"
+                min="0"
+                max="5"
+                value="4.5"
+            >
+                4.5 na 5
+            </meter>
+
+        </fieldset>
+
+        <br>
+
+        <button type="submit">
+            Zapisz się na kurs
+        </button>
+
+        <button type="reset">
+            Wyczyść formularz
+        </button>
+
+    </form>
+
+</body>
+
+</html>
+```
+## Znaczniki dla obrazów i multimediów
+
+| Znacznik       | Znaczenie                                                                  |
+| -------------- | -------------------------------------------------------------------------- |
+| `<img>`        | Wyświetla obraz                                                            |
+| `<picture>`    | Pozwala przygotować różne wersje obrazu zależnie od urządzenia lub formatu |
+| `<source>`     | Określa alternatywne źródło obrazu, filmu lub dźwięku                      |
+| `<figure>`     | Grupuje obraz lub inne multimedia z opisem                                 |
+| `<figcaption>` | Podpis do elementu `<figure>`                                              |
+| `<audio>`      | Umieszcza plik dźwiękowy                                                   |
+| `<video>`      | Umieszcza film                                                             |
+| `<track>`      | Dodaje np. napisy do filmu                                                 |
+| `<iframe>`     | Osadza inną stronę lub materiał, np. film z YouTube                        |
+| `<map>`        | Definiuje mapę klikalnych obszarów obrazu                                  |
+| `<area>`       | Definiuje konkretny klikalny obszar w `<map>`                              |
+
+Przykład:
+```html
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wycieczka</title>
+</head>
+
+<body>
+
+    <h1>Wycieczka</h1>
+
+
+    <!-- OBRAZ Z PODPISEM -->
+    <figure>
+
+        <picture>
+
+            <source
+                media="(min-width: 1000px)"
+                srcset="znaczniki/images/images-duze.jpg"
+            >
+
+            <source
+                media="(min-width: 600px)"
+                srcset="znaczniki/images/images-srednie.jpg"
+            >
+
+            <img
+                src="znaczniki/images/images-male.jpg"
+                alt="Widok na naturę"             
+            >
+
+        </picture>
+
+        <figcaption>
+            Widok na naturę podczas wycieczki.
+        </figcaption>
+
+    </figure>
+
+
+    <!-- AUDIO -->
+    <h2>Odgłosy natury</h2>
+
+    <audio controls>
+    <!-- controls - powoduje, że przeglądarka wyświetla wbudowany panel sterowania nagraniem, np. przycisk odtwarzania, pauzę itp  -->
+        <source
+            src="znaczniki/audio/natura.mp3"
+            type="audio/mpeg"
+        >
+
+        <source
+            src="znaczniki/audio/natura.ogg"
+            type="audio/ogg"
+        >
+
+        Twoja przeglądarka nie obsługuje audio.
+
+    </audio>
+
+
+    <!-- VIDEO -->
+    <h2>Film z wycieczki</h2>
+
+    <video
+        width="600"
+        controls
+        poster="znaczniki/images/video-poster.jpg"
+    >
+    <!-- 
+    poster="images/video-poster.jpg" określa obraz wyświetlany przed rozpoczęciem filmu    
+    -->
+        <source
+            src="znaczniki/video/video.mp4"
+            type="video/mp4"
+        >
+
+        <source
+            src="znaczniki/video/video.webm"
+            type="video/webm"
+        >
+        <!-- 
+        Przeglądarka ogranicza dostęp stron otwieranych przez file:/// do innych plików lokalnych, aby złośliwa strona nie mogła swobodnie odczytywać danych z komputera użytkownika. Uruchomienie strony przez lokalny serwer HTTP powoduje, że pliki HTML, wideo i napisy .vtt mają wspólne, kontrolowane źródło, np. http://localhost:5500.
+        -->
+        <track
+            src="znaczniki/napisy/napisy-pl.vtt"
+            kind="subtitles"
+            srclang="pl"
+            label="Polski"
+            default
+        >
+
+        <track
+            src="znaczniki/napisy/napisy-en.vtt"
+            kind="subtitles"
+            srclang="en"
+            label="English"
+        >
+
+        Twoja przeglądarka nie obsługuje wideo.
+
+    </video>
+
+
+    <!-- FILM Z YOUTUBE -->
+    <h2>Film z YouTube</h2>
+    <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/M7lc1UVf-VE"
+        title="Film z YouTube"
+        allowfullscreen>
+    </iframe>
+
+
+    <!-- KLIKALNA MAPA OBRAZU -->
+    <h2>Interaktywna mapa</h2>
+
+    <img
+        src="znaczniki/images/images.jpg"
+        alt="Mapa"
+        width="600"
+        usemap="#mapa"
+    >
+
+    <map name="mapa">
+
+        <area
+            shape="rect"
+            coords="50,50,200,150"
+            href="znaczniki/images1.html"
+            alt="Zdjęcie 1"
+        >
+
+        <area
+            shape="circle"
+            coords="350,200,60"
+            href="znaczniki/images2.html"
+            alt="Zdjęcie 2"
+        >
+
+    </map>
+</body>
+</html>
+```
+
 
 ### Znaczniki semantyczne
 

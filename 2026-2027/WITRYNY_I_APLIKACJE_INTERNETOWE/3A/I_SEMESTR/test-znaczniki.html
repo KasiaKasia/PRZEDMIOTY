@@ -3,33 +3,144 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>testy znaczników</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wycieczka</title>
 </head>
 
 <body>
-    <br>
-   <hr>
 
-  <em>Ten tekst jest zaakcentowany.</em>
- 
+    <h1>Wycieczka</h1>
 
-<i>Ten tekst jest zapisany kursywą.</i>
-<u>Podkreślony tekst</u>
-2<sup>3</sup> = 8
-H<sub>2</sub>O
-<a href="https://github.com/KasiaKasia" target="_parent">Kasia</a>
 
-<iframe
-  id="inlineFrameExample"
-  title="Inline Frame Example"
-  width="300"
-  height="200"
-  srcdoc="<a target='_parent' href='https://github.com/KasiaKasia/'>HTML Tutorial</a>" 
-  src="file:///C:/GitHub/PRZEDMIOTY/2026-2027/WITRYNY_I_APLIKACJE_INTERNETOWE/3A/I_SEMESTR/test-znaczniki.html">
+    <!-- OBRAZ Z PODPISEM -->
+    <figure>
 
-  
-</iframe>
+        <picture>
+
+            <source
+                media="(min-width: 1000px)"
+                srcset="znaczniki/images/images-duze.jpg"
+            >
+
+            <source
+                media="(min-width: 600px)"
+                srcset="znaczniki/images/images-srednie.jpg"
+            >
+
+            <img
+                src="znaczniki/images/images-male.jpg"
+                alt="Widok na naturę"             
+            >
+
+        </picture>
+
+        <figcaption>
+            Widok na naturę podczas wycieczki.
+        </figcaption>
+
+    </figure>
+
+
+    <!-- AUDIO -->
+    <h2>Odgłosy natury</h2>
+
+    <audio controls>
+    <!-- controls - powoduje, że przeglądarka wyświetla wbudowany panel sterowania nagraniem, np. przycisk odtwarzania, pauzę itp  -->
+        <source
+            src="znaczniki/audio/natura.mp3"
+            type="audio/mpeg"
+        >
+
+        <source
+            src="znaczniki/audio/natura.ogg"
+            type="audio/ogg"
+        >
+
+        Twoja przeglądarka nie obsługuje audio.
+
+    </audio>
+
+
+    <!-- VIDEO -->
+    <h2>Film z wycieczki</h2>
+
+    <video
+        width="600"
+        controls
+        poster="znaczniki/images/video-poster.jpg"
+    >
+    <!-- 
+    poster="images/video-poster.jpg" określa obraz wyświetlany przed rozpoczęciem filmu    
+    -->
+        <source
+            src="znaczniki/video/video.mp4"
+            type="video/mp4"
+        >
+
+        <source
+            src="znaczniki/video/video.webm"
+            type="video/webm"
+        >
+        <!-- 
+        Przeglądarka ogranicza dostęp stron otwieranych przez file:/// do innych plików lokalnych, aby złośliwa strona nie mogła swobodnie odczytywać danych z komputera użytkownika. Uruchomienie strony przez lokalny serwer HTTP powoduje, że pliki HTML, wideo i napisy .vtt mają wspólne, kontrolowane źródło, np. http://localhost:5500.
+        -->
+        <track
+            src="znaczniki/napisy/napisy-pl.vtt"
+            kind="subtitles"
+            srclang="pl"
+            label="Polski"
+            default
+        >
+
+        <track
+            src="znaczniki/napisy/napisy-en.vtt"
+            kind="subtitles"
+            srclang="en"
+            label="English"
+        >
+
+        Twoja przeglądarka nie obsługuje wideo.
+
+    </video>
+
+
+    <!-- FILM Z YOUTUBE -->
+    <h2>Film z YouTube</h2>
+    <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/M7lc1UVf-VE"
+        title="Film z YouTube"
+        allowfullscreen>
+    </iframe>
+
+
+    <!-- KLIKALNA MAPA OBRAZU -->
+    <h2>Interaktywna mapa</h2>
+
+    <img
+        src="znaczniki/images/images.jpg"
+        alt="Mapa"
+        width="600"
+        usemap="#mapa"
+    >
+
+    <map name="mapa">
+
+        <area
+            shape="rect"
+            coords="50,50,200,150"
+            href="znaczniki/images1.html"
+            alt="Zdjęcie 1"
+        >
+
+        <area
+            shape="circle"
+            coords="350,200,60"
+            href="znaczniki/images2.html"
+            alt="Zdjęcie 2"
+        >
+
+    </map>
 </body>
-
 </html>
