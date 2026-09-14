@@ -552,7 +552,7 @@ print(x) # Wynik: range(0, 5) To oznacza zakres liczb: 0, 1, 2, 3, 4
 Python przechowuje tylko informację:
 
 start = 0
-stop = 5
+stop - 1 = 5
 step = 1
 
 Dlatego: `print(type(x))` da: `<class 'range'>`
@@ -626,11 +626,28 @@ class Person:
     def greet(self) -> str:
         return f"Hello, I'm {self.name}"
 
+
+    def process(self):
+        print(f"Przetwarzam dane osoby: {self.name}, wiek: {self.age}")
+
 # Typowanie kacze (duck typing)
+# W Pythonie duck typing oznacza, że zwykle mniej ważne jest, jakiego typu jest obiekt, a ważniejsze jest, czy ma potrzebne metody albo atrybuty.
 def process(obj):
     if hasattr(obj, 'process'):
         obj.process()
     # Nie sprawdzamy typu, tylko interfejs
+
+
+person = Person("Anna", 30)
+
+
+# Wywołanie zwykłej metody
+print(person.greet())
+
+
+# Przekazanie obiektu do funkcji process()
+process(person)
+
 ```
 
 ### **Konwersja i sprawdzanie typów**
@@ -679,12 +696,12 @@ print(isinstance(wartosc, (int, float)))  # True
 
 ## **Mutowalność (mutable) vs niemutowalność (immutable)**
 
-| Typ | Mutowalność  | Czy można zmienić po utworzeniu?  |
-|:-----|:----:|:------|
-| list  | mutowalna    | ✅ można dodawać, usuwać, zmieniać elementy   |
-| dict | mutowalny   | ✅ można dodawać, usuwać, zmieniać pary klucz-wartość   |
-| set | mutowalny | ✅ można dodawać, usuwać elementy |
-| tuple | niemutowalna | ❌ NIE można zmienić! Jest jak "zamrożona lista" |
+| Typ   | Mutowalność  | Czy można zmienić po utworzeniu?                        |
+|:------|:------------:|:--------------------------------------------------------|
+| list  | mutowalna    | ✅ można dodawać, usuwać, zmieniać elementy             | 
+| dict  | mutowalny    | ✅ można dodawać, usuwać, zmieniać pary klucz-wartość   |
+| set   | mutowalny    | ✅ można dodawać, usuwać elementy                       |
+| tuple | niemutowalna | ❌ NIE można zmienić! Jest jak "zamrożona lista"        |
 
 **1. List (lista) – MUTOWALNA**
 
@@ -693,7 +710,8 @@ my_list = [1, 2, 3]
  
 my_list[0] = 100      	# zmiana elementu 
 my_list.append(4)     	# dodanie elementu 
- 
+my_list.remove(2)       # Usunięcie elementu
+popped = fruits.pop()  
 print(my_list)  		# [100, 2, 3, 4] 
 ```
  
@@ -707,6 +725,7 @@ my_dict["a"] = 100     	# zmiana wartości
 my_dict["c"] = 3       	# dodanie nowego klucza 
  
 print(my_dict)  		# {'a': 100, 'b': 2, 'c': 3} 
+del my_dict["a"]        # Usunięcie
 ```
  
 
@@ -717,8 +736,8 @@ my_set = {1, 2, 3}
  
 my_set.add(4) 
 my_set.remove(2) 
- 
-print(my_set)  		# {1, 3, 4} 
+my_set.update({7, 8})      
+print(my_set)  		# {1, 3, 4, 7, 8}
 ```
  
 
@@ -1408,7 +1427,7 @@ print(new_person)       # {'name': 'Jan', 'age': 31, 'city': 'Warsaw', 'post-cod
 
 ## Operatory == i is
 
-**Operator ==** porównuję wartości. Inaczej mówiąc **sprawdza, czy wartości dwóch obiektów są takie same. Nie bierze pod uwagę, czy obiekty są przechowywane w tym samym miejscu w pamięci – liczy się tylko zawartość**. Jest to porównanie semantyczne, oparte na metodzie __eq__ obiektu. 
+**Operator ==** porównuję wartości. Inaczej mówiąc **sprawdza, czy wartości dwóch obiektów są takie same. Nie bierze pod uwagę, czy obiekty są przechowywane w tym samym miejscu w pamięci – liczy się tylko zawartość**. Jest to porównanie semantyczne, oparte na metodzie `__eq__` obiektu. 
 
 Przykłady 
 ```python
@@ -1460,17 +1479,26 @@ b = int("10")
 print(a == b)  # True
 print(a is b)  # True
 
-c = 256
-d = int("256")
+c = 256         
+d = int("256")  
+
+# c ─────┐
+#        ├──► 256
+# d ─────┘
+
 
 print(c == d)  # True
 print(c is d)  # True
+print(id(c))
+print(id(d))
 
-e = 1000
-f = int("1000")
+e = 1000        # obiekt E
+f = int("1000") # obiekt F
 
 print(e == f)  # True
-print(e is f)  # False
+print(e is f)  # False -  is sprawdza, czy e i f wskazują na dokładnie ten sam obiekt w pamięci.
+print(id(e))   # 
+print(id(f))
 ```
 **Ważne**: cache małych liczb jest optymalizacją CPythona. Nie używamy operatora is do porównywania wartości liczb. Do tego służy operator ==.
  
