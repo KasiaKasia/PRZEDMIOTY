@@ -150,7 +150,7 @@ Rezultat: H₂O
 ### Tekst przekreślony
 Oznacza tekst, który nie jest już aktualny lub prawdziwy.
 ```html
-<s>Podkreślony tekst</s>
+<s>Przekreślony tekst</s>
 ```
 
 ### Tekst poboczny
