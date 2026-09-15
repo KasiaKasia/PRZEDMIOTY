@@ -1809,6 +1809,8 @@ status = "pełnoletni" if wiek >= 18 else "niepełnoletni"
 
 print(status)
 ```
+
+---
 ## Funkcje
 Funkcja to **blok kodu, który wykonuje określone zadanie** i może być wielokrotnie używany.
 Składnia: 
@@ -1819,14 +1821,15 @@ def nazwa_funkcji(parametry):
    # ciało funkcji 
    return wartość  # opcjonalnie 
 ```
+Metoda nie zwraca wartości. Funkcja zwraca wartość za pomocą `return`
 
 Przykłady: 
 ```Python
-# Prosta funkcja bez parametrów 
+# Prosta metoda bez parametrów 
 def przywitaj(): 
    print("Cześć!") 
  
-# Funkcja z parametrem 
+# Metoda z parametrem 
 def powitaj(imie): 
    print(f"Cześć, {imie}!") 
  
@@ -1837,7 +1840,7 @@ def dodaj(a, b):
 ```
 
 
-**Argumenty funkcji**   
+**Argumenty funkcji, metody**   
 
 **1. Argumenty pozycyjne - kolejność ma znaczenie:**
 
@@ -1966,6 +1969,7 @@ Zmienne poza funkcją:
 x = 100
 
 def foo():
+    # x ma być zmienną lokalną, ale lokalne x jeszcze nie ma wartości
     print(x) # 100
     x = x + 1 # UnboundLocalError: cannot access local variable 'x' where it is not associated with a value
 
