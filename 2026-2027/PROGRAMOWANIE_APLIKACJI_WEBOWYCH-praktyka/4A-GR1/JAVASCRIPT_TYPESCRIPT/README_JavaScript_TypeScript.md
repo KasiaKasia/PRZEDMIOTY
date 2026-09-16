@@ -83,6 +83,22 @@ W katalogu skryptu wykonujesz polecenie
 node nazwa_skrypu_javascript.js
 ```
 ---
+`tsx` to narzędzie wiersza poleceń (CLI), które umożliwia bezpośrednie wykonywanie plików TypeScript w środowisku Node.js bez konieczności wcześniejszego, ręcznego kompilowania ich do JavaScriptu.
+
+Instalacja narzędzia **`tsx`** poleceniem:
+
+`npm install -D tsx`
+
+pozwala uruchamiać pliki TypeScript bez ręcznego wykonywania dwóch kroków:
+```text
+tsc test1.ts
+node test1.js
+```
+Podczas uruchamiania pliku `tsx` przekształca kod TypeScript do postaci możliwej do wykonania przez Node.js, a następnie uruchamia program:
+ 
+`npx tsx nazwa_skryptu_TypeScript.ts`
+
+tsx można traktować jako uruchamiacz TypeScriptu. Przetwarza kod TypeScript do postaci zrozumiałej dla Node.js i od razu go wykonuje.
 
 **W JavaScript możemy umieścić kod na kilka sposobów:**
 
@@ -670,6 +686,148 @@ counter--;
 // let text: string = "1";
 // text++; // nie należy stosować operacji arytmetycznych do wartości, która ma być tekstem
 ```
+## Klasy 
+
+**Klasy** w JavaScript i TypeScript s**łużą do definiowania struktury i zachowania obiektów**. Można je traktować jako wzorzec, na podstawie którego tworzone są kolejne obiekty. W klasie określamy właściwości przechowujące dane oraz metody opisujące operacje, które obiekt może wykonywać.
+
+**Obiekt** jest konkretnym egzemplarzem utworzonym na podstawie klasy.
+
+**Konstruktor** (`constructor`) to specjalna **metoda klasy, która jest wywoływana automatycznie podczas tworzenia nowego obiektu za pomocą słowa kluczowego `new`**. Służy przede wszystkim do **ustawienia początkowych wartości właściwości obiektu**.
+
+Przykład JS:
+```JS
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    introduce() {
+        console.log(`Mam na imię ${this.name} i mam ${this.age} lat.`);
+    }
+}
+
+const person1 = new Person("Anna", 25);
+const person2 = new Person("Jan", 30);
+
+person1.introduce();
+person2.introduce();
+```
+W TypeScript możemy dodatkowo określić typy właściwości, parametrów i wartości zwracanych przez metody:
+```TS
+class Person {
+    name: string;
+    age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    introduce(): void {
+        console.log(`Mam na imię ${this.name} i mam ${this.age} lat.`);
+    }
+}
+
+const person1 = new Person("Anna", 25);
+
+person1.introduce();
+```
+
+## Dziedziczenie
+
+**Dziedziczenie** to mechanizm programowania obiektowego, który **pozwala utworzyć nową klasę na podstawie już istniejącej klasy**. **Klasa pochodna dziedziczy właściwości i metody klasy bazowej, a dodatkowo może dodawać własne właściwości i metody albo zmieniać zachowanie odziedziczonych metod**.
+
+
+Mamy już klasę Person:
+```TS
+class Person {
+    name: string;
+    age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    introduce(): void {
+        console.log(`Mam na imię ${this.name} i mam ${this.age} lat.`);
+    }
+}
+```
+Teraz możemy utworzyć klasy pochodne, np. Student oraz Teacher.
+
+```TS
+class Student extends Person {
+    school: string;
+
+    constructor(name: string, age: number, school: string) {
+        super(name, age);
+        this.school = school;
+    }
+
+    study(): void {
+        console.log(`${this.name} uczy się w szkole ${this.school}.`);
+    }
+}
+
+class Teacher extends Person {
+    subject: string;
+
+    constructor(name: string, age: number, subject: string) {
+        super(name, age);
+        this.subject = subject;
+    }
+
+    teach(): void {
+        console.log(`${this.name} uczy przedmiotu ${this.subject}.`);
+    }
+}
+
+const student = new Student("Anna", 18, "Technikum Programistyczne");
+
+student.introduce();
+student.study();
+
+
+const teacher = new Teacher( "Jan", 40, "Programowanie");
+
+teacher.introduce();
+teacher.teach();
+```
+
+
+**`super()`**
+
+W klasie pochodnej mamy:
+```TS
+constructor(name: string, age: number, school: string) {
+    super(name, age);
+    this.school = school;
+}
+```
+
+Instrukcja:
+```TS
+super(name, age);
+```
+wywołuje konstruktor klasy bazowej, czyli Person:
+```TS
+constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+}
+```
+Dzięki temu nie musimy ponownie pisać w Student:
+```TS
+this.name = name;
+this.age = age;
+```
+
+`Person` jest **klasą bazową (nadrzędną)**, natomiast `Student` i `Teacher` **są klasami pochodnymi (dziedziczącymi)**.
+
+Dziedziczenie pozwala wykorzystać wspólne właściwości i metody jednej klasy w innych klasach bez konieczności powtarzania tego samego kodu.
+
 
 
 ## 8. Wyszukiwanie elementów w dokumencie
