@@ -282,9 +282,9 @@ Do ważnych parametrów monitora należą:
 ## Binarny, Ósemkowy, Szesnastkowy i Dziesiętny
 
 
-**Dekodowanie liczby** **polega na odczytaniu jej wartości zapisanej w określonym systemie liczbowym**. Każdy **system liczbowy ma swoją podstawę**, która określa, **jakich cyfr używamy** oraz jakie **wartości mają kolejne pozycje w liczbie**.
+📝**Dekodowanie liczby** **polega na odczytaniu jej wartości zapisanej w określonym systemie liczbowym**. Każdy **system liczbowy ma swoją podstawę**, która określa, **jakich cyfr używamy** oraz jakie **wartości mają kolejne pozycje w liczbie**.
 
-### System dziesiętny
+### 📝 System dziesiętny
 
 W systemie dziesiętnym podstawą jest **10**, więc używamy cyfr:
 
@@ -294,7 +294,7 @@ W systemie dziesiętnym podstawą jest **10**, więc używamy cyfr:
 
 Dokładnie tak samo działają inne systemy liczbowe. Zmienia się tylko podstawa systemu.
 
-### Dekodowanie liczby binarnej do dziesiętnej
+### 📝 Dekodowanie liczby binarnej do dziesiętnej
 
 Dekodowanie liczby binarnej do dziesiętnej polega na obliczeniu wartości liczby zapisanej w systemie binarnym, czyli dwójkowym, i przedstawieniu jej w systemie dziesiętnym.
 
@@ -331,7 +331,7 @@ Zatem:
 
 `1011₂ = 11₁₀`
 
-### Dekodowanie liczby dziesiętnej do binarnej 
+### 📝 Dekodowanie liczby dziesiętnej do binarnej 
 
 Zamiana liczby dziesiętnej na binarną polega na przedstawieniu liczby zapisanej w systemie dziesiętnym za pomocą tylko dwóch cyfr:
 
@@ -365,7 +365,7 @@ czyli:
 Aby zamienić liczbę dziesiętną na binarną, dzielimy ją kolejno przez 2, zapisujemy reszty z dzielenia, a następnie odczytujemy reszty od dołu do góry.
 
 
-### Dekodowanie liczby ósemkowej do dziesiętnej 
+### 📝 Dekodowanie liczby ósemkowej do dziesiętnej 
 
 **Dekodowanie liczby ósemkowej do dziesiętnej** polega na obliczeniu wartości liczby zapisanej w systemie ósemkowym i przedstawieniu jej w systemie dziesiętnym.
 
@@ -411,7 +411,7 @@ Zatem:
 
 `157₈ = 111₁₀`
 
-### Dekodowanie liczby dziesiętnej do ósemkowej
+### 📝 Dekodowanie liczby dziesiętnej do ósemkowej
 
 **Zamiana liczby dziesiętnej na ósemkową** polega na przedstawieniu liczby zapisanej w systemie dziesiętnym za pomocą cyfr używanych w systemie ósemkowym:
 
@@ -450,7 +450,7 @@ Ponieważ system ósemkowy ma podstawę `8`. Przy dzieleniu liczby całkowitej p
 
 czyli dokładnie cyfry używane w systemie ósemkowym.
 
-### Dekodowanie liczby Szesnastkowej na dziesiętny
+### 📝 Dekodowanie liczby Szesnastkowej na dziesiętny
 
 Dekodowanie liczby szesnastkowej do dziesiętnej polega na obliczeniu wartości liczby zapisanej w systemie szesnastkowym i przedstawieniu jej w systemie dziesiętnym.
 
@@ -518,7 +518,7 @@ Zatem:
 
 `2A₁₆ = 42₁₀`
 
-### Dekodowanie liczby dziesiętnej  do szesnastkowej
+### 📝Dekodowanie liczby dziesiętnej  do szesnastkowej
 
 Zamiana liczby dziesiętnej na szesnastkową polega na przedstawieniu liczby zapisanej w systemie dziesiętnym za pomocą cyfr i liter używanych w systemie szesnastkowym.
 
