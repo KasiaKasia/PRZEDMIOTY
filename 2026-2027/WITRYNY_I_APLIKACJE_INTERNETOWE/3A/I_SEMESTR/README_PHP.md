@@ -229,7 +229,7 @@ if ($user instanceof User) {
 ```
 
 ## Połączenie PHP z bazą danych
-
+## MySQLi — styl proceduralny
 
 ### 1. Utworzenie bazy danych
 
@@ -528,11 +528,75 @@ To jest bardzo ważne w kontekście tego, co wcześniej omawiałyśmy przy tabli
 
 11. Najważniejsze funkcje do zapamiętania na INF.03
 Funkcja	Zastosowanie
-`mysqli_connect()`	nawiązuje połączenie z bazą MySQL
-`mysqli_connect_error()`	zwraca informację o błędzie połączenia
-`mysqli_set_charset()`	ustawia kodowanie znaków
-`mysqli_query()`	wykonuje zapytanie SQL
-`mysqli_fetch_assoc()`	pobiera rekord jako tablicę asocjacyjną
-`mysqli_close()`	zamyka połączenie z bazą
+- `mysqli_connect()`        - nawiązuje połączenie z bazą MySQL
+- `mysqli_connect_error()`  - zwraca informację o błędzie połączenia
+- `mysqli_set_charset()`    - ustawia kodowanie znaków
+- `mysqli_query()`          - wykonuje zapytanie SQL
+- `mysqli_fetch_assoc()`    - pobiera rekord jako tablicę asocjacyjną
+- `mysqli_close()`          - zamyka połączenie z bazą
  
- 
+
+## Kometarze w PHP
+
+```PHP
+// To jest komentarz jednoliniowy
+# To również jest komentarz jednoliniowy
+/*
+To jest komentarz
+wieloliniowy
+w PHP
+*/
+```
+
+## Połączenie PHP z bazą danych
+## MySQLi — styl obiektowy
+
+**MySQLi jest rozszerzeniem PHP przeznaczonym do komunikacji przede wszystkim z bazami MySQL/MariaDB. W stylu obiektowym korzystamy z klasy mysqli i jej metod.**
+
+MySQLi oznacza MySQL Improved. Jest to rozszerzenie PHP przeznaczone do współpracy z bazami MySQL/MariaDB.
+
+
+## Połączenie PHP z bazą danych
+## PDO — PHP Data Objects
+**PDO** oznacza: **PHP Data Objects**
+
+**PDO jest obiektowym interfejsem dostępu do baz danych, który może współpracować z różnymi systemami baz danych. Do utworzenia połączenia wykorzystujemy klasę PDO.**
+
+Jest to mechanizm PHP umożliwiający dostęp do różnych systemów baz danych za pomocą podobnego interfejsu.
+
+**PDO** może współpracować między innymi z:
+```text
+MySQL
+PostgreSQL
+SQLite
+```
+pod warunkiem dostępności odpowiedniego sterownika.
+
+PDO działa obiektowo. Tworzymy obiekt klasy:
+
+`PDO`
+
+za pomocą:
+
+`new PDO(...)`
+
+Dużą zaletą PDO jest to, że nie jest przeznaczone wyłącznie do MySQL. Może współpracować również z innymi systemami baz danych, jeśli odpowiedni sterownik jest dostępny, np. PostgreSQL czy SQLite.
+
+**Przykładowo**:
+
+`pg_connect()`
+
+służy do **PostgreSQL**:
+```PHP
+$conn = pg_connect(
+    "host=localhost dbname=test user=postgres password=1234"
+);
+```
+
+Dla SQLite istnieje również klasa:
+
+**SQLite3**
+
+np.:
+
+`$db = new SQLite3("moja_baza.db");`
