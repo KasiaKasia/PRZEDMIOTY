@@ -276,3 +276,307 @@ Do ważnych parametrów monitora należą:
 - jasność,
 - czas reakcji,
 - złącza – np. HDMI, DisplayPort, USB-C.
+
+
+## Dekodowanie Liczb:
+## Binarny, Ósemkowy, Szesnastkowy i Dziesiętny
+
+
+**Dekodowanie liczby** **polega na odczytaniu jej wartości zapisanej w określonym systemie liczbowym**. Każdy **system liczbowy ma swoją podstawę**, która określa, **jakich cyfr używamy** oraz jakie **wartości mają kolejne pozycje w liczbie**.
+
+### System dziesiętny
+
+W systemie dziesiętnym podstawą jest **10**, więc używamy cyfr:
+
+**0, 1, 2, 3, 4, 5, 6, 7, 8, 9**
+
+**Wartość cyfry zależy nie tylko od samej cyfry, ale również od miejsca, na którym się znajduje.**
+
+Dokładnie tak samo działają inne systemy liczbowe. Zmienia się tylko podstawa systemu.
+
+### Dekodowanie liczby binarnej do dziesiętnej
+
+Dekodowanie liczby binarnej do dziesiętnej polega na obliczeniu wartości liczby zapisanej w systemie binarnym, czyli dwójkowym, i przedstawieniu jej w systemie dziesiętnym.
+
+**System binarny ma podstawę:**
+
+`2`
+
+**i używa tylko dwóch cyfr:**
+
+`0` i `1`
+
+Każda pozycja w liczbie binarnej odpowiada kolejnej potędze liczby 2. Pozycje liczymy od prawej strony, zaczynając od 0.
+
+Przykład:
+
+`1011₂`
+
+Najpierw zapisujemy pozycje cyfr:
+```text
+pozycja:   3   2   1   0
+liczba:    1   0   1   1
+```
+1 · 2³ + 0 · 2² + 1 · 2¹ + 1 · 2⁰
+
+● 1 * 2³ = 1 * 8 = 8
+● 0 * 2² = 0 * 4 = 0
+● 1 * 2¹ = 1 * 2 = 2
+● 1 * 2⁰ = 1 * 1 = 1
+
+Suma:  8 + 0 + 2 + 1 = 11
+
+Zatem:
+
+`1011₂ = 11₁₀`
+
+### Dekodowanie liczby dziesiętnej do binarnej 
+
+Zamiana liczby dziesiętnej na binarną polega na przedstawieniu liczby zapisanej w systemie dziesiętnym za pomocą tylko dwóch cyfr:
+
+`0` i `1`
+
+Najczęściej stosuje się **metodę kolejnego dzielenia przez 2 i zapisywania reszt z dzielenia**.
+
+Załóżmy, że chcemy zamienić:
+
+`25₁₀`
+
+na system binarny.
+
+Dzielimy liczbę przez 2 tak długo, aż otrzymamy 0:
+```text
+25 : 2 = 12 reszty 1
+12 : 2 =  6 reszty 0
+ 6 : 2 =  3 reszty 0
+ 3 : 2 =  1 reszty 1
+ 1 : 2 =  0 reszty 1
+``` 
+
+Teraz bardzo ważne: reszty odczytujemy od dołu do góry:
+
+`1 1 0 0 1`
+
+czyli:
+
+`25₁₀ = 11001₂`
+
+Aby zamienić liczbę dziesiętną na binarną, dzielimy ją kolejno przez 2, zapisujemy reszty z dzielenia, a następnie odczytujemy reszty od dołu do góry.
+
+
+### Dekodowanie liczby ósemkowej do dziesiętnej 
+
+**Dekodowanie liczby ósemkowej do dziesiętnej** polega na obliczeniu wartości liczby zapisanej w systemie ósemkowym i przedstawieniu jej w systemie dziesiętnym.
+
+**System ósemkowy ma podstawę:**
+
+`8`
+
+**i używa cyfr:**
+
+`0, 1, 2, 3, 4, 5, 6, 7`
+
+Każda pozycja w liczbie ósemkowej odpowiada kolejnej potędze liczby 8. Pozycje liczymy od prawej strony, zaczynając od 0.
+
+Przykład:
+
+157₈
+
+Najpierw zapisujemy pozycje:
+```text
+pozycja:   2   1   0
+liczba:    1   5   7
+```
+Następnie każdą cyfrę mnożymy przez odpowiednią potęgę liczby 8:
+
+`1 · 8² + 5 · 8¹ + 7 · 8⁰`
+
+Obliczamy potęgi:
+```text
+8² = 64
+8¹ = 8
+8⁰ = 1
+```
+
+Czyli:
+
+`1 · 64 + 5 · 8 + 7 · 1`
+
+otrzymujemy:
+
+`64 + 40 + 7 = 111`
+
+Zatem:
+
+`157₈ = 111₁₀`
+
+### Dekodowanie liczby dziesiętnej do ósemkowej
+
+**Zamiana liczby dziesiętnej na ósemkową** polega na przedstawieniu liczby zapisanej w systemie dziesiętnym za pomocą cyfr używanych w systemie ósemkowym:
+
+`0, 1, 2, 3, 4, 5, 6, 7`
+
+**System ósemkowy ma podstawę:**
+
+`8`
+
+Najczęściej stosuje się metodę kolejnego dzielenia przez 8 i zapisywania reszt z dzielenia.
+
+Przykład:
+
+`111₁₀`
+
+Chcemy zamienić tę liczbę na system ósemkowy.
+
+Dzielimy kolejno przez 8:
+```text
+111 : 8 = 13 reszty 7
+ 13 : 8 =  1 reszty 5
+  1 : 8 =  0 reszty 1
+```  
+
+Teraz reszty odczytujemy od dołu do góry:
+
+`1 5 7`
+
+czyli:
+
+``111₁₀ = 157₈``
+
+Ponieważ system ósemkowy ma podstawę `8`. Przy dzieleniu liczby całkowitej przez `8` możliwe reszty to:
+
+`0, 1, 2, 3, 4, 5, 6, 7`
+
+czyli dokładnie cyfry używane w systemie ósemkowym.
+
+### Dekodowanie liczby Szesnastkowej na dziesiętny
+
+Dekodowanie liczby szesnastkowej do dziesiętnej polega na obliczeniu wartości liczby zapisanej w systemie szesnastkowym i przedstawieniu jej w systemie dziesiętnym.
+
+**System szesnastkowy ma podstawę:**
+
+`16`
+
+**i używa cyfr:**
+
+`0, 1, 2, 3, 4, 5, 6, 7, 8, 9`
+
+**oraz liter:**
+
+`A, B, C, D, E, F`
+
+**które oznaczają:**
+```text
+A = 10
+B = 11
+C = 12
+D = 13
+E = 14
+F = 15
+```
+
+Każda pozycja w liczbie szesnastkowej odpowiada kolejnej potędze liczby 16. Pozycje liczymy od prawej strony, zaczynając od 0.
+
+Przykład:
+
+`2A₁₆`
+
+Najpierw zapisujemy pozycje:
+
+```text
+pozycja:   1   0
+liczba:    2   A
+```
+
+Następnie każdą cyfrę mnożymy przez odpowiednią potęgę liczby 16:
+
+`2 · 16¹ + A · 16⁰`
+
+Ponieważ:
+
+`A = 10`
+
+otrzymujemy:
+
+`2 · 16¹ + 10 · 16⁰`
+
+Obliczamy:
+
+16¹ = 16
+16⁰ = 1
+
+czyli:
+
+`2 · 16 + 10 · 1`
+
+więc:
+
+`32 + 10 = 42`
+
+Zatem:
+
+`2A₁₆ = 42₁₀`
+
+### Dekodowanie liczby dziesiętnej  do szesnastkowej
+
+Zamiana liczby dziesiętnej na szesnastkową polega na przedstawieniu liczby zapisanej w systemie dziesiętnym za pomocą cyfr i liter używanych w systemie szesnastkowym.
+
+**System szesnastkowy ma podstawę:**
+
+`16`
+
+**i używa cyfr**:
+
+`0, 1, 2, 3, 4, 5, 6, 7, 8, 9`
+
+**oraz liter:**
+
+`A, B, C, D, E, F`
+
+które oznaczają:
+```text
+A = 10
+B = 11
+C = 12
+D = 13
+E = 14
+F = 15
+```
+
+Najczęściej stosuje się metodę kolejnego dzielenia przez 16 i zapisywania reszt z dzielenia.
+
+Weźmy liczbę:
+
+`42₁₀`
+
+Dzielimy przez 16:
+```text
+42 : 16 = 2 reszty 10
+ 2 : 16 = 0 reszty 2
+```
+
+Reszta 10 w systemie szesnastkowym jest zapisywana jako:
+
+`A`
+
+Teraz odczytujemy reszty od dołu do góry:
+
+`2 A`
+
+czyli:
+
+`42₁₀ = 2A₁₆`
+
+### MySQL
+
+`SELECT BIN(235) AS Binarny, OCT(235) AS ‘Ósemkowy’, HEX(235) AS Szesnastkowy;`
+
+| Binarny   |  Ósemkowy         |  Szesnastkowy             |
+| --------- | ----------------- | ------------------------- |
+| 11101011  | 353               |  EB                       |
+
+`SELECT CONV('11101011', 2, 10) AS ‘Dziesiętny’, CONV('11101011', 2, 8) AS ‘Ósemkowy’, HEX(CONV('11101011', 2, 16)) AS Szesnastkowy;`
+
+| Dziesiętny  |  Ósemkowy         |  Szesnastkowy             |
+| ----------- | ----------------- | ------------------------- |
+| 235         | 353               |  EB                       |
