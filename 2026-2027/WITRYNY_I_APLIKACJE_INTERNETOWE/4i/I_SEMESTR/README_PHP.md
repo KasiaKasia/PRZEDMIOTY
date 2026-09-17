@@ -1,4 +1,4 @@
-# PHP
+# PHP: Hypertext Preprocessor
 
 **PHP** jest językiem **skryptowym** **wykorzystywanym** głównie do** tworzenia dynamicznych stron i aplikacji internetowych po stronie serwera**. Jest **językiem dynamicznie typowanym**, co oznacza, że **typy zmiennych są określane w czasie wykonywania programu i mogą się zmieniać w zależności od przypisanych wartości**.
 
@@ -30,6 +30,8 @@ Najpierw $wartosc przechowuje liczbę, a później tekst.
 | `object`   | obiekt utworzony na podstawie klasy                | `$user = new User();`             |
 | `null`     | brak wartości                                      | `$telefon = null;`                |
 | `resource` | specjalny typ reprezentujący odwołanie do zewnętrznego zasobu, np. otwartego pliku | `$file = fopen("dane.txt", "r");` |
+
+
 
 
 ## Dodatkowe typy: `callable` i `iterable`
@@ -535,4 +537,103 @@ Funkcja	Zastosowanie
 `mysqli_fetch_assoc()`	pobiera rekord jako tablicę asocjacyjną
 `mysqli_close()`	zamyka połączenie z bazą
  
+---
+## METODY FORMULARZA 
+W formularzach HTML używanych z PHP najczęściej stosuje się dwie metody przesyłania danych:
+
+- `method="GET"`
+- `method="POST"`
+
+Najważniejsza różnica polega na tym, w jaki sposób dane z formularza są przesyłane do serwera i jak PHP je odbiera.
+
+| Cecha                                            | GET                       | POST                         |
+| ------------------------------------------------ | ------------------------- | ---------------------------- |
+| Dane widoczne w adresie URL                      | Tak                       | Nie                          |
+| PHP odbiera przez                                | `$_GET`                   | `$_POST`                     |
+| Dobre do wyszukiwania i filtrowania              | Tak                       | Raczej nie                   |
+| Dobre do logowania, formularzy, dodawania danych | Nie                       | Tak                          |
+| Można łatwo zapisać adres z parametrami          | Tak                       | Nie                          |
+| Ilość danych                                     | Ograniczona długością URL | Może przesyłać więcej danych |
+| Przesyłanie plików                               | Nie                       | Tak, z `enctype`             |
+
+
+### 1. Metoda GET
+
+Przykład formularza:
+```PHP
+<form method="GET">
+
+    <input type="text" name="nazwisko">
+
+    <button type="submit">
+         kliknij, aby wysłać dane metodą GET
+    </button>
+
+</form>
+```
+
+Jeżeli użytkownik wpisze: `Kowalski` i kliknie przycisk, adres może wyglądać tak:
+
+`uczniowie.php?nazwisko=Kowalski`
+`http://localhost/get/?nazwisko=Kowalski`
+
+Czyli dane są widoczne w URL.
+
+PHP pobiera je przez:
+
+`$nazwisko = $_GET["nazwisko"];`
+
+Możemy potem zrobić np.:
+
+`echo $nazwisko;`
+
+i otrzymamy:
+
+`Kowalski`
+
+GET jest bardzo dobry do:
+
+- wyszukiwania
+- filtrowania
+- sortowania
+- wyboru kategorii
  
+
+### 2. Metoda POST
+
+Formularz wygląda podobnie:
+```PHP
+<form method="POST">
+
+    <input type="text" name="imie">
+
+    <button type="submit">
+        Wyślij
+    </button>
+
+</form>
+```
+PHP pobiera dane:
+
+`$imie = $_POST["imie"];`
+
+Jeśli użytkownik wpisze: `Anna`
+
+to po wysłaniu formularza (kliknięciu przycisku) URL nadal może wyglądać np.:
+
+`index.php`
+
+Nie pojawi się w adresie URL: 
+`?imie=Anna`
+
+**Dane są przesyłane w treści żądania HTTP.**
+
+POST stosuje się często do:
+
+- logowania
+- rejestracji
+- dodawania rekordów
+- edycji rekordów
+- usuwania rekordów
+- wysyłania większych formularzy
+- przesyłania plików
