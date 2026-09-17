@@ -1,6 +1,6 @@
 # PHP: Hypertext Preprocessor
 
-**PHP** jest językiem **skryptowym** **wykorzystywanym** głównie do** tworzenia dynamicznych stron i aplikacji internetowych po stronie serwera**. Jest **językiem dynamicznie typowanym**, co oznacza, że **typy zmiennych są określane w czasie wykonywania programu i mogą się zmieniać w zależności od przypisanych wartości**.
+**PHP** jest językiem **skryptowym** **wykorzystywanym** głównie do **tworzenia dynamicznych stron i aplikacji internetowych po stronie serwera**. Jest **językiem dynamicznie typowanym**, co oznacza, że **typy zmiennych są określane w czasie wykonywania programu i mogą się zmieniać w zależności od przypisanych wartości**.
 
 ## PHP jest językiem dynamicznie typowanym.
 W PHP nie trzeba określać typu zmiennej podczas jej tworzenia.
