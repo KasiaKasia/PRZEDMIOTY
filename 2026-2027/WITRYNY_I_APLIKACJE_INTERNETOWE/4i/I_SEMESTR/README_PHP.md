@@ -530,12 +530,12 @@ To jest bardzo ważne w kontekście tego, co wcześniej omawiałyśmy przy tabli
 
 11. Najważniejsze funkcje do zapamiętania na INF.03
 Funkcja	Zastosowanie
-`mysqli_connect()`	nawiązuje połączenie z bazą MySQL
-`mysqli_connect_error()`	zwraca informację o błędzie połączenia
-`mysqli_set_charset()`	ustawia kodowanie znaków
-`mysqli_query()`	wykonuje zapytanie SQL
-`mysqli_fetch_assoc()`	pobiera rekord jako tablicę asocjacyjną
-`mysqli_close()`	zamyka połączenie z bazą
+- `mysqli_connect()`	nawiązuje połączenie z bazą MySQL
+- `mysqli_connect_error()`	zwraca informację o błędzie połączenia
+- `mysqli_set_charset()`	ustawia kodowanie znaków
+- `mysqli_query()`	wykonuje zapytanie SQL
+- `mysqli_fetch_assoc()`	pobiera rekord jako tablicę asocjacyjną
+- `mysqli_close()`	zamyka połączenie z bazą
  
 ---
 ## METODY FORMULARZA 
