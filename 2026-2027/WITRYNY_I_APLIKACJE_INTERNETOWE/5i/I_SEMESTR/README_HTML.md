@@ -150,7 +150,7 @@ Rezultat: H₂O
 ### Tekst przekreślony
 Oznacza tekst, który nie jest już aktualny lub prawdziwy.
 ```html
-<s>Podkreślony tekst</s>
+<s>Przekreślony tekst</s>
 ```
 
 ### Tekst poboczny
@@ -1003,25 +1003,40 @@ Rezultat:
 Przykład:
 ```html
 <table>
+    <thead>
+        <tr>
+            <th rowspan="2" scope="col">Uczeń</th>
+            <th colspan="2" scope="colgroup">Oceny</th>
+        </tr>
 
-    <tr>
-        <th rowspan="2">Uczeń</th>
-        <th colspan="2">Oceny</th>
-    </tr>
+        <tr>
+            <th scope="col">Matematyka</th>
+            <th scope="col">Informatyka</th>
+        </tr>
+    </thead>
 
-    <tr>
-        <th>Matematyka</th>
-        <th>Informatyka</th>
-    </tr>
-
-    <tr>
-        <td>Anna</td>
-        <td>5</td>
-        <td>6</td>
-    </tr>
-
+    <tbody>
+        <tr>
+            <td>Anna</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+    </tbody>
 </table>
 ```
+
+Rezultat:
+```text
++---------+--------------------------+
+|         |          Oceny           |
+|  Uczeń  +-------------+------------+
+|         | Matematyka  | Informatyka|
++---------+-------------+------------+
+|  Anna   |      5      |      6     |
++---------+-------------+------------+
+```
+
+
 ## Znaczniki formularza
 
 | Znacznik     | Znaczenie                                            |
