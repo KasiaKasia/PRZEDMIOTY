@@ -1452,6 +1452,15 @@ b = [1, 2, 3]
 print(a == b)  # True
 print(a is b)  # False
 
+
+a = 5 
+b = 57777777777777777
+c = 5
+print(a == b)  # False
+print(a is b)  # False
+print(a is c)  # True
+
+
 a = [1, 2, 3]
 b = a
 
