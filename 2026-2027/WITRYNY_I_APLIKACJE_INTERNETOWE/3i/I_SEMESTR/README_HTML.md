@@ -401,11 +401,12 @@ Lista z punktami:
  <li>Milk</li>
 </ul> 
 ```
-
+```text
 Rezultat:
 ● Coffee
 ● Tea
 ● Milk
+```
 
 `ul` = lista nieuporządkowana
 `li` = element listy
@@ -421,10 +422,12 @@ Lista numerowana:
 </ol>
 ```
 
+```text
 Rezultat:
 1. Coffee
 2. Tea
 3. Milk
+```
 
 `ol` = lista uporządkowana
 
