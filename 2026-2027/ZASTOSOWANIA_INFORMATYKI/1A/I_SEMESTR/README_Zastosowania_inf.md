@@ -518,7 +518,7 @@ Zatem:
 
 `2A₁₆ = 42₁₀`
 
-### 📝Dekodowanie liczby dziesiętnej  do szesnastkowej
+### 📝 Dekodowanie liczby dziesiętnej  do szesnastkowej
 
 Zamiana liczby dziesiętnej na szesnastkową polega na przedstawieniu liczby zapisanej w systemie dziesiętnym za pomocą cyfr i liter używanych w systemie szesnastkowym.
 
@@ -582,19 +582,20 @@ czyli:
 | ----------- | ----------------- | ------------------------- |
 | 235         | 353               |  EB                       |
 
+---
 
 ## RODO
  
-**Rozporządzenie o Ochronie Danych Osobowych**
+ 📝 **Rozporządzenie o Ochronie Danych Osobowych**
 Jest to **rozporządzenie Parlamentu Europejskiego i Rady UE 2016/679**, które weszło w życie 25 maja 2018 r. i obowiązuje we
 wszystkich krajach Unii Europejskiej.
 
 
-**Najważniejsze informacje o RODO:**
+ 📝 **Najważniejsze informacje o RODO:**
 - **Cel RODO**: ochrona osób fizycznych w związku z przetwarzaniem ich danych osobowych oraz zapewnienie swobodnego przepływu takich danych w Unii Europejskiej.
 - **Dane osobowe** to informacje dotyczące zidentyfikowanej lub możliwej do zidentyfikowania osoby fizycznej.
 
-Przykłady:
+ 📝 Przykłady:
 
 - imię i nazwisko,
 - PESEL,
@@ -609,7 +610,7 @@ Przykłady:
 
 Nie każda pojedyncza informacja musi umożliwiać bezpośrednią identyfikację. Kilka informacji połączonych ze sobą również może pozwolić na ustalenie konkretnej osoby.
 
-**Podstawowe zasady przetwarzania danych**
+ 📝 **Podstawowe zasady przetwarzania danych**
 
 Dane osobowe powinny być przetwarzane zgodnie z następującymi zasadami:
 
@@ -625,11 +626,11 @@ Dane osobowe powinny być przetwarzane zgodnie z następującymi zasadami:
 
 Przykładowo szkoła nie musi uzyskiwać zgody ucznia lub rodzica na każde przetwarzanie danych, jeżeli obowiązek ich przetwarzania wynika z przepisów prawa.
 
-**Szczególne kategorie danych osobowych**
+ 📝 **Szczególne kategorie danych osobowych**
 
 Niektóre dane wymagają szczególnej ochrony.
 
-Należą do nich między innymi dane dotyczące:
+ 📝 Należą do nich między innymi dane dotyczące:
 
 - zdrowia,
 - pochodzenia rasowego lub etnicznego,
@@ -644,12 +645,12 @@ Przetwarzanie takich danych jest co do zasady zabronione, chyba że zachodzi jed
 
 
 
-**Administrator danych osobowych** to podmiot, który ustala:
+ 📝 **Administrator danych osobowych** to podmiot, który ustala:
 
 - po co dane są przetwarzane,
 - w jaki sposób będą przetwarzane.
 
-**Administratorem może być** np.:
+ 📝 **Administratorem może być** np.:
 
 - szkoła,
 - urząd,
@@ -657,7 +658,7 @@ Przetwarzanie takich danych jest co do zasady zabronione, chyba że zachodzi jed
 - uczelnia,
 - fundacja.
 
-**Administrator powinien między innymi:**
+ 📝 **Administrator powinien między innymi:**
 
 - zapewnić bezpieczeństwo danych,
 - posiadać podstawę prawną przetwarzania,
@@ -667,22 +668,22 @@ Przetwarzanie takich danych jest co do zasady zabronione, chyba że zachodzi jed
 - dokumentować działania związane z ochroną danych,
 - odpowiednio reagować na naruszenia ochrony danych.
 
-**Podmiot przetwarzający**
+ 📝 **Podmiot przetwarzający**
 
 **Podmiot przetwarzający (procesor) przetwarza dane osobowe w imieniu administratora.**
 
-Przykład:
+ 📝 Przykład:
 
 Szkoła korzysta z zewnętrznego systemu informatycznego do przechowywania określonych danych. Firma obsługująca system może być podmiotem przetwarzającym dane na rzecz szkoły.
 
-Zasady takiego przetwarzania określa m.in. **umowa powierzenia przetwarzania danych**.
+ 📝 Zasady takiego przetwarzania określa m.in. **umowa powierzenia przetwarzania danych**.
 
 
-**Inspektor Ochrony Danych – IOD**
+ 📝 **Inspektor Ochrony Danych – IOD**
 
-**Inspektor Ochrony Danych (IOD) pomaga organizacji w przestrzeganiu przepisów dotyczących ochrony danych.**
+ 📝 **Inspektor Ochrony Danych (IOD) pomaga organizacji w przestrzeganiu przepisów dotyczących ochrony danych.**
 
-Do jego zadań należy między innymi:
+ 📝 Do jego zadań należy między innymi:
 
 - informowanie administratora i pracowników o obowiązkach związanych z RODO,
 - monitorowanie przestrzegania przepisów,
@@ -693,8 +694,7 @@ W określonych przez RODO przypadkach wyznaczenie IOD jest obowiązkowe.
 
 Prawa osoby, której dane dotyczą
 
-Osoba, której dane dotyczą, może mieć między innymi:
-
+ 📝 **Osoba, której dane dotyczą, może mieć między innymi**:
 
 - prawo do informacji o przetwarzaniu danych,
 - prawo dostępu do swoich danych,
@@ -703,15 +703,15 @@ Osoba, której dane dotyczą, może mieć między innymi:
 - prawo do ograniczenia przetwarzania,
 - prawo do przenoszenia danych,
 - prawo do sprzeciwu wobec przetwarzania,
-p- rawo związane z podejmowaniem decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu, w tym profilowaniu.
+- prawo związane z podejmowaniem decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu, w tym profilowaniu.
 
 Nie wszystkie te prawa mają zastosowanie w każdej sytuacji. Zależy to między innymi od podstawy prawnej i celu przetwarzania danych.
 
-**Bezpieczeństwo danych osobowych**
+ 📝 **Bezpieczeństwo danych osobowych**
 
-Administrator powinien stosować środki bezpieczeństwa odpowiednie do zagrożeń.
+**Administrator powinien stosować środki bezpieczeństwa odpowiednie do zagrożeń.**
 
-Przykłady:
+ 📝 Przykłady:
 
 - silne hasła,
 - uwierzytelnianie wieloskładnikowe,
@@ -724,7 +724,7 @@ Przykłady:
 - szkolenie pracowników,
 - kontrolowanie uprawnień użytkowników.
 
-**Naruszenie ochrony danych osobowych**
+ 📝 **Naruszenie ochrony danych osobowych**
 
 **Naruszenie ochrony danych osobowych** to zdarzenie prowadzące np. do przypadkowego lub niezgodnego z prawem:
 
@@ -734,7 +734,7 @@ Przykłady:
 - nieuprawnionego ujawnienia danych,
 - uzyskania dostępu do danych przez osobę nieuprawnioną.
 
-Przykłady:
+ 📝 Przykłady:
 
 - wysłanie wiadomości e-mail z danymi do niewłaściwej osoby,
 - zgubienie niezabezpieczonego pendrive'a zawierającego dane osobowe,
@@ -742,25 +742,21 @@ Przykłady:
 - przypadkowe opublikowanie danych w Internecie,
 - utrata dokumentów zawierających dane osobowe.
 
-Jeżeli naruszenie może powodować ryzyko naruszenia praw lub wolności osób fizycznych, administrator powinien zgłosić je właściwemu organowi nadzorczemu **bez zbędnej zwłoki, w miarę możliwości nie później niż w ciągu 72 godzin od jego stwierdzenia**.
+ 📝 Jeżeli naruszenie może powodować ryzyko naruszenia praw lub wolności osób fizycznych, administrator powinien zgłosić je właściwemu organowi nadzorczemu **bez zbędnej zwłoki, w miarę możliwości nie później niż w ciągu 72 godzin od jego stwierdzenia**.
 
 Jeżeli naruszenie może powodować wysokie ryzyko dla osoby, której dane dotyczą, administrator powinien również bez zbędnej zwłoki poinformować tę osobę.
 
-
-
-
-
-**Organ nadzorczy w Polsce**
+ 📝 **Organ nadzorczy w Polsce**
 
 W Polsce organem odpowiedzialnym za nadzór nad przestrzeganiem przepisów dotyczących ochrony danych osobowych jest **Prezes Urzędu Ochrony Danych Osobowych (Prezes UODO)**.
 
-**Do UODO można między innymi:**
+ 📝 **Do UODO można między innymi:**
 
 - zgłaszać określone naruszenia ochrony danych,
 - składać skargi dotyczące niezgodnego z prawem przetwarzania danych.
 
 
-Przykład – RODO w szkole
+ 📝 Przykład – RODO w szkole
 
 Szkoła może przetwarzać między innymi:
 
@@ -778,6 +774,6 @@ Przykładowo nauczyciel **nie powinien przekazywać danych ucznia osobie, która
 
 **Najważniejsza zasada**
 
-**Dane osobowe należy przetwarzać tylko wtedy, gdy istnieje odpowiedni cel i podstawa prawna, zbierać tylko dane niezbędne oraz odpowiednio chronić je przed dostępem osób nieuprawnionych**.
+ 📝 **Dane osobowe należy przetwarzać tylko wtedy, gdy istnieje odpowiedni cel i podstawa prawna, zbierać tylko dane niezbędne oraz odpowiednio chronić je przed dostępem osób nieuprawnionych**.
 
  
