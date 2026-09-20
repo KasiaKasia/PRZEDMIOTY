@@ -596,17 +596,28 @@ for (const key in person) {
 }
 ```
 
-📘 Wynik:
-
+Wynik:
 name: Anna
 age: 25
 city: Warszawa
 
+f) **forEach**
+```JS
+const imiona = ["Anna", "Jan", "Kasia"];
+
+imiona.forEach((imie, index ) => {
+    console.log(index, imie);
+});
+```
+Wynik:
+0 Anna
+1 Jan
+2 Kasia
 
 
 ### TypeScript – pętle
 
-`for`, `while`, `do...while`, `for...of` i `for...in` mają w TypeScript taką samą składnię jak w JavaScript.
+`for`, `while`, `do...while`, `for...of`, `for...in` i `forEach` mają w TypeScript taką samą składnię jak w JavaScript.
 
 Różnica polega na tym, że iterowane dane mogą mieć określone typy:
 
@@ -616,9 +627,24 @@ const fruits: string[] = ["jabłko", "banan", "gruszka"];
 for (const fruit of fruits) {
   console.log(fruit.toUpperCase()); // fruit ma typ string
 }
+ 
+const imiona: string[] = ["Anna", "Jan", "Kasia"];
+
+imiona.forEach((imie, index ) => {
+    console.log(index, imie);
+});
 ```
+Wynik:
+JABŁKO
+BANAN
+GRUSZKA
+0 Anna
+1 Jan
+2 Kasia
 
 Przy iteracji po obiekcie trzeba pamiętać, że `for...in` zwraca **klucze** obiektu, a nie jego wartości.
+
+
 
 
 ## 6. **Przerywanie i pomijanie iteracji**
