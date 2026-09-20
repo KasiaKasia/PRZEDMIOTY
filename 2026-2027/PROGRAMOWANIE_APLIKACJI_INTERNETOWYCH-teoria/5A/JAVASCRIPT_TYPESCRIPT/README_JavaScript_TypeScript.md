@@ -698,6 +698,524 @@ a = a + 1;
 console.log(a)  // 6
 ```
 
+++i — **najpierw zwiększ, potem użyj**
+i++ — **najpierw użyj, potem zwiększ**
+
+
+
+## Funkcje
+
+### 1. **Deklaracja funkcji** — Function Declaration
+
+**To klasyczny sposób tworzenia funkcji.**
+
+```JS
+function dodaj(a, b) {
+    return a + b;
+}
+
+console.log(dodaj(2, 3)); // 5
+```
+
+```TS 
+function dodaj(a: number, b: number): number {
+    return a + b;
+}
+
+console.log(dodaj(2, 3)); //5
+```
+
+### 2. **Wyrażenie funkcyjne** — Function Expression
+**Funkcja nie ma tutaj własnej nazwy. Funkcję można przypisać do zmiennej.**
+
+```JS
+const dodaj = function(a, b) {
+    return a + b;
+};
+
+console.log(dodaj(2, 3));
+```
+
+```TS 
+const dodaj = function(a: number, b: number): number {
+    return a + b;
+};
+
+console.log(dodaj(2, 3));
+``` 
+
+### 3. **Funkcja strzałkowa** — Arrow Function
+
+Bardzo często używana we współczesnym JavaScript i TypeScript.
+
+```JS
+const dodaj1 = (a, b) => {
+    return a + b;
+};
+console.log(dodaj1(1,4))
+```
+```TS
+const dodaj2 = (a: number, b: number): number => {
+    return a + b;
+};
+ 
+// Można ją jeszcze skrócić.
+
+const dodaj3 = (a: number, b: number): number => a + b;
+console.log(dodaj3(1,4))
+```
+
+
+### 4. **Funkcja anonimowa**
+
+**Funkcja anonimowa to funkcja bez nazwy.**
+ 
+
+Sama w takiej postaci zazwyczaj nie jest użyteczna. Najczęściej przypisujemy ją do zmiennej:
+
+```JS
+const dodaj = function(a, b) {
+    return a + b;
+};
+```
+albo przekazujemy jako argument:
+```JS
+setTimeout(function() {
+    console.log("Minęła sekunda");
+}, 1000);
+
+
+const dodaj = (a, b) => a + b;
+```
+
+Funkcje anonimowe bardzo często stosuje się jako **callbacki** , czyli **funkcje przekazaną do innej funkcji jako argument**:
+```TS
+const liczby: number[] = [1, 2, 3];
+
+liczby.forEach(function(liczba) {
+    console.log(liczba);
+});
+ 
+
+const podwojone = liczby.map((liczba) => liczba * 2);
+const parzyste = liczby.filter((liczba) => liczba % 2 === 0);
+```
+**WAŻNE** this w funkcji strzałkowej i anonimowej działają inaczej:
+
+```TS
+const osoba1 = {
+    imie: "Anna",
+
+    przedstawSie: function() {
+        console.log(this.imie); // Ania
+    }
+};
+
+osoba1.przedstawSie(); // Tutaj this odnosi się do obiektu osoba.
+
+const osoba2 = {
+    imie: "Anna",
+
+    przedstawSie: () => {
+        console.log(this);
+    }
+};
+
+osoba2.przedstawSie(); // {}
+```
+this nie wskazuje na osoba.   
+Na najwyższym poziomie this wskazuje na globalny obiekt przeglądarki: `window`
+
+### 5. **Funkcja jako callback**
+
+**Funkcję możemy przekazać do innej funkcji.**
+
+Bardzo często spotkasz to przy:
+```text
+- forEach()
+- map()
+- filter()
+- setTimeout()
+- addEventListener()
+```
+
+Poniższa funkcja 
+```TS
+(liczba: number) => {
+    console.log(liczba);
+}
+```
+jest przekazana do forEach:
+
+```TS
+const liczby: number[] = [10, 20, 30];
+
+liczby.forEach((liczba: number) => {
+    console.log(liczba);
+});
+```
+
+Możemy również wcześniej utworzyć funkcję:
+
+```TS
+function wyswietl(liczba: number): void {
+    console.log(liczba);
+}
+
+const liczby: number[] = [10, 20, 30];
+liczby.forEach(wyswietl)
+```
+### 6. **Metoda obiektu**
+
+Funkcja znajdująca się w obiekcie jest nazywana metodą.
+
+```JS
+const osoba = {
+    imie: "Jan",
+
+    przedstawSie: function() {
+        console.log("Mam na imię " + this.imie);
+    }
+};
+
+osoba.przedstawSie();
+```
+
+Możemy użyć krótszego zapisu:
+```JS
+const osoba = {
+    imie: "Jan",
+
+    przedstawSie() {
+        console.log("Mam na imię " + this.imie);
+    }
+};
+osoba.przedstawSie();
+```
+
+```TS
+const osoba = {
+    imie: "Jan",
+
+    przedstawSie(): void {
+        console.log("Mam na imię " + this.imie);
+    }
+};
+
+osoba.przedstawSie();
+```
+
+### 7. **IIFE — Immediately Invoked Function Expression** funkcja wywoływana natychmiast po zdefiniowaniu
+
+**Jest to funkcja, która wykonuje się natychmiast po utworzeniu.**
+
+```JS
+(function() {
+    console.log("Funkcja została wykonana");
+})();
+
+// Można też zrobić IIFE za pomocą funkcji strzałkowej:
+
+(() => {
+    console.log("Funkcja została wykonana");
+})();
+
+((imie) => {
+    console.log("Cześć " + imie);
+})("Anna");
+```
+```TS
+((): void => {
+    console.log("Funkcja została wykonana");
+})();
+```
+IIFE było bardzo często używane przed pojawieniem się modułów ES.
+
+
+### 8. **Funkcja z parametrem domyślnym**
+
+Możemy nadać parametrowi wartość domyślną.
+
+```JS
+function powitanie(imie = "Gość") {
+    console.log("Witaj " + imie);
+}
+
+powitanie();        // Witaj Gość
+powitanie("Anna");  // Witaj Anna
+```
+
+```TS
+function powitanie(imie: string = "Gość"): void {
+    console.log("Witaj " + imie);
+}
+```
+
+### 9. **Parametr opcjonalny** — TypeScript
+
+**TypeScript pozwala oznaczyć parametr jako opcjonalny za pomocą ?.**
+
+```TS
+function przedstaw(imie: string, wiek?: number): void {
+
+    console.log(imie);
+
+    if (wiek !== undefined) {
+        console.log(wiek);
+    }
+}
+przedstaw("Anna");
+przedstaw("Anna", 25);
+```
+
+**W JavaScript nie ma składni:**
+
+``wiek?``
+
+**To mechanizm TypeScript.**
+
+###  10. **Rest parameters — ...**
+
+**Pozwala przekazać dowolną liczbę argumentów.**
+```JS
+function suma(...liczby) {
+
+    let wynik = 0;
+
+    for (const liczba of liczby) {
+        wynik += liczba;
+    }
+
+    return wynik;
+}
+
+console.log(suma(1, 2, 3, 4)); // 10
+```
+```TS
+function suma(...liczby: number[]): number {
+
+    let wynik: number = 0;
+
+    for (const liczba of liczby) {
+        wynik += liczba;
+    }
+
+    return wynik;
+}
+```
+
+### 12. **Funkcja generatorowa — Generator Function**
+
+**Generator może wstrzymywać swoje działanie i zwracać kolejne wartości.**
+
+Używamy: `function*` oraz: `yield`
+
+```TS
+function* liczby() {
+
+    yield 1;
+    yield 2;
+    yield 5;
+}
+
+const generator = liczby();
+
+console.log(generator.next().value); // 1
+console.log(generator.next().value); // 2
+console.log(generator.next().value); // 5
+```
+
+**Generator nie wykonuje całej funkcji od razu.**
+
+### 12. **Funkcja async**
+
+**Funkcje asynchroniczne stosujemy np. podczas pobierania danych z API.**
+
+```JS
+async function pobierzDane() {
+
+    const response = await fetch("https://example.com");
+
+    return response;
+}
+pobierzDane();
+```
+```TS 
+async function pobierzDane(): Promise<Response> {
+
+    const response: Response = await fetch("https://example.com");
+
+    return response;
+}
+```
+**`async` powoduje, że funkcja zwraca `Promise`.**
+
+
+```TS
+async function pobierzUzytkownik(): Promise<void> {
+
+    const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users/1"
+    );
+
+    const user = await response.json();
+
+    console.log(user);
+}
+```
+```TS
+async function pierwsza() {
+    console.log("Pierwsza");
+}
+
+async function druga() {
+    console.log("Druga");
+}
+
+async function trzecia() {
+    console.log("Trzecia");
+}
+
+  
+
+async function start() {
+    await pierwsza();
+    await druga();
+    await trzecia();
+}
+
+start();
+
+```
+
+
+**Natomiast jeśli nie użyjesz await:**
+
+```TS
+async function start() {
+    pierwsza();
+    druga();
+}
+```
+to JavaScript nie czeka na zakończenie pierwszej funkcji.
+
+Możesz wtedy dostać:
+
+```TS
+Start pierwszej
+Start drugiej
+Koniec drugiej
+Koniec pierwszej
+```
+
+### 13. **Funkcja strzałkowa async**
+
+Możemy połączyć async z arrow function.
+```TS
+const pobierzDane = async (): Promise<void> => {
+
+    const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+    );
+
+    const dane = await response.json();
+
+    console.log(dane);
+};
+```
+
+### 14. **Funkcja jako typ — TypeScript**
+
+W TypeScript możemy określić dokładnie, jaki typ funkcji może znajdować się w zmiennej.
+
+`let operacja: (a: number, b: number) => number;`
+
+Teraz możemy przypisać:
+```TS
+operacja = (a: number, b: number): number => {
+    return a + b;
+};
+
+// Albo krócej:
+
+let operacja: (a: number, b: number) => number =
+    (a, b) => a + b;
+
+// Ale nie możemy zrobić:
+operacja = (a: string, b: string) => a + b;
+
+// ponieważ zadeklarowaliśmy: number
+```
+
+### 15. **Type alias dla funkcji — TypeScript**
+
+Jeżeli taki typ funkcji będzie używany wiele razy, możemy stworzyć własny typ.
+
+`type Operacja = (a: number, b: number) => number;`
+
+Następnie:
+```TS
+const dodaj: Operacja = (a, b) => a + b;
+
+const odejmij: Operacja = (a, b) => a - b;
+```
+To jest bardzo często spotykane w TypeScript.
+
+### 16. **Funkcja przekazana jako parametr — TypeScript**
+
+**Możemy powiedzieć, że parametr funkcji również musi być funkcją.**
+
+```TS
+function wykonaj(
+    a: number,
+    b: number,
+    operacja: (x: number, y: number) => number
+): number {
+    return operacja(a, b);
+}
+
+const dodaj = (a: number, b: number): number => a + b;
+
+console.log(wykonaj(5, 3, dodaj));    // 8
+
+// Możemy też przekazać funkcję bezpośrednio:
+
+console.log( wykonaj(5, 3, (a, b) => a * b) ); // 15
+```
+
+### 17. **Przeciążanie funkcji — Function Overloading w TypeScript**
+
+To ważna możliwość TypeScript.
+
+Możemy powiedzieć, że funkcję można wywoływać na różne sposoby.
+```TS
+function polacz(a: number, b: number): number;
+
+function polacz(a: string, b: string): string;
+
+function polacz(
+    a: number | string,
+    b: number | string
+): number | string {
+
+    if (typeof a === "number" && typeof b === "number") {
+        return a + b;
+    }
+
+    return String(a) + String(b);
+}
+
+// Teraz możemy:
+polacz(2, 3); otrzymać: 5
+
+// oraz:
+polacz("Jan", " Kowalski"); // otrzymać: Jan Kowalski
+```
+
+To jest mechanizm **TypeScript**, nie JavaScript.
+
+
+
 ### TypeScript – `break`, `continue`, inkrementacja i dekrementacja
 
 Te instrukcje i operatory działają **identycznie jak w JavaScript**. TypeScript kontroluje jedynie, czy operacja jest wykonywana na odpowiednim typie danych.
