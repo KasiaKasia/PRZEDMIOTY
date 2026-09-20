@@ -2154,7 +2154,7 @@ print(dlugie)
 
 ### reduce
 
-**Funkcja reduce** (z modułu functools) redukuje iterowalny do pojedynczej wartości, stosując funkcję kumulacyjną do elementów. Wymaga importu: from functools  import reduce. 
+**Funkcja reduce** (z modułu functools) **służy do zredukowania wielu elementów kolekcji do jednej końcowej wartości**. Wymaga importu: from functools  import reduce. 
 
 Ogólna składnia 
 ```text
@@ -2174,12 +2174,34 @@ suma = reduce(lambda x, y: x + y, liczby)
 print(suma) 
 ```
 
+`reduce()` działa tutaj krok po kroku tak:
+```text
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+```
+Właśnie dlatego nazywa się **reduce**, czyli można powiedzieć: **redukuje wiele wartości do jednej wartości**.
+
+
 Przykład: Znalezienie maksymalnej wartości w liście. 
 ```python
 from functools import reduce 
 liczby = [1, 3, 2, 5, 4] 
 maks = reduce(lambda x, y: x if x > y else y, liczby) 
 print(maks) 
+```
+
+Możemy również zapisać to bez lambda, używając zwykłej funkcji:
+
+```Python
+from functools import reduce
+
+def dodaj(a, b):
+    return a + b
+
+liczby = [1, 2, 3, 4]
+wynik = reduce(dodaj, liczby)
+print(wynik) 
 ```
 
 ## Rekurencja 
@@ -2215,7 +2237,8 @@ Teraz "wspinamy się" z powrotem: 2 * 1 = 2, 3 * 2 = 6, 4 * 6 = 24, 5 * 24 = 120
 
 ## Wyjątki 
 
-**Wyjątki** to mechanizm, **który pozwala programowi radzić sobie z błędami w czasie wykonania (runtime errors), np. dzielenie przez zero, brak pliku czy nieoczekiwane dane. Zamiast crashować program, możesz "złapać" błąd i obsłużyć go elegancko**. To kluczowe dla robustnego kodu. Python ma wbudowane wyjątki (np. ZeroDivisionError, FileNotFoundError), ale możesz też tworzyć własne. Podstawowa struktura to blok try-except, z opcjonalnymi else i finally.  
+**Wyjątki** to mechanizm, **który pozwala programowi radzić sobie z błędami w czasie wykonania (runtime errors), np. dzielenie przez zero, brak pliku czy nieoczekiwane dane. Zamiast crashować program, możesz "złapać" błąd i obsłużyć go elegancko**. Jest to kluczowe dla tworzenia niezawodnego i odpornego na błędy kodu. 
+Python ma wbudowane wyjątki (np. ZeroDivisionError, FileNotFoundError), ale możesz też tworzyć własne. Podstawowa struktura to blok try-except, z opcjonalnymi else i finally.  
 
 **Podstawowa struktura: try-except**
 - **try**: W tym bloku umieszczasz kod, który może spowodować błąd. 
@@ -2233,6 +2256,8 @@ except ValueError:
 except ZeroDivisionError: 
     print("Nie dziel przez zero!") 
 ```
+Warto też zauważyć, że Python ma wiele innych wbudowanych wyjątków, np. `TypeError`, `IndexError`, `KeyError`, `FileNotFoundError`, `NameError`.
+
 
 **Dodatkowe bloki: else i finally** 
 
@@ -2254,9 +2279,11 @@ except Exception as e:
 else: 
     print(f"Wynik dzielenia: {wynik}") 
     print("Obliczenia zakończone sukcesem.") 
-finally: 
+finally: # finally - wykona się zawsze, niezależnie od tego, czy wystąpił błąd:
     print("Program zakończył przetwarzanie wejścia – zawsze to się wyświetli.") 
 ```
+`**Exception**` jest bazową klasą dla większości standardowych wyjątków w Pythonie i może służyć do przechwytywania błędów, które nie zostały wcześniej obsłużone przez bardziej szczegółowe bloki except.
+
 
 **Raise**: Rzucanie wyjątków raise pozwala ręcznie "rzucić" wyjątek, np. gdy chcesz przerwać wykonanie przy niepoprawnych danych. Możesz raise'ować wbudowany wyjątek lub własny. 
 
