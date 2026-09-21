@@ -158,8 +158,11 @@ Przykład:
 function add(int|float $a, int|float $b): int|float {
  return $a + $b;
 }
-echo add(5, 3);
+echo add("5", 3); 
 ```
+
+Union Type określa, jakie typy są dozwolone, ale przy domyślnych ustawieniach PHP nadal może wykonać **konwersję typu**, jeżeli jest ona możliwa.
+
 ● **Intersection Types** (od PHP 8.1) Wymagają, aby wartość była zgodna ze wszystkimi określonymi typami (używane głównie z obiektami).
 Przykład:
 ```PHP
@@ -537,6 +540,21 @@ Funkcja	Zastosowanie
 - `mysqli_fetch_assoc()`	pobiera rekord jako tablicę asocjacyjną
 - `mysqli_close()`	zamyka połączenie z bazą
  
+## Kometarze w PHP
+
+```PHP
+// To jest komentarz jednoliniowy
+
+# To również jest komentarz jednoliniowy
+
+/*
+To jest komentarz
+wieloliniowy
+w PHP
+*/
+```
+
+
 ---
 ## METODY FORMULARZA 
 W formularzach HTML używanych z PHP najczęściej stosuje się dwie metody przesyłania danych:
