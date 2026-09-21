@@ -277,8 +277,215 @@ console.log(j); // ❌ błąd — j is not defined
 
 ```
 
+## Typy danych TypeScript
 
+| Typ danych  | Przykład                                                        |
+| ----------- | --------------------------------------------------------------- |
+| `string`    | `let imie: string = "Anna";`                                    |
+| `number`    | `let wiek: number = 18;`                                        |
+| `boolean`   | `let aktywny: boolean = true;`                                  |
+| `null`      | `let wynik: null = null;`                                       |
+| `undefined` | `let wartosc: undefined = undefined;`                           |
+| `bigint`    | `let duzaLiczba: bigint = 12345678901234567890n;`               |
+| `symbol`    | `let id: symbol = Symbol("id");`                                |
+| `array`     | `let liczby: number[] = [1, 2, 3];`                             | 
+| `tuple`     | `let osoba: [string, number] = ["Anna", 18];`                   |
+| `object`    | `let uczen: object = { imie: "Anna", wiek: 18 };`               |
+| `Set`	      | `let liczby: Set<number> = new Set([1, 2, 3]);`                 |
+| `Map`	      | `let uczen: Map<string, string> = new Map([["imie", "Anna"]]);` |
+| `enum`      | `enum Kolor { Czerwony, Zielony, Niebieski }`                   |
+| `any`       | `let dane: any = "tekst"; dane = 10;`                           |
+| `unknown`   | `let dane: unknown = "tekst";`                                  |
+| `void`      | `function pokaz(): void { console.log("Hello"); }`              | 
+| `never`     | `function blad(): never { throw new Error("Błąd"); }`           |
+
+
+**`Set`** przechowuje unikalne wartości.
+
+```TS
+let liczby: Set<number> = new Set();
+
+liczby.add(1);
+liczby.add(2);
+liczby.add(2);
+
+console.log(liczby);
+```
+
+```text
+W zbiorze będą tylko:
+
+1
+2
+```
+
+**`Map`** przechowuje dane jako pary: `klucz → wartość`
+
+Przykład:
+```TS
+let uczen: Map<string, string> = new Map();
+
+uczen.set("imie", "Anna");
+uczen.set("miasto", "Warszawa");
+
+// Pobranie wartości:
+
+console.log(uczen.get("imie")); // Anna
+```
+**`any`** - oznacza zmienna może mieć dowolny typ, a TypeScript ma jej nie sprawdzać
+
+Przykład:
+```TS
+let dane: any = "Anna";
+
+dane = 25;
+dane = true;
+dane = [1, 2, 3];
+
+let imieString: string = "Anna";
+
+imieString = 25; // BŁĄD
+
+// dla any
+
+let imieAny: any = "Anna";
+
+imieAny = 25;    // OK
+imieAny = true;  // OK
+
+// róznice miedzy any a unknown
+let a: any = "Anna";
+let b: unknown = "Anna";
+
+a.toUpperCase(); // OK
+
+b.toUpperCase(); // BŁĄD TypeScript
+
+
+```
+
+
+
+**`unknown`** - oznacza mam jakąś wartość, ale jeszcze nie wiem, jakiego jest typu.
+
+Jest podobny do any, ale **bezpieczniejszy, ponieważ TypeScript nie pozwala od razu wykonywać na takiej wartości operacji** charakterystycznych dla konkretnego typu.
+
+```TS
+let a: any = "Anna";
+let b: unknown = "Anna";
+
+a.toUpperCase(); // OK
+b.toUpperCase(); // BŁĄD
+
+let dane: unknown;
+
+dane = "Anna";
+dane = 25;
+dane = true;
+
+let daneString: string = 'aa'
+
+daneString ='a'
+daneString = 4
+
+const unknownValue0: unknown = [15, 23, 8, 4, 42, 16]; 
+const unknownValue1: unknown = 'a'; 
+const unknownValue2: unknown = 1; 
+let unknownValue3: unknown = []; 
+let unknownValue4: unknown = false || true; 
+let unknownValue5: unknown = NaN;
+let value: unknown;
+let valueA: unknown = value; // OK
+let valueB: any = value; // OK
+
+// Unknown isn’t assignable to anything but itself and any
+// let valueC: boolean = value; // Type 'unknown' is not assignable to type 'boolean'.
+// let valueD: number = value; // Type 'unknown' is not assignable to type 'number'
+// let valueE: string = value; // Type 'unknown' is not assignable to type 'string'
+// let valueF: object = value; // Type 'unknown' is not assignable to type 'object' 
+// let valueG: any[] = value; // Type '{}' is missing the following properties from type 'any[]': length, pop, push, concat, and 26 more.
+// let valueH: Function = value; // Type '{}' is missing the following properties from type 'Function': apply, call, bind, prototype, and 5 more.ts(2740)
+
+```
+
+**`enum`** w TypeScript służy do **zdefiniowania zamkniętego zestawu nazwanych wartości**.
+
+Przykład:
+```TS
+enum Kolor {
+    Czerwony,
+    Zielony,
+    Niebieski
+}
+// Domyślnie TypeScript przypisze im liczby:
+
+// Czerwony = 0
+// Zielony = 1
+// Niebieski = 2
+
+console.log(Kolor.Czerwony); // 0
+console.log(Kolor.Zielony);  // 1
+
+console.log(Kolor[0]); // "Czerwony"
+console.log(Kolor[1]); // "Zielony"
+
+enum Status {
+    Nowy = 10,
+    WTrakcie = 20,
+    Zakonczony = 30
+}
+
+```
+
+**`tuple`** w TypeScript to uporządkowana tablica o ustalonej liczbie elementów i określonych typach na konkretnych pozycjach.
+
+Przykład:
+```TS
+let osoba: [string, number] = ["Anna", 18];
  
+osoba[0] // "Anna"
+osoba[1] // 18
+```
+
+**`symbol`**
+
+Tworzy unikalne wartości:
+```TS
+let id1 = Symbol("id");
+let id2 = Symbol("id");
+
+console.log(id1 === id2); // false
+```
+
+**`object`**
+
+Do obiektów należą między innymi zwykłe obiekty:
+```TS
+let osoba = {
+    imie: "Anna",
+    wiek: 18
+};
+ 
+// ale również tablice:
+let liczby = [1, 2, 3];
+// W JavaScript tablica nie jest osobnym podstawowym typem danych. Jest obiektem:
+
+console.log(typeof [1, 2, 3]); // "object"
+
+// oraz np. obiekty Date:
+let data = new Date() 
+console.log(typeof data); // "object";
+
+
+//  Do sprawdzenia, czy coś jest tablicą, używamy:
+
+console.log(Array.isArray([1, 2, 3])); // true
+
+// Jest jednak jedna charakterystyczna pułapka JavaScriptu:
+
+console.log(typeof null); // object
+ 
+```
 
 ## 3.  **Instrukcje `if, else if, else`**
 
@@ -600,7 +807,6 @@ name: Anna
 age: 25
 city: Warszawa
 
-
 f) **forEach**
 ```JS
 const imiona = ["Anna", "Jan", "Kasia"];
@@ -615,7 +821,7 @@ Wynik:
 2 Kasia
 
 
-### TypeScript – pętle
+### TypeScript – pętle 
 
 `for`, `while`, `do...while`, `for...of`, `for...in` i `forEach` mają w TypeScript taką samą składnię jak w JavaScript.
 
@@ -1214,8 +1420,6 @@ polacz("Jan", " Kowalski"); // otrzymać: Jan Kowalski
 
 To jest mechanizm **TypeScript**, nie JavaScript.
 
-
-
 ### TypeScript – `break`, `continue`, inkrementacja i dekrementacja
 
 Te instrukcje i operatory działają **identycznie jak w JavaScript**. TypeScript kontroluje jedynie, czy operacja jest wykonywana na odpowiednim typie danych.
@@ -1230,7 +1434,7 @@ counter--;
 ```
 ## Klasy 
 
-**Klasy** w JavaScript i TypeScript s**łużą do definiowania struktury i zachowania obiektów**. Można je traktować jako wzorzec, na podstawie którego tworzone są kolejne obiekty. W klasie określamy właściwości przechowujące dane oraz metody opisujące operacje, które obiekt może wykonywać.
+**Klasy** w JavaScript i TypeScript **służą do definiowania struktury i zachowania obiektów**. Można je traktować jako wzorzec, na podstawie którego tworzone są kolejne obiekty. W klasie określamy właściwości przechowujące dane oraz metody opisujące operacje, które obiekt może wykonywać.
 
 **Obiekt** jest konkretnym egzemplarzem utworzonym na podstawie klasy.
 
