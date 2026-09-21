@@ -1,6 +1,6 @@
 # HTML
 
-**HTML** **(HyperText Markup Language)** to **język znaczników używany do tworzenia struktury stron** internetowych. **Nie jest językiem programowania** — opisuje, co znajduje się na stronie: nagłówki, tekst, obrazy, linki, formularze, tabele itd.
+📝**HTML** **(HyperText Markup Language)** to **język znaczników używany do tworzenia struktury stron** internetowych. **Nie jest językiem programowania** — opisuje, co znajduje się na stronie: nagłówki, tekst, obrazy, linki, formularze, tabele itd.
 
 ## Podstawowa budowa dokumentu HTML
 
@@ -35,24 +35,24 @@
 
 | Znacznik          | Znaczenie                                                                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------|
-| `<!DOCTYPE html>` | informuje przeglądarkę, że dokument jest napisany w HTML5. Dzięki temu przeglądarka wie, jak poprawnie interpretować i wyświetlać stronę.     |
-| `<html>`          | główny element całej strony                                                                                                                   |
-| `<head>`          | informacje o stronie niewidoczne bezpośrednio na stronie                                                                                      |
+| 📝`<!DOCTYPE html>` | informuje przeglądarkę, że dokument jest napisany w HTML5. Dzięki temu przeglądarka wie, jak poprawnie interpretować i wyświetlać stronę.     |
+| 📝`<html>`          | główny element całej strony                                                                                                                   |
+| 📝`<head>`          | informacje o stronie niewidoczne bezpośrednio na stronie                                                                                      |
 | `<base>`          | ustawia podstawowy adres URL dla wszystkich względnych linków i ścieżek w dokumencie                                                          |
-| `<link>`          | służy do dołączania zewnętrznych zasobów, np. pliku CSS                                                                                       |
-| `<meta>`          | dodatkowe informacje o dokumencie                                                                                                             |
-| `<title>`         | tytuł widoczny na karcie przeglądarki                                                                                                         |
-| `<style>`         | pozwala zapisać kod CSS bezpośrednio w dokumencie HTML                                                                                        |    
-| `<body>`          | zawartość strony widoczna dla użytkownika                                                                                                     |
+| 📝`<link>`          | służy do dołączania zewnętrznych zasobów, np. pliku CSS                                                                                       |
+| 📝`<meta>`          | dodatkowe informacje o dokumencie                                                                                                             |
+| 📝`<title>`         | tytuł widoczny na karcie przeglądarki                                                                                                         |
+| 📝`<style>`         | pozwala zapisać kod CSS bezpośrednio w dokumencie HTML                                                                                        |    
+| 📝`<body>`          | zawartość strony widoczna dla użytkownika                                                                                                     |
 
 
 Inne wartości dla atrybutu `content` w znaczniku `meta`:
 
 | Ustawienie      | Przykład             | Znaczenie                                                                      |
 | --------------- | -------------------- | ------------------------------------------------------------------------------ |
-| `width`         | `width=device-width` | Ustawia szerokość viewportu równą szerokości urządzenia                        |
+| 📝`width`         | `width=device-width` | Ustawia szerokość viewportu równą szerokości urządzenia                        |
 | `width`         | `width=980`          | Ustawia konkretną szerokość viewportu, np. 980 px                              |
-| `initial-scale` | `initial-scale=1.0`  | Początkowy poziom powiększenia strony                                          |
+| 📝`initial-scale` | `initial-scale=1.0`  | Początkowy poziom powiększenia strony                                          |
 | `minimum-scale` | `minimum-scale=0.5`  | Najmniejsze dozwolone pomniejszenie                                            |
 | `maximum-scale` | `maximum-scale=3.0`  | Największe dozwolone powiększenie                                              |
 | `user-scalable` | `user-scalable=yes`  | Pozwala użytkownikowi powiększać stronę                                        |
@@ -62,7 +62,7 @@ Inne wartości dla atrybutu `content` w znaczniku `meta`:
 
 ## Podstawowe znaczniki HTML
 
-### Nagłówki
+### 📝 Nagłówki
 
 HTML posiada 6 poziomów nagłówków:
 ```html
@@ -76,7 +76,7 @@ HTML posiada 6 poziomów nagłówków:
 `<h1>` jest najważniejszym nagłówkiem, a `<h6>` najmniej ważnym.
 Na stronie zwykle mamy jeden główny `<h1>`.
 
-### Akapit
+### 📝 Akapit
 
 Do tworzenia akapitów służy:
 ```html
@@ -86,7 +86,7 @@ Do tworzenia akapitów służy:
 ```
 `<p>` pochodzi od angielskiego paragraph.
 
-### Przejście do nowej linii
+### 📝 Przejście do nowej linii
 ```html
 Jan Kowalski<br>
 ul. Kwiatowa 10<br>
@@ -96,7 +96,7 @@ ul. Kwiatowa 10<br>
 
 Nie wymaga znacznika zamykającego.
 
-### Linia pozioma
+### 📝 Linia pozioma
 ```html
 <p>Pierwsza część strony</p>
 <hr>
@@ -104,7 +104,7 @@ Nie wymaga znacznika zamykającego.
 ```
 `<hr>` tworzy poziomą linię oddzielającą treść.
 
-### Pogrubienie tekstu
+### 📝 Pogrubienie tekstu
 
 Najczęściej:
 ```html
@@ -116,7 +116,7 @@ Można również spotkać:
 ```
 Różnica jest semantyczna. `<strong>` oznacza, że tekst jest ważny, natomiast `<b>` przede wszystkim wyróżnia go wizualnie.
 
-### Kursywa
+### 📝 Kursywa
 ```html
 <em>Ten tekst jest zaakcentowany.</em>
 ```
@@ -127,11 +127,11 @@ lub:
 `<em>` oznacza zaakcentowanie lub podkreślenie znaczenia tekstu. Ma znaczenie semantyczne, a wiec oznacza, że znacznik przekazuje informację o znaczeniu treści, a nie tylko o jej wyglądzie.
 `<i>` oznacza głównie wyróżnienie tekstu stylistycznie, np. termin, obce słowo lub nazwę, bez sugerowania szczególnego nacisku.
 
-### Podkreślenie
+### 📝 Podkreślenie
 ```html
 <u>Podkreślony tekst</u>
 ```
-### Indeks górny
+### 📝 Indeks górny
 
 Przydatny np. w matematyce:
 ```html
@@ -139,7 +139,7 @@ Przydatny np. w matematyce:
 ```
 Rezultat: 2³ = 8
 
-### Indeks dolny
+### 📝 Indeks dolny
 
 Przydatny np. w chemii:
 ```html
@@ -147,24 +147,24 @@ H<sub>2</sub>O
 ```
 Rezultat: H₂O
 
-### Tekst przekreślony
+### 📝 Tekst przekreślony
 Oznacza tekst, który nie jest już aktualny lub prawdziwy.
 ```html
 <s>Przekreślony tekst</s>
 ```
 
-### Tekst poboczny
+### 📝 Tekst poboczny
 Oznacza tekst poboczny, np. drobny druk, informację dodatkową, prawa autorskie. Przeglądarki zwykle wyświetlają go mniejszą czcionką.
 ```html
 <small>small </small>
 ```
 
-### Tytuł
+### 📝 Tytuł
 Oznacza tytuł dzieła, np. książki, filmu, artykułu, obrazu.
 ```html
 <cite>Tytuł książki</cite>
 ```
-### Cytat
+### 📝 Cytat
 Oznacza krótki cytat wewnątrz tekstu. Przeglądarka zazwyczaj sama dodaje cudzysłowy.
 ```html
 <q> cytat wewnątrz tekstu </q>
@@ -234,7 +234,7 @@ Oznacza termin, który jest właśnie definiowany.
 ```
 
 
-### Linki
+### 📝 Linki
 
 Do tworzenia linków służy znacznik `<a>`:
 ```html
@@ -244,33 +244,34 @@ Najczęściej używane atrybuty znacznika `<a>`:
 
 | Atrybut    | Przykładowa wartość        | Znaczenie                                                                                      |
 | ---------- | -------------------------- | ---------------------------------------------------------------------------------------------- |
-| `href`     | `"https://www.google.com"` | Określa adres, do którego prowadzi link.                                                       |
-| `target`   | `"_blank"`                 | Określa, gdzie ma zostać otwarty link.                                                         |
-| `rel`      | `"noopener noreferrer"`    | Określa relację między bieżącą stroną a stroną docelową; często stosowany z `target="_blank"`. |
-| `title`    | `"Przejdź do Google"`      | Dodatkowa informacja o linku, zwykle widoczna po najechaniu kursorem.                          |
-| `download` | `"plik.pdf"`               | Powoduje pobranie wskazanego pliku zamiast jego otwarcia.                                      |
-| `hreflang` | `"en"`                     | Informuje, w jakim języku jest strona, do której prowadzi link.                                |
-| `type`     | `"application/pdf"`        | Informuje o typie zasobu, do którego prowadzi link.                                            |
+| 📝 `href`     | `"https://www.google.com"` | Określa adres, do którego prowadzi link.                                                       |
+| 📝`target`   | `"_blank"`                 | Określa, gdzie ma zostać otwarty link.                                                         |
+| 📝`rel`      | `"noopener noreferrer"`    | Określa relację między bieżącą stroną a stroną docelową; często stosowany z `target="_blank"`. |
+| 📝`title`    | `"Przejdź do Google"`      | Dodatkowa informacja o linku, zwykle widoczna po najechaniu kursorem.                          |
+| 📝`download` | `"plik.pdf"`               | Powoduje pobranie wskazanego pliku zamiast jego otwarcia.                                      |
+| 📝`hreflang` | `"en"`                     | Informuje, w jakim języku jest strona, do której prowadzi link.                                |
+| 📝`type`     | `"application/pdf"`        | Informuje o typie zasobu, do którego prowadzi link.                                            |
 
 Atrybut `target`
 Najczęściej używane wartości:
 
 | Wartość   | Znaczenie                                                    |
 | --------- | ------------------------------------------------------------ |
-| `_self`   | Otwiera link w tej samej karcie — wartość domyślna.          |
-| `_blank`  | Otwiera link w nowej karcie lub oknie.                       |
-| `_parent` | Otwiera link w kontekście nadrzędnym, np. przy użyciu ramek. |
-| `_top`    | Otwiera link w najwyższym kontekście przeglądania.           |
+| 📝`_self`   | Otwiera link w tej samej karcie — wartość domyślna.          |
+| 📝`_blank`  | Otwiera link w nowej karcie lub oknie.                       |
+| 📝`_parent` | Otwiera link w kontekście nadrzędnym, np. przy użyciu ramek. |
+| 📝`_top`    | Otwiera link w najwyższym kontekście przeglądania.           |
 
 
 Jeśli link znajduje się wewnątrz strona.html, to:
 
 | Wartość   | Co robi                                                                       |
 | --------- | ----------------------------------------------------------------------------- |
-| `_parent` | Otwiera link w **elemencie nadrzędnym**, czyli w stronie zawierającej iframe. |
-| `_top`    | Otwiera link w **najwyższej stronie**, czyli usuwa wszystkie poziomy iframe.  |
+| 📝`_parent` | Otwiera link w **elemencie nadrzędnym**, czyli w stronie zawierającej iframe. |
+| 📝`_top`    | Otwiera link w **najwyższej stronie**, czyli usuwa wszystkie poziomy iframe.  |
 
-Przykład dla `_parent` i `_top`
+Przykład dla `_parent` i `_top` 
+Przykład jest w katalogu `znaczniki/iframe`
 Struktura:
 ```text
 index.html
@@ -354,15 +355,15 @@ Plik `iframe2.html` w którym znajdują się linki z `_parent` i `_top`:
 ```
 
 
-Atrybut `rel` **określa relację między bieżącą stroną a stroną lub zasobem, do którego prowadzi link**. Może zawierać kilka wartości jednocześnie, oddzielonych spacjami.
+📝 Atrybut `rel` **określa relację między bieżącą stroną a stroną lub zasobem, do którego prowadzi link**. Może zawierać kilka wartości jednocześnie, oddzielonych spacjami.
 
 Najczęściej używane wartości `rel`
 
 | Wartość                 | Znaczenie                                                                                                                                        |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `"noopener"`            | Powoduje, że nowo otwarta strona nie ma dostępu do obiektu `window.opener`. Czyli strona otwarta w nowej karcie nie może sterować stroną, z której została otwarta. Bez `noopener` potencjalnie mogłaby np. próbować zmienić adres strony nadrzędnej. Często stosowany z `target="_blank"`.                 |
-| `"noreferrer"`          |  Działa podobnie jak `noopener`, czyli nie ma dostępu do obiektu `window.opener`. Dodatkowo ukrywa informację, z jakiej strony użytkownik przyszedł.  |
-| `"noopener noreferrer"` | Łączy działanie obu powyższych wartości.                                                                                                         |
+| 📝`"noopener"`            | Powoduje, że nowo otwarta strona nie ma dostępu do obiektu `window.opener`. Czyli strona otwarta w nowej karcie nie może sterować stroną, z której została otwarta. Bez `noopener` potencjalnie mogłaby np. próbować zmienić adres strony nadrzędnej. Często stosowany z `target="_blank"`.                 |
+| 📝`"noreferrer"`          |  Działa podobnie jak `noopener`, czyli nie ma dostępu do obiektu `window.opener`. Dodatkowo ukrywa informację, z jakiej strony użytkownik przyszedł.  |
+| 📝`"noopener noreferrer"` | Łączy działanie obu powyższych wartości.                                                                                                         |
 | `"nofollow"`            | Informuje wyszukiwarki, że nie powinny traktować linku jako rekomendacji strony docelowej.                                                       |
 | `"sponsored"`           | Oznacza link reklamowy, sponsorowany lub płatny.                                                                                                 |
 | `"ugc"`                 | Oznacza link pochodzący z treści utworzonej przez użytkownika, np. komentarza lub forum.                                                         |
@@ -373,7 +374,7 @@ Najczęściej używane wartości `rel`
 | `"next"`                | Wskazuje następną stronę w serii dokumentów.                                                                                                     |
 | `"prev"`                | Wskazuje poprzednią stronę w serii dokumentów.                                                                                                   |
 
-### Obrazy
+### 📝 Obrazy
 ```html
 <img src="kot.jpg" alt="Zdjęcie kota">
 ```
@@ -381,17 +382,17 @@ Najważniejsze atrybuty:
 
 | Atrybut   | Znaczenie                                                                                                                              |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`     | Adres lub nazwa pliku obrazu.                                                                                                          |
-| `alt`     | Tekst alternatywny opisujący obraz.                                                                                                    |
-| `width`   | Szerokość obrazu, np. `width="300"`.                                                                                                   |
-| `height`  | Wysokość obrazu, np. `height="200"`.                                                                                                   |
-| `title`   | Dodatkowa informacja o obrazie, często wyświetlana po najechaniu kursorem.                                                             |
-| `loading` | `loading="lazy"` - obraz jest ładowany z opóźnieniem — dopiero gdy użytkownik zbliża się do miejsca, w którym obraz będzie widoczny |
-|           | `loading="eager"`- Obraz ma zostać załadowany od razu, nawet jeśli znajduje się niżej na stronie.|                      
+|📝 `src`     | Adres lub nazwa pliku obrazu.                                                                                                          |
+|📝 `alt`     | Tekst alternatywny opisujący obraz.                                                                                                    |
+|📝`width`   | Szerokość obrazu, np. `width="300"`.                                                                                                   |
+|📝 `height`  | Wysokość obrazu, np. `height="200"`.                                                                                                   |
+|📝`title`   | Dodatkowa informacja o obrazie, często wyświetlana po najechaniu kursorem.                                                             |
+|📝`loading` | 📝 `loading="lazy"` - obraz jest ładowany z opóźnieniem — dopiero gdy użytkownik zbliża się do miejsca, w którym obraz będzie widoczny |
+|           | 📝 `loading="eager"`- Obraz ma zostać załadowany od razu, nawet jeśli znajduje się niżej na stronie.|                      
  
 
  
-### Lista nieuporządkowana
+### 📝 Lista nieuporządkowana
 
 Lista z punktami:
 ```html
@@ -412,7 +413,7 @@ Rezultat:
 `ul` = lista nieuporządkowana
 `li` = element listy
 
-### Lista uporządkowana
+### 📝 Lista uporządkowana
 
 Lista numerowana:
 ```html
@@ -434,17 +435,17 @@ Rezultat:
 
 | Atrybut            |   Znaczenie                                                                                    |
 | ------------------ | ---------------------------------------------------------------------------------------------: | 
-| type               | Typ numeracji                                                                                  |
+| 📝 type               | Typ numeracji                                                                                  |
+| ------------------ | --------------------------------------------------------------------------------------------: | 
+|                    | 📝"1" (domyślnie),                                                                            |
+|                    | 📝"A" (wielkie litery),                                                                       |
+|                    | 📝"a" (małe litery),                                                                          |
+|                    | 📝"I" (wielkie rzymskie),                                                                     |
+|                    | 📝"i" (małe rzymskie).                                                                        | 
 | ------------------ | ---------------------------------------------------------------------------------------------: | 
-|                    | "1" (domyślnie),                                                                               |
-|                    | "A" (wielkie litery),                                                                          |
-|                    | "a" (małe litery),                                                                             |
-|                    | "I" (wielkie rzymskie),                                                                        |
-|                    | "i" (małe rzymskie).                                                                           | 
+| 📝start            |📝Numer, od którego zaczyna się lista (np. start="5" → pierwszy element ma numer 5).             |
 | ------------------ | ---------------------------------------------------------------------------------------------: | 
-| start              | Numer, od którego zaczyna się lista (np. start="5" → pierwszy element ma numer 5).             |
-| ------------------ | ---------------------------------------------------------------------------------------------: | 
-| reversed           |   Odwraca kolejność numeracji (np. ostatni element będzie 1).                                  |
+| 📝reversed         |   Odwraca kolejność numeracji (np. ostatni element będzie 1).                                  |
 
 ### Inne listy
 ```html
@@ -462,27 +463,27 @@ Coffee
  - white cold drink
 
 
-### Znaczniki liniowe i blokowe
+### 📝Znaczniki liniowe i blokowe
 
 **Znaczniki blokowe (display: block)**
 ```text
-● Definicja: Elementy blokowe zajmują całą dostępną szerokość swojego kontenera nadrzędnego, tworząc "blok", który zaczyna się od nowej linii i rozciąga się na całą szerokość. Każdy kolejny element blokowy pojawia się poniżej poprzedniego.
+● 📝Definicja: Elementy blokowe zajmują całą dostępną szerokość swojego kontenera nadrzędnego, tworząc "blok", który zaczyna się od nowej linii i rozciąga się na całą szerokość. Każdy kolejny element blokowy pojawia się poniżej poprzedniego.
 
-● Cechy:
-     ○ Zajmują 100% szerokości rodzica (chyba że zmieniono to np. przez width).
-     ○ Zawsze zaczynają się od nowej linii.
+● 📝Cechy:
+     ○ 📝Zajmują 100% szerokości rodzica (chyba że zmieniono to np. przez width).
+     ○ 📝Zawsze zaczynają się od nowej linii.
      ○ Mogą mieć ustawione właściwości takie jak width, height, margin, padding w sposób pełny.
-     ○ Przykłady domyślnych elementów blokowych: <div>, <p>, <h1>–<h6>, <ul>, <li>, <section>, <article>, <form> Mardines pocamI.
+     ○ 📝Przykłady domyślnych elementów blokowych: <div>, <p>, <h1>–<h6>, <ul>, <li>, <section>, <article>, <form> Mardines pocamI.
 ```
 
 **Znaczniki liniowe (display: inline)**
 ```text
-● Definicja: Elementy liniowe zajmują tylko tyle miejsca, ile jest potrzebne do wyświetlenia ich zawartości, i nie zaczynają się od nowej linii. Są ułożone obok siebie w tej samej linii, o ile pozwala na to przestrzeń.
+● 📝Definicja: Elementy liniowe zajmują tylko tyle miejsca, ile jest potrzebne do wyświetlenia ich zawartości, i nie zaczynają się od nowej linii. Są ułożone obok siebie w tej samej linii, o ile pozwala na to przestrzeń.
 
-● Cechy:
-    ○ Nie można ustawić dla nich pełnych właściwości width i height (rozmiar zależy od zawartości).
+● 📝Cechy:
+    ○ 📝Nie można ustawić dla nich pełnych właściwości width i height (rozmiar zależy od zawartości).
     ○ Marginesy (margin) i wypełnienia (padding) działają tylko w poziomie (lewo/prawo), nie w pionie.
-    ○ Przykłady domyślnych elementów liniowych: <span>, <a>, <strong>, <em>, <img>, <b>, <i>.
+    ○ 📝Przykłady domyślnych elementów liniowych: <span>, <a>, <strong>, <em>, <img>, <b>, <i>.
 ```
 
 Przykład:
@@ -527,18 +528,19 @@ Przykład:
 
 </html>
 ```
-**Efekt**: Oba `<div>` pojawią się jeden pod drugim, każdy zajmując całą szerokość kontenera.
+📝**Efekt**: Oba `<div>` pojawią się jeden pod drugim, każdy zajmując całą szerokość kontenera.
 
-**Efekt**: Oba `<span>` pojawią się w tej samej linii, obok siebie, z tłem obejmującym tylko ich zawartość.
+📝**Efekt**: Oba `<span>` pojawią się w tej samej linii, obok siebie, z tłem obejmującym tylko ich zawartość.
 
 ## Znaczniki skryptów i szablonów
 | Znacznik     | Znaczenie                                                               |
 | ------------ | ----------------------------------------------------------------------- |
-| `<script>`   | Umieszcza lub dołącza skrypt, najczęściej JavaScript                    |
-| `<noscript>` | Wyświetla treść, gdy JavaScript jest wyłączony lub niedostępny          |
+| 📝`<script>`   | Umieszcza lub dołącza skrypt, najczęściej JavaScript                    |
+| 📝`<noscript>` | Wyświetla treść, gdy JavaScript jest wyłączony lub niedostępny          |
 | `<template>` | Przechowuje szablon HTML, który nie jest od razu wyświetlany na stronie. Jego zawartość można później skopiować i wstawić do dokumentu za pomocą JavaScript. |
 | `<slot>`     | Określa miejsce na treść przekazywaną do Web Componentu                 |
 
+📝 Przykład dla znaczników `<script>` i `<noscript>`
 ```html
 <!DOCTYPE html>
 <html lang="pl">
@@ -630,16 +632,17 @@ Przykład dla `<template>`
 ```
 
 
-## Znaczniki interaktywne
+## 📝 Znaczniki interaktywne
 
 | Znacznik     | Znaczenie                                                                     |
 | ------------ | ----------------------------------------------------------------------------- |
-| `<details>`  | Tworzy rozwijany i zwijany fragment treści                                    |
-| `<summary>`  | Tworzy widoczny nagłówek elementu `<details>`                                 |
-| `<dialog>`   | Tworzy okno dialogowe                                                         |
-| `<menu>`     | Grupuje elementy lub polecenia, obecnie zachowuje się podobnie do listy       |
+| 📝`<details>`  | Tworzy rozwijany i zwijany fragment treści                                    |
+| 📝`<summary>`  | Tworzy widoczny nagłówek elementu `<details>`                                 |
+| 📝`<dialog>`   | Tworzy okno dialogowe                                                         |
+| 📝`<menu>`     | Grupuje elementy lub polecenia, obecnie zachowuje się podobnie do listy       |
 | `<menuitem>` | Dawny element menu; **przestarzały i nie należy go używać w nowych stronach** |
 
+📝 Przykład:
 ```html
 <!DOCTYPE html>
 <html lang="pl">
@@ -754,11 +757,11 @@ Przykład dla `<template>`
 
 | Znacznik | Znaczenie                                                                                                                         |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `<data>` | Łączy tekst widoczny dla użytkownika z wartością przeznaczoną do odczytu przez program, np. nazwę oceny z jej wartością liczbową. |
-| `<time>` | Oznacza datę lub czas. Atrybut `datetime` zapisuje tę datę lub czas w formacie zrozumiałym dla programu.                          |
-| `<var>`  | Oznacza zmienną, np. w matematyce lub programowaniu.                                                                              |
-| `<samp>` | Oznacza przykładowy wynik działania programu lub systemu.                                                                         |
-| `<kbd>`  | Oznacza dane wprowadzane przez użytkownika, najczęściej klawisz albo skrót klawiaturowy.                                          |
+|📝 `<data>` | Łączy tekst widoczny dla użytkownika z wartością przeznaczoną do odczytu przez program, np. nazwę oceny z jej wartością liczbową. |
+|📝`<time>` | Oznacza datę lub czas. Atrybut `datetime` zapisuje tę datę lub czas w formacie zrozumiałym dla programu.                          |
+|📝`<var>`  | Oznacza zmienną, np. w matematyce lub programowaniu.                                                                              |
+|📝`<samp>` | Oznacza przykładowy wynik działania programu lub systemu.                                                                         |
+|📝`<kbd>`  | Oznacza dane wprowadzane przez użytkownika, najczęściej klawisz albo skrót klawiaturowy.                                          |
 | `<mark>` | Oznacza tekst wyróżniony jako szczególnie ważny w danym kontekście. Przeglądarka zwykle podświetla go na żółto.                   |
 | `<bdi>`  | Izoluje fragment tekstu o innym kierunku pisania, np. tekst arabski znajdujący się w zdaniu polskim.                              |
 | `<bdo>`  | Wymusza kierunek wyświetlania tekstu. Najczęściej używa się z `dir="rtl"` lub `dir="ltr"`.                                        |
@@ -866,19 +869,19 @@ Przykład
 ```
 
 
-## Znaczniki opisywania tresci:
+## 📝Znaczniki opisywania tresci:
  
 **`<pre>`**, **`<code>`**
 
-`<pre>` oznacza preformatted text, czyli **tekst wstępnie sformatowany**
-`<code>` oznacza, że dany **fragment tekstu jest kodem programu**.
+📝`<pre>` oznacza preformatted text, czyli **tekst wstępnie sformatowany**
+📝`<code>` oznacza, że dany **fragment tekstu jest kodem programu**.
 ```html
 <pre><code>
 const x = 10;
 console.log(x);
 </code></pre>
 ```
-**`<blockquote>`**
+📝**`<blockquote>`**
 
 `<blockquote>` służy do oznaczania dłuższego cytatu pochodzącego z innego źródła.
 
@@ -890,22 +893,22 @@ console.log(x);
 ```
  
 
-### Podstawowe znaczniki tabeli
+### 📝 Podstawowe znaczniki tabeli
 
-| Znacznik     | Znaczenie                                    |
-| ------------ | -------------------------------------------- |
-| `<table>`    | tworzy całą tabelę                           |
-| `<caption>`  | tytuł/opis tabeli                            |
-| `<colgroup>` | grupuje kolumny, np. do wspólnego stylowania |
-| `<col>`      | reprezentuje kolumnę w `<colgroup>`          |
-| `<thead>`    | część nagłówkowa tabeli                      |
-| `<tbody>`    | główna zawartość tabeli                      |
-| `<tfoot>`    | stopka tabeli                                |
-| `<tr>`       | **table row** – wiersz tabeli                |
-| `<td>`       | **table data** – zwykła komórka              |
-| `<th>`       | **table header** – komórka nagłówkowa        |
+| Znacznik       | Znaczenie                                    |
+| -------------- | -------------------------------------------- |
+| 📝 `<table>`    | tworzy całą tabelę                           |
+| 📝 `<caption>`  | tytuł/opis tabeli                            |
+| 📝 `<colgroup>` | grupuje kolumny, np. do wspólnego stylowania |
+| 📝 `<col>`      | reprezentuje kolumnę w `<colgroup>`          |
+| 📝 `<thead>`    | część nagłówkowa tabeli                      |
+| 📝 `<tbody>`    | główna zawartość tabeli                      |
+| 📝 `<tfoot>`    | stopka tabeli                                |
+| 📝 `<tr>`       | **table row** – wiersz tabeli                |
+| 📝 `<td>`       | **table data** – zwykła komórka              |
+| 📝 `<th>`       | **table header** – komórka nagłówkowa        |
 
-Przykład:
+📝 Przykład:
 ```html
 <table>
     <caption>Lista produktów</caption>
@@ -941,7 +944,7 @@ Przykład:
 </table>
 ```
 
-**Łączenie kolumn — `colspan`**
+📝**Łączenie kolumn — `colspan`**
 
 ```html
 <table>
@@ -973,7 +976,7 @@ Rezultat:
 +------------+------------+
 ```
 
-**Łączenie wierszy — `rowspan`**
+📝 **Łączenie wierszy — `rowspan`**
 ```html
 <table>
 
@@ -1003,7 +1006,7 @@ Rezultat:
 |       | Jan   |
 +-------+-------+
 ```
-**`colspan` i `rowspan` razem**
+📝 **`colspan` i `rowspan` razem**
 Przykład:
 ```html
 <table>
@@ -1045,23 +1048,23 @@ Rezultat:
 
 | Znacznik     | Znaczenie                                            |
 | ------------ | ---------------------------------------------------- |
-| `<form>`     | Formularz                                            |
-| `<label>`    | Etykieta opisująca pole formularza                   |
-| `<input>`    | Pole formularza, np. tekst, liczba, e-mail, checkbox |
-| `<button>`   | Przycisk                                             |
-| `<select>`   | Lista rozwijana                                      |
-| `<datalist>` | Lista podpowiedzi dla pola `<input>`                 |
-| `<optgroup>` | Grupa opcji na liście `<select>`. Przy większej liczbie opcji można je pogrupować |
-| `<option>`   | Pojedyncza opcja w `<select>` lub `<datalist>`       |
-| `<textarea>` | Wielowierszowe pole tekstowe                         |
-| `<output>`   | Pole prezentujące wynik obliczeń                     |
-| `<progress>` | Pasek postępu wykonywania zadania                    |
-| `<meter>`    | Pokazuje wartości w określonym zakresie              |
-| `<fieldset>` | Grupuje powiązane pola formularza                    |
-| `<legend>`   | Tytuł grupy `<fieldset>`                             |
+| 📝`<form>`     | Formularz                                            |
+| 📝`<label>`    | Etykieta opisująca pole formularza                   |
+| 📝`<input>`    | Pole formularza, np. tekst, liczba, e-mail, checkbox |
+| 📝`<button>`   | Przycisk                                             |
+| 📝`<select>`   | Lista rozwijana                                      |
+| 📝`<datalist>` | Lista podpowiedzi dla pola `<input>`                 |
+| 📝`<optgroup>` | Grupa opcji na liście `<select>`. Przy większej liczbie opcji można je pogrupować |
+| 📝`<option>`   | Pojedyncza opcja w `<select>` lub `<datalist>`       |
+| 📝`<textarea>` | Wielowierszowe pole tekstowe                         |
+| 📝`<output>`   | Pole prezentujące wynik obliczeń                     |
+| 📝`<progress>` | Pasek postępu wykonywania zadania                    |
+| 📝`<meter>`    | Pokazuje wartości w określonym zakresie              |
+| 📝`<fieldset>` | Grupuje powiązane pola formularza                    |
+| 📝`<legend>`   | Tytuł grupy `<fieldset>`                             |
 
 
-Rodzaje `input`:
+📝Rodzaje `input`:
 
 ```html
 <input type="text">
@@ -1077,7 +1080,7 @@ Rodzaje `input`:
 <input type="submit">
 ```
 
-**Przykład formularza**
+📝**Przykład formularza**
 
 ```html
 <!DOCTYPE html>
@@ -1391,17 +1394,17 @@ Rodzaje `input`:
 
 | Znacznik       | Znaczenie                                                                  |
 | -------------- | -------------------------------------------------------------------------- |
-| `<img>`        | Wyświetla obraz                                                            |
-| `<picture>`    | Pozwala przygotować różne wersje obrazu zależnie od urządzenia lub formatu |
-| `<source>`     | Określa alternatywne źródło obrazu, filmu lub dźwięku                      |
-| `<figure>`     | Grupuje obraz lub inne multimedia z opisem                                 |
-| `<figcaption>` | Podpis do elementu `<figure>`                                              |
-| `<audio>`      | Umieszcza plik dźwiękowy                                                   |
-| `<video>`      | Umieszcza film                                                             |
-| `<track>`      | Dodaje np. napisy do filmu                                                 |
-| `<iframe>`     | Osadza inną stronę lub materiał, np. film z YouTube                        |
-| `<map>`        | Definiuje mapę klikalnych obszarów obrazu                                  |
-| `<area>`       | Definiuje konkretny klikalny obszar w `<map>`                              |
+| 📝`<img>`        | Wyświetla obraz                                                            |
+| 📝`<picture>`    | Pozwala przygotować różne wersje obrazu zależnie od urządzenia lub formatu |
+| 📝`<source>`     | Określa alternatywne źródło obrazu, filmu lub dźwięku                      |
+| 📝`<figure>`     | Grupuje obraz lub inne multimedia z opisem                                 |
+| 📝`<figcaption>` | Podpis do elementu `<figure>`                                              |
+| 📝`<audio>`      | Umieszcza plik dźwiękowy                                                   |
+| 📝`<video>`      | Umieszcza film                                                             |
+| 📝`<track>`      | Dodaje np. napisy do filmu                                                 |
+| 📝`<iframe>`     | Osadza inną stronę lub materiał, np. film z YouTube                        |
+| 📝`<map>`        | Definiuje mapę klikalnych obszarów obrazu                                  |
+| 📝`<area>`       | Definiuje konkretny klikalny obszar w `<map>`                              |
 
 Przykład:
 ```html
