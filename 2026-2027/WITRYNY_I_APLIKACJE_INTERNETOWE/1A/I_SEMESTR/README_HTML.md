@@ -881,7 +881,7 @@ const x = 10;
 console.log(x);
 </code></pre>
 ```
-📝**`<blockquote>`**
+📝 **`<blockquote>`**
 
 `<blockquote>` służy do oznaczania dłuższego cytatu pochodzącego z innego źródła.
 
@@ -1390,7 +1390,7 @@ Rezultat:
 
 </html>
 ```
-## Znaczniki dla obrazów i multimediów
+## 📝 Znaczniki dla obrazów i multimediów
 
 | Znacznik       | Znaczenie                                                                  |
 | -------------- | -------------------------------------------------------------------------- |
