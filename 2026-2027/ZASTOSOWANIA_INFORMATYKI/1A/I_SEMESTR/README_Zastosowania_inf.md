@@ -779,10 +779,10 @@ Przykładowo nauczyciel **nie powinien przekazywać danych ucznia osobie, która
 
 ## Protokoły internetowe
 
-To **zestawy reguł i standardów, które umożliwiają komunikację między urządzeniami w sieci**, takimi jak komputery, serwery czy smartfony. Pozwalają one na przesyłanie danych w sposób uporządkowany i zrozumiały dla obu stron.
+📝 To **zestawy reguł i standardów, które umożliwiają komunikację między urządzeniami w sieci**, takimi jak komputery, serwery czy smartfony. Pozwalają one na przesyłanie danych w sposób uporządkowany i zrozumiały dla obu stron.
 HTTP i HTTPS to dwa popularne protokoły używane głównie do komunikacji między przeglądarkami internetowymi a serwerami webowymi.
 
-📝**HTTP (Hypertext Transfer Protocol)**
+📝 **HTTP (Hypertext Transfer Protocol)**
 
 **Definicja**: **Protokół komunikacyjny internetowy, który określa zasady wymiany informacji między klientem (np. przeglądarką internetową) a serwerem**. Został stworzony w 1991 roku przez Tima Bernersa-Lee i jest używany do żądania i odbierania zasobów, takich jak strony HTML, obrazów czy plików.
 
@@ -792,7 +792,7 @@ HTTP i HTTPS to dwa popularne protokoły używane głównie do komunikacji międ
 **Zalety**: Prosty i szybki w implementacji.
 **Wady**: Brak szyfrowania – dane są przesyłane w formie jawnej (plain text), co czyni je podatnymi na podsłuchiwanie i ataki (np. man-in-the-middle).
 
-📝**HTTPS (Hypertext Transfer Protocol Secure)**
+📝 **HTTPS (Hypertext Transfer Protocol Secure)**
 **Definicja**: **HTTPS to bezpieczna wersja HTTP, która dodaje warstwę szyfrowania za pomocą protokołów SSL** (Secure Sockets Layer) **lub nowszego TLS** (Transport Layer Security). Został wprowadzony, aby chronić dane przed nieautoryzowanym dostępem.
 
 **Jak działa**: **Działa podobnie jak HTTP, ale połączenie jest szyfrowane**. **Przeglądarka weryfikuje certyfikat SSL/TLS serwera**, który potwierdza autentyczność strony. Adres zaczyna się od https://, a w przeglądarce pojawia się ikona kłódki.
