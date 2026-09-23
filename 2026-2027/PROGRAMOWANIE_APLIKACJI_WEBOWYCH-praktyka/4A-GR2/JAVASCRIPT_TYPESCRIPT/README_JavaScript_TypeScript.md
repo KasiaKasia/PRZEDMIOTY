@@ -634,6 +634,7 @@ imiona.forEach((imie, index ) => {
     console.log(index, imie);
 });
 ```
+```text
 Wynik:
 JABŁKO
 BANAN
@@ -641,6 +642,7 @@ GRUSZKA
 0 Anna
 1 Jan
 2 Kasia
+```text
 
 Przy iteracji po obiekcie trzeba pamiętać, że `for...in` zwraca **klucze** obiektu, a nie jego wartości.
 
@@ -826,8 +828,16 @@ const osoba2 = {
 
 osoba2.przedstawSie(); // {}
 ```
-this nie wskazuje na osoba.   
-Na najwyższym poziomie this wskazuje na globalny obiekt przeglądarki: `window`
+`this` nie wskazuje na osoba.   
+Na najwyższym poziomie `this` wskazuje na globalny obiekt przeglądarki: `window`.
+W funkcji strzałkowej `this` nie wskazuje na obiekt `osoba2`. Funkcja strzałkowa nie tworzy własnego `this`, tylko **jest dziedziczone z otaczającego zakresu**. W środowisku Node.js używającym CommonJS `this` na poziomie modułu (pliku) wskazuje na `module.exports`, które początkowo jest pustym obiektem {}.
+
+```TS
+console.log(this);                    // {}
+console.log(module.exports);          // {}
+console.log(this === module.exports); // true
+```
+
 
 ### 5. **Funkcja jako callback**
 
@@ -1037,22 +1047,16 @@ console.log(generator.next().value); // 5
 ```JS
 async function pobierzDane() {
 
-    const response = await fetch("https://example.com");
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users/1"
+    );
 
     return response;
 }
 pobierzDane();
 ```
-```TS 
-async function pobierzDane(): Promise<Response> {
-
-    const response: Response = await fetch("https://example.com");
-
-    return response;
-}
-```
+ 
 **`async` powoduje, że funkcja zwraca `Promise`.**
-
 
 ```TS
 async function pobierzUzytkownik(): Promise<void> {
@@ -1067,49 +1071,66 @@ async function pobierzUzytkownik(): Promise<void> {
 }
 ```
 ```TS
-async function pierwsza() {
-    console.log("Pierwsza");
+const getUserData = () => {
+    return new Promise((resolve) => {
+        setTimeout(()=> {
+            console.log('1 get user');
+            resolve(resolve)
+        }, 600)
+    })
 }
 
-async function druga() {
-    console.log("Druga");
+const registerData = () => {
+    return new Promise((resolve) => {
+        setTimeout(()=> {
+            console.log('2 registerData');
+            resolve(resolve)
+        }, 400)
+    })
 }
 
-async function trzecia() {
-    console.log("Trzecia");
+const sendEmail = () => {
+    return new Promise((resolve) => {
+        setTimeout(()=> {
+            console.log('3 sendEmail');
+            resolve(resolve)
+        }, 500)
+    })
 }
 
-  
+// getUserData();
+// registerData();
+// sendEmail();
+// console.log('emd !!!!!')
 
-async function start() {
-    await pierwsza();
-    await druga();
-    await trzecia();
-}
+// async function someAsyncFunction(){
 
-start();
+//     await getUserData(); 
+//     await registerData();
+//     await sendEmail();
+//     console.log('async  await end !!!!!')
+// }
+// someAsyncFunction()
+/* 
+1 get user
+2 registerData
+3 sendEmail
+async  await end !!!!!
+*/
+
+// async function someAsyncFunction(){
+
+//       getUserData(); 
+//       registerData();
+//       sendEmail();
+//     console.log('async  await end !!!!!')
+// }
+// someAsyncFunction()
 
 ```
+**Natomiast jeśli nie użyjesz await:** to JavaScript nie czeka na zakończenie pierwszej funkcji.
 
-
-**Natomiast jeśli nie użyjesz await:**
-
-```TS
-async function start() {
-    pierwsza();
-    druga();
-}
-```
-to JavaScript nie czeka na zakończenie pierwszej funkcji.
-
-Możesz wtedy dostać:
-
-```TS
-Start pierwszej
-Start drugiej
-Koniec drugiej
-Koniec pierwszej
-```
+ 
 
 ### 13. **Funkcja strzałkowa async**
 
@@ -1209,7 +1230,7 @@ function polacz(
 }
 
 // Teraz możemy:
-polacz(2, 3); otrzymać: 5
+polacz(2, 3); /// otrzymać: 5
 
 // oraz:
 polacz("Jan", " Kowalski"); // otrzymać: Jan Kowalski
