@@ -245,12 +245,22 @@ if ($user instanceof User) {
 ## Połączenie PHP z bazą danych
 ## MySQLi — styl proceduralny
 
+
 ### 1. Utworzenie bazy danych
 
 Najpierw utwórzmy bazę danych o nazwie szkola_php:
 ```SQL
 CREATE DATABASE szkola_php
+-- COLLATE określa zasady porównywania i sortowania tekstu.
 CHARACTER SET utf8mb4
+/*
+-- Określa zestaw znaków używany do przechowywania tekstu. pozwala przechowywać pełny Unicode, czyli m.in.:
+ą ć ę ł ń ó ś ź ż
+A B C
+ä ö ü
+中文
+😊 
+*/
 COLLATE utf8mb4_polish_ci;
 ```
 
@@ -719,3 +729,245 @@ POST stosuje się często do:
 - usuwania rekordów
 - wysyłania większych formularzy
 - przesyłania plików
+
+---
+## METODY NA CIĄGACH ZNAKÓW
+
+| Funkcja            | Co robi                                          |
+| ------------------ | ------------------------------------------------ |
+| `strlen()`         | zwraca długość napisu                            |
+| `strtolower()`     | zamienia litery na małe                          |
+| `strtoupper()`     | zamienia litery na wielkie                       |
+| `ucfirst()`        | pierwszą literę zamienia na wielką               |
+| `lcfirst()`        | pierwszą literę zamienia na małą                 |
+| `ucwords()`        | pierwszą literę każdego słowa zamienia na wielką |
+| `substr()`         | pobiera fragment napisu                          |
+| `substr_replace()` | zastępuje fragment napisu                        |
+| `strpos()`         | szuka pozycji fragmentu tekstu                   |
+| `str_contains()`   | sprawdza, czy tekst zawiera inny tekst           |
+| `str_replace()`    | zamienia fragment tekstu                         |
+| `trim()`           | usuwa białe znaki z początku i końca             |
+| `ltrim()`          | usuwa białe znaki z początku                     |
+| `rtrim()`          | usuwa białe znaki z końca                        |
+| `explode()`        | zamienia string na tablicę                       |
+| `implode()`        | łączy tablicę w string                           |
+| `str_repeat()`     | powtarza napis                                   |
+| `strrev()`         | odwraca napis                                    |
+| `strcmp()`         | porównuje dwa napisy                             |
+| `strcasecmp()`     | porównuje bez uwzględniania wielkości liter      |
+
+**strlen() – długość napisu**
+
+```PHP
+$imie = "Kamil";
+
+echo strlen($imie);// 5
+
+$imiona = ["Anna", "Kamil", "Natalia"];
+
+foreach ($imiona as $imie) {
+    echo $imie . " - " . strlen($imie) . "<br>";
+}
+```
+
+
+**strtolower() – wszystkie litery na małe**
+```PHP
+$tekst = "HELLO WORLD";
+
+echo strtolower($tekst);
+$imiona = ["ANNA", "KAMIL", "NATALIA"];
+
+foreach ($imiona as $imie) {
+    echo strtolower($imie) . "<br>";
+}
+```
+
+**strtoupper() – wszystkie litery na wielkie**
+```PHP
+$imie = "Kamil";
+
+echo strtoupper($imie);
+```
+
+**ucfirst() – pierwsza litera wielka**
+Bardzo przydatne np. wtedy, gdy użytkownik wpisze:
+```PHP
+$imie = "natalia";
+
+echo ucfirst($imie);
+$imiona = ["anna", "kamil", "natalia"];
+
+foreach ($imiona as $imie) {
+    echo ucfirst($imie) . "<br>";
+}
+```
+
+
+**lcfirst() – pierwsza litera mała**
+```PHP
+$tekst = "Kamil";
+
+echo lcfirst($tekst);
+```
+
+**ucwords() – każde słowo zaczyna się wielką literą**
+```PHP
+$tekst = "anna maria kowalska";
+
+echo ucwords($tekst);
+```
+
+**substr() – pobieranie fragmentu napisu**
+```text
+zacznij od indeksu 0
+pobierz 7 znaków
+```
+
+```PHP
+$tekst = "Programowanie";
+
+echo substr($tekst, 0, 7);
+echo substr($tekst, 7);
+
+// Wtedy PHP bierze tekst od indeksu 7 aż do końca:
+```
+
+**substr_replace() – zastąpienie fragmentu tekstu**
+```PHP
+$tekst = "Hello World";
+
+$wynik = substr_replace($tekst, "PHP", 6, 5);
+
+echo $wynik;
+```
+
+
+**strpos() – znalezienie pozycji**
+```PHP
+$tekst = "Programowanie PHP";
+
+$pozycja = strpos($tekst, "PHP");
+
+echo $pozycja;
+
+if (strpos($tekst, "PHP") !== false) {
+    echo "Znaleziono PHP";
+}
+```
+Zwraca pozycję, na której rozpoczyna się "PHP".
+
+
+
+**str_contains() – czy tekst coś zawiera**
+
+W nowszych wersjach PHP jest czytelniejsza funkcja:
+```PHP
+$tekst = "Programowanie PHP";
+
+if (str_contains($tekst, "PHP")) {
+    echo "Tekst zawiera PHP";
+}
+```
+
+**str_replace() – zamiana tekstu**
+```PHP
+$tekst = "Lubię JavaScript";
+
+$tekst = str_replace(
+    "JavaScript",
+    "PHP",
+    $tekst
+);
+
+echo $tekst;
+
+$imiona = ["Anna", "Kamil", "Anna"];
+
+foreach ($imiona as $imie) {
+    echo str_replace("Anna", "Oliwia", $imie) . "\n";
+}
+```
+
+**trim() – usuwanie spacji z początku i końca**
+```PHP
+$tekst = "     Anna     ";
+
+echo trim($tekst);
+```
+
+
+**ltrim() i rtrim()**
+
+**ltrim()** usuwa znaki z lewej strony:
+```PHP
+$tekst = "    Anna";
+
+echo ltrim($tekst);
+```
+**rtrim()** usuwa z prawej:
+```PHP
+$tekst = "Anna    ";
+
+echo rtrim($tekst);
+```
+
+**explode() – string → tablica**
+
+```PHP
+$tekst = "Anna,Kamil,Natalia";
+
+$imiona = explode(",", $tekst);
+
+print_r($imiona);
+
+// Powstanie:
+
+// [
+//     "Anna",
+//     "Kamil",
+//     "Natalia"
+// ]
+```
+
+**implode() – tablica → string**
+
+Działa odwrotnie.
+```PHP
+$imiona = ["Anna", "Kamil", "Natalia"];
+
+$tekst = implode(", ", $imiona);
+
+echo $tekst;
+```
+
+**str_repeat() – powtarzanie napisu**
+```PHP
+echo str_repeat("*", 10);
+
+// Wynik:
+
+// **********
+```
+
+**strrev() – odwrócenie napisu**
+```PHP
+$tekst = "Kamil";
+
+echo strrev($tekst);
+```
+
+
+**strcmp() – porównanie napisów**
+```PHP
+echo strcmp("Anna", "Anna");
+```
+zwróci: 0
+czyli napisy są identyczne.
+
+Natomiast:
+```PHP
+strcmp("Anna", "anna");
+```
+nie zwróci 0, ponieważ wielkość liter ma znaczenie.
+ 
