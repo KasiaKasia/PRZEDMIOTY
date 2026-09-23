@@ -1230,7 +1230,7 @@ function polacz(
 }
 
 // Teraz możemy:
-polacz(2, 3); /// otrzymać: 5
+polacz(2, 3); // otrzymać: 5
 
 // oraz:
 polacz("Jan", " Kowalski"); // otrzymać: Jan Kowalski
