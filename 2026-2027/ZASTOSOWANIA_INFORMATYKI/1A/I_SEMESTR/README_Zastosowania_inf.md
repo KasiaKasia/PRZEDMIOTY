@@ -776,4 +776,44 @@ Przykładowo nauczyciel **nie powinien przekazywać danych ucznia osobie, która
 
  📝 **Dane osobowe należy przetwarzać tylko wtedy, gdy istnieje odpowiedni cel i podstawa prawna, zbierać tylko dane niezbędne oraz odpowiednio chronić je przed dostępem osób nieuprawnionych**.
 
- 
+
+## Protokoły internetowe
+
+To **zestawy reguł i standardów, które umożliwiają komunikację między urządzeniami w sieci**, takimi jak komputery, serwery czy smartfony. Pozwalają one na przesyłanie danych w sposób uporządkowany i zrozumiały dla obu stron.
+HTTP i HTTPS to dwa popularne protokoły używane głównie do komunikacji między przeglądarkami internetowymi a serwerami webowymi.
+
+📝**HTTP (Hypertext Transfer Protocol)**
+
+**Definicja**: **Protokół komunikacyjny internetowy, który określa zasady wymiany informacji między klientem (np. przeglądarką internetową) a serwerem**. Został stworzony w 1991 roku przez Tima Bernersa-Lee i jest używany do żądania i odbierania zasobów, takich jak strony HTML, obrazów czy plików.
+
+**Jak działa**: **Gdy wpisujesz adres URL w przeglądarce (np. http://example.com), przeglądarka wysyła żądanie HTTP (Request) do serwera. Serwer  dpowiada (Response), wysyłając dane. Komunikacja odbywa się w trybie klient-serwer**
+
+**Wersje**: Najpopularniejsze to HTTP/1.1 (starsza, ale nadal używana) i HTTP/2/HTTP/3 (nowsze, szybsze, z lepszą obsługą wielu żądań jednocześnie).
+**Zalety**: Prosty i szybki w implementacji.
+**Wady**: Brak szyfrowania – dane są przesyłane w formie jawnej (plain text), co czyni je podatnymi na podsłuchiwanie i ataki (np. man-in-the-middle).
+
+📝**HTTPS (Hypertext Transfer Protocol Secure)**
+**Definicja**: **HTTPS to bezpieczna wersja HTTP, która dodaje warstwę szyfrowania za pomocą protokołów SSL** (Secure Sockets Layer) **lub nowszego TLS** (Transport Layer Security). Został wprowadzony, aby chronić dane przed nieautoryzowanym dostępem.
+
+**Jak działa**: **Działa podobnie jak HTTP, ale połączenie jest szyfrowane**. **Przeglądarka weryfikuje certyfikat SSL/TLS serwera**, który potwierdza autentyczność strony. Adres zaczyna się od https://, a w przeglądarce pojawia się ikona kłódki.
+
+**Zalety**: **Zapewnia poufność** (szyfrowanie danych), **integralność** (dane nie są modyfikowane w trakcie transmisji) **i uwierzytelnianie** (potwierdzenie tożsamości serwera). Jest obowiązkowy dla stron obsługujących płatności, loginy czy dane osobowe.
+
+**Wady**: **Lekko wolniejszy od HTTP ze względu na szyfrowanie** (choć różnica jest minimalna w nowoczesnych systemach). Wymaga certyfikatu, co może być dodatkowym kosztem.
+
+
+**HTTPS i SEO (Search Engine Optimization)**
+Lepsze pozycjonowanie: Google traktuje HTTPS jako sygnał rankingowy, co może poprawić pozycję strony w wynikach wyszukiwania.
+
+HTTPS chroni przed przechwyceniem danych przez osoby trzecie, nie gwarantuje pełnego bezpieczeństwa, ponieważ sama strona może być złośliwa lub zawierać phishing (forma oszustwa internetowego polegająca na podszywaniu się pod zaufane instytucje lub osoby w celu wyłudzenia poufnych danych, takich jak loginy, hasła czy dane kart płatniczych, lub nakłonienia ofiary do wykonania określonych działań). Dlatego zawsze należy zachować
+ostrożność, zwłaszcza przy wprowadzaniu danych wrażliwych, i dokładnie sprawdzać adres URL przed podaniem informacji.
+
+📝 Różnice między HTTP a HTTPS
+
+| Cecha                   |  HTTP                                     | HTTPS                                                           |
+| :---------------------- | :---------------------------------------- | :-------------------------------------------------------------- |
+| Szyfrowanie danych      | Brak                                      | SSL/TLS                                                         |
+| Bezpieczeństwo          | Podatne na podsłuch i ataki MITM          | Certyfikat SSL/TLS potwierdza serwer, dane integralne           |
+| Domyślny port           | 80                                        | 443                                                             |
+| Wydajność               | Nieco szybsze (brak szyfrowania)          | Minimalne wolniejsze, ale nowoczesne protokoły niwelują różnice |
+| Wykorzystanie           | Radko w internecie (testy, sieci lokalne) | Standard w sieci(bankowość, sklepy,logowanie, serwery www)      |
