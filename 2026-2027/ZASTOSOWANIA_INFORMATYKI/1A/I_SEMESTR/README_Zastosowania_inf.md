@@ -789,7 +789,9 @@ HTTP i HTTPS to dwa popularne protokoły używane głównie do komunikacji międ
 **Jak działa**: **Gdy wpisujesz adres URL w przeglądarce (np. http://example.com), przeglądarka wysyła żądanie HTTP (Request) do serwera. Serwer  dpowiada (Response), wysyłając dane. Komunikacja odbywa się w trybie klient-serwer**
 
 **Wersje**: Najpopularniejsze to HTTP/1.1 (starsza, ale nadal używana) i HTTP/2/HTTP/3 (nowsze, szybsze, z lepszą obsługą wielu żądań jednocześnie).
+
 **Zalety**: Prosty i szybki w implementacji.
+
 **Wady**: Brak szyfrowania – dane są przesyłane w formie jawnej (plain text), co czyni je podatnymi na podsłuchiwanie i ataki (np. man-in-the-middle).
 
 📝 **HTTPS (Hypertext Transfer Protocol Secure)**
