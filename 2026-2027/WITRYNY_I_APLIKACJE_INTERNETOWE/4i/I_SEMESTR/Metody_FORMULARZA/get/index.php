@@ -29,11 +29,11 @@
 
     <form method="GET">
 
-    <input type="text" name="nazwisko">
+        <input type="text" name="nazwisko">
 
-    <button type="submit">
-        kliknij, aby wysłać dane metodą GET
-    </button>
+        <button type="submit">
+            kliknij, aby wysłać dane metodą GET
+        </button>
     <?php
         if (isset($_GET["nazwisko"])) {
             $nazwisko = $_GET["nazwisko"];
