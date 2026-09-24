@@ -32,8 +32,6 @@ Najpierw $wartosc przechowuje liczbę, a później tekst.
 | `resource` | specjalny typ reprezentujący odwołanie do zewnętrznego zasobu, np. otwartego pliku | `$file = fopen("dane.txt", "r");` |
 
 
-
-
 ## Dodatkowe typy: `callable` i `iterable`
 
 **callable – wywoływalny**
@@ -158,6 +156,7 @@ Przykład:
 function add(int|float $a, int|float $b): int|float {
  return $a + $b;
 }
+echo add(5, 3);
 echo add("5", 3); 
 ```
 
@@ -178,6 +177,16 @@ $items = new ArrayIterator(["A", "B", "C"]);
 
 process($items);
 ```
+
+`Countable` i `Traversable` to nie są zwykłe typy danych jak int czy string. To **interfejsy wbudowane w PHP**.
+
+**`Countable`**
+Interfejs `Countable` oznacza, że obiekt można policzyć funkcją:
+`count($data)`
+
+**`Traversable`**
+Traversable oznacza, że po obiekcie można przechodzić za pomocą:
+`foreach`
 
 ## Sprawdzenie typu
 
@@ -235,13 +244,21 @@ if ($user instanceof User) {
 
 ## Połączenie PHP z bazą danych
 
-
 ### 1. Utworzenie bazy danych
 
 Najpierw utwórzmy bazę danych o nazwie szkola_php:
 ```SQL
 CREATE DATABASE szkola_php
+-- COLLATE określa zasady porównywania i sortowania tekstu.
 CHARACTER SET utf8mb4
+/*
+ -- Określa zestaw znaków używany do przechowywania tekstu. pozwala przechowywać pełny Unicode, czyli m.in.:
+ą ć ę ł ń ó ś ź ż
+A B C
+ä ö ü
+中文
+😊 
+*/
 COLLATE utf8mb4_polish_ci;
 ```
 

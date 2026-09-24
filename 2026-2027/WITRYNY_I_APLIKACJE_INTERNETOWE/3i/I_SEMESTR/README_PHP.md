@@ -157,7 +157,11 @@ function add(int|float $a, int|float $b): int|float {
  return $a + $b;
 }
 echo add(5, 3);
+echo add("5", 3); 
 ```
+
+Union Type określa, jakie typy są dozwolone, ale przy domyślnych ustawieniach PHP nadal może wykonać **konwersję typu**, jeżeli jest ona możliwa.
+
 ● **Intersection Types** (od PHP 8.1) Wymagają, aby wartość była zgodna ze wszystkimi określonymi typami (używane głównie z obiektami).
 Przykład:
 ```PHP
@@ -173,6 +177,16 @@ $items = new ArrayIterator(["A", "B", "C"]);
 
 process($items);
 ```
+
+`Countable` i `Traversable` to nie są zwykłe typy danych jak int czy string. To **interfejsy wbudowane w PHP**.
+
+**`Countable`**
+Interfejs `Countable` oznacza, że obiekt można policzyć funkcją:
+`count($data)`
+
+**`Traversable`**
+Traversable oznacza, że po obiekcie można przechodzić za pomocą:
+`foreach`
 
 ## Sprawdzenie typu
 
@@ -228,15 +242,26 @@ if ($user instanceof User) {
 }
 ```
 
+
 ## Połączenie PHP z bazą danych
 ## MySQLi — styl proceduralny
+
 
 ### 1. Utworzenie bazy danych
 
 Najpierw utwórzmy bazę danych o nazwie szkola_php:
 ```SQL
 CREATE DATABASE szkola_php
+-- COLLATE określa zasady porównywania i sortowania tekstu.
 CHARACTER SET utf8mb4
+/*
+-- Określa zestaw znaków używany do przechowywania tekstu. pozwala przechowywać pełny Unicode, czyli m.in.:
+ą ć ę ł ń ó ś ź ż
+A B C
+ä ö ü
+中文
+😊 
+*/
 COLLATE utf8mb4_polish_ci;
 ```
 
