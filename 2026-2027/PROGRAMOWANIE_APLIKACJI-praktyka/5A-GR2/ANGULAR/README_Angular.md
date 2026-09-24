@@ -40,20 +40,20 @@ Najczęściej wykorzystuje się go do budowy aplikacji typu SPA (Single Page App
 1. Wykonanie polecenia:
 
     - `npm install -g @angular/cli`
-    1.1. SPrawdzenie wersji zainstalowanej angular wykonuje się poleceniem
+1. 1. Sprawdzenie wersji zainstalowanego Angular wykonuje się poleceniem
     `ng version`
+
 ### Tworzenie projektu
 
 1. Wykonaj polecenia:
 
     - `ng new moj-projekt`
     - `cd moj-projekt`
-    - `ng serve -o` 
-    - Opcja --open automatycznie otwiera aplikację w przeglądarce pod adresem:
+    - `ng serve -o` Opcja --open automatycznie otwiera aplikację w przeglądarce pod adresem:
         `http://localhost:4200`
 
-    1.1. Możesz też od razu ustawić np. routing i SCSS:
-        - `ng new sklep --routing --style=scss`   
+1. 1. Możesz też od razu ustawić np. routing i SCSS:
+        - `ng new moj-projekt --routing --style=scss`   
 
 ### Przydatne polecenia:
 
@@ -75,7 +75,7 @@ ng generate module nazwa
 
 ## Architektura projektu:
 
-Jeżeli chodzi Ci o podział projektu Angular na moduły, to w klasycznym podejściu z NgModule warto grupować je **według funkcjonalności aplikacji**, a nie np. "wszystkie komponenty razem".
+Podział projektu Angular na moduły w klasycznym podejściu z NgModule warto grupować je **według funkcjonalności aplikacji**, a nie np. "wszystkie komponenty razem".
 
 Przykładowy projekt sklepu można podzielić tak:
 
@@ -107,9 +107,9 @@ src/app/
 ```
 
 
-1. CoreModule
+**1. CoreModule**
 
-Tutaj umieszczamy elementy używane globalnie w całej aplikacji, zwykle tworzone tylko raz.
+Tutaj umieszczamy **elementy używane globalnie w całej aplikacji**, zwykle tworzone tylko raz.
 
 Na przykład:
 ```text
@@ -124,7 +124,7 @@ Polecenie do tworzenia modułu core:
 
 `ng g m core`
 
-2. SharedModule
+**2. SharedModule**
 
 Tutaj umieszczamy rzeczy **wielokrotnego użytku, wykorzystywane przez różne części aplikacji**.
 
@@ -153,20 +153,20 @@ shared/
 └── shared.module.ts
 ```
 
-3. Moduły funkcjonalne — Feature Modules
+**3. Moduły funkcjonalne — Feature Modules**
 
-To najważniejszy sposób dzielenia większej aplikacji.
+Tworzone, aby spełniały funkcję aplikacji. Zgodnie z założeniami projektu.
 
 Każdy większy obszar aplikacji dostaje własny moduł.
 
-Na przykład sklep:
+Na przykład dla aplikacji sklep, należy utworzyć moduły:
 
-ProductsModule
-UsersModule
-OrdersModule
-CartModule
-AuthModule
-AdminModule
+- ProductsModule
+- UsersModule
+- OrdersModule
+- CartModule
+- AuthModule
+- AdminModule
 
 Polecenie do tworzenia modułów :
 ```JS
@@ -176,7 +176,7 @@ ng g m orders
 ng g m auth
 ```
 
-4. AuthModule
+**4. AuthModule**
 
 **Moduł związany z logowaniem i rejestracją**.
 ```text
@@ -193,9 +193,10 @@ ng g c auth/login
 ng g c auth/register
 ```
 
-5. ProductsModule
+**5. ProductsModule**
 
 Dla przykładowego modułu `ProductsModule` umieszczamy w nim komponenty:
+
 ```text
 products/
 ├── product-list/
@@ -216,9 +217,10 @@ ng g c products/product-details
 ng g c products/product-form
 ```
 
-6. UsersModule
+**6. UsersModule**
 
-Obsługa użytkowników:
+Moduł UsersModule przykładowo powinien zawierać komponenty dla obsługi użytkowników. W związku z tym takie mogą być komponenty: 
+
 ```text
 users/
 ├── user-list/
@@ -227,9 +229,10 @@ users/
 └── users.module.ts
 ```
 
-7. AdminModule
+**7. AdminModule**
 
 Jeżeli aplikacja posiada panel administratora:
+
 ```text
 admin/
 ├── dashboard/
@@ -238,9 +241,9 @@ admin/
 └── admin.module.ts
 ```
 
-8. Moduły routingu
+**8. Moduły routingu**
 
-Przy większych modułach można również wydzielić routing.
+Przy większych modułach można również wydzielić moduł routing.
 
 Na przykład:
 
@@ -252,7 +255,7 @@ products/
 └── products-routing.module.ts
 ```
 
-Można od razu utworzyć moduł z routingiem:
+Polecenie do tworzenia modułu z routingiem:
 
 `ng g m products --routing`
 
