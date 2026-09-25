@@ -134,20 +134,43 @@ Może na przykład:
 
 Przykład:
 ```PHP
-function throwError(): never {
- throw new Exception("Błąd!");
+<?php
+
+function throwError(string $message): never {
+    throw new Exception($message);
 }
-throwError();
+
+function sprawdzWiek(int $wiek): void {
+
+    if ($wiek < 0) {
+        throwError("Wiek nie może być ujemny!");
+    }
+
+    echo "Wiek jest poprawny: " . $wiek;
+}
+
+sprawdzWiek(-5);
+
+?>
 ```
+W tym przypadku program zakończy się wyjątkiem: `Exception: Wiek nie może być ujemny!`
+
 Funkcja nie dochodzi do normalnego zakończenia, ponieważ zostaje zgłoszony wyjątek.
 
-Inny przykład:
+Można też użyć never z exit():
 ```PHP
-function stopProgram(): never {
-    exit("Koniec programu");
+<?php
+
+function zakonczProgram(string $message): never {
+    echo $message;
+    exit();
 }
 
-stopProgram();
+zakonczProgram("Program został zakończony.");
+
+echo "Ten kod już się nie wykona.";
+
+?>
 ```
 ## Typy złożone
 ● **Union Types** (od PHP 8.0) Pozwalają określić, że zmienna może mieć jeden z kilku typów, np. int|float.
@@ -182,12 +205,44 @@ process($items);
 
 **`Countable`**
 Interfejs `Countable` oznacza, że obiekt można policzyć funkcją:
-`count($data)`
+`count($data)` oraz z jej aliasem: `sizeof()`
 
 **`Traversable`**
-Traversable oznacza, że po obiekcie można przechodzić za pomocą:
+o wbudowany interfejs oznaczający, że po obiekcie można iterować, czyli przechodzić po jego elementach np. za pomocą:
 `foreach`
 
+Traversable, gdy implementuje jeden z dwóch interfejsów:
+```text
+Traversable
+├── Iterator
+└── IteratorAggregate
+```
+
+Nie implementuje się go bezpośrednio — należy zaimplementować `Iterator` albo `IteratorAggregate`.
+
+
+```PHP
+<?php
+
+class Produkty implements IteratorAggregate {
+
+    private array $produkty = [
+        "Laptop",
+        "Mysz",
+        "Klawiatura"
+    ];
+
+    public function getIterator(): Traversable {
+        return new ArrayIterator($this->produkty);
+    }
+}
+
+$produkty = new Produkty();
+
+foreach ($produkty as $produkt) {
+    echo $produkt . "<br>";
+}
+```
 ## Sprawdzenie typu
 
 **`gettype()`**
@@ -206,7 +261,7 @@ Przykład:
 ```PHP
 $cena = 19.99;
 
-var_dump($cena);
+var_dump($cena); // float(19.99)
 ```
 
 **`is_*`**
@@ -241,6 +296,7 @@ if ($user instanceof User) {
     echo "Obiekt jest klasy User";
 }
 ```
+
 
 ## Połączenie PHP z bazą danych
 ## MySQLi — styl proceduralny
