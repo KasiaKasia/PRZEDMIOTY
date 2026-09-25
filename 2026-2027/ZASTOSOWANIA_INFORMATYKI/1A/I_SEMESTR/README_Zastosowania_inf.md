@@ -925,6 +925,7 @@ Precyzuje dodatkowe zastosowania certyfikatu, np. uwierzytelnianie serwera.
 - **Basic Constraints**
 
 Określa m.in., czy certyfikat może pełnić rolę certyfikatu urzędu certyfikacji.
+
 ● **Podpis cyfrowy (Signature)**: Podpis urzędu CA, weryfikujący autentycznośćcertyfikatu.
  
 **Rodzaje certyfikatów**
