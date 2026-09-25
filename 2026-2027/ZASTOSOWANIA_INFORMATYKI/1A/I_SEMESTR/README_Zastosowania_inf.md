@@ -819,3 +819,145 @@ ostrożność, zwłaszcza przy wprowadzaniu danych wrażliwych, i dokładnie spr
 | Domyślny port           | 80                                        | 443                                                             |
 | Wydajność               | Nieco szybsze (brak szyfrowania)          | Minimalne wolniejsze, ale nowoczesne protokoły niwelują różnice |
 | Wykorzystanie           | Radko w internecie (testy, sieci lokalne) | Standard w sieci(bankowość, sklepy,logowanie, serwery www)      |
+
+
+## **Certyfikaty internetowe**
+
+**Certyfikaty internetowe** (zwane także certyfikatami cyfrowymi, lub potocznie **SSL/TLS** **certyfikatami**) to elektroniczne dokumenty, które **służą do potwierdzania tożsamości stron w internecie oraz umożliwiają bezpieczne, szyfrowane połączenia między użytkownikiem a serwerem**. 
+
+Certyfikaty używane w internecie są najczęściej zgodne ze standardem **X.509**. Zawierają m.in. informacje o właścicielu certyfikatu, jego kluczu publicznym, okresie ważności oraz podmiocie, który certyfikat wystawił.
+
+Dzięki certyfikatom możliwe jest korzystanie z protokołu HTTPS, czyli szyfrowanej wersji protokołu HTTP.
+
+### **Certyfikaty internetowe:**
+
+**1. Potwierdzają tożsamość strony**
+Certyfikat zapewnia, że strona, którą odwiedzasz, jest rzeczywiście tym, za co się podaje.
+Przykład:
+
+Jeżeli użytkownik otwiera stronę:
+
+https://bank.pl
+
+przeglądarka sprawdza, czy certyfikat został wystawiony dla domeny bank.pl oraz czy pochodzi od zaufanego urzędu certyfikacji.
+
+Dzięki temu zmniejsza się ryzyko połączenia z fałszywym serwerem podszywającym się pod prawdziwą stronę.
+
+
+**2. Umożliwiają szyfrowanie danych**
+Certyfikat zawiera **klucz publiczny**oraz informacje potrzebne do uwierzytelnienia serwera.
+
+Podczas nawiązywania połączenia TLS klient i serwer uzgadniają klucze sesyjne, które są następnie wykorzystywane do szyfrowania przesyłanych danych.
+
+Dzięki temu dane takie jak:
+
+- hasła,
+- dane osobowe,
+- numery kart płatniczych,
+- dane logowania,
+- dane przesyłane w formularzach
+
+są chronione podczas transmisji przed przechwyceniem i odczytaniem przez osoby nieuprawnione.
+
+**3. Zapewniają integralność danych**
+
+TLS chroni również przed nieautoryzowaną zmianą danych podczas transmisji.
+
+Oznacza to, że dane przesłane przez użytkownika do serwera nie powinny zostać niezauważenie zmodyfikowane w trakcie przesyłania.
+
+**4. Są wystawiane przez zaufane urzędy certyfikacji**
+
+Certyfikaty są najczęściej wystawiane przez:
+
+**CA – Certificate Authority,** czyli urząd certyfikacji.
+
+Przykładowe urzędy certyfikacji:
+
+- Let's Encrypt,
+- DigiCert,
+- GlobalSign,
+- Sectigo.
+
+Przeglądarki oraz systemy operacyjne posiadają listy zaufanych głównych urzędów certyfikacji.
+
+Jeżeli certyfikat strony został wystawiony przez zaufany urząd i spełnia wymagania bezpieczeństwa, przeglądarka może uznać go za wiarygodny.
+
+
+
+### **Certyfikat internetowy zawiera m.in.:**
+
+● **Wersja (Version)**: Określa wersję standardu certyfikatu (np. wersja 3 dla X.509 v3).
+
+● **Numer seryjny (Serial Number)**: Unikalny identyfikator nadany przez urząd certyfikacji (CA).
+
+● **Algorytm podpisu (Signature Algorithm)**: Określa algorytm użyty do podpisania certyfikatu (np. SHA-256 with RSA).
+● **Wydawca (Issuer)**: Dane urzędu certyfikacji, który wystawił certyfikat, w tym nazwa, kraj, organizacja itp.
+● **Okres ważności (Validity)**: Daty "od" (Not Before) i "do" (Not After), definiujące, kiedy certyfikat jest aktywny
+● **Podmiot (Subject)**: Dane właściciela certyfikatu, np. nazwa domeny (Common Name), organizacja, kraj, miasto.
+● **Informacje o kluczu publicznym podmiotu (Subject Public Key Info)**: Klucz publiczny serwera oraz algorytm klucza (np. RSA lub ECDSA).
+● **Rozszerzenia (Extensions)**: Certyfikaty X.509 v3 mogą zawierać dodatkowe informacje.
+
+Najważniejsze rozszerzenia to m.in.:
+
+- **Subject Alternative Name – SAN**
+
+Określa domeny, dla których certyfikat jest ważny.
+
+Przykład:
+
+example.com
+www.example.com
+sklep.example.com
+
+- **Key Usage**
+
+Określa, do czego może być wykorzystywany klucz zawarty w certyfikacie.
+
+- **Extended Key Usage**
+
+Precyzuje dodatkowe zastosowania certyfikatu, np. uwierzytelnianie serwera.
+
+- **Basic Constraints**
+
+Określa m.in., czy certyfikat może pełnić rolę certyfikatu urzędu certyfikacji.
+● **Podpis cyfrowy (Signature)**: Podpis urzędu CA, weryfikujący autentycznośćcertyfikatu.
+ 
+**Rodzaje certyfikatów**
+
+➡ **DV – Domain Validation**
+Jest to podstawowy poziom weryfikacji.
+
+Urząd certyfikacji sprawdza przede wszystkim, czy osoba lub podmiot ubiegający się o certyfikat ma kontrolę nad daną domeną.
+
+Przykładem dostawcy takich certyfikatów jest:
+
+*Let's Encrypt*
+
+Certyfikaty DV są często dostępne bezpłatnie.
+
+➡ **OV – Organization Validation**
+Oprócz kontroli nad domeną urząd certyfikacji weryfikuje także dane organizacji.
+
+Może sprawdzać m.in.:
+
+- nazwę przedsiębiorstwa,
+- dane rejestrowe,
+- istnienie organizacji.
+
+➡ **EV – Extended Validation**
+Certyfikat EV wymaga rozszerzonej procedury weryfikacji organizacji.
+
+Urząd certyfikacji sprawdza bardziej szczegółowo dane podmiotu.
+
+W przeszłości przeglądarki wyróżniały certyfikaty EV np. zielonym paskiem lub nazwą organizacji w pasku adresu.
+
+Obecnie większość przeglądarek nie prezentuje już certyfikatów EV w tak wyraźny sposób.
+
+Certyfikat jednodomenowy
+
+**SSL czy TLS**
+**SSL (Secure Sockets Layer)**: To starszy protokół szyfrowania, opracowany w latach 90 przez Netscape. Jego ostatnie wersje (SSL 2.0 i 3.0) miały poważne luki bezpieczeństwa,
+dlatego od dawna nie są zalecane i nie są używane w praktyce.
+
+**TLS (Transport Layer Security)**: To ulepszona i bezpieczniejsza wersja SSL, rozwijana od 1999 roku. Aktualne wersje to TLS 1.2 i TLS 1.3 (TLS 1.0 i 1.1 też są przestarzałe i
+wycofywane). TLS jest standardem de facto w dzisiejszym internecie. 
