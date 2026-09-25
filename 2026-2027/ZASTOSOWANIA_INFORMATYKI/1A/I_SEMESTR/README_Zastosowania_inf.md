@@ -962,6 +962,7 @@ Obecnie większość przeglądarek nie prezentuje już certyfikatów EV w tak wy
 Certyfikat jednodomenowy
 
 **SSL czy TLS**
+
 **SSL (Secure Sockets Layer)**: To starszy protokół szyfrowania, opracowany w latach 90 przez Netscape. Jego ostatnie wersje (SSL 2.0 i 3.0) miały poważne luki bezpieczeństwa,
 dlatego od dawna nie są zalecane i nie są używane w praktyce.
 
