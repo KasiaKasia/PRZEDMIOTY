@@ -891,10 +891,15 @@ Jeżeli certyfikat strony został wystawiony przez zaufany urząd i spełnia wym
 ● **Numer seryjny (Serial Number)**: Unikalny identyfikator nadany przez urząd certyfikacji (CA).
 
 ● **Algorytm podpisu (Signature Algorithm)**: Określa algorytm użyty do podpisania certyfikatu (np. SHA-256 with RSA).
+
 ● **Wydawca (Issuer)**: Dane urzędu certyfikacji, który wystawił certyfikat, w tym nazwa, kraj, organizacja itp.
+
 ● **Okres ważności (Validity)**: Daty "od" (Not Before) i "do" (Not After), definiujące, kiedy certyfikat jest aktywny
+
 ● **Podmiot (Subject)**: Dane właściciela certyfikatu, np. nazwa domeny (Common Name), organizacja, kraj, miasto.
+
 ● **Informacje o kluczu publicznym podmiotu (Subject Public Key Info)**: Klucz publiczny serwera oraz algorytm klucza (np. RSA lub ECDSA).
+
 ● **Rozszerzenia (Extensions)**: Certyfikaty X.509 v3 mogą zawierać dodatkowe informacje.
 
 Najważniejsze rozszerzenia to m.in.:
