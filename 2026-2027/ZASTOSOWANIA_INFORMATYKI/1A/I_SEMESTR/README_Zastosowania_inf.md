@@ -442,7 +442,7 @@ Teraz reszty odczytujemy od dołu do góry:
 
 czyli:
 
-``111₁₀ = 157₈``
+`111₁₀ = 157₈`
 
 Ponieważ system ósemkowy ma podstawę `8`. Przy dzieleniu liczby całkowitej przez `8` możliwe reszty to:
 
@@ -450,7 +450,7 @@ Ponieważ system ósemkowy ma podstawę `8`. Przy dzieleniu liczby całkowitej p
 
 czyli dokładnie cyfry używane w systemie ósemkowym.
 
-### 📝 Dekodowanie liczby Szesnastkowej na dziesiętny
+### 📝 Dekodowanie liczby szesnastkowej na dziesiętny
 
 Dekodowanie liczby szesnastkowej do dziesiętnej polega na obliczeniu wartości liczby zapisanej w systemie szesnastkowym i przedstawieniu jej w systemie dziesiętnym.
 
