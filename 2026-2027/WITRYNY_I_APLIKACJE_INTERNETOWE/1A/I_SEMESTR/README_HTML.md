@@ -1583,3 +1583,570 @@ Lista najczęściej używanych znaczników semantycznych w HTML5:
 17. `<dialog>` – Definiuje okno dialogowe lub modalne, np. do wyświetlania alertów.
 18. `<picture>` – Umożliwia definiowanie różnych źródeł obrazów dla różnych urządzeń lub rozdzielczości.
 19. `<template>` – Przechowuje treść, która nie jest wyświetlana od razu, ale może być użyta przez JavaScript
+
+
+**Znaczniki semantyczne służą do tego, aby nadawać znaczenie poszczególnym częściom strony HTML, a nie tylko określać ich wygląd lub położenie.**
+
+Na przykład zamiast pisać wszędzie:
+```HTML
+<div>
+    ...
+</div>
+```
+możemy użyć:
+```HTML
+<header>...</header>
+
+<nav>...</nav>
+
+<main>...</main>
+
+<article>...</article>
+
+<footer>...</footer>
+```
+Dzięki temu od razu wiadomo, jaką funkcję pełni dana część strony.
+
+
+
+## Kontrolki formularzy – input, textarea, select, option, radio, checkbox i button 
+
+```PHP 
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz HTML i PHP</title>
+</head>
+
+<body>
+
+<h2>Formularz użytkownika</h2>
+
+<form method="POST">
+
+    <!-- INPUT -->
+    <label for="imie">Imię:</label>
+    <input type="text"
+           id="imie"
+           name="imie">
+
+    <br><br>
+
+
+    <!-- TEXTAREA -->
+    <label for="opis">Kilka słów o sobie:</label>
+    <br>
+
+    <textarea id="opis"
+              name="opis"
+              rows="5"
+              cols="40"></textarea>
+
+    <br><br>
+
+
+    <!-- SELECT + OPTION -->
+    <label for="miasto">Miasto:</label>
+
+    <select id="miasto" name="miasto">
+
+        <option value="">-- wybierz miasto --</option>
+        <option value="Warszawa">Warszawa</option>
+        <option value="Kraków">Kraków</option>
+        <option value="Gdańsk">Gdańsk</option>
+        <option value="Wrocław">Wrocław</option>
+
+    </select>
+
+    <br><br>
+
+
+    <!-- RADIO -->
+    <p>Wybierz poziom znajomości programowania:</p>
+
+    <input type="radio"
+           id="podstawowy"
+           name="poziom"
+           value="Podstawowy">
+
+    <label for="podstawowy">
+        Podstawowy
+    </label>
+
+    <br>
+
+    <input type="radio"
+           id="sredni"
+           name="poziom"
+           value="Średni">
+
+    <label for="sredni">
+        Średni
+    </label>
+
+    <br>
+
+    <input type="radio"
+           id="zaawansowany"
+           name="poziom"
+           value="Zaawansowany">
+
+    <label for="zaawansowany">
+        Zaawansowany
+    </label>
+
+    <br><br>
+
+
+    <!-- CHECKBOX -->
+    <p>Wybierz zainteresowania:</p>
+
+    <input type="checkbox"
+           id="html"
+           name="zainteresowania[]"
+           value="HTML">
+
+    <label for="html">
+        HTML
+    </label>
+
+    <br>
+
+    <input type="checkbox"
+           id="css"
+           name="zainteresowania[]"
+           value="CSS">
+
+    <label for="css">
+        CSS
+    </label>
+
+    <br>
+
+    <input type="checkbox"
+           id="javascript"
+           name="zainteresowania[]"
+           value="JavaScript">
+
+    <label for="javascript">
+        JavaScript
+    </label>
+
+    <br>
+
+    <input type="checkbox"
+           id="php"
+           name="zainteresowania[]"
+           value="PHP">
+
+    <label for="php">
+        PHP
+    </label>
+
+    <br>
+
+    <input type="checkbox"
+           id="python"
+           name="zainteresowania[]"
+           value="Python">
+
+    <label for="python">
+        Python
+    </label>
+
+    <br><br>
+
+
+    <!-- BUTTON -->
+    <button type="submit" name="wyslij">
+        Wyślij formularz
+    </button>
+
+</form>
+
+
+<?php
+
+if (isset($_POST["wyslij"])) {
+
+    $imie = $_POST["imie"];
+    $opis = $_POST["opis"];
+    $miasto = $_POST["miasto"];
+
+
+    // RADIO
+    if (isset($_POST["poziom"])) {
+        $poziom = $_POST["poziom"];
+    } else {
+        $poziom = "Nie wybrano";
+    }
+
+
+    echo "<hr>";
+    echo "<h2>Podane dane:</h2>";
+
+    echo "Imię: " . $imie . "<br>";
+    echo "Opis: " . $opis . "<br>";
+    echo "Miasto: " . $miasto . "<br>";
+    echo "Poziom: " . $poziom . "<br>";
+
+
+    // CHECKBOX
+    echo "<h3>Zainteresowania:</h3>";
+
+    if (isset($_POST["zainteresowania"])) {
+
+        foreach ($_POST["zainteresowania"] as $zainteresowanie) {
+            echo $zainteresowanie . "<br>";
+        }
+
+    } else {
+
+        echo "Nie wybrano żadnych zainteresowań.";
+    }
+}
+
+?>
+
+</body>
+</html>
+```
+W HTML5 pole formularza `<input>` może mieć wiele typów. Oprócz tego HTML5 udostępnia wbudowaną walidację, dzięki której część danych można sprawdzić bez JavaScriptu.
+
+| Typ              | Zastosowanie                            | Przykład                        |
+| ---------------- | --------------------------------------- | ------------------------------- |
+| `text`           | zwykły tekst                            | `<input type="text">`           |
+| `password`       | hasło                                   | `<input type="password">`       |
+| `email`          | adres e-mail                            | `<input type="email">`          |
+| `number`         | liczba                                  | `<input type="number">`         |
+| `tel`            | numer telefonu                          | `<input type="tel">`            |
+| `url`            | adres strony WWW                        | `<input type="url">`            |
+| `search`         | pole wyszukiwania                       | `<input type="search">`         |
+| `date`           | data                                    | `<input type="date">`           |
+| `time`           | czas                                    | `<input type="time">`           |
+| `datetime-local` | data i czas                             | `<input type="datetime-local">` |
+| `month`          | miesiąc i rok                           | `<input type="month">`          |
+| `week`           | tydzień roku                            | `<input type="week">`           |
+| `color`          | wybór koloru                            | `<input type="color">`          |
+| `range`          | suwak                                   | `<input type="range">`          |
+| `checkbox`       | wybór niezależnych opcji                | `<input type="checkbox">`       |
+| `radio`          | wybór jednej z kilku opcji              | `<input type="radio">`          |
+| `file`           | wybór pliku                             | `<input type="file">`           |
+| `hidden`         | ukryta wartość                          | `<input type="hidden">`         |
+| `submit`         | wysłanie formularza                     | `<input type="submit">`         |
+| `reset`          | reset formularza                        | `<input type="reset">`          |
+| `button`         | zwykły przycisk                         | `<input type="button">`         |
+| `image`          | graficzny przycisk wysyłający formularz | `<input type="image">`          |
+
+
+
+
+### **Podstawowa walidacja formularza HTML5**
+
+HTML5 pozwala sprawdzać poprawność danych za pomocą atrybutów pól formularza.
+
+| Atrybut     | Znaczenie                                   |
+| ----------- | ------------------------------------------- |
+| `required`  | pole jest obowiązkowe                       |
+| `minlength` | minimalna liczba znaków                     |
+| `maxlength` | maksymalna liczba znaków                    |
+| `min`       | minimalna wartość                           |
+| `max`       | maksymalna wartość                          |
+| `step`      | określa krok wartości                       |
+| `pattern`   | sprawdza tekst według wyrażenia regularnego |
+| `multiple`  | pozwala podać kilka wartości                |
+| `accept`    | określa akceptowane typy plików             |
+
+
+```html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Walidacja formularzy HTML5</title>
+</head>
+
+<body>
+
+    <h1>Walidacja formularzy HTML5</h1>
+ 
+    <h2>1. required</h2>
+
+    <p>
+        Pole jest obowiązkowe.
+        Spróbuj wysłać formularz bez wpisania imienia.
+    </p>
+
+    <form>
+
+        <label for="imie">Imię:</label>
+
+        <input
+            type="text"
+            id="imie"
+            name="imie"
+            required
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+ 
+
+    <h2>2. minlength</h2>
+
+    <p>
+        Login musi zawierać przynajmniej 5 znaków.
+        Spróbuj wpisać np. <strong>Jan</strong>.
+    </p>
+
+    <form>
+
+        <label for="login">Login:</label>
+
+        <input
+            type="text"
+            id="login"
+            name="login"
+            minlength="5"
+            required
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+ 
+
+    <h2>3. maxlength</h2>
+
+    <p>
+        Można wpisać maksymalnie 10 znaków.
+        Spróbuj wpisać więcej niż 10 znaków.
+    </p>
+
+    <form>
+
+        <label for="nazwisko">Nazwisko:</label>
+
+        <input
+            type="text"
+            id="nazwisko"
+            name="nazwisko"
+            maxlength="10"
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+
+ 
+    <h2>4. min</h2>
+
+    <p>
+        Minimalny wiek wynosi 18 lat.
+        Spróbuj wpisać np. 15.
+    </p>
+
+    <form>
+
+        <label for="wiekMin">Wiek:</label>
+
+        <input
+            type="number"
+            id="wiekMin"
+            name="wiek"
+            min="18"
+            required
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+
+ 
+    <h2>5. max</h2>
+
+    <p>
+        Maksymalna wartość wynosi 100.
+        Spróbuj wpisać np. 150.
+    </p>
+
+    <form>
+
+        <label for="punkty">Liczba punktów:</label>
+
+        <input
+            type="number"
+            id="punkty"
+            name="punkty"
+            max="100"
+            required
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+
+ 
+    <h2>6. step</h2>
+
+    <p>
+        Dozwolone są wartości zmieniające się co 0.5.
+        Poprawne: 1, 1.5, 2, 2.5.
+        Spróbuj wpisać np. 2.3.
+    </p>
+
+    <form>
+
+        <label for="ocena">Ocena:</label>
+
+        <input
+            type="number"
+            id="ocena"
+            name="ocena"
+            min="1"
+            max="6"
+            step="0.5"
+            required
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+ 
+
+    <h2>7. pattern</h2>
+
+    <p>
+        Kod pocztowy musi mieć format:
+        <strong>00-000</strong>.
+        Spróbuj wpisać np. 12345.
+    </p>
+
+    <form>
+
+        <label for="kod">Kod pocztowy:</label>
+
+        <input
+            type="text"
+            id="kod"
+            name="kod"
+            pattern="[0-9]{2}-[0-9]{3}"
+            placeholder="00-000"
+            title="Kod pocztowy musi mieć format 00-000"
+            required
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+ 
+    <h2>8. multiple</h2>
+
+    <p>
+        Można podać kilka adresów e-mail.
+        Oddziel je przecinkami.
+    </p>
+
+    <p>
+        Przykład poprawny:
+        <strong>anna@example.com,jan@example.com</strong>
+    </p>
+
+    <p>
+        Przykład niepoprawny:
+        <strong>anna@example.com,jan</strong>
+    </p>
+
+    <form>
+
+        <label for="email">Adresy e-mail:</label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            multiple
+            required
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+    <hr>
+
+ 
+
+    <h2>9. accept</h2>
+
+    <p>
+        Pole pozwala wybierać pliki JPG i PNG.
+    </p>
+
+    <form enctype="multipart/form-data">
+
+        <label for="plik">Wybierz zdjęcie:</label>
+
+        <input
+            type="file"
+            id="plik"
+            name="plik"
+            accept=".jpg,.jpeg,.png"
+        >
+
+        <button type="submit">
+            Wyślij
+        </button>
+
+    </form>
+
+
+</body>
+
+</html> 
+
+```
