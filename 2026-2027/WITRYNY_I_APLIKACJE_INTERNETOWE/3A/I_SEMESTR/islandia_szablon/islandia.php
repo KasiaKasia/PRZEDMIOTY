@@ -45,7 +45,11 @@
 
     <section class="galeria">
          
-        
+        <a href="obiekty.php?id=1">
+            <img class="miniatura"
+                 src="img/strokkur.jpg"
+                 alt="Strokkur"
+                 title="Strokkur">
     </section>
 </main>
 
