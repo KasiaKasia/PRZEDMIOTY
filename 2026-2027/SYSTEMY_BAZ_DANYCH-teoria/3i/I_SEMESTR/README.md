@@ -609,3 +609,139 @@ Uczeń_Przedmiot
 Przedmiot
 ```
  
+**1. Relacja 1:1 — jeden do jednego**
+
+Przykład: **jedna osoba ma jeden paszport**, a jeden paszport należy do jednej osoby.
+
+```SQL
+CREATE TABLE osoby (
+    id_osoby INT PRIMARY KEY,
+    imie VARCHAR(50)
+);
+
+CREATE TABLE paszporty (
+    id_paszportu INT PRIMARY KEY,
+    numer VARCHAR(20),
+    id_osoby INT UNIQUE,
+    FOREIGN KEY (id_osoby) REFERENCES osoby(id_osoby)
+);
+INSERT INTO osoby (id_osoby, imie)
+VALUES
+(1, 'Anna'),
+(2, 'Jan');
+
+INSERT INTO paszporty (id_paszportu, numer, id_osoby)
+VALUES
+(1, 'ABC123', 1),
+(2, 'DEF456', 2);
+
+```
+
+**2. Relacja 1:N — jeden do wielu**
+
+Przykład: **jeden dział może mieć wielu pracowników**, ale jeden pracownik należy do jednego działu.
+
+```SQL
+CREATE TABLE dzialy (
+    id_dzialu INT PRIMARY KEY,
+    nazwa VARCHAR(50)
+);
+
+CREATE TABLE pracownicy (
+    id_pracownika INT PRIMARY KEY,
+    imie VARCHAR(50),
+    id_dzialu INT,
+    FOREIGN KEY (id_dzialu) REFERENCES dzialy(id_dzialu)
+);
+INSERT INTO dzialy (id_dzialu, nazwa)
+VALUES
+(1, 'IT'),
+(2, 'Księgowość');
+
+INSERT INTO pracownicy (id_pracownika, imie, id_dzialu)
+VALUES
+(1, 'Anna', 1),
+(2, 'Jan', 1),
+(3, 'Ola', 2);
+
+```
+
+**3. Relacja N:1 — wielu do jednego**
+
+To jest dokładnie ta sama konstrukcja, tylko patrzymy od strony pracownika.
+
+Przykład: **Wielu uczniów należy do jednej klasy.**
+
+```SQL
+
+CREATE TABLE klasy (
+    id_klasy INT PRIMARY KEY,
+    nazwa VARCHAR(20)
+);
+
+CREATE TABLE uczniowie (
+    id_ucznia INT PRIMARY KEY,
+    imie VARCHAR(50),
+    id_klasy INT,
+    FOREIGN KEY (id_klasy) REFERENCES klasy(id_klasy)
+);
+
+INSERT INTO klasy (id_klasy, nazwa)
+VALUES
+(1, '4A'),
+(2, '4B');
+INSERT INTO uczniowie (id_ucznia, imie, id_klasy)
+VALUES
+(1, 'Kamil', 1),
+(2, 'Oliwia', 1),
+(3, 'Natalia', 2);
+```
+
+**4. Relacja N:N — wiele do wielu**
+
+Przykład: **jeden uczeń może chodzić na wiele kursów i jeden kurs może mieć wielu uczniów**.
+
+Tutaj potrzebujemy **trzeciej tabeli pośredniczącej**.
+
+```SQL
+CREATE TABLE uczniowie_nn (
+    id_ucznia INT PRIMARY KEY,
+    imie VARCHAR(50)
+);
+
+CREATE TABLE kursy (
+    id_kursu INT PRIMARY KEY,
+    nazwa VARCHAR(50)
+);
+
+CREATE TABLE uczniowie_kursy (
+    id_ucznia INT,
+    id_kursu INT,
+
+    PRIMARY KEY (id_ucznia, id_kursu),
+
+    FOREIGN KEY (id_ucznia)
+        REFERENCES uczniowie_nn(id_ucznia),
+
+    FOREIGN KEY (id_kursu)
+        REFERENCES kursy(id_kursu)
+);
+
+INSERT INTO uczniowie_nn (id_ucznia, imie)
+VALUES
+(1, 'Anna'),
+(2, 'Jan');
+
+INSERT INTO kursy (id_kursu, nazwa)
+VALUES
+(1, 'Python'),
+(2, 'PHP'),
+(3, 'JavaScript');
+
+INSERT INTO uczniowie_kursy (id_ucznia, id_kursu)
+VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(2, 3);
+```
