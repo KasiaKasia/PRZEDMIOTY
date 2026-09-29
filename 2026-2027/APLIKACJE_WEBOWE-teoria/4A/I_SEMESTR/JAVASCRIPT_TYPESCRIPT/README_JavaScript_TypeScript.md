@@ -1594,6 +1594,116 @@ Dziedziczenie pozwala wykorzystać wspólne właściwości i metody jednej klasy
 
 
 
+## interface 
+
+**interface** w TypeScript to **konstrukcja służąca do opisywania struktury obiektu**.
+
+Określa, jakie właściwości i metody powinien posiadać dany obiekt oraz jakich typów powinny być jego dane.
+
+
+```TS
+interface Osoba {
+    readonly id: number;
+
+    imie: string;
+
+    wiek: number;
+
+    email?: string;
+
+    aktywna: boolean;
+
+    zainteresowania: string[];
+
+    przedstawSie(): void;
+
+    obliczRokUrodzenia: (aktualnyRok: number) => number;
+}
+
+
+const osoba: Osoba = {
+    id: 1,
+    imie: "Anna",
+    wiek: 25,
+    aktywna: true,
+    zainteresowania: ["czytanie", "kodowanie"],
+    przedstawSie(): void {
+        console.log(`Mam na imię ${this.imie}`);
+    },
+
+    obliczRokUrodzenia: (aktualnyRok: number): number => {
+        return aktualnyRok - 25;
+    }
+};
+
+console.log(osoba.imie);
+
+osoba.przedstawSie();
+
+console.log(osoba.obliczRokUrodzenia(2026));
+```
+
+## type
+
+
+**Type w TypeScript służy do tworzenia własnej nazwy dla typu. Może opisywać typ prosty, obiekt, funkcję, tablicę, krotkę, unię typów i wiele innych konstrukcji.**
+
+```TS
+type Id = number;
+let userId: Id = 10;
+
+type Identyfikator = number | string;
+
+let id1: Identyfikator = 10;
+let id2: Identyfikator = "ABC";
+
+type Status = "aktywny" | "nieaktywny";
+
+interface User {
+    id: number;
+    imie: string;
+    status: Status;
+}
+// Na przykład dla obiektu:
+type Osoba = {
+    imie: string;
+    wiek: number;
+};
+// Na przykład dla funkcji
+type Operacja = (a: number, b: number) => number;
+const dodaj: Operacja = (a, b) => {
+    return a + b;
+};
+
+// Na przykład dla  tablicy:
+type Liczby = number[];
+const liczby1: Liczby = [1, 2, 3, 4, 5];
+
+// Na przykład dla  krotki:
+type Punkt = [number, number]
+const punktA: Punkt = [10, 20];
+const punktB: Punkt = [5, 8];
+
+// Można też użyć &, czyli intersection type:
+type Osoba = {
+    imie: string;
+};
+
+type Pracownik = {
+    stanowisko: string;
+};
+
+type PracujacaOsoba = Osoba & Pracownik;
+
+const osoba: PracujacaOsoba = {
+    imie: "Anna",
+    stanowisko: "Programista"
+};
+
+```
+
+
+
 ## 8. Wyszukiwanie elementów w dokumencie
 
 document to część tzw. DOM (Document Object Model) — czyli „drzewo” reprezentujące całą stronę.

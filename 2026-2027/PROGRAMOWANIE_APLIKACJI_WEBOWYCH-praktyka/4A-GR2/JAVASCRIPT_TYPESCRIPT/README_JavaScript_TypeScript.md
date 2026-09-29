@@ -1451,7 +1451,6 @@ console.log(osoba.obliczRokUrodzenia(2026));
 
 ```TS
 type Id = number;
-
 let userId: Id = 10;
 
 type Identyfikator = number | string;
@@ -1466,25 +1465,29 @@ interface User {
     imie: string;
     status: Status;
 }
+
 // Na przykład dla obiektu:
 type Osoba = {
     imie: string;
     wiek: number;
 };
+
 // Na przykład dla funkcji
 type Operacja = (a: number, b: number) => number;
-
+const dodaj: Operacja = (a, b) => {
+    return a + b;
+};
 
 // Na przykład dla  tablicy:
-
 type Liczby = number[];
+const liczby1: Liczby = [1, 2, 3, 4, 5];
 
 // Na przykład dla  krotki:
-
-type Punkt = [number, number];
+type Punkt = [number, number]
+const punktA: Punkt = [10, 20];
+const punktB: Punkt = [5, 8];
 
 // Można też użyć &, czyli intersection type:
-
 type Osoba = {
     imie: string;
 };
