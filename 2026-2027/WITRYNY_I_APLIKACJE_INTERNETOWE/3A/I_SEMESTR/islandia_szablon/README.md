@@ -51,5 +51,5 @@ C:\xampp\htdocs\islandia_szablon
 i otwórz:
 
 ```text
-http://localhost/islandia_szablon_9_zdjec/islandia.php
+http://localhost/islandia_szablon/islandia.php
 ```
