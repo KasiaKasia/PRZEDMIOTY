@@ -23,7 +23,6 @@ Projekt wykorzystuje:
 8. `husavik.jpg`
 9. `maskonur.jpg`
 
-Plik przesłany jako `kirkjuffel.jpg` został w projekcie zapisany jako `kirkjufell.jpg`.
 
 ## Jak działa wersja bez SQL?
 
@@ -46,7 +45,7 @@ i wybiera odpowiedni element z tablicy PHP `$obiekty`.
 Umieść cały folder w katalogu serwera WWW, np. w XAMPP:
 
 ```text
-C:\xampp\htdocs\islandia_szablon_9_zdjec
+C:\xampp\htdocs\islandia_szablon
 ```
 
 i otwórz:
