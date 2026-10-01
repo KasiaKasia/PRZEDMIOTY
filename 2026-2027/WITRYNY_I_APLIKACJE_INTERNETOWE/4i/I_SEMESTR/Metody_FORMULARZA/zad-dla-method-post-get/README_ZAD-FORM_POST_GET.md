@@ -1,6 +1,4 @@
-# Formularze GET i POST w PHP
-
-## Zadanie
+# Zadanie – formularze GET i POST w PHP
 
 Utwórz plik `index.php`, w którym znajdą się **dwa formularze HTML**.
 
@@ -16,7 +14,7 @@ Drugi formularz powinien przesyłać dane za pomocą metody:
 <form method="POST">
 ```
 
-Oba formularze powinny zawierać takie same pola.
+Oba formularze powinny zawierać **takie same pola**.
 
 ---
 
@@ -30,82 +28,146 @@ Utwórz formularz:
 
 Formularz powinien zawierać:
 
-1. **Pole Imię**
+### 1. Pole tekstowe Imię
 
-   * zastosuj `input` typu `text`,
-   * ustaw `placeholder="Podaj imię"`,
-   * pole powinno być obowiązkowe – `required`,
-   * dodaj atrybuty `id` oraz `name`,
-   * dodaj element `<label>` z atrybutem `for` odpowiadającym wartości `id` pola.
+Pole powinno zawierać:
 
-2. **Pole Nazwisko**
+1. `input type="text"`,
+2. `placeholder="Podaj imię"`,
+3. atrybut `required`,
+4. odpowiedni atrybut `id`,
+5. odpowiedni atrybut `name`,
+6. element `<label>` z atrybutem `for` wskazującym na `id` pola.
 
-   * zastosuj `input` typu `text`,
-   * ustaw `placeholder="Podaj nazwisko"`,
-   * pole powinno być obowiązkowe – `required`,
-   * dodaj atrybuty `id` oraz `name`,
-   * dodaj element `<label>` z atrybutem `for` odpowiadającym wartości `id` pola.
+### 2. Pole tekstowe Nazwisko
 
-3. **Pole Kod pocztowy**
+Pole powinno zawierać:
 
-   * zastosuj `input` typu `text`,
-   * ustaw `placeholder="00-000"`,
-   * pole powinno być obowiązkowe – `required`,
-   * zastosuj walidację za pomocą atrybutu:
+1. `input type="text"`,
+2. `placeholder="Podaj nazwisko"`,
+3. atrybut `required`,
+4. odpowiedni atrybut `id`,
+5. odpowiedni atrybut `name`,
+6. element `<label>` z atrybutem `for` wskazującym na `id` pola.
+
+### 3. Pole Kod pocztowy
+
+Pole powinno zawierać:
+
+1. `input type="text"`,
+2. `placeholder="00-000"`,
+3. walidację za pomocą:
 
 ```html
 pattern="[0-9]{2}-[0-9]{3}"
 ```
 
-* dodaj element `<label>` z odpowiednim atrybutem `for`.
+4. atrybut `required`,
+5. odpowiedni atrybut `id`,
+6. odpowiedni atrybut `name`,
+7. element `<label>` z atrybutem `for` wskazującym na `id` pola.
 
-4. **Lista rozwijana Miasto**
+Przykładowa poprawna wartość:
 
-   * zastosuj element `<select>`,
-   * dodaj elementy `<option>`,
-   * umieść przykładowe miasta:
-
-     * Warszawa,
-     * Kraków,
-     * Gdańsk,
-     * Wrocław.
-
-5. **Pole Zainteresowania**
-
-   * zastosuj pola typu `checkbox`,
-   * dodaj przykładowe zainteresowania:
-
-     * Programowanie,
-     * Sport,
-     * Muzyka,
-     * Podróże,
-   * użytkownik powinien mieć możliwość zaznaczenia kilku zainteresowań jednocześnie,
-   * każdy `input` powinien posiadać odpowiadający mu element `<label>`.
-
-6. **Pole Tryb nauki**
-
-   * zastosuj dwa pola typu `radio`,
-   * dostępne opcje:
-
-     * Stacjonarny,
-     * Zdalny,
-   * użytkownik powinien mieć możliwość wybrania tylko jednej opcji,
-   * oba pola `radio` powinny posiadać taką samą wartość atrybutu `name`,
-   * każde pole powinno posiadać odpowiadający mu element `<label>`.
-
-7. **Przycisk wysyłający formularz**
-
-   * na końcu formularza dodaj:
-
-```html
-<button type="submit">
+```text
+00-000
 ```
 
-Po wysłaniu formularza odczytaj i wyświetl przesłane dane za pomocą tablicy:
+### 4. Lista rozwijana Miasto
+
+Utwórz listę rozwijaną przy użyciu:
+
+1. elementu `<select>`,
+2. elementów `<option>`,
+3. odpowiedniego atrybutu `id`,
+4. odpowiedniego atrybutu `name`,
+5. elementu `<label>` z atrybutem `for` wskazującym na `id` elementu `<select>`.
+
+Dodaj przykładowe miasta:
+
+- Warszawa,
+- Kraków,
+- Gdańsk,
+- Wrocław.
+
+### 5. Pole Zainteresowania
+
+Utwórz grupę pól typu:
+
+```html
+<input type="checkbox">
+```
+
+Dodaj następujące zainteresowania:
+
+- Programowanie,
+- Sport,
+- Muzyka,
+- Podróże.
+
+Każdy `checkbox` powinien posiadać:
+
+1. własny atrybut `id`,
+2. odpowiednią wartość `value`,
+3. element `<label>` z atrybutem `for` odpowiadającym wartości `id`.
+
+Użytkownik powinien mieć możliwość zaznaczenia **kilku zainteresowań jednocześnie**.
+
+Wszystkie checkboxy powinny umożliwiać przesłanie kilku wartości do PHP, dlatego dla atrybutu `name` zastosuj zapis tablicowy, np.:
+
+```html
+name="zainteresowania[]"
+```
+
+### 6. Pole Tryb nauki
+
+Utwórz dwa pola typu:
+
+```html
+<input type="radio">
+```
+
+Dostępne opcje:
+
+1. Stacjonarny,
+2. Zdalny.
+
+Każde pole powinno posiadać:
+
+1. własny atrybut `id`,
+2. odpowiednią wartość `value`,
+3. element `<label>` z atrybutem `for` wskazującym na jego `id`.
+
+Oba pola `radio` powinny posiadać **taką samą wartość atrybutu `name`**, aby użytkownik mógł wybrać tylko jedną opcję.
+
+Przykładowo:
+
+```html
+name="tryb"
+```
+
+### 7. Przycisk wysyłający formularz
+
+Na końcu formularza dodaj przycisk:
+
+```html
+<button type="submit">Zapisz</button>
+```
+
+Przycisk powinien służyć do przesłania danych formularza.
+
+---
+
+## Obsługa formularza GET w PHP
+
+Po wysłaniu formularza odczytaj dane za pomocą tablicy superglobalnej:
 
 ```php
 $_GET
 ```
+
+Wyświetl przesłane wartości na stronie.
+
 
 ---
 
@@ -117,49 +179,65 @@ Utwórz drugi formularz:
 <form method="POST">
 ```
 
-Formularz powinien zawierać takie same pola jak formularz `GET`:
+Powinien zawierać **dokładnie takie same pola jak formularz wykorzystujący metodę GET**:
 
-1. **Imię** – `input type="text"`.
-2. **Nazwisko** – `input type="text"`.
-3. **Kod pocztowy** – pole tekstowe z atrybutem `pattern`.
-4. **Miasto** – lista rozwijana `<select>`.
-5. **Zainteresowania** – pola `checkbox`.
-6. **Tryb nauki** – dwa pola `radio`.
-7. **Przycisk wysyłający formularz** – `<button type="submit">`.
+1. Imię – `input type="text"`,
+2. Nazwisko – `input type="text"`,
+3. Kod pocztowy – pole tekstowe z atrybutem `pattern`,
+4. Miasto – lista `<select>`,
+5. Zainteresowania – pola `checkbox`,
+6. Tryb nauki – dwa pola `radio`,
+7. przycisk `<button type="submit">Zapisz</button>`.
 
-Po wysłaniu formularza odczytaj i wyświetl przesłane dane za pomocą tablicy:
+Wszystkie pola powinny posiadać takie same wymagania dotyczące:
+
+- `id`,
+- `name`,
+- `label`,
+- `for`,
+- `value`,
+- `required`,
+- `placeholder`,
+- walidacji kodu pocztowego.
+
+---
+
+## Obsługa formularza POST w PHP
+
+Po wysłaniu drugiego formularza odczytaj dane za pomocą tablicy superglobalnej:
 
 ```php
 $_POST
 ```
 
----
+Wyświetl przesłane wartości na stronie.
 
-## Wymagania dodatkowe
 
-* Każdy element `<input>` powinien posiadać własny atrybut `id`.
-* Każde pole formularza powinno posiadać element `<label>` z atrybutem `for` odpowiadającym wartości `id`.
-* Pola `radio` należące do jednej grupy powinny mieć taką samą wartość atrybutu `name`.
-* Checkboxy powinny umożliwiać przesłanie kilku wartości.
-* Pola `Imię`, `Nazwisko` oraz `Kod pocztowy` powinny być obowiązkowe.
-* Kod pocztowy powinien mieć format:
-
-```text
-00-000
-```
-
-* Formularze powinny być opisane nagłówkami informującymi, czy korzystają z metody `GET`, czy `POST`.
-* Kod powinien być czytelny i prawidłowo sformatowany.
-* Do obsługi przesłanych danych należy wykorzystać PHP.
 
 ---
 
-## Przykładowa struktura pliku
+## Dodatkowe wymagania
 
-```text
-projekt/
-│
-└── index.php
+- Każdy element `<input>` powinien posiadać własny atrybut `id`.
+- Każde pole powinno posiadać odpowiedni atrybut `name`.
+- Każdy element formularza powinien posiadać `<label>` z atrybutem `for` odpowiadającym wartości `id`.
+- Pola `Imię`, `Nazwisko` oraz `Kod pocztowy` powinny być obowiązkowe.
+- Kod pocztowy powinien mieć format `00-000`.
+- Pola `radio` należące do jednej grupy powinny posiadać taką samą wartość atrybutu `name`.
+- Każde pole `radio` powinno posiadać inną wartość atrybutu `value`.
+- Checkboxy powinny umożliwiać zaznaczenie i przesłanie kilku wartości.
+- Checkboxy zainteresowań powinny wykorzystywać zapis:
+
+```html
+name="zainteresowania[]"
 ```
 
---- 
+- Formularz `GET` powinien przesyłać dane za pomocą metody `GET`.
+- Formularz `POST` powinien przesyłać dane za pomocą metody `POST`.
+- Dane z pierwszego formularza należy odczytywać za pomocą `$_GET`.
+- Dane z drugiego formularza należy odczytywać za pomocą `$_POST`.
+- Formularze powinny być opisane nagłówkami informującymi, z której metody korzystają.
+- Kod HTML i PHP powinien być czytelny i prawidłowo sformatowany.
+
+
+
