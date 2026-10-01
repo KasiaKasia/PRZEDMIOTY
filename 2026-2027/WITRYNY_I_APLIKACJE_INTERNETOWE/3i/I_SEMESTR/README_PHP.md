@@ -20,16 +20,16 @@ Najpierw $wartosc przechowuje liczbę, a później tekst.
 
 ## Typy danych
 
-| Typ        | Znaczenie                                          | Przykład                          |
-| ---------- | -------------------------------------------------- | --------------------------------- |
-| `int`      | liczba całkowita                                   | `$wiek = 20;`                     |
-| `float`    | liczba zmiennoprzecinkowa                          | `$cena = 19.99;`                  |
-| `string`   | tekst                                              | `$imie = "Jan";`                  |
-| `bool`     | wartość logiczna                                   | `$aktywny = true;`                |
-| `array`    | tablica indeksowana lub asocjacyjna                | `$kolory = ["red", "blue"];`      |
-| `object`   | obiekt utworzony na podstawie klasy                | `$user = new User();`             |
-| `null`     | brak wartości                                      | `$telefon = null;`                |
-| `resource` | specjalny typ reprezentujący odwołanie do zewnętrznego zasobu, np. otwartego pliku | `$file = fopen("dane.txt", "r");` |
+| Typ        | Znaczenie                                          | Przykład                                                                                    |
+| ---------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `int`      | liczba całkowita                                   | `$wiek = 20;`                                                                               |
+| `float`    | liczba zmiennoprzecinkowa                          | `$cena = 19.99;`                                                                            |
+| `string`   | tekst                                              | `$imie = "Jan";`                                                                            |
+| `bool`     | wartość logiczna                                   | `$aktywny = true;`                                                                          |
+| `array`    | tablica indeksowana lub asocjacyjna                | `$kolory = ["red", "blue"]; $owoce = [ 0 => "jabłko", 1 => "banan",  2 => "gruszka"];`      |
+| `object`   | obiekt utworzony na podstawie klasy                | `$user = new User();`                                                                       |
+| `null`     | brak wartości                                      | `$telefon = null;`                                                                          |
+| `resource` | specjalny typ reprezentujący odwołanie do zewnętrznego zasobu, np. otwartego pliku | `$file = fopen("dane.txt", "r");`                           |
 
 
 ## Dodatkowe typy: `callable` i `iterable`
@@ -530,7 +530,7 @@ Kod:
     if (!$connection) {
         die("Błąd połączenia: " . mysqli_connect_error());
     }
-
+    #  mysqli_set_charset - ustawia kodowanie znaków dla połączenia z bazą, aby tekst był poprawnie zapisywany i odczytywany
     mysqli_set_charset($connection, "utf8mb4");
 
     $sql = "SELECT * FROM uczniowie";
