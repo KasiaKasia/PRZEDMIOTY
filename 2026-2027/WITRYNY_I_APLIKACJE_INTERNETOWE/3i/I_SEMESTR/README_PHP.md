@@ -606,6 +606,25 @@ echo $row["nazwisko"];
 ```
 To jest bardzo ważne w kontekście tego, co wcześniej omawiałyśmy przy tablicach asocjacyjnych w PHP.
 
+**Przykład tablicy asocjacyjnej wyswietlającej dane**
+```PHP
+<?php
+
+$osoba = [
+    "imie" => "Anna",
+    "nazwisko" => "Kowalska",
+    "wiek" => 25,
+    "miasto" => "Warszawa"
+];
+
+foreach ($osoba as $klucz => $wartosc) {
+    echo $klucz . ": " . $wartosc . "<br>";
+}
+
+?>
+```
+
+
 11. Najważniejsze funkcje do zapamiętania na INF.03
 Funkcja	Zastosowanie
 - `mysqli_connect()`        - nawiązuje połączenie z bazą MySQL
