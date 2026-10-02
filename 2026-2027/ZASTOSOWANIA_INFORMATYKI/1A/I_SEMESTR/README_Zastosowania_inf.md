@@ -1094,14 +1094,14 @@ bo:
 ### **Linki, odsyłacze, przyciski**
 ❏ **Linki, odsyłacze, przyciski powinny mieć obszar klikalny co najmniej 44x44 px** (Kryterium 2.5.5 (Target Size) – poziom AAA)
 **Jeśli nie możesz zwiększyć rozmiaru, dodaj odpowiedni padding lub elementy odstępu dookoła**.
-❏ Linki, odsyłacze muszą być wyraźnie oznaczone, gdy są w fokus (np. obramowanie, zmiana koloru, podkreślenie).
+❏ **Linki, odsyłacze muszą być wyraźnie oznaczone, gdy są w fokus** (np. obramowanie, zmiana koloru, podkreślenie).
 
 Przykład:
 ```CSS
 a:focus { outline: 2px solid #000; outline-offset: 4px; }
 ```
 
-❏ Dla przycisku jeśli używasz ikony bez tekstu, musi być aria-label.
+❏ **Dla przycisku jeśli używasz ikony bez tekstu, musi być aria-label**.
 
 Przykład:
 ```HTML
