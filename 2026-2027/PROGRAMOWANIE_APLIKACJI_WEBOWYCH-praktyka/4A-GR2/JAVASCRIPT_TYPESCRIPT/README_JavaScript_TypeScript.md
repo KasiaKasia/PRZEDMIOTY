@@ -1506,6 +1506,297 @@ const osoba: PracujacaOsoba = {
 ```
 
 
+## Funkcje zaawansowane
+### lambda
+
+**`lambda`** pozwala tworzyć małe, **anonimowe funkcje**, czyli funkcje definiowane bez użycia instrukcji `def`.
+
+Najczęściej stosuje się je do krótkich, prostych operacji, np. w połączeniu z funkcjami `map()`, `filter()` czy `sorted()`.
+
+Funkcja `lambda` składa się ze słowa kluczowego `lambda`, argumentów, dwukropka i jednego wyrażenia.
+
+Czyli zamiast:
+
+```python
+def dodaj(a, b):
+    wynik = a + b
+    return wynik
+```
+
+możemy zapisać:
+```python
+dodaj = lambda a, b: a + b
+print(dodaj(2, 3))  # 5
+```
+
+Skrótowa wersja w lambda: 
+`lambda a, b: a + b` 
+
+Składnia: 
+`lambda argumenty: wyrażenie `
+
+Istotne:
+
+- lambda może zawierać tylko jedno wyrażenie,
+- nie można umieszczać w niej instrukcji takich jak return, while, for ani zwykłego bloku if,
+- można jednak używać wyrażenia warunkowego wartość1 if warunek else wartość2.
+
+```python
+parzystosc = lambda x: "parzysta" if x % 2 == 0 else "nieparzysta"
+
+print(parzystosc(4))  # parzysta
+print(parzystosc(5))  # nieparzysta
+```
+
+**Przykład zastosowania**: Sortowanie listy słowników po wartości klucza. Załóżmy, że mamy listę osób i chcemy posortować je po wieku. 
+
+```python
+osoby = [{'imie': 'Anna', 'wiek': 25}, {'imie': 'Jan', 'wiek': 30}, {'imie': 'Maria', 'wiek': 22}] 
+posortowane = sorted(osoby, key=lambda x: x['wiek']) 
+print(posortowane) 
+```
+
+Przykład: Obliczenie kwadratów liczb w liście:
+ 
+```python
+kwadraty = list(map(lambda x: x**2, [1, 2, 3, 4])) 
+print(kwadraty) 
+```
+
+---
+
+### map
+**Funkcja map** stosuje podaną funkcję do każdego elementu iterowalnego (np. listy, tupli) i zwraca iterator z wynikami. Często łączy się ją z lambdami dla zwięzłości. 
+
+**Przykład zastosowania**: Podwojenie elementów listy. 
+ 
+```python
+liczby = [1, 2, 3, 4] 
+podwojone = list(map(lambda x: x * 2, liczby)) 
+print(podwojone) 
+```
+ 
+Przykład: Konwersja temperatur z Celsjusza na Fahrenheita dla listy wartości. 
+
+Konwersja z **Celsjusza (°C)** na **Fahrenheita (°F)** działa według prostego wzoru matematycznego:  **°F=(°C×9/5 )+32**
+Skale różnią się w dwóch rzeczach: 
+
+1. Wielkość stopnia 
+```text
+    100°C = 180°F 
+    → 1°C = 9/5°F (czyli 1.8°F) 
+```
+
+2. Punkt zerowy 
+
+```text
+0°C = 32°F 
+→ dlatego dodajemy +32 
+```
+
+Przykłady:
+```text
+0°C → (0×9/5)+32=32°F  
+25°C → (25×9/5)+32=77°F
+100°C → (100×9/5)+32=212°F
+```
+
+```python
+celsjusze = [0, 10, 20, 30] 
+fahrenheit = list(map(lambda c: (c * 9/5) + 32, celsjusze)) 
+print(fahrenheit) 
+```
+
+### filter
+**Funkcja filter** filtruje elementy iterowalnego na podstawie warunku podanego w funkcji (zwracającej True/False). Zwraca iterator z elementami spełniającymi warunek. 
+
+**Przykład zastosowania**: Wybór parzystych liczb z listy. 
+```python
+liczby = [1, 2, 3, 4, 5, 6] 
+parzyste = list(filter(lambda x: x % 2 == 0, liczby)) 
+print(parzyste) 
+```
+
+Przykład: Filtrowanie słów dłuższych niż 3 litery z listy. 
+```python
+slowa = ['kot', 'pies', 'slon', 'ptak', 'ryba'] 
+dlugie = list(filter(lambda s: len(s) > 3, slowa)) 
+print(dlugie) 
+```
+
+### reduce
+
+**Funkcja reduce** (z modułu functools) **służy do zredukowania wielu elementów kolekcji do jednej końcowej wartości**. Wymaga importu: from functools  import reduce. 
+
+Ogólna składnia 
+```text
+reduce(function, iterable) 
+```
+- function → funkcja z dwoma argumentami 
+- iterable → lista / tuple / inna kolekcja 
+
+Python bierze elementy po kolei i łączy je w jeden wynik. 
+
+
+**Przykład zastosowania**: Obliczenie sumy elementów listy. 
+```python
+from functools import reduce 
+liczby = [1, 2, 3, 4] 
+suma = reduce(lambda x, y: x + y, liczby) 
+print(suma) 
+```
+
+`reduce()` działa tutaj krok po kroku tak:
+```text
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+```
+Właśnie dlatego nazywa się **reduce**, czyli można powiedzieć: **redukuje wiele wartości do jednej wartości**.
+
+
+Przykład: Znalezienie maksymalnej wartości w liście. 
+```python
+from functools import reduce 
+liczby = [1, 3, 2, 5, 4] 
+maks = reduce(lambda x, y: x if x > y else y, liczby) 
+print(maks) 
+```
+
+Możemy również zapisać to bez lambda, używając zwykłej funkcji:
+
+```Python
+from functools import reduce
+
+def dodaj(a, b):
+    return a + b
+
+liczby = [1, 2, 3, 4]
+wynik = reduce(dodaj, liczby)
+print(wynik) 
+```
+
+---
+
+## Rekurencja 
+
+**Rekurencja** to technika programowania, w której **funkcja wywołuje samą siebie, aby rozwiązać problem. Zamiast używać pętli** (jak for czy while), **funkcja dzieli problem na mniejsze podproblemy**, aż dojdzie do prostego przypadku, który można rozwiązać bezpośrednio.  Kluczowe elementy funkcji rekurencyjnej: 
+
+**Przypadek bazowy (base case)**: Warunek, który kończy rekurencję. Bez niego funkcja będzie się wywoływać w nieskończoność, co spowoduje błąd (RecursionError w Pythonie, bo przekroczony zostanie limit rekurencji, domyślnie ok. 1000 wywołań). 
+
+**Przypadek rekurencyjny (recursive case)**: Część, w której funkcja wywołuje siebie z mniejszymi argumentami, zbliżając się do przypadku bazowego. 
+
+Rekurencja jest przydatna w problemach, które mają strukturę drzewiastą lub dzielą się na podproblemy, np. obliczanie silni, przeszukiwanie drzew, sortowanie (jak quicksort) czy generowanie fraktali. 
+
+ 
+**Przykład**: Obliczanie silni 
+```python
+def silnia(n): 
+    if n == 0 or n == 1:  # Przypadek bazowy: 0! = 1, 1! = 1 
+        return 1 
+    else:  # Przypadek rekurencyjny 
+        return n * silnia(n - 1) 
+```
+ 
+Jak działa, wyjaśnienie:
+```text
+Dla silnia(5): Wywołuje 5 * silnia(4) 
+    silnia(4): Wywołuje 4 * silnia(3) 
+    silnia(3): Wywołuje 3 * silnia(2) 
+    silnia(2): Wywołuje 2 * silnia(1) 
+    silnia(1): Zwraca 1 (przypadek bazowy) 
+```
+
+Teraz "wspinamy się" z powrotem: 2 * 1 = 2, 3 * 2 = 6, 4 * 6 = 24, 5 * 24 = 120. 
+
+
+---
+
+## Wyjątki 
+
+**Wyjątki** to mechanizm, **który pozwala programowi radzić sobie z błędami w czasie wykonania (runtime errors), np. dzielenie przez zero, brak pliku czy nieoczekiwane dane. Zamiast crashować program, możesz "złapać" błąd i obsłużyć go elegancko**. Jest to kluczowe dla tworzenia niezawodnego i odpornego na błędy kodu. 
+Python ma wbudowane wyjątki (np. ZeroDivisionError, FileNotFoundError), ale możesz też tworzyć własne. Podstawowa struktura to blok try-except, z opcjonalnymi else i finally.  
+
+**Podstawowa struktura: try-except**
+- **try**: W tym bloku umieszczasz kod, który może spowodować błąd. 
+- **except**: Łapie wyjątek i obsługuje go. Możesz sprecyzować typ wyjątku (np. except ValueError:) lub złapać wszystkie (except: – ale to niezalecane, bo maskuje błędy). 
+
+
+Przykład 
+```python
+try: 
+    liczba = int(input("Podaj liczbę: "))  # Może rzucić ValueError, jeśli nie liczba 
+    wynik = 10 / liczba  # Może rzucić ZeroDivisionError 
+    print(wynik) 
+except ValueError: 
+    print("To nie jest liczba!") 
+except ZeroDivisionError: 
+    print("Nie dziel przez zero!") 
+```
+Warto też zauważyć, że Python ma wiele innych wbudowanych wyjątków, np. `TypeError`, `IndexError`, `KeyError`, `FileNotFoundError`, `NameError`.
+
+
+**Dodatkowe bloki: else i finally** 
+
+- **else**: Wykonuje się tylko, jeśli w try NIE wystąpił żaden wyjątek. Przydatne do kodu, który ma działać po sukcesie. 
+- **finally**: Zawsze się wykonuje, niezależnie od tego, czy był wyjątek czy nie. Idealne do czyszczenia zasobów (np. zamykanie plików). 
+
+Przykład 
+```python
+try: 
+    a = int(input("Podaj pierwszą liczbę: "))  # Może rzucić ValueError 
+    b = int(input("Podaj drugą liczbę: "))   # Może rzucić ValueError 
+    wynik = a / b                           # Może rzucić ZeroDivisionError 
+except ValueError: 
+    print("Jedna z wartości nie jest liczbą całkowitą!") 
+except ZeroDivisionError: 
+    print("Nie można dzielić przez zero!") 
+except Exception as e: 
+    print(f"Nieoczekiwany błąd: {e}") 
+else: 
+    print(f"Wynik dzielenia: {wynik}") 
+    print("Obliczenia zakończone sukcesem.") 
+finally: # finally - wykona się zawsze, niezależnie od tego, czy wystąpił błąd:
+    print("Program zakończył przetwarzanie wejścia – zawsze to się wyświetli.") 
+```
+`**Exception**` jest bazową klasą dla większości standardowych wyjątków w Pythonie i może służyć do przechwytywania błędów, które nie zostały wcześniej obsłużone przez bardziej szczegółowe bloki except.
+
+
+**Raise**: Rzucanie wyjątków raise pozwala ręcznie "rzucić" wyjątek, np. gdy chcesz przerwać wykonanie przy niepoprawnych danych. Możesz raise'ować wbudowany wyjątek lub własny. 
+
+Przykład:  
+```python
+def sprawdz_wiek(wiek): 
+    if wiek < 18: 
+        raise ValueError("Jesteś za młody!")  # Rzuca wyjątek z komunikatem 
+    return "OK" 
+ 
+try: 
+    sprawdz_wiek(15) 
+except ValueError as e: 
+    print(e)  # Wyjście: Jesteś za młody! 
+```
+
+**Custom exceptions**: Własne wyjątki Możesz tworzyć własne klasy wyjątków, dziedzicząc po Exception (lub podklasach jak ValueError). To przydatne w dużych projektach, by mieć specyficzne błędy.Przykład tworzenia i użycia: 
+
+ 
+```python
+class MojBlad(Exception):  # Dziedziczy po Exception 
+    def __init__(self, wiadomosc="To mój custom błąd!"): 
+        self.wiadomosc = wiadomosc 
+        super().__init__(self.wiadomosc) 
+ 
+def funkcja(): 
+    raise MojBlad("Coś poszło nie tak.") 
+ 
+try: 
+    funkcja() 
+except MojBlad as e: 
+    print(e)  # Wyjście: Coś poszło nie tak.
+
+```
+---
+
 
 ## 8. Wyszukiwanie elementów w dokumencie
 
