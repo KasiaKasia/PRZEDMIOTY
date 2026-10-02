@@ -970,6 +970,7 @@ wycofywane). TLS jest standardem de facto w dzisiejszym internecie.
 
 ------
 ## **WCAG (Web Content Accessibility Guidelines)**
+
 to **zbiór wytycznych opracowanych przez W3C (World Wide Web Consortium)** mających na celu zapewnienie, że **strony internetowe będą dostępne dla jak najszerszej grupy użytkowników, w tym osób z różnymi rodzajami niepełnosprawności.**
 
 Wytyczne WCAG obejmują m.in. **dostosowanie kolorów, zapewnienie alternatywnych tekstów do obrazów, umożliwienie nawigacji przy użyciu klawiatury oraz poprawę czytelności treści**.
@@ -985,28 +986,46 @@ Link do dokumentacji WCAG https://www.w3.org/TR/WCAG22/?utm_source=chatgpt.com
 
 
 ### **Poziom A (Minimalna dostępność)**
+
 ❏ Strona spełnia podstawowe wymagania dostępności.
+
 ❏ Jest to najniższy poziom, który usuwa najpoważniejsze bariery.
+
 ❏ Przykłady wymagań:
+
     ❏ Strona powinna być nawigowalna przy użyciu klawiatury.
+
     ❏ Obrazy muszą mieć alternatywny tekst (alt).
+
     ❏ Treść nie powinna powodować napadów padaczkowych (np. brak migających elementów).
 
 
 ### **Poziom AA (Rekomendowana dostępność)**
+
 ❏ To standardowy poziom wymagany dla instytucji publicznych i większości stron.
+
 ❏ Strony na tym poziomie są dostępne dla większej liczby osób.
+
 ❏ Przykłady wymagań:
+
     ❏ Kontrast tekstu względem tła wynosi co najmniej 4.5:1.
+
     ❏ Strona działa dobrze zarówno na urządzeniach mobilnych, jak i desktopowych.
+
     ❏ Nagłówki i etykiety są jednoznaczne i pomagają w nawigacji.  
 
 ### **Poziom AAA (Najwyższa dostępność)**
+
 ❏ Jest to najbardziej rygorystyczny poziom dostępności.
+
 ❏ Wymagany w przypadku treści dla osób z dużymi niepełnosprawnościami (np. osoby niewidome, słabowidzące).
+
 ❏ Przykłady wymagań:
+
     ❏ Kontrast tekstu wynosi co najmniej 7:1.
+
     ❏ Język strony jest prosty i łatwy do zrozumienia.
+
     ❏ Wszystkie multimedia mają transkrypcje i napisy    
 
 **Tekst zgodny z WCAG 2.2, powinien spełniać zasady:**
@@ -1032,7 +1051,9 @@ Dla Poziomu AAA:
 
 
 ## **Skalowalność i możliwość powiększenia**
+
 ❏ Tekst powinien dać się powiększyć do **200% bez utraty treści lub funkcjonalności**. (WCAG **1.4.4 Resize Text, poziom AA**) [Źródło, link: https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html]
+
 ❏ Wysokość linii (**line-height**): **co najmniej 1.5x wielkości czcionki**  (WCAG **1.4.12 Text Spacing, poziom AA**)
  
 **line-height = font-size * *1.5**  
@@ -1047,6 +1068,7 @@ czyli:
 line-height: 24px;
 ```
 ❏ **Odstęp między akapitami: co najmniej 2x wielkości czcionki**
+
 ❏ **Odstęp między znakami (letter-spacing): co najmniej 0.12x wielkości czcionki**
  
 **letter-spacing = font-size * *0.12** [Źródło, link https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
@@ -1073,29 +1095,43 @@ bo:
 ```
 
 ### **Struktura i semantyka**
+
 ❏ **Nagłówki powinny być logicznie uporządkowane** (np. `<h1>`, `<h2>`, `<h3>` itd.) (1.3.1, Poziom A)
+
 ❏ **Etykiety formularzy powinny być jednoznaczne i poprawnie powiązane z polami** (`<label for="id"`) (2.4.6, Poziom AA)
+
 ❏ **Linki powinny mieć opisowy tekst** (np. zamiast "kliknij tutaj", użyj "Pobierz raport PDF") (2.4.4, Poziom A)
 
 
 ### **Język i prostota treści**
+
 ❏ **Ustaw język strony** (`<html lang="pl"`) (3.1.1, Poziom A)
+
 ❏ **Unikaj trudnych słów i żargonu** – jeśli są konieczne, dodaj definicję (3.1.3, Poziom AAA)
+
 ❏ **Tekst powinien być zrozumiały dla osób na poziomie edukacyjnym szkoły podstawowej** (3.1.5, Poziom AAA)
 
 ### **Unikanie migotania i animacji**
+
 ❏ **Tekst i obrazy nie mogą migać częściej niż 3 razy na sekundę** (2.3.1, Poziom A)
+
 ❏ **Jeśli tekst jest animowany, użytkownik powinien mieć możliwość zatrzymania animacji** (2.2.2, Poziom A)
 
 ### **Dostępność dla czytników ekranu**
+
 ❏ **Używaj semantycznego HTML**-a, np. `<p>` dla akapitów, `<ul>` i `<ol>` dla list.
+
 ❏ **Zapewnij poprawne znaczniki ARIA dla dynamicznych treści.**
+
 ❏ **Zapewnij tekst alternatywny (alt) dla obrazów z tekstem** (1.4.5,Poziom AA).
 
 
 ### **Linki, odsyłacze, przyciski**
+
 ❏ **Linki, odsyłacze, przyciski powinny mieć obszar klikalny co najmniej 44x44 px** (Kryterium 2.5.5 (Target Size) – poziom AAA)
+
 **Jeśli nie możesz zwiększyć rozmiaru, dodaj odpowiedni padding lub elementy odstępu dookoła**.
+
 ❏ **Linki, odsyłacze muszą być wyraźnie oznaczone, gdy są w fokus** (np. obramowanie, zmiana koloru, podkreślenie).
 
 Przykład:
@@ -1111,11 +1147,17 @@ Przykład:
 ```
 
 ### **Nawigacja za pomocą klawiatury:**
+
 ❏ **TAB** (idź do przodu),
+
 ❏ **Shift + TAB** (idź do tyłu),
+
 ❏ **Enter** (wybierz),
+
 ❏ **Esc** (wyjdź/zamknij),
+
 ❏ **Spacja** (zaznacz/rozwiń w np. pola rozwijane, listy rozwijane),
+
 ❏ **strzałki “góra” i “dół”** (przechodzenie po elementach listy rozwijanej),
 Wykonanie powyższych punktów uzyskuje się dodając właściwość:
 **`tabindex = "0" do np.: div, input, button`**
