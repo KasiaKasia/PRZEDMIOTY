@@ -976,6 +976,8 @@ Wytyczne WCAG obejmują m.in. **dostosowanie kolorów, zapewnienie alternatywnyc
 
 Celem WCAG jest poprawa dostępności sieci dla osób z problemami ze wzrokiem, słuchem, motoryką czy poznawaniem treści. 
 
+Link do dokumentacji WCAG https://www.w3.org/TR/WCAG22/?utm_source=chatgpt.com
+
 ### **Poziomy WCAG:**
 1. Poziom **A** (**Minimalna** dostępność)
 2. Poziom **AA** (**Rekomendowana** dostępność)
@@ -1030,9 +1032,9 @@ Dla Poziomu AAA:
 
 
 ## **Skalowalność i możliwość powiększenia**
-❏ Tekst powinien dać się powiększyć do **200% bez utraty treści lub funkcjonalności**. (WCAG **1.4.4 Resize Text, poziom AA**) [link: https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html]
+❏ Tekst powinien dać się powiększyć do **200% bez utraty treści lub funkcjonalności**. (WCAG **1.4.4 Resize Text, poziom AA**) [Źródło, link: https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html]
 ❏ Wysokość linii (**line-height**): **co najmniej 1.5x wielkości czcionki**  (WCAG **1.4.12 Text Spacing, poziom AA**)
-Źródło:
+ 
 **line-height = font-size * *1.5**  
 
 Dla przykładu:
@@ -1046,8 +1048,8 @@ line-height: 24px;
 ```
 ❏ **Odstęp między akapitami: co najmniej 2x wielkości czcionki**
 ❏ **Odstęp między znakami (letter-spacing): co najmniej 0.12x wielkości czcionki**
-Źródło:
-**letter-spacing = font-size * *0.12** [link: https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
+ 
+**letter-spacing = font-size * *0.12** [Źródło, link https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
 
 Przykład:
 ```text
@@ -1057,8 +1059,8 @@ letter-spacing: 2.4px;
 bo:
 20px × 0.12 = 2.4px
 ```
-❏ **Odstęp między słowami (word-spacing): co najmniej 0.16x wielkości czcionki** [link: https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
-Źródło:
+❏ **Odstęp między słowami (word-spacing): co najmniej 0.16x wielkości czcionki** [Źródło, link: https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
+
 **word-spacing = font-size * *0.16**
 
 Przykład dla czcionki `20px`:
@@ -1123,3 +1125,4 @@ Wykonanie powyższych punktów uzyskuje się dodając właściwość:
     Ten element może otrzymać fokus klawiatury
 </div>
 ```
+[Źródło, link https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html ]
