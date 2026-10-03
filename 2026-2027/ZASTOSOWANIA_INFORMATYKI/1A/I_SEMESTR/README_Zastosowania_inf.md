@@ -831,7 +831,7 @@ Certyfikaty używane w internecie są najczęściej zgodne ze standardem **X.509
 
 ### 📝 **Certyfikaty internetowe:**
 
-** 📝1. Potwierdzają tożsamość strony**
+📝 **1. Potwierdzają tożsamość strony**
 Certyfikat zapewnia, że strona, którą odwiedzasz, jest rzeczywiście tym, za co się podaje.
 Przykład:
 
@@ -844,7 +844,7 @@ przeglądarka sprawdza, czy certyfikat został wystawiony dla domeny bank.pl ora
 Dzięki temu zmniejsza się ryzyko połączenia z fałszywym serwerem podszywającym się pod prawdziwą stronę.
 
 
-**📝2. Umożliwiają szyfrowanie danych**
+📝 **2. Umożliwiają szyfrowanie danych**
 Certyfikat zawiera **klucz publiczny**oraz informacje potrzebne do uwierzytelnienia serwera.
 
 Podczas nawiązywania połączenia TLS klient i serwer uzgadniają klucze sesyjne, które są następnie wykorzystywane do szyfrowania przesyłanych danych.
@@ -859,13 +859,13 @@ Dzięki temu dane takie jak:
 
 są chronione podczas transmisji przed przechwyceniem i odczytaniem przez osoby nieuprawnione.
 
-**📝3. Zapewniają integralność danych**
+📝 **3. Zapewniają integralność danych**
 
 TLS chroni również przed nieautoryzowaną zmianą danych podczas transmisji.
 
 Oznacza to, że dane przesłane przez użytkownika do serwera nie powinny zostać niezauważenie zmodyfikowane w trakcie przesyłania.
 
-**📝4. Są wystawiane przez zaufane urzędy certyfikacji**
+📝 **4. Są wystawiane przez zaufane urzędy certyfikacji**
 
 Certyfikaty są najczęściej wystawiane przez:
 
@@ -991,8 +991,7 @@ Link do dokumentacji WCAG https://www.w3.org/TR/WCAG22/?utm_source=chatgpt.com
 
 ❏ Jest to najniższy poziom, który usuwa najpoważniejsze bariery.
 
-❏ Przykłady wymagań:
-
+Przykłady wymagań:
     ❏ Strona powinna być nawigowalna przy użyciu klawiatury.
 
     ❏ Obrazy muszą mieć alternatywny tekst (alt).
@@ -1006,7 +1005,7 @@ Link do dokumentacji WCAG https://www.w3.org/TR/WCAG22/?utm_source=chatgpt.com
 
 ❏ Strony na tym poziomie są dostępne dla większej liczby osób.
 
-❏ Przykłady wymagań:
+Przykłady wymagań:
 
     ❏ Kontrast tekstu względem tła wynosi co najmniej 4.5:1.
 
@@ -1020,7 +1019,7 @@ Link do dokumentacji WCAG https://www.w3.org/TR/WCAG22/?utm_source=chatgpt.com
 
 ❏ Wymagany w przypadku treści dla osób z dużymi niepełnosprawnościami (np. osoby niewidome, słabowidzące).
 
-❏ Przykłady wymagań:
+Przykłady wymagań:
 
     ❏ Kontrast tekstu wynosi co najmniej 7:1.
 
@@ -1046,9 +1045,13 @@ Więc:
 
 ## **Kontrast** 
 Dla Poziomu AAA:
-● Mały tekst ( < 18 pt **normalny** / < 14 pt **pogrubiony** ) → **≥ 7 : 1**
-● Duży tekst ( ≥ 18 pt **normalny** / ≥ 14 pt **pogrubiony** ) → **≥ 4,5 : 1**
 
+    ● Mały tekst ( < 18 pt **normalny** / < 14 pt **pogrubiony** ) → **≥ 7 : 1**
+
+    ● Duży tekst ( ≥ 18 pt **normalny** / ≥ 14 pt **pogrubiony** ) → **≥ 4,5 : 1**
+
+Link do strony, na której można sprawdzić między innymi kontrast:
+https://webaim.org/resources/contrastchecker/
 
 ## **Skalowalność i możliwość powiększenia**
 
@@ -1056,7 +1059,7 @@ Dla Poziomu AAA:
 
 ❏ Wysokość linii (**line-height**): **co najmniej 1.5x wielkości czcionki**  (WCAG **1.4.12 Text Spacing, poziom AA**)
  
-**line-height = font-size * *1.5**  
+**line-height = font-size x 1.5**  
 
 Dla przykładu:
 ```text
@@ -1071,7 +1074,7 @@ line-height: 24px;
 
 ❏ **Odstęp między znakami (letter-spacing): co najmniej 0.12x wielkości czcionki**
  
-**letter-spacing = font-size * *0.12** [Źródło, link https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
+**letter-spacing = font-size x *0.12** [Źródło, link https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
 
 Przykład:
 ```text
@@ -1083,7 +1086,7 @@ bo:
 ```
 ❏ **Odstęp między słowami (word-spacing): co najmniej 0.16x wielkości czcionki** [Źródło, link: https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html]
 
-**word-spacing = font-size * *0.16**
+**word-spacing = font-size x *0.16**
 
 Przykład dla czcionki `20px`:
 ```text
