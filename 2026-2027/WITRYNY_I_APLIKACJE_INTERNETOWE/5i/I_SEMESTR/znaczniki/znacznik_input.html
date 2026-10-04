@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ćwiczenie – typy pól formularza HTML5</title>
+</head>
+
+<body>
+
+    <h1>Typy pól formularza HTML5 – ćwiczenie</h1>
+
+    <p>Uzupełnij atrybut <strong>type</strong> w każdym polu formularza.</p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- 1. Jakiego typu użyjesz do wpisania zwykłego tekstu? -->
+
+        <h2>1. Imię</h2>
+
+        <label for="imie">Imię:</label>
+
+        <input
+            type="text"
+            id="imie"
+            name="imie"
+            placeholder="Podaj imię"
+            minlength="2"
+            maxlength="30"
+            required>
+
+
+        <!-- 2. Jakiego typu użyjesz do wpisania hasła, aby wpisywane znaki były ukrywane? -->
+
+        <h2>2. Hasło</h2>
+
+        <label for="haslo">Hasło:</label>
+
+        <input
+            type="password"
+            id="haslo"
+            name="haslo"
+            minlength="8"
+            required>
+
+
+        <!-- 3. Jakiego typu użyjesz do wpisania adresu e-mail? -->
+
+        <h2>3. Adres e-mail</h2>
+
+        <label for="email">Adres e-mail:</label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="jan@example.com"
+            required>
+
+
+        <!-- 4. Jakiego typu użyjesz do wpisania liczby? -->
+
+        <h2>4. Wiek</h2>
+
+        <label for="wiek">Wiek:</label>
+
+        <input
+            type="number"
+            id="wiek"
+            name="wiek"
+            min="18"
+            max="100"
+            required>
+
+
+        <!-- 5. Jakiego typu użyjesz do wpisania numeru telefonu? -->
+
+        <h2>5. Numer telefonu</h2>
+
+        <label for="telefon">Numer telefonu:</label>
+
+        <input
+            type="tel"
+            id="telefon"
+            name="telefon"
+            placeholder="123456789"
+            pattern="[0-9]{9}">
+
+
+        <!-- 6. Jakiego typu użyjesz do wpisania adresu strony WWW? -->
+
+        <h2>6. Adres strony internetowej</h2>
+
+        <label for="strona">Adres strony:</label>
+
+        <input
+            type="url"
+            id="strona"
+            name="strona"
+            placeholder="https://example.com">
+
+
+        <!-- 7. Jakiego typu użyjesz do utworzenia pola wyszukiwania? -->
+
+        <h2>7. Wyszukiwanie</h2>
+
+        <label for="szukaj">Wyszukaj:</label>
+
+        <input
+            type="search"
+            id="szukaj"
+            name="szukaj"
+            placeholder="Szukaj...">
+
+
+        <!-- 8. Jakiego typu użyjesz do wyboru daty? -->
+
+        <h2>8. Data urodzenia</h2>
+
+        <label for="data">Data urodzenia:</label>
+
+        <input
+            type="date"
+            id="data"
+            name="data">
+
+
+        <!-- 9. Jakiego typu użyjesz do wyboru godziny? -->
+
+        <h2>9. Godzina</h2>
+
+        <label for="godzina">Godzina:</label>
+
+        <input
+            type="time"
+            id="godzina"
+            name="godzina">
+
+
+        <!-- 10. Jakiego typu użyjesz do jednoczesnego wyboru daty i godziny? -->
+
+        <h2>10. Data i godzina spotkania</h2>
+
+        <label for="spotkanie">Data i godzina spotkania:</label>
+
+        <input
+            type="datetime-local"
+            id="spotkanie"
+            name="spotkanie">
+
+
+        <!-- 11. Jakiego typu użyjesz do wyboru miesiąca i roku? -->
+
+        <h2>11. Miesiąc</h2>
+
+        <label for="miesiac">Miesiąc:</label>
+
+        <input
+            type="month"
+            id="miesiac"
+            name="miesiac">
+
+
+        <!-- 12. Jakiego typu użyjesz do wyboru tygodnia roku? -->
+
+        <h2>12. Tydzień</h2>
+
+        <label for="tydzien">Tydzień:</label>
+
+        <input
+            type="week"
+            id="tydzien"
+            name="tydzien">
+
+
+        <!-- 13. Jakiego typu użyjesz do wyboru koloru? -->
+
+        <h2>13. Kolor</h2>
+
+        <label for="kolor">Wybierz kolor:</label>
+
+        <input
+            type="color"
+            id="kolor"
+            name="kolor">
+
+
+        <!-- 14. Jakiego typu użyjesz do utworzenia suwaka? -->
+
+        <h2>14. Ocena</h2>
+
+        <label for="ocena">Ocena:</label>
+
+        <input
+            type="range"
+            id="ocena"
+            name="ocena"
+            min="1"
+            max="10"
+            value="5">
+
+
+        <!-- 15. Jakiego typu użyjesz, aby użytkownik mógł zaznaczyć dowolną liczbę odpowiedzi? -->
+
+        <h2>15. Zainteresowania</h2>
+
+        <p>Możesz zaznaczyć kilka odpowiedzi:</p>
+
+        <input
+            type="checkbox"
+            id="html"
+            name="zainteresowania[]"
+            value="HTML">
+
+        <label for="html">HTML</label>
+
+        <br>
+
+
+        <input
+            type="checkbox"
+            id="css"
+            name="zainteresowania[]"
+            value="CSS">
+
+        <label for="css">CSS</label>
+
+        <br>
+
+
+        <input
+            type="checkbox"
+            id="javascript"
+            name="zainteresowania[]"
+            value="JavaScript">
+
+        <label for="javascript">JavaScript</label>
+
+        <br>
+
+
+        <input
+            type="checkbox"
+            id="php"
+            name="zainteresowania[]"
+            value="PHP">
+
+        <label for="php">PHP</label>
+
+        <br>
+
+
+        <input
+            type="checkbox"
+            id="python"
+            name="zainteresowania[]"
+            value="Python">
+
+        <label for="python">Python</label>
+
+
+        <!-- 16. Jakiego typu użyjesz, aby użytkownik mógł wybrać tylko jedną z trzech odpowiedzi? -->
+
+        <h2>16. Poziom znajomości programowania</h2>
+
+        <p>Wybierz tylko jedną odpowiedź:</p>
+
+        <input
+            type="radio"
+            id="podstawowy"
+            name="poziom"
+            value="Podstawowy">
+
+        <label for="podstawowy">Podstawowy</label>
+
+        <br>
+
+
+        <input
+            type="radio"
+            id="sredni"
+            name="poziom"
+            value="Średni">
+
+        <label for="sredni">Średni</label>
+
+        <br>
+
+
+        <input
+            type="radio"
+            id="zaawansowany"
+            name="poziom"
+            value="Zaawansowany">
+
+        <label for="zaawansowany">Zaawansowany</label>
+
+
+        <!-- 17. Jakiego typu użyjesz, aby użytkownik mógł wybrać plik z komputera? -->
+
+        <h2>17. Plik</h2>
+
+        <label for="plik">Wybierz plik:</label>
+
+        <input
+            type="file"
+            id="plik"
+            name="plik"
+            accept=".jpg,.jpeg,.png,.pdf">
+
+
+        <!-- 18. Jakiego typu użyjesz dla pola, które ma zostać wysłane, ale nie ma być widoczne? -->
+
+        <h2>18. Ukryta wartość</h2>
+
+        <p>
+            Pole powinno przesłać identyfikator użytkownika,
+            ale nie powinno być widoczne na stronie.
+        </p>
+
+        <input
+            type="hidden"
+            name="id_uzytkownika"
+            value="123">
+
+
+        <!-- 19. Jakiego typu użyjesz dla zwykłego przycisku, który sam nie wysyła formularza? -->
+
+        <h2>19. Zwykły przycisk</h2>
+
+        <input
+            type="button"
+            value="Kliknij mnie"
+            onclick="alert('Kliknięto zwykły przycisk')">
+
+
+        <!-- 20. Jakiego typu użyjesz do przywrócenia początkowych wartości formularza? -->
+
+        <h2>20. Czyszczenie formularza</h2>
+
+        <input
+            type="reset"
+            value="Wyczyść formularz">
+
+
+        <!-- 21. Jakiego typu użyjesz do wysłania formularza? -->
+
+        <h2>21. Wysłanie formularza</h2>
+
+        <input
+            type="submit"
+            value="Wyślij formularz">
+
+
+        <!-- 22. Jakiego typu użyjesz, aby obraz działał jako przycisk wysyłający formularz? -->
+
+        <h2>22. Przycisk graficzny</h2>
+
+        <input
+            type="image"
+            src="./images/images-male.jpg"
+            alt="Wyślij formularz">
+
+    </form>
+
+</body>
+
+</html>
