@@ -26,21 +26,24 @@
 <body>
 
     <h1>Metoda GET</h1>
-
-    <form method="GET">
-
-        <input type="text" name="nazwisko">
-
-        <button type="submit">
-            kliknij, aby wysłać dane metodą GET
-        </button>
-    <?php
-        if (isset($_GET["nazwisko"])) {
-            $nazwisko = $_GET["nazwisko"];
-            echo "<h2>Witaj, " . $nazwisko . "!</h2>";
-        }
-    ?>
-</form>
+    <form method="get">
+        <label for="nazwisko">Nazwisko:</label>
+        <input type="text" name="nazwisko" id="nazwisko" placeholder="Podaj nazwisko">
+        
+        <label for="imie">Imię:</label>
+        <input type="text" name="imie" id="imie" placeholder="Podaj imię">
+      
+        <button type="submit"> kliknij, aby wysłać dane metodą GET</button>
+            
+            <?php
+                if ( isset($_get["nazwisko"]) || isset($_GET["imie"]) ) {
+                    
+                    $nazwisko = $_GET["nazwisko"];
+                    $imie = $_GET["imie"];
+                    echo "<h2>Witaj, ". $imie . " " . $nazwisko . " !</h2>";
+                }
+            ?>
+    </form>
 </body>
 
 </html>

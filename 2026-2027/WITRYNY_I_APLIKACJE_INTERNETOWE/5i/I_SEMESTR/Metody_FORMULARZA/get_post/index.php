@@ -41,6 +41,10 @@ $osoby = [
         "nazwisko" => "Malicka"
     ],
     [
+        "imie" => "Kasia",
+        "nazwisko" => "Malicka"
+    ],
+    [
         "imie" => "Kamil",
         "nazwisko" => "Nowak"
     ],
@@ -146,8 +150,6 @@ if (isset($_GET["formularz_szukaj"])) {
 
 <hr>
 
-
-<h2>Dodawanie danych - POST</h2>
 
 <h2>Dodawanie danych - POST</h2>
 
@@ -280,6 +282,5 @@ if (isset($_POST["formularz_dodaj"])) {
 }
 
 ?>
-
 </body>
 </html>
