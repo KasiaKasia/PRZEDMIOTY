@@ -1393,6 +1393,179 @@ Dziedziczenie pozwala wykorzystać wspólne właściwości i metody jednej klasy
 
 
 
+## Funkcje zaawansowane
+### lambda
+
+**`lambda`** pozwala tworzyć małe, **anonimowe funkcje**, czyli funkcje definiowane bez użycia instrukcji `def`.
+
+Najczęściej stosuje się je do krótkich, prostych operacji, np. w połączeniu z funkcjami `map()`, `filter()` czy `sorted()`.
+
+Funkcja `lambda` składa się ze słowa kluczowego `lambda`, argumentów, dwukropka i jednego wyrażenia.
+
+Czyli zamiast:
+
+```python
+def dodaj(a, b):
+    wynik = a + b
+    return wynik
+```
+
+możemy zapisać:
+```python
+dodaj = lambda a, b: a + b
+print(dodaj(2, 3))  # 5
+```
+
+Skrótowa wersja w lambda: 
+`lambda a, b: a + b` 
+
+Składnia: 
+`lambda argumenty: wyrażenie `
+
+Istotne:
+
+- lambda może zawierać tylko jedno wyrażenie,
+- nie można umieszczać w niej instrukcji takich jak return, while, for ani zwykłego bloku if,
+- można jednak używać wyrażenia warunkowego wartość1 if warunek else wartość2.
+
+```python
+parzystosc = lambda x: "parzysta" if x % 2 == 0 else "nieparzysta"
+
+print(parzystosc(4))  # parzysta
+print(parzystosc(5))  # nieparzysta
+```
+
+**Przykład zastosowania**: Sortowanie listy słowników po wartości klucza. Załóżmy, że mamy listę osób i chcemy posortować je po wieku. 
+
+```python
+osoby = [{'imie': 'Anna', 'wiek': 25}, {'imie': 'Jan', 'wiek': 30}, {'imie': 'Maria', 'wiek': 22}] 
+posortowane = sorted(osoby, key=lambda x: x['wiek']) 
+print(posortowane) 
+```
+
+Przykład: Obliczenie kwadratów liczb w liście:
+ 
+```python
+kwadraty = list(map(lambda x: x**2, [1, 2, 3, 4])) 
+print(kwadraty) 
+```
+
+---
+
+### map
+**Funkcja map** stosuje podaną funkcję do każdego elementu iterowalnego (np. listy, tupli) i zwraca iterator z wynikami. Często łączy się ją z lambdami dla zwięzłości. 
+
+**Przykład zastosowania**: Podwojenie elementów listy. 
+ 
+```python
+liczby = [1, 2, 3, 4] 
+podwojone = list(map(lambda x: x * 2, liczby)) 
+print(podwojone) 
+```
+ 
+Przykład: Konwersja temperatur z Celsjusza na Fahrenheita dla listy wartości. 
+
+Konwersja z **Celsjusza (°C)** na **Fahrenheita (°F)** działa według prostego wzoru matematycznego:  **°F=(°C×9/5 )+32**
+Skale różnią się w dwóch rzeczach: 
+
+1. Wielkość stopnia 
+```text
+    100°C = 180°F 
+    → 1°C = 9/5°F (czyli 1.8°F) 
+```
+
+2. Punkt zerowy 
+
+```text
+0°C = 32°F 
+→ dlatego dodajemy +32 
+```
+
+Przykłady:
+```text
+0°C → (0×9/5)+32=32°F  
+25°C → (25×9/5)+32=77°F
+100°C → (100×9/5)+32=212°F
+```
+
+```python
+celsjusze = [0, 10, 20, 30] 
+fahrenheit = list(map(lambda c: (c * 9/5) + 32, celsjusze)) 
+print(fahrenheit) 
+```
+
+### filter
+**Funkcja filter** filtruje elementy iterowalnego na podstawie warunku podanego w funkcji (zwracającej True/False). Zwraca iterator z elementami spełniającymi warunek. 
+
+**Przykład zastosowania**: Wybór parzystych liczb z listy. 
+```python
+liczby = [1, 2, 3, 4, 5, 6] 
+parzyste = list(filter(lambda x: x % 2 == 0, liczby)) 
+print(parzyste) 
+```
+
+Przykład: Filtrowanie słów dłuższych niż 3 litery z listy. 
+```python
+slowa = ['kot', 'pies', 'slon', 'ptak', 'ryba'] 
+dlugie = list(filter(lambda s: len(s) > 3, slowa)) 
+print(dlugie) 
+```
+
+### reduce
+
+**Funkcja reduce** (z modułu functools) **służy do zredukowania wielu elementów kolekcji do jednej końcowej wartości**. Wymaga importu: from functools  import reduce. 
+
+Ogólna składnia 
+```text
+reduce(function, iterable) 
+```
+- function → funkcja z dwoma argumentami 
+- iterable → lista / tuple / inna kolekcja 
+
+Python bierze elementy po kolei i łączy je w jeden wynik. 
+
+
+**Przykład zastosowania**: Obliczenie sumy elementów listy. 
+```python
+from functools import reduce 
+liczby = [1, 2, 3, 4] 
+suma = reduce(lambda x, y: x + y, liczby) 
+print(suma) 
+```
+
+`reduce()` działa tutaj krok po kroku tak:
+```text
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+```
+Właśnie dlatego nazywa się **reduce**, czyli można powiedzieć: **redukuje wiele wartości do jednej wartości**.
+
+
+Przykład: Znalezienie maksymalnej wartości w liście. 
+```python
+from functools import reduce 
+liczby = [1, 3, 2, 5, 4] 
+maks = reduce(lambda x, y: x if x > y else y, liczby) 
+print(maks) 
+```
+
+Możemy również zapisać to bez lambda, używając zwykłej funkcji:
+
+```Python
+from functools import reduce
+
+def dodaj(a, b):
+    return a + b
+
+liczby = [1, 2, 3, 4]
+wynik = reduce(dodaj, liczby)
+print(wynik) 
+```
+
+---
+
+
 ## 8. Wyszukiwanie elementów w dokumencie
 
 document to część tzw. DOM (Document Object Model) — czyli „drzewo” reprezentujące całą stronę.
