@@ -672,3 +672,54 @@ POST stosuje się często do:
 - usuwania rekordów
 - wysyłania większych formularzy
 - przesyłania plików
+
+
+## Tablica asocjacyjna 
+
+Tablica asocjacyjna w PHP to **rodzaj tablicy, w której zamiast liczb jako indeksów używa się własnych nazw tekstowych, czyli kluczy powiązanych z wartościami**
+```PHP
+<?php
+$kolory = ["czerwony", "zielony", "niebieski"];
+
+echo $kolory[0] . "\n";
+
+$osoba = [
+    "imie" => "Anna",
+    "wiek" => 25,
+    "miasto" => "Warszawa"
+];
+echo $osoba["imie"] . "\n";
+
+foreach ($osoba as $klucz => $wartosc) {
+    echo $klucz . ": " . $wartosc . "\n";
+}
+?>
+```
+
+### **tablice wielowymiarowe**
+```PHP
+<?php
+ 
+$osoby = [
+    "Nowak" => [
+        "imie" => "Kamil",
+        "wiek" => 22,
+        "miasto" => "Kraków"
+    ],
+    "Kowalska" => [
+        "imie" => "Natalia",
+        "wiek" => 20,
+        "miasto" => "Warszawa"
+    ]
+];
+echo $osoby["Nowak"]["imie"]. "\n";
+
+foreach ($osoby as $nazwisko => $dane) {
+    echo $nazwisko . "\n";
+}
+foreach ($osoby as $nazwisko => $dane) {
+    echo $nazwisko . " " . $dane["imie"] . "\n";
+   
+}
+?>
+```
