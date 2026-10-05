@@ -268,3 +268,209 @@ Wtedy Angular utworzy:
 
 - `products.module.ts`
 - `products-routing.module.ts`
+
+## standalone: true - Komponenty samodzielne
+
+Od wersji Angular 17 `standalone: true` jest defaultową wartością, a wiej jej brak oznacza oznacza wartość: `standalone: true`
+
+```TS
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-projects-list',
+  imports: [],
+  templateUrl: './projects-list.html',
+  styleUrl: './projects-list.scss',
+})
+export class ProjectsList {}
+```
+
+Do tablicy `routes` dodaje się komponent w poniższy sposób:
+
+```TS
+export const routes: Routes = [
+    // ...
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    }
+    // ...
+]    
+```
+komponent `standalone: true` jest samodzielny. Nie trzeba tworzyć modułu i deklarować go w tablicy `declarations`. lazy loading jest szybszy bo nie ładuje całego modułu tylko komponet.
+
+
+## `standalone: false` 
+
+**Przy `standalone: false` należy pamiętać o usunieciu tablicy `imports: [],`.**
+Problemem jest samo istnienie właściwości imports w komponencie, który ma `standalone: false`. **Tablica imports jest przeznaczona tylko dla komponentów `standalone: true`**, wiec nie ważne czy napiszesz tak `imports: [FormsModule, RouterLink]` czy tak: `imports: []` lub `imports: [CommonModule]` wW każdym przypadku dla `standalone: false` dostaniesz błąd, bo imports w `@Component` jest przeznaczone tylko dla komponentów standalone.
+
+```TS
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-projects2-list',
+  standalone: false, 
+  templateUrl: './projects2-list.html',
+  styleUrl: './projects2-list.scss',
+})
+export class Projects2List {}
+```
+
+W tablicy `routes` nalezy dodać moduł w którym jest komponent `standalone: false,`
+
+```TS
+import { Routes } from '@angular/router';
+import { Start } from './start/start';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: Start
+    },
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    },
+    {
+        path: 'projekty2',
+        loadChildren: () =>
+            import('./projects2/projects2-module')
+                .then(m => m.Projects2Module)
+    } 
+];
+```
+
+Tu ustaliśmy trasę dla modułu, ale jeszcze nie mamy trasy dla komponentu  `standalone: false,`, należy to uzupełnić w następujący sposób:
+
+
+```TS
+import { NgModule } from '@angular/core';
+import { Projects2List } from './projects2-list/projects2-list';
+import { RouterModule } from '@angular/router';
+
+@NgModule({
+  declarations: [
+    Projects2List
+  ],
+
+  imports: [
+
+    RouterModule.forChild([
+      {
+        path: '',
+        component: Projects2List
+      }
+    ])
+  ],
+})
+export class Projects2Module {}
+```
+
+## loadChildren 
+
+`loadChildren` w routingu Angulara służy do **leniwego ładowania zestawu tras albo modułu**. Wskazuje na większą część aplikacji, używana do tworzenia większej ilości tras routing
+
+Polecenie tworzy moduł z plikiem dla trasy:
+
+`ng g m client  --routing`
+
+Polecenia do tworzenia komponentów w module:
+
+- `ng g c client/client-add`
+
+- `ng g c client/client-list`
+
+W module dla tablicy tras `routes` dodajemy ścieżki. Plik `ClientRoutingModule` routingu pozostaje czytelny,
+
+```TS
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ClientList } from './client-list/client-list';
+import { ClientAdd } from './client-add/client-add';
+
+const routes: Routes = [
+    {
+    path: '',
+    component: ClientList
+  },
+  {
+    path: 'dodaj',
+    component: ClientAdd
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ClientRoutingModule {}
+```
+
+Wyświetlnie linków:
+```HTML
+<nav>
+  <a routerLink="/">Start</a>
+  <a routerLink="/projekty">Lista projektów</a> 
+  <a routerLink="/klienci">Klienci</a> 
+  <a routerLink="/klienci/dodaj">Dodaj klienta</a> 
+  <a routerLink="/profil">Profil</a>
+</nav>
+```
+Dodanie do `app.routes.ts` naszego modułu:
+
+```TS
+import { Routes } from '@angular/router';
+import { Start } from './start/start';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: Start
+    },
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    }, 
+
+    {
+        path: 'klienci',
+        loadChildren: () =>
+            import('./clients/clients-module')
+                .then(m => m.ClientsModule)
+    }, 
+];
+```
+
+## loadComponent
+
+`loadComponent` w Angularze **służy do leniwego ładowania pojedynczego komponentu standalone**.
+```TS
+import { Routes } from '@angular/router';
+import { Start } from './start/start';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: Start
+    },
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    }, 
+ 
+];
+```
+W widoku umieszczmy link do komponentu:
+
+`<a routerLink="/projekty">Lista projektów</a>`
+
+Przydatny gdy mamy tylko mało komponentów do prezentacji 
