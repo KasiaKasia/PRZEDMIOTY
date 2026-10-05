@@ -1579,3 +1579,26 @@ Lista najczęściej używanych znaczników semantycznych w HTML5:
 17. `<dialog>` – Definiuje okno dialogowe lub modalne, np. do wyświetlania alertów.
 18. `<picture>` – Umożliwia definiowanie różnych źródeł obrazów dla różnych urządzeń lub rozdzielczości.
 19. `<template>` – Przechowuje treść, która nie jest wyświetlana od razu, ale może być użyta przez JavaScript
+
+
+## Walidacja znacznika input
+
+W zwykłym HTML w <input> możesz używać kilku wbudowanych mechanizmów walidacji.
+
+Najczęstsze to:
+- `required` — pole obowiązkowe,
+- `minlength="2"` — minimalna liczba znaków,
+- `maxlength="30"` — maksymalna liczba znaków,
+- `min="1"` — minimalna wartość liczbowa lub data,
+- `max="100"` — maksymalna wartość,
+- `step="1"` — dozwolony krok wartości,
+- `pattern="..." `— walidacja wyrażeniem regularnym,
+- odpowiedni type, np. `email`, `number`, `url`, `date`, `tel`.
+
+Dodatkowo możesz użyć:
+`readonly`
+
+czyli użytkownik nie może zmienić wartości, oraz:
+`disabled`
+
+czyli pole jest wyłączone, ale to nie są typowe reguły walidacyjne.
