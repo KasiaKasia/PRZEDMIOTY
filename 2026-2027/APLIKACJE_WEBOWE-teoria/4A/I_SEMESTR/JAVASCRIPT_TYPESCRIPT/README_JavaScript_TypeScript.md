@@ -1604,19 +1604,12 @@ Określa, jakie właściwości i metody powinien posiadać dany obiekt oraz jaki
 ```TS
 interface Osoba {
     readonly id: number;
-
     imie: string;
-
     wiek: number;
-
     email?: string;
-
     aktywna: boolean;
-
     zainteresowania: string[];
-
     przedstawSie(): void;
-
     obliczRokUrodzenia: (aktualnyRok: number) => number;
 }
 
