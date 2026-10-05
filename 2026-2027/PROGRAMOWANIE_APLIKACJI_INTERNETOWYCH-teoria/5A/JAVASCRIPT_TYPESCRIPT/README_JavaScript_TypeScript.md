@@ -1594,6 +1594,50 @@ Dziedziczenie pozwala wykorzystać wspólne właściwości i metody jednej klasy
 
 
 
+## interface 
+
+**interface** w TypeScript to **konstrukcja służąca do opisywania struktury obiektu**.
+
+Określa, jakie właściwości i metody powinien posiadać dany obiekt oraz jakich typów powinny być jego dane.
+
+
+```TS
+interface Osoba {
+    readonly id: number;
+    imie: string;
+    wiek: number;
+    email?: string;
+    aktywna: boolean;
+    zainteresowania: string[];
+    przedstawSie(): void;
+    obliczRokUrodzenia: (aktualnyRok: number) => number;
+}
+
+
+const osoba: Osoba = {
+    id: 1,
+    imie: "Anna",
+    wiek: 25,
+    aktywna: true,
+    zainteresowania: ["czytanie", "kodowanie"],
+    przedstawSie(): void {
+        console.log(`Mam na imię ${this.imie}`);
+    },
+
+    obliczRokUrodzenia: (aktualnyRok: number): number => {
+        return aktualnyRok - 25;
+    }
+};
+
+console.log(osoba.imie);
+
+osoba.przedstawSie();
+
+console.log(osoba.obliczRokUrodzenia(2026));
+```
+
+
+
 ## 8. Wyszukiwanie elementów w dokumencie
 
 document to część tzw. DOM (Document Object Model) — czyli „drzewo” reprezentujące całą stronę.
