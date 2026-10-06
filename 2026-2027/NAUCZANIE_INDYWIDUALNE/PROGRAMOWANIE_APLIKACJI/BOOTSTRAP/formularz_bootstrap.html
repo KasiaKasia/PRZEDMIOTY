@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- <meta name="viewport"
+          content="width=device-width, initial-scale=1.0"> -->
+
+    <title>Formularz rejestracji</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-4">
+            Formularz rejestracji
+        </h1>
+
+
+        <form>
+
+            <!-- WIERSZ: IMIĘ + NAZWISKO -->
+            <div class="row g-3 mb-3">
+
+                <!-- IMIĘ -->
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="imie" class="col-12 col-md-4 form-label">
+                            Imię:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <input type="text" class="form-control" id="imie">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- NAZWISKO -->
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="nazwisko" class="col-12 col-md-4 form-label">
+                            Nazwisko:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <input type="text" class="form-control" id="nazwisko">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- WIERSZ: DATA URODZENIA -->
+            <div class="row g-3 mb-3">
+
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="data" class="col-12 col-md-4 form-label">
+                            Data urodzenia:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <input type="date" class="form-control" id="data">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- WIERSZ: LOGIN -->
+            <div class="row g-3 mb-3">
+
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="login" class="col-12 col-md-4 form-label">
+                            Login:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <input type="text" class="form-control" id="login">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- WIERSZ: HASŁO + POWTÓRZ HASŁO -->
+            <div class="row g-3 mb-3">
+
+                <!-- HASŁO -->
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="haslo" class="col-12 col-md-4 form-label">
+                            Hasło:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <input type="password" class="form-control" id="haslo">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- POWTÓRZ HASŁO -->
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="powtorzHaslo" class="col-12 col-md-4 form-label">
+                            Powtórz hasło:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <input type="password" class="form-control" id="powtorzHaslo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- WIERSZ: MIASTO + KRAJ -->
+            <div class="row g-3 mb-3">
+
+                <!-- MIASTO -->
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="miasto" class="col-12 col-md-4 form-label">
+                            Miasto:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <select class="form-select" id="miasto">
+
+                                <option value="">Wybierz miasto</option>
+                                <option>Warszawa</option>
+                                <option>Kraków</option>
+                                <option>Gdańsk</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- KRAJ -->
+                <div class="col-12 col-lg-6">
+
+                    <div class="row align-items-center">
+
+                        <label for="kraj" class="col-12 col-md-4 form-label">
+                            Kraj:
+                        </label>
+
+                        <div class="col-12 col-md-8">
+
+                            <select class="form-select" id="kraj">
+
+                                <option value="">Wybierz kraj</option>
+                                <option>Polska</option>
+                                <option>Niemcy</option>
+                                <option>Czechy</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REGULAMIN -->
+            <div class="form-check mt-4">
+
+                <input class="form-check-input" type="checkbox" id="regulamin">
+
+                <label class="form-check-label" for="regulamin">
+
+                    Akceptuję regulamin
+
+                </label>
+
+            </div>
+
+
+            <!-- PRZYCISK -->
+            <div class="text-center mt-4">
+
+                <button type="submit" class="btn btn-success">
+
+                    Zapisz
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
