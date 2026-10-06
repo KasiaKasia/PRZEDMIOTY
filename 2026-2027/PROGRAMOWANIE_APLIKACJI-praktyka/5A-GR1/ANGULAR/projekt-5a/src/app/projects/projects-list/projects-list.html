@@ -1,0 +1,14 @@
+<p>projects-list works!</p>
+
+
+<h2>Lista projektów</h2>
+
+@for (project of projects; track project.id) {
+  <div>
+    <h3>{{ project.name }}</h3>
+    <p>{{ project.description }}</p>
+    <p>Status: {{ project.status }}</p>
+  </div>
+} @empty {
+  <p>Brak projektów.</p>
+}
