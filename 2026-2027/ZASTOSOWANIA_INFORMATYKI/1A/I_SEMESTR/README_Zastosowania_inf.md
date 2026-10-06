@@ -1171,3 +1171,160 @@ Wykonanie powyższych punktów uzyskuje się dodając właściwość:
 </div>
 ```
 [Źródło, link https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html ]
+
+
+
+
+## 🌐 Sieć komputerowa
+
+**Sieć komputerowa** to system połączonych ze sobą urządzeń, np. komputerów, drukarek, serwerów czy routerów, które umożliwiają wymianę danych i współdzielenie zasobów.
+
+Do współdzielonych zasobów mogą należeć m.in.:
+
+- pliki,
+- drukarki,
+- dostęp do Internetu,
+- aplikacje,
+- bazy danych.
+
+Do najważniejszych elementów i technologii sieciowych należą:
+
+- media transmisyjne,
+- protokoły komunikacyjne,
+- routery,
+- przełączniki,
+- interfejsy sieciowe.
+
+---
+
+## 📝 Klasyfikacja sieci ze względu na zasięg
+
+**Sieci komputerowe można podzielić ze względu na obszar, jaki obejmują.**
+
+### LAN – Local Area Network
+
+**LAN** to sieć lokalna, ograniczona do niewielkiego obszaru, np.:
+
+- domu,
+- biura,
+- szkoły,
+- jednego budynku,
+- kilku sąsiadujących budynków.
+
+### MAN – Metropolitan Area Network
+
+**MAN** to **sieć miejska lub metropolitalna, która obejmuje obszar miasta lub aglomeracji miejskiej**.
+
+### WAN – Wide Area Network
+
+**WAN** to **sieć rozległa, obejmująca bardzo duży obszar geograficzny**, np.:
+
+- kraj,
+- kontynent,
+- cały świat.
+
+Przykładem globalnej sieci WAN jest **Internet**.
+
+---
+
+## 📝 LAN – Local Area Network
+
+**LAN (Local Area Network)**, czyli **sieć lokalna, to sieć komputerowa łącząca urządzenia na ograniczonym obszarze**, takim jak:
+
+- dom,
+- biuro,
+- szkoła,
+- budynek firmy.
+
+Jej głównym zadaniem jest umożliwienie szybkiej wymiany danych oraz współdzielenia zasobów pomiędzy urządzeniami.
+
+Przykładowe zasoby współdzielone w sieci LAN:
+
+- drukarki,
+- pliki,
+- serwery,
+- dostęp do Internetu.
+
+### Rodzaje sieci LAN
+
+Sieci LAN mogą być:
+
+- **przewodowe** – np. Ethernet,
+- **bezprzewodowe** – WLAN,
+- **wirtualne** – VLAN, które umożliwiają logiczny podział jednej większej sieci.
+
+### Główne cechy sieci LAN
+
+- **Ograniczony zasięg** – obejmuje niewielki obszar geograficzny, zwykle jeden budynek lub kilka sąsiadujących budynków.
+- **Szybka komunikacja** – umożliwia szybki i stabilny przepływ danych pomiędzy urządzeniami.
+- **Współdzielenie zasobów** – pozwala wielu użytkownikom korzystać z tych samych drukarek, plików czy dostępu do Internetu.
+- **Wysoka przepustowość** – połączenia przewodowe, np. Ethernet, zapewniają wysoką prędkość transmisji i niskie opóźnienia.
+
+---
+
+## 📝 WAN – Wide Area Network
+
+**WAN (Wide Area Network)**, czyli sieć rozległa, to rozbudowana sieć komputerowa łącząca oddalone od siebie lokalizacje.
+
+Może łączyć np.:
+
+- biura firmy,
+- oddziały przedsiębiorstwa,
+- centra danych,
+- sieci lokalne w różnych miastach lub krajach.
+
+Sieci WAN umożliwiają komunikację pomiędzy odległymi sieciami LAN.
+
+Do działania wykorzystują często infrastrukturę operatorów telekomunikacyjnych.
+
+Przykładem największej sieci WAN jest **Internet**.
+
+### Cechy i funkcje sieci WAN
+
+- **Duży zasięg geograficzny** – może obejmować kraj, kontynent lub cały świat.
+- **Łączenie mniejszych sieci** – WAN może łączyć sieci LAN i MAN.
+- **Wykorzystanie infrastruktury zewnętrznej** – często opiera się na usługach operatorów telekomunikacyjnych.
+- **Komunikacja pomiędzy oddziałami firm** – umożliwia wymianę danych między różnymi lokalizacjami przedsiębiorstwa.
+- **Podstawa Internetu** – Internet jest największym przykładem sieci WAN.
+
+---
+
+## 📝 MAN – Metropolitan Area Network
+
+**MAN (Metropolitan Area Network)**, czyli sieć metropolitalna lub miejska, to sieć komputerowa obejmująca obszar miasta lub aglomeracji.
+
+Jej zadaniem jest łączenie wielu rozproszonych sieci lokalnych LAN.
+
+Sieci MAN często wykorzystują szybkie połączenia światłowodowe.
+
+Mogą być wykorzystywane przez:
+
+- instytucje rządowe,
+- szkoły i uczelnie,
+- przedsiębiorstwa,
+- operatorów telekomunikacyjnych,
+- dostawców usług internetowych.
+
+### Cechy sieci MAN
+
+- **Zasięg** – obejmuje miasto lub aglomerację miejską.
+- **Łączenie sieci LAN** – pozwala połączyć wiele lokalnych sieci komputerowych.
+- **Technologie** – często wykorzystuje światłowody, ale może również korzystać z technologii radiowych.
+- **Duża przepustowość** – umożliwia szybką transmisję danych pomiędzy różnymi lokalizacjami.
+
+### Przykłady zastosowania sieci MAN
+
+- łączenie budynków uczelni znajdujących się w różnych częściach miasta,
+- łączenie oddziałów dużej firmy,
+- tworzenie infrastruktury inteligentnych miast,
+- połączenie sieci różnych instytucji publicznych.
+
+---
+
+### 📌 Podsumowanie
+
+| Typ sieci | Pełna nazwa | Zasięg | Przykład |
+|---|---|---|---|
+| **LAN** | Local Area Network | dom, biuro, szkoła, budynek | sieć komputerowa w szkole |
+| **MAN** | Metropolitan Area Network | miasto lub aglomeracja | sieć łącząca budynki uczelni |
+| **WAN** | Wide Area Network | kraj, kontynent, świat | Internet |
