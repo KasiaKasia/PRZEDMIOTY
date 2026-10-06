@@ -264,3 +264,402 @@ Wtedy Angular utworzy:
 
 - `products.module.ts`
 - `products-routing.module.ts`
+
+
+
+
+## standalone: true - Komponenty samodzielne
+
+Od wersji Angular 17 `standalone: true` jest defaultową wartością, a wiej jej brak oznacza oznacza wartość: `standalone: true`
+
+```TS
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-projects-list',
+  imports: [],
+  templateUrl: './projects-list.html',
+  styleUrl: './projects-list.scss',
+})
+export class ProjectsList {}
+```
+
+Do tablicy `routes` dodaje się komponent w poniższy sposób:
+
+```TS
+export const routes: Routes = [
+    // ...
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    }
+    // ...
+]    
+```
+komponent `standalone: true` jest samodzielny. Nie trzeba tworzyć modułu i deklarować go w tablicy `declarations`. lazy loading jest szybszy bo nie ładuje całego modułu tylko komponet.
+
+
+## `standalone: false` 
+
+**Przy `standalone: false` należy pamiętać o usunieciu tablicy `imports: [],`.**
+Problemem jest samo istnienie właściwości imports w komponencie, który ma `standalone: false`. **Tablica imports jest przeznaczona tylko dla komponentów `standalone: true`**, wiec nie ważne czy napiszesz tak `imports: [FormsModule, RouterLink]` czy tak: `imports: []` lub `imports: [CommonModule]` wW każdym przypadku dla `standalone: false` dostaniesz błąd, bo imports w `@Component` jest przeznaczone tylko dla komponentów standalone.
+
+```TS
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-projects2-list',
+  standalone: false, 
+  templateUrl: './projects2-list.html',
+  styleUrl: './projects2-list.scss',
+})
+export class Projects2List {}
+```
+
+W tablicy `routes` nalezy dodać moduł w którym jest komponent `standalone: false,`
+
+```TS
+import { Routes } from '@angular/router';
+import { Start } from './start/start';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: Start
+    },
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    },
+    {
+        path: 'projekty2',
+        loadChildren: () =>
+            import('./projects2/projects2-module')
+                .then(m => m.Projects2Module)
+    } 
+];
+```
+
+Tu ustaliśmy trasę dla modułu, ale jeszcze nie mamy trasy dla komponentu  `standalone: false,`, należy to uzupełnić w następujący sposób:
+
+
+```TS
+import { NgModule } from '@angular/core';
+import { Projects2List } from './projects2-list/projects2-list';
+import { RouterModule } from '@angular/router';
+
+@NgModule({
+  declarations: [
+    Projects2List
+  ],
+
+  imports: [
+
+    RouterModule.forChild([
+      {
+        path: '',
+        component: Projects2List
+      }
+    ])
+  ],
+})
+export class Projects2Module {}
+```
+
+## loadChildren 
+
+`loadChildren` w routingu Angulara służy do **leniwego ładowania zestawu tras albo modułu**. Wskazuje na większą część aplikacji, używana do tworzenia większej ilości tras routing
+
+Polecenie tworzy moduł z plikiem dla trasy:
+
+`ng g m client  --routing`
+
+Polecenia do tworzenia komponentów w module:
+
+- `ng g c client/client-add`
+
+- `ng g c client/client-list`
+
+W module dla tablicy tras `routes` dodajemy ścieżki. Plik `ClientRoutingModule` routingu pozostaje czytelny,
+
+```TS
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ClientList } from './client-list/client-list';
+import { ClientAdd } from './client-add/client-add';
+
+const routes: Routes = [
+    {
+    path: '',
+    component: ClientList
+  },
+  {
+    path: 'dodaj',
+    component: ClientAdd
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ClientRoutingModule {}
+```
+
+Wyświetlnie linków:
+```HTML
+<nav>
+  <a routerLink="/">Start</a>
+  <a routerLink="/projekty">Lista projektów</a> 
+  <a routerLink="/klienci">Klienci</a> 
+  <a routerLink="/klienci/dodaj">Dodaj klienta</a> 
+  <a routerLink="/profil">Profil</a>
+</nav>
+```
+Dodanie do `app.routes.ts` naszego modułu:
+
+```TS
+import { Routes } from '@angular/router';
+import { Start } from './start/start';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: Start
+    },
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    }, 
+
+    {
+        path: 'klienci',
+        loadChildren: () =>
+            import('./clients/clients-module')
+                .then(m => m.ClientsModule)
+    }, 
+];
+```
+
+## loadComponent
+
+`loadComponent` w Angularze **służy do leniwego ładowania pojedynczego komponentu standalone**.
+```TS
+import { Routes } from '@angular/router';
+import { Start } from './start/start';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: Start
+    },
+    {
+        path: 'projekty',
+        loadComponent: () =>
+            import('./projects/projects-list/projects-list')
+                .then(m => m.ProjectsList)
+    }, 
+ 
+];
+```
+W widoku umieszczmy link do komponentu:
+
+`<a routerLink="/projekty">Lista projektów</a>`
+
+Przydatny gdy mamy tylko mało komponentów do prezentacji 
+
+
+## Service i wstrzykiwanie zależności (Dependency Injection – DI) 
+
+**Wstrzykiwanie zależności (Dependency Injection – DI)** to wzorzec projektowy, **w którym obiekt otrzymuje swoje wymagane zależności (inne obiekty lub usługi) z zewnątrz, zamiast tworzyć je samodzielnie wewnątrz swojego kodu.**
+
+**Serwis** w Angularze to **klasa, która przechowuje logikę lub dane, które mają być używane w różnych komponentach**
+
+Czyli komponenty nie muszą komunikować się bezpośrednio ze sobą. Mogą korzystać z tego samego serwisu.
+
+Polecenie do generowania servisu:
+
+`ng generate service nazwa-serwisu`
+
+lub
+
+`$ ng g s services/projects`
+
+Wygenerowany service:
+
+```TS
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class Projects {}
+```
+ `providedIn: 'root'` - sprawia, że serwis jest dostępny w całej aplikacji przez główny injector Angulara.
+
+
+ Dodanie interface :
+
+ ```TS
+ export interface Project {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+}
+```
+Generowanie danych w service:
+
+```TS
+import { Injectable } from '@angular/core';
+import { Project } from './interface-projects';
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ProjectsService {
+
+  projects: Project[] = [
+    {
+      id: 1,
+      name: 'Sklep internetowy',
+      description: 'Aplikacja do sprzedaży produktów online',
+      status: 'Aktywny'
+    },
+    {
+      id: 2,
+      name: 'System faktur',
+      description: 'Aplikacja do wystawiania i zarządzania fakturami',
+      status: 'W trakcie'
+    },
+    {
+      id: 3,
+      name: 'Aplikacja OCR',
+      description: 'System do odczytywania danych z paragonów',
+      status: 'Zakończony'
+    }
+  ];
+
+}
+```
+Przekazanie do komponentu serwisu:
+
+```TS
+import { Component } from '@angular/core';
+import { Project } from '../../services/interface-projects';
+import { ProjectsService } from '../../services/projects';
+
+@Component({
+  selector: 'app-projects-list',
+  standalone: true,
+  imports: [],
+  templateUrl: './projects-list.html',
+  styleUrl: './projects-list.scss',
+})
+export class ProjectsList {
+  projects: Project[];
+
+  constructor(private projectsService: ProjectsService) {
+    this.projects = this.projectsService.projects;
+  }
+}
+```
+
+Wyświetlenie danych w komponecie 
+```HTML
+<p>projects-list works!</p>
+
+
+<h2>Lista projektów</h2>
+
+@for (project of projects; track project.id) {
+  <div>
+    <h3>{{ project.name }}</h3>
+    <p>{{ project.description }}</p>
+    <p>Status: {{ project.status }}</p>
+  </div>
+}
+```
+
+
+
+`track` jest bardzo ważny, bo **pozwala Angularowi rozpoznać, który element kolekcji odpowiada któremu elementowi w DOM**.
+
+Masz np.:
+```TS
+@for (project of projects; track project.id) {
+  <p>{{ project.name }}</p>
+}
+```
+
+Załóżmy, że:
+
+```TS
+projects = [
+  { id: 1, name: 'Sklep' },
+  { id: 2, name: 'OCR' },
+  { id: 3, name: 'Faktury' }
+];
+```
+Angular używa wtedy:
+**project.id**
+
+```text
+jako klucza identyfikującego każdy element:
+id 1 → Sklep
+id 2 → OCR
+id 3 → Faktury
+```
+
+Dzięki temu, gdy np. **usuniesz projekt o id: 2, Angular wie dokładnie, który fragment DOM usunąć. Nie musi przebudowywać całej listy**.
+**track pomaga Angularowi wykonać minimalną liczbę operacji na DOM**.
+
+
+`track` jest wymagane w @for, właśnie ze względów wydajnościowych.
+
+Dodatkowo `@for` ma wbudowane zmienne kontekstowe:
+- `$count`  → liczba elementów
+- `$index`  → indeks aktualnego elementu
+- `$first`  → czy pierwszy element
+- `$last`   → czy ostatni element
+- `$even`   → czy indeks parzysty
+- `$odd`   → czy indeks nieparzysty
+
+Przykład:
+```TS
+@for (
+  project of projects;
+  track project.id;
+  let i = $index,
+      first = $first,
+      last = $last
+) {
+  <p>
+    {{ i }} - {{ project.name }}
+
+    @if (first) {
+      <strong>Pierwszy</strong>
+    }
+
+    @if (last) {
+      <strong>Ostatni</strong>
+    }
+  </p>
+}
+```
+
+
+## `inject():`
+
+`private projectsService = inject(ProjectsService);`
+
+**pozwala wstrzyknąć zależność bez konstruktora.**
+
+**inject()** ma jeszcze jedną dużą zaletę: można go **używać także poza konstruktorem klasy**, np. w funkcyjnych **guardach**:
