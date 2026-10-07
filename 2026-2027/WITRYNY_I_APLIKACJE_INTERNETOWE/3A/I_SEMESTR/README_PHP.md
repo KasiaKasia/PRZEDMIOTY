@@ -829,7 +829,7 @@ $osoby = [
     ]
 ];
 echo $osoby["Nowak"]["imie"]. "\n";
-
+# powiązanie klucza z wartością w tablicy asocjacyjnej
 foreach ($osoby as $nazwisko => $dane) {
     echo $nazwisko . "\n";
 }
@@ -922,7 +922,7 @@ foreach ($imiona as $imie) {
 ```
 
 
-**lcfirst() – pierwsza litera mała**
+**lcfirst() – zmienia pierwszą literę całego tekstu na małą**
 ```PHP
 $tekst = "Kamil";
 
@@ -968,10 +968,7 @@ $tekst = "Programowanie PHP";
 $pozycja = strpos($tekst, "PHP");
 
 echo $pozycja;
-
-if (strpos($tekst, "PHP") !== false) {
-    echo "Znaleziono PHP";
-}
+ 
 ```
 Zwraca pozycję, na której rozpoczyna się "PHP".
 
