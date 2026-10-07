@@ -88,7 +88,9 @@ print(f" licznik osób o imienu Anna: {licznikAnny}")
 
 ### POBIERANIE DANYCH w słowniku
 my_dict.keys()                 # wszystkie klucze
+
 my_dict.values()               # wszystkie wartości
+
 my_dict.items()                # wszystkie pary (klucz, wartość)
 
 ### ZBIÓR - SET
@@ -168,8 +170,7 @@ print(indeks)
 ```    
 
 ## **Wyszukiwanie binarne (Binary Search)**
-**Algorytm wyszukuje element w posortowanej liście**, dzieląc ją na **pół za każdym razem.** **Porównuje szukany element z środkowym elementem listy i eliminuje połowę**, w której elementu nie ma. Jest bardzo
-efektywny (złożoność O(log n)), ale wymaga, aby lista była posortowana. To jak szukanie słowa w słowniku – otwierasz na środku i sprawdzasz, czy iść w lewo czy w prawo.
+**Algorytm wyszukuje element w posortowanej liście**, dzieląc ją na **pół za każdym razem.** **Porównuje szukany element z środkowym elementem listy i eliminuje połowę**, w której elementu nie ma. Jest bardzo efektywny (złożoność O(log n)), ale wymaga, aby lista była posortowana. To jak szukanie słowa w słowniku – otwierasz na środku i sprawdzasz, czy iść w lewo czy w prawo.
 
 
 ```Python
