@@ -745,3 +745,129 @@ VALUES
 (2, 1),
 (2, 3);
 ```
+
+
+## Podstawowe polecenia do sortowania
+
+### ORDER BY
+
+```SQL
+CREATE TABLE pracownicy (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    imie VARCHAR(50) NOT NULL,
+    nazwisko VARCHAR(50) NOT NULL
+);
+INSERT INTO pracownicy (imie, nazwisko) VALUES
+('Anna', 'Kowalska'),('Jan', 'Nowak'),
+('Piotr', 'Wiśniewski'),('Maria', 'Adamska'),
+('Tomasz', 'Zieliński'),('Ola', 'Kaczmarek');
+
+
+SELECT nazwisko, imie
+FROM pracownicy
+ORDER BY nazwisko ASC; -- rosnąco
+
+SELECT nazwisko, imie
+FROM pracownicy
+ORDER BY nazwisko DESC; -- malejąco
+```
+
+### Sortowanie po wielu kolumnach
+
+```SQL
+SELECT nazwisko, imie, pensja
+FROM pracownicy
+ORDER BY nazwisko ASC, pensja DESC;
+```
+
+Najpierw sortuje po nazwisku rosnąco, a w ramach tego – po pensji malejąco.
+
+#### Sortować można po numerach kolumn (niezalecane, ale działa):
+
+```SQL
+SELECT nazwisko, imie
+FROM pracownicy
+ORDER BY 2 ASC, 4 DESC
+```
+**2 kolumną będzie imie. Nie bierze pod uwagę faktyczna kolejnośc kolumn w tabeli**
+
+
+## AUTO_INCREMENT, PRIMARY KEY i FOREIGN KEY służą do definiowania relacji i identyfikacji rekordów w bazie danych.
+
+- `PRIMARY KEY` — klucz główny, czyli kolumna, która jednoznacznie identyfikuje każdy rekord.
+- `AUTO_INCREMENT` — automatycznie zwiększa wartość liczbową, najczęściej dla id.
+- `FOREIGN KEY` — klucz obcy, który łączy jedną tabelę z drugą.
+
+```
+CREATE TABLE dzialy (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nazwa VARCHAR(50) NOT NULL
+);
+``` 
+- `PRIMARY KEY` — id jednoznacznie identyfikuje rekord,
+- `AUTO_INCREMENT` — id zwiększa się automatycznie.
+Dodajemy dane:
+```SQL
+INSERT INTO dzialy (nazwa) VALUES
+('IT'),
+('Kadry'),
+('Księgowość');
+```
+
+Mamy:
+
+```SQL
+id | nazwa
+---+-------------
+1  | IT
+2  | Kadry
+3  | Księgowość
+```
+
+Teraz usuwamy rekord o id = 2:
+```SQL
+DELETE FROM dzialy
+WHERE id = 2;
+```
+
+Zostanie:
+```text
+id | nazwa
+---+-------------
+1  | IT
+3  | Księgowość
+```
+Teraz dodajemy nowy rekord:
+
+`INSERT INTO dzialy (nazwa) VALUES ('Marketing');`
+
+Wynik:
+```text
+id | nazwa
+---+-------------
+1  | IT
+3  | Księgowość
+4  | Marketing
+```
+
+Czyli nowy rekord dostaje id = 4, a nie 2.
+
+**Przykład FOREIGN KEY:**
+```SQL
+CREATE TABLE pracownicy (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    imie VARCHAR(50),
+    nazwisko VARCHAR(50),
+    dzial_id INT,
+    FOREIGN KEY (dzial_id) REFERENCES dzialy(id)
+);
+```
+
+Dodajemy pracownika:
+
+```SQL
+INSERT INTO pracownicy (imie, nazwisko, dzial_id)
+VALUES ('Anna', 'Kowalska', 1);
+```
+
+dzial_id = 1 wskazuje tutaj na dział:
