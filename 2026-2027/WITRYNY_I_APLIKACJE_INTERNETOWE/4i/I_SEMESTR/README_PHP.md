@@ -26,7 +26,7 @@ Najpierw $wartosc przechowuje liczbę, a później tekst.
 | `float`    | liczba zmiennoprzecinkowa                          | `$cena = 19.99;`                  |
 | `string`   | tekst                                              | `$imie = "Jan";`                  |
 | `bool`     | wartość logiczna                                   | `$aktywny = true;`                |
-| `array`    | tablica indeksowana lub asocjacyjna                | `$kolory = ["red", "blue"];`      |
+| `array`    | tablica indeksowana lub asocjacyjna                | `$kolory = ["red", "blue"]; $owoce = [ 0 => "jabłko", 1 => "banan",  2 => "gruszka"];`       |
 | `object`   | obiekt utworzony na podstawie klasy                | `$user = new User();`             |
 | `null`     | brak wartości                                      | `$telefon = null;`                |
 | `resource` | specjalny typ reprezentujący odwołanie do zewnętrznego zasobu, np. otwartego pliku | `$file = fopen("dane.txt", "r");` |
