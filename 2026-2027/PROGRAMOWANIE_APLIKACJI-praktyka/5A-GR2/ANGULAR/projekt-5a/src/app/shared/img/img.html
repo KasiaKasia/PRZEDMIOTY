@@ -1,0 +1,19 @@
+
+<p>ID: {{ id }}</p>
+
+@if (image) {
+
+  <p>{{ image.title }}</p>
+
+  <img
+    [src]="image.src"
+    [alt]="image.alt"
+    [title]="image.title"
+    width="300"
+  >
+
+} @else {
+
+  <p>Nie znaleziono zdjęcia.</p>
+
+}
