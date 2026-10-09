@@ -26,6 +26,7 @@ Wyjście: wartości i takie, że A[i] zawiera wartość true.
 Źródło: https://pl.wikipedia.org/wiki/Sito_Eratostenesa;  
 
 **Założenia programu**
+
 ‒ Program wykonywany w konsoli.
 ‒ Język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym, jeden z: C++, C#, Java, Python.
 ‒ Program szuka liczb w przedziale 2..100 (n = 100)
@@ -33,11 +34,14 @@ Wyjście: wartości i takie, że A[i] zawiera wartość true.
 ‒ Liczby pierwsze są wyświetlane na ekranie, rozdzielone dowolnym separatorem oraz poprzedzone znaczącym komunikatem.
 ‒ Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu, należy stosować znaczące nazwy zmiennych i funkcji.
  
+
+
 ## Zad 2
 
-
 Za pomocą narzędzi do tworzenia aplikacji konsolowych zaimplementuj program do tworzenia bezpiecznych haseł.
+
 **Założenia aplikacji:**
+
 − Zastosowany obiektowy język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym: C++ lub C#, lub Java, lub Python
 − **Dowolne podejście: strukturalne lub obiektowe** 
 − Zastosowane znaczące nazewnictwo, polskie albo angielskie
@@ -55,3 +59,24 @@ Za pomocą narzędzi do tworzenia aplikacji konsolowych zaimplementuj program do
 − **Każdy z wylosowanych 12 znaków jest umieszczany w losowym miejscu w haśle**
 − **Hasło jest zapisane w zmiennej napisowej i zwracane z funkcji**
 − **Aplikacja w programie głównym generuje 5 haseł i wyświetla je ze znaczącym komunikatem**
+
+
+## Zad 3
+
+Za pomocą narzędzi do tworzenia aplikacji konsolowych wykonaj program loterii liczbowej polegającej na losowaniu zestawów składających się z sześciu liczb
+
+**Założenia aplikacji:**
+
+− Zastosowany obiektowy język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym: C++ lub C#,lub Java, lub Python
+− Fragment działania programu przedstawiono na obrazie 1 − Program wczytuje z klawiatury ile zestawów należy wylosować
+− **Program generuje podaną liczbę zestawów składających się z sześciu losowanych liczb całkowitych ze zbioru <1, 49>. W jednym zestawie liczby nie mogą się powtarzać. Zestawy są wyświetlone na ekranie**
+− **Program zlicza we wszystkich zestawach ile jest wystąpień każdej liczby od 1 do 49, co zostaje wyświetlone na ekranie**
+− **W programie należy użyć funkcji do generowania liczb pseudolosowych**
+− **Do przechowywania wyników losowań należy użyć dwuwymiarowej tablicy liczb całkowitych składającej się z n wierszy i 6 kolumn (n – liczba wczytana z klawiatury) lub innej dowolnej kolekcji pasującej do problemu**
+− **W programie należy zdefiniować przynajmniej dwie funkcje:**
+    − **Wypełniającą tablicę lub kolekcję danymi losowań**
+    − **Wyświetlającą wyniki wszystkich losowań na ekranie**
+− **W podejściu strukturalnym nie można stosować zmiennych globalnych**
+− Program powinien podejmować zrozumiałą komunikację z użytkownikiem
+− W programie należy stosować znaczące, angielskie lub polskie nazewnictwo
+− Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu
