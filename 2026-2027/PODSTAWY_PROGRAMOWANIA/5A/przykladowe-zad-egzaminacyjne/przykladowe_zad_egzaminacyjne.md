@@ -28,10 +28,15 @@ Wyjście: wartości i takie, że A[i] zawiera wartość true.
 **Założenia programu**
 
 ‒ Program wykonywany w konsoli.
+
 ‒ Język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym, jeden z: C++, C#, Java, Python.
+
 ‒ Program szuka liczb w przedziale 2..100 (n = 100)
+
 ‒ Wypełnianie tablicy odbywa się w osobnej funkcji przyjmującej tablicę jako argument i nie zwracającej żadnej wartości.
+
 ‒ Liczby pierwsze są wyświetlane na ekranie, rozdzielone dowolnym separatorem oraz poprzedzone znaczącym komunikatem.
+
 ‒ Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu, należy stosować znaczące nazwy zmiennych i funkcji.
  
 
