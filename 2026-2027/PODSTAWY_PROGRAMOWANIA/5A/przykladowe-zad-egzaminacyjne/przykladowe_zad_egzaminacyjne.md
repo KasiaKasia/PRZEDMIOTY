@@ -44,20 +44,35 @@ Za pomocą narzędzi do tworzenia aplikacji konsolowych zaimplementuj program do
 
 − Zastosowany obiektowy język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym: C++ lub C#, lub Java, lub Python
 − **Dowolne podejście: strukturalne lub obiektowe** 
+
 − Zastosowane znaczące nazewnictwo, polskie albo angielskie
+
 − Kod zapisany czytelnie, z zachowaniem zasad czystego formatowania
+
 − Komunikacja z użytkownikiem jest prowadzona w sposób zrozumiały
+
 − **Nie można zastosować metody wbudowanej lub z funkcji bibliotecznych do generowania gotowego hasła**
+
 − **Hasło przechowywane w zmiennej / polu typu napisowego**
+
 − **Funkcja / metoda zwracająca wygenerowane 12-znakowe hasło według zasad:**
+
 − **Losowane są**:
+
 − **3 małe litery z alfabetu łacińskiego    (26 znaków: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z)**
+
 − **3 wielkie litery z alfabetu łacińskiego (26 znaków: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z)**
+
 − **2 litery ze znakami diakrytycznymi ze zbioru: ą, ę, ł, ń, ó, ś, ż, ź, Ą, Ę, Ł, Ń, Ó, Ś, Ż, Ź (patrz plik znaki.txt)**
+
 − **2 cyfry z zakresu 0 – 9**
+
 − **2 znaki specjalne z zestawu: !@#$%^&*()_+**
+
 − **Każdy z wylosowanych 12 znaków jest umieszczany w losowym miejscu w haśle**
+
 − **Hasło jest zapisane w zmiennej napisowej i zwracane z funkcji**
+
 − **Aplikacja w programie głównym generuje 5 haseł i wyświetla je ze znaczącym komunikatem**
 
 
@@ -68,15 +83,27 @@ Za pomocą narzędzi do tworzenia aplikacji konsolowych wykonaj program loterii 
 **Założenia aplikacji:**
 
 − Zastosowany obiektowy język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym: C++ lub C#,lub Java, lub Python
+
 − Fragment działania programu przedstawiono na obrazie 1 − Program wczytuje z klawiatury ile zestawów należy wylosować
+
 − **Program generuje podaną liczbę zestawów składających się z sześciu losowanych liczb całkowitych ze zbioru <1, 49>. W jednym zestawie liczby nie mogą się powtarzać. Zestawy są wyświetlone na ekranie**
+
 − **Program zlicza we wszystkich zestawach ile jest wystąpień każdej liczby od 1 do 49, co zostaje wyświetlone na ekranie**
+
 − **W programie należy użyć funkcji do generowania liczb pseudolosowych**
+
 − **Do przechowywania wyników losowań należy użyć dwuwymiarowej tablicy liczb całkowitych składającej się z n wierszy i 6 kolumn (n – liczba wczytana z klawiatury) lub innej dowolnej kolekcji pasującej do problemu**
+
 − **W programie należy zdefiniować przynajmniej dwie funkcje:**
+
     − **Wypełniającą tablicę lub kolekcję danymi losowań**
+
     − **Wyświetlającą wyniki wszystkich losowań na ekranie**
+
 − **W podejściu strukturalnym nie można stosować zmiennych globalnych**
+
 − Program powinien podejmować zrozumiałą komunikację z użytkownikiem
+
 − W programie należy stosować znaczące, angielskie lub polskie nazewnictwo
+
 − Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu
