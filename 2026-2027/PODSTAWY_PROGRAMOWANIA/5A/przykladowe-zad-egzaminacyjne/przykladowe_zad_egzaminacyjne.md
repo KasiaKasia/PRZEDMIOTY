@@ -95,8 +95,10 @@ Za pomocą narzędzi do tworzenia aplikacji konsolowych wykonaj program loterii 
 − **Do przechowywania wyników losowań należy użyć dwuwymiarowej tablicy liczb całkowitych składającej się z n wierszy i 6 kolumn (n – liczba wczytana z klawiatury) lub innej dowolnej kolekcji pasującej do problemu**
 
 − **W programie należy zdefiniować przynajmniej dwie funkcje:**
-    − **Wypełniającą tablicę lub kolekcję danymi losowań**
-    − **Wyświetlającą wyniki wszystkich losowań na ekranie**
+
+    −- Wypełniającą tablicę lub kolekcję danymi losowań
+
+    -− Wyświetlającą wyniki wszystkich losowań na ekranie
 
 − **W podejściu strukturalnym nie można stosować zmiennych globalnych**
 
