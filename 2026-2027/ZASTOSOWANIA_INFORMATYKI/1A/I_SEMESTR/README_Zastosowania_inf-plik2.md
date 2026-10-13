@@ -548,3 +548,97 @@ Kombinacja różnych topologii (np. gwiazda + magistrala lub gwiazda + pierście
 
 ---
  
+# Sieci przewodowe
+
+**Sieć przewodowa** to rodzaj sieci komputerowej, w której urządzenia są połączone za pomocą fizycznych kabli — najczęściej miedzianych (Ethernet) lub światłowodowych (fiber optic).
+
+**Najprościej mówiąc:**
+
+> Sieć przewodowa = połączenie komputerów, drukarek, routerów itp. za pomocą kabli, a nie przez Wi-Fi.
+
+## Główne cechy:
+
+- **Przesył danych:** Dane są transmitowane przez przewodniki, co zapewnia stabilne i szybkie połączenie, zazwyczaj z mniejszą podatnością na zakłócenia niż w sieciach bezprzewodowych.
+- **Przykłady zastosowań:** Sieci LAN w domach, biurach, centrach danych czy systemy monitoringu CCTV.
+
+## Przykłady sieci przewodowych
+
+**Ethernet (LAN)** — najczęściej spotykana sieć przewodowa w domach i firmach.
+
+- używa kabli RJ-45 (skrętka),
+- prędkości np. 100 Mb/s, 1 Gb/s, 10 Gb/s,
+- łączy komputery, routery, switche.
+
+**Światłowód (Fiber Optic)** — sieć zbudowana z kabli światłowodowych.
+
+- bardzo duża prędkość transmisji,
+- stosowana w łączach między miastami, serwerowniach lub w nowoczesnych domach (FTTH – Fiber To The Home).
+
+**Połączenia szeregowe / przemysłowe** — np. RS-232, RS-485 — używane w automatyce i systemach przemysłowych.
+
+## Jak działa sieć przewodowa
+
+1. Każde urządzenie ma **kartę sieciową (NIC)**.
+2. Kable łączą urządzenia poprzez **switch, router lub hub**.
+3. Dane przesyłane są w postaci **sygnałów elektrycznych lub optycznych** przez przewody.
+4. Komunikacja odbywa się według określonych **protokołów sieciowych** (np. TCP/IP, Ethernet).
+
+## Zalety sieci przewodowej
+
+- **Szybka transmisja danych** – stabilniejsze połączenie niż Wi-Fi.
+- **Niskie opóźnienia (ping)** – ważne np. w grach i serwerach.
+- **Bezpieczeństwo** – trudniej podsłuchać połączenie fizyczne.
+- **Odporność na zakłócenia radiowe** – nie zależy od zasięgu Wi-Fi.
+
+## Wady sieci przewodowej
+
+- **Trudniejszy montaż** – trzeba prowadzić kable w ścianach lub po podłodze.
+- **Mniejsza mobilność** – urządzenia muszą być fizycznie podłączone.
+- **Koszty instalacji** – więcej sprzętu (kable, gniazda, przełączniki).
+
+# Sieć bezprzewodowa
+
+**Sieć komputerowa, w której urządzenia łączą się ze sobą bez użycia kabli**, wykorzystując **fale radiowe, podczerwień lub mikrofale** do przesyłania danych.
+
+**Najprościej mówiąc:**
+
+> Sieć bezprzewodowa = połączenie komputerów, telefonów, tabletów i innych urządzeń bez kabli, np. przez Wi-Fi lub Bluetooth.
+
+## Przykłady sieci bezprzewodowych
+
+- **Wi-Fi (WLAN – Wireless Local Area Network)**
+  - najpopularniejsza sieć domowa lub biurowa,
+  - wykorzystuje fale radiowe (częstotliwości 2,4 GHz i 5 GHz),
+  - umożliwia łączenie komputerów, smartfonów i innych urządzeń z routerem bez kabli.
+- **Bluetooth**
+  - służy do połączenia urządzeń na krótką odległość (np. telefon ↔ słuchawki).
+- **Sieć komórkowa (LTE, 5G)**
+  - zapewnia dostęp do Internetu przez operatorów sieci komórkowych,
+  - obejmuje duże obszary (miasta, regiony).
+- **Hotspot Wi-Fi**
+  - punkt dostępu umożliwiający innym urządzeniom korzystanie z Internetu bezprzewodowo.
+
+## Jak działa sieć bezprzewodowa
+
+1. Urządzenie (np. laptop, telefon) ma **kartę sieciową Wi-Fi**.
+2. Wysyła i odbiera dane przez **antenę**, która komunikuje się z **routerem (punktem dostępowym)**.
+3. Router przekazuje dane dalej – np. do Internetu przez kabel (światłowód lub Ethernet).
+4. Komunikacja odbywa się wg ustalonych **protokołów sieciowych** (np. 802.11).
+
+## Zalety sieci bezprzewodowej
+
+| Zaleta | Opis |
+| --- | --- |
+| Mobilność | Można się łączyć z dowolnego miejsca w zasięgu sygnału |
+| Brak kabli | Nie trzeba prowadzić przewodów przez ściany |
+| Łatwość instalacji | Wystarczy router i urządzenia z Wi-Fi |
+| Wiele urządzeń | Może łączyć laptopy, smartfony, drukarki itd. |
+
+## Wady sieci bezprzewodowej
+
+| Wada | Opis |
+| --- | --- |
+| Mniejsza stabilność | Sygnał może zanikać przez ściany lub zakłócenia |
+| Bezpieczeństwo | Łatwiej podsłuchać lub włamać się niż w sieci przewodowej |
+| Niższa prędkość | Wolniejsza transmisja niż przez kabel Ethernet |
+| Zużycie energii | Urządzenia mobilne szybciej rozładowują baterię |
