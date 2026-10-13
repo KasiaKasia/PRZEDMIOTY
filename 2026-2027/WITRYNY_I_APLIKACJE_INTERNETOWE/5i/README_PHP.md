@@ -783,3 +783,319 @@ POST stosuje się często do:
 - wysyłania większych formularzy
 - przesyłania plików
 
+
+## Połączenie PHP z bazą danych
+
+### 1. Utworzenie bazy danych
+
+Najpierw utwórzmy bazę danych o nazwie szkola_php:
+```SQL
+CREATE DATABASE szkola_php
+-- COLLATE określa zasady porównywania i sortowania tekstu.
+CHARACTER SET utf8mb4
+/*
+ -- Określa zestaw znaków używany do przechowywania tekstu. pozwala przechowywać pełny Unicode, czyli m.in.:
+ą ć ę ł ń ó ś ź ż
+A B C
+ä ö ü
+中文
+😊 
+*/
+COLLATE utf8mb4_polish_ci;
+```
+
+Następnie wybieramy bazę:
+```SQL
+USE szkola_php;
+```
+
+### 2. Utworzenie tabeli
+
+Utwórzmy tabelę uczniowie:
+```SQL
+CREATE TABLE uczniowie (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    imie VARCHAR(50) NOT NULL,
+    nazwisko VARCHAR(50) NOT NULL,
+    klasa VARCHAR(10) NOT NULL,
+    wiek INT
+);
+```
+
+### 3. Dodanie danych
+
+Dodajmy kilka rekordów:
+```SQL
+INSERT INTO uczniowie (imie, nazwisko, klasa, wiek)
+VALUES ('Anna', 'Kowalska', '5TP', 19);
+
+INSERT INTO uczniowie (imie, nazwisko, klasa, wiek)
+VALUES ('Jan', 'Nowak', '5TP', 18);
+
+INSERT INTO uczniowie (imie, nazwisko, klasa, wiek)
+VALUES ('Maria', 'Wiśniewska', '4TP', 18);
+
+INSERT INTO uczniowie (imie, nazwisko, klasa, wiek)
+VALUES ('Piotr', 'Zieliński', '4TP', 17);
+```
+Można też zrobić jeden INSERT:
+```SQL
+INSERT INTO uczniowie (imie, nazwisko, klasa, wiek)
+VALUES
+('Anna', 'Kowalska', '5TP', 19),
+('Jan', 'Nowak', '5TP', 18),
+('Maria', 'Wiśniewska', '4TP', 18),
+('Piotr', 'Zieliński', '4TP', 17);
+```
+
+### 4. Połączenie PHP z bazą danych
+
+Do nawiązania połączenia możemy wykorzystać funkcję:
+
+`mysqli_connect()`
+
+Podstawowa składnia:
+
+`mysqli_connect(host, użytkownik, hasło, baza_danych);`
+
+Przykład dla typowego środowiska XAMPP:
+```PHP
+$connection = mysqli_connect(
+    "localhost",
+    "root",
+    "",
+    "szkola_php"
+);
+
+```
+
+ 
+
+localhost   → serwer bazy danych
+root        → użytkownik MySQL
+""          → hasło
+szkola_php  → nazwa bazy danych
+
+  
+
+### 5. Sprawdzenie połączenia
+
+Możemy sprawdzić, czy udało się połączyć:
+```PHP
+<?php
+
+$connection = mysqli_connect(
+    "localhost",
+    "root",
+    "",
+    "szkola_php"
+);
+
+if (!$connection) {
+    die("Błąd połączenia z bazą danych");
+}
+
+echo "Połączono z bazą danych.";
+
+?>
+```
+ 
+### 6. Pobranie danych z tabeli
+
+Do pobrania danych wykorzystujemy zapytanie:
+```SQL
+SELECT * FROM uczniowie;
+```
+W PHP:
+```PHP
+$sql = "SELECT * FROM uczniowie";
+
+$result = mysqli_query($connection, $sql);
+```
+Funkcja:
+
+`mysqli_query()` wykonuje zapytanie SQL. Przyjmuje tutaj dwa argumenty:
+
+`mysqli_query($connection, $sql);`
+
+czyli:
+
+$connection → połączenie z bazą
+$sql        → zapytanie SQL
+
+### 7. Pobieranie kolejnych rekordów
+
+Do pobierania kolejnych rekordów możemy wykorzystać:
+
+`mysqli_fetch_assoc()`
+
+Przykład:
+```PHP
+$row = mysqli_fetch_assoc($result);
+```
+**Funkcja zwraca jeden rekord jako tablicę asocjacyjną.**
+
+Przykładowo rekord:
+
+1 | Anna | Kowalska | 5TP | 19
+
+możemy odczytać:
+```PHP
+$row["id"];
+$row["imie"];
+$row["nazwisko"];
+$row["klasa"];
+$row["wiek"];
+```
+
+Na przykład:
+```PHP
+echo $row["imie"];
+```
+wyświetli:
+
+Anna
+
+### 8. Wyświetlenie wszystkich rekordów
+
+Najczęściej używamy `while`:
+```PHP
+while ($row = mysqli_fetch_assoc($result)) {
+    echo $row["imie"];
+}
+```
+
+`mysqli_fetch_assoc()` pobiera kolejny rekord aż do momentu, kiedy nie będzie już żadnych danych.
+
+### 9. Kompletny skrypt PHP
+
+Plik może nazywać się np.: `index.php`
+
+Kod:
+```HTML
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista uczniów</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 600px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lista uczniów</h1>
+
+    <?php
+
+    $connection = mysqli_connect(
+        "localhost",
+        "root",
+        "",
+        "szkola_php"
+    );
+
+    if (!$connection) {
+        die("Błąd połączenia: " . mysqli_connect_error());
+    }
+
+    mysqli_set_charset($connection, "utf8mb4");
+
+    $sql = "SELECT * FROM uczniowie";
+
+    $result = mysqli_query($connection, $sql);
+
+    ?>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Klasa</th>
+            <th>Wiek</th>
+        </tr>
+
+        <?php
+
+        while ($row = mysqli_fetch_assoc($result)) {
+
+            echo "<tr>";
+
+            echo "<td>" . $row["id"] . "</td>";
+            echo "<td>" . $row["imie"] . "</td>";
+            echo "<td>" . $row["nazwisko"] . "</td>";
+            echo "<td>" . $row["klasa"] . "</td>";
+            echo "<td>" . $row["wiek"] . "</td>";
+
+            echo "</tr>";
+        }
+
+        ?>
+
+    </table>
+
+    <?php
+
+    mysqli_close($connection);
+
+    ?>
+
+</body>
+
+</html>
+```
+ 
+### 10. `mysqli_fetch_assoc()`  
+
+Nazwa funkcji: `mysqli_fetch_assoc()` pochodzi od słowa associative, czyli asocjacyjny.
+
+Dla rekordu:
+```text
+id = 1
+imie = Anna
+nazwisko = Kowalska
+```
+
+otrzymujemy tablicę:
+```text
+$row = [
+    "id" => 1,
+    "imie" => "Anna",
+    "nazwisko" => "Kowalska"
+];
+```
+Dlatego możemy używać nazw kolumn:
+```PHP
+echo $row["id"];
+echo $row["imie"];
+echo $row["nazwisko"];
+```
+To jest bardzo ważne w kontekście tego, co wcześniej omawiałyśmy przy tablicach asocjacyjnych w PHP.
+
+11. Najważniejsze funkcje do zapamiętania na INF.03
+Funkcja	Zastosowanie
+- `mysqli_connect()`	nawiązuje połączenie z bazą MySQL
+- `mysqli_connect_error()`	zwraca informację o błędzie połączenia
+- `mysqli_set_charset()`	ustawia kodowanie znaków
+- `mysqli_query()`	wykonuje zapytanie SQL
+- `mysqli_fetch_assoc()`	pobiera rekord jako tablicę asocjacyjną
+- `mysqli_close()`	zamyka połączenie z bazą
+ 
