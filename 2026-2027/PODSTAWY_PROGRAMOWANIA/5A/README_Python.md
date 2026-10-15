@@ -3691,8 +3691,7 @@ PaymentProcessor
 
 `PaymentProcessor` może określić, jakie operacje powinien obsługiwać każdy procesor płatności, natomiast klasy `StripeProcessor` i `PayPalProcessor` określają, **w jaki sposób** te operacje zostaną wykonane.
 
----
- 
+
 
 **Klasy abstrakcyjne stosujemy** wtedy, gdy kilka klas powinno posiadać **wspólny zestaw metod**, ale ich sposób działania będzie różny.
 
