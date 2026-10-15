@@ -112,3 +112,63 @@ Za pomocą narzędzi do tworzenia aplikacji konsolowych wykonaj program loterii 
 − W programie należy stosować znaczące, angielskie lub polskie nazewnictwo
 
 − Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu
+
+## Zad 4
+ 
+Wykorzystując zasady programowania obiektowego zaprogramuj klasy do realizacji quizu o nazwach: *Pytanie* oraz *PytanieZamkniete*.
+
+**Założenia aplikacji:**
+
+− Program wykonywany w konsoli
+
+− Zastosowany obiektowy język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym: C++ lub C#, lub Java, lub Python
+
+− Program powinien podejmować zrozumiałą komunikację z użytkownikiem
+
+− W programie może być zastosowane angielskie lub polskie nazewnictwo zmiennych i funkcji
+
+− Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu, należy stosować znaczące nazwy pól i metod
+
+− Uruchomienie programu i sprawdzenie działania klas zgodnie z poleceniami w części III arkusza
+
+**Klasa *Pytanie*, której obiekt <u>nie może<u> być powołany, zawiera:**
+
+‒ **Pola dostępne jedynie w klasie oraz w klasach potomnych**, przechowujące:
+
+    ‒ Wartość tekstową z treścią pytania
+  
+    ‒ Nazwę pliku zawierającego zdjęcie do pytania
+  
+    ‒ Informację czy odpowiedź na pytanie jest poprawna, typu logicznego
+
+‒ **Konstruktor dwuargumentowy**, którego **argumentami są treść pytania i nazwa pliku dla pytania**
+
+    ‒ Na podstawie argumentów ustawia wartości pól
+
+    ‒ Ustawia pole logiczne: odpowiedź na pytanie nie jest poprawna
+
+‒ **Metodę abstrakcyjną typu logicznego**, sprawdzającą odpowiedź. **Metoda ma jeden argument o typie znakowym, który przyjmuje wartości 'A' lub 'B' lub 'C'** (odpowiedzi użytkownika na pytanie quizu). Metoda nie zawiera domyślnej implementacji
+
+Klasa *PytanieZamkniete* **dziedzicząca po klasie Pytanie**. Klasa zawiera:
+
+‒ **Pola dostępne jedynie w klasie, niedostępne w klasach potomnych**, przechowujące:
+
+    − Treść odpowiedzi A
+
+    − Treść odpowiedzi B
+
+    − Treść odpowiedzi C
+
+    − Informację o poprawnej odpowiedzi (znak 'A' lub 'B' lub 'C')
+
+‒ **Konstruktor sześcioargumentowy, o argumentach**: treść pytania, nazwa pliku graficznego dla pytania, treść odpowiedzi A, treść odpowiedzi B, treść odpowiedzi C, odpowiedź poprawna
+    
+    ‒ **Konstruktor wywołuje konstruktor klasy, po której dziedziczy**
+    
+    ‒ **Przypisuje treści odpowiedzi oraz poprawną odpowiedź do pól klasy**
+
+‒ **Implementację metody abstrakcyjnej sprawdzającej odpowiedź**, która:
+    
+    ‒ **Sprawdza czy odpowiedź jest poprawna i w zależności od wyniku, przypisuje odpowiednią wartość do pola logicznego**
+    
+    ‒ **Zwraca wartość pola logicznego**
