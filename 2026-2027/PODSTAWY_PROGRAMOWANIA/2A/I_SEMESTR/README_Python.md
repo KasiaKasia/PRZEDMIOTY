@@ -1895,7 +1895,7 @@ Błędnie - parametr domyślny przed wymaganym
 przekazywane bez nazw. Nie piszemy sumuj_wszystko(a=10, b=20) 
 
 ```Python
-def sumuj_wszystko(*liczby): 
+def sumuj_wszystko(*liczby):    
    """Przyjmuje dowolną liczbę argumentów""" 
    return sum(liczby) 
  
@@ -2023,6 +2023,21 @@ def outer():
     print(x) # 10
 
 outer()
+
+
+
+def zew():
+    x = 5
+
+    def wew():
+        nonlocal x # nie twórz nowego lokalnego x, tylko użyj x z funkcji zewnętrznej zew().
+        x = x + 2
+
+    wew()
+
+    print(x)
+
+zew()
 ```
 
 4. Built-in scope
@@ -2214,7 +2229,20 @@ print(wynik)
 
 Rekurencja jest przydatna w problemach, które mają strukturę drzewiastą lub dzielą się na podproblemy, np. obliczanie silni, przeszukiwanie drzew, sortowanie (jak quicksort) czy generowanie fraktali. 
 
- 
+**Przykład**
+```python
+def odliczanie(liczba):
+
+    if liczba == 0:
+        return
+
+    print(liczba)
+
+    odliczanie(liczba - 1)
+
+odliczanie(5)
+```
+
 **Przykład**: Obliczanie silni 
 ```python
 def silnia(n): 
