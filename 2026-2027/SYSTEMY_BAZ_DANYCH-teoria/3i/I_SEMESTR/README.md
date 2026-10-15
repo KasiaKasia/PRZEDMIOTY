@@ -798,14 +798,16 @@ ORDER BY 2 ASC, 4 DESC
 - `AUTO_INCREMENT` — automatycznie zwiększa wartość liczbową, najczęściej dla id.
 - `FOREIGN KEY` — klucz obcy, który łączy jedną tabelę z drugą.
 
-```
+```SQL
 CREATE TABLE dzialy (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nazwa VARCHAR(50) NOT NULL
 );
 ``` 
+
 - `PRIMARY KEY` — id jednoznacznie identyfikuje rekord,
 - `AUTO_INCREMENT` — id zwiększa się automatycznie.
+
 Dodajemy dane:
 ```SQL
 INSERT INTO dzialy (nazwa) VALUES
@@ -871,3 +873,130 @@ VALUES ('Anna', 'Kowalska', 1);
 ```
 
 dzial_id = 1 wskazuje tutaj na dział:
+
+
+
+## Zarządzanie bezpieczeństwem bazy danych.
+
+W bazie danych MySQL uprawnienia (*privileges*) określają, jakie operacje użytkownik może wykonywać na bazach danych, tabelach i innych obiektach.
+
+Definicje
+
+● **GRANT** – służy do nadawania uprawnień użytkownikom bazy danych (np. prawa do odczytu, zapisu, aktualizacji, usuwania, tworzenia tabel).
+
+● **REVOKE** – służy do odbierania wcześniej nadanych uprawnień
+
+
+## **Najważniejsze uprawnienia w MySQL**
+| **Uprawnienie     |	**Opis**                                                                            |
+| ----------------: | ------------------------------------------------------------------------------------- |
+| `SELECT`	        | Odczytywanie danych z tabeli.                                                         |
+| `INSERT`	        | Dodawanie nowych rekordów do tabeli.                                                  |
+| `UPDATE`	        | Modyfikowanie istniejących rekordów.                                                  |    
+| `DELETE`	        | Usuwanie rekordów z tabeli.                                                           |
+| `CREATE`	        | Tworzenie baz danych i tabel.                                                         |
+| `DROP`	        | Usuwanie baz danych i tabel.                                                          |
+| `ALTER`	        | Zmienianie struktury tabeli.                                                          |
+| `INDEX`	        | Tworzenie i usuwanie indeksów.                                                        |
+| `REFERENCES`	    | Uprawnienie związane z kluczami obcymi.                                               |
+| `CREATE VIEW`	    | Tworzenie widoków.                                                                    |
+| `SHOW VIEW`	    | Wyświetlanie definicji widoków.                                                       |
+| `EXECUTE`	        | Wykonywanie procedur i funkcji składowanych.                                          |        
+| `TRIGGER`	        | Tworzenie i usuwanie wyzwalaczy oraz wykonywanie związanych z nimi operacji.          |
+| `ALL PRIVILEGES`  |	Nadanie wszystkich uprawnień dostępnych na określonym poziomie (bez GRANT OPTION).  |
+
+
+**Składnia**
+
+### **Nadawanie uprawnień (GRANT)**
+
+```SQL
+GRANT <uprawnienia>
+ON <nazwa_bazy_danych>.<nazwa_tabeli>
+TO <nazwa_uzytkownika>@<host>;
+```
+### **Odbieranie uprawnień (REVOKE)**
+
+```SQL
+REVOKE <uprawnienia>
+ON <nazwa_bazy_danych>.<nazwa_tabeli>
+FROM <nazwa_uzytkownika>@<host>;
+```
+
+
+**Przykład – nadanie użytkownikowi jan uprawnienia do odczytywania danych z tabeli uczniowie w bazie szkola:**
+```SQL
+GRANT SELECT
+ON szkola.uczniowie
+TO 'jan'@'localhost';
+```
+
+**Nadanie kilku uprawnień jednocześnie:**
+```SQL
+GRANT SELECT, INSERT, UPDATE
+ON szkola.uczniowie
+TO 'jan'@'localhost';
+```
+
+**Przykład – odebranie uprawnienia UPDATE:**
+```SQL
+REVOKE UPDATE
+ON szkola.uczniowie
+FROM 'jan'@'localhost';
+```
+
+
+### Nadawanie uprawnień na różnych poziomach
+| Zapis	                |      Znaczenie                                    |
+| --------------------: | ------------------------------------------------- |
+| `ON *.*`              |	Wszystkie bazy danych i ich tabele na serwerze. |
+| `ON szkola.*`	        |   Wszystkie tabele w bazie szkola.                |
+| `ON szkola.uczniowie`	|   Tylko tabela uczniowie w bazie szkola.          |
+
+**Przykład – nadanie uprawnień do wszystkich tabel w bazie:**
+```SQL
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON szkola.*
+TO 'jan'@'localhost';
+```
+
+**Przykład – nadanie wszystkich uprawnień na poziomie bazy:**
+```SQL
+GRANT ALL PRIVILEGES
+ON szkola.*
+TO 'jan'@'localhost';
+```
+
+### Sprawdzanie uprawnień – SHOW GRANTS
+Aby sprawdzić uprawnienia użytkownika, wykonujemy:
+```SQL
+SHOW GRANTS FOR 'jan'@'localhost';
+```
+
+### Uprawnienie do nadawania uprawnień innym użytkownikom
+```SQL
+GRANT SELECT
+ON szkola.*
+TO 'jan'@'localhost'
+WITH GRANT OPTION;
+```
+
+`WITH GRANT OPTION` pozwala użytkownikowi jan nadawać innym użytkownikom uprawnienie SELECT w określonym zakresie.
+## Tworzenie użytkownika – CREATE USER
+```SQL
+CREATE USER 'nazwa_uzytkownika'@'host'
+IDENTIFIED BY 'haslo';
+```
+
+``Tworzymy użytkownika jan z hasłem Jan123!:``
+```SQL
+CREATE USER 'jan'@'localhost'
+IDENTIFIED BY 'Jan123!';
+```
+
+**Polecenie sprawdzjące czy użytkownik istnieje**
+```SQL
+SELECT User, Host
+FROM mysql.user
+WHERE User = 'jan';
+```
