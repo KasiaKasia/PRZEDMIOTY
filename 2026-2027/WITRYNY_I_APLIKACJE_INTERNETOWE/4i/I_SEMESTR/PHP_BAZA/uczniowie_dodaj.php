@@ -84,12 +84,11 @@
         $nazwisko = mysqli_real_escape_string($connection, $nazwisko);
         $klasa = mysqli_real_escape_string($connection, $klasa);
 
-        // Zapytanie SQL
         $sql = "INSERT INTO uczniowie
                 (imie, nazwisko, klasa, wiek)
                 VALUES ('$imie', '$nazwisko', '$klasa', $wiek)";
 
-        // Wykonanie zapytania
+   
         if (mysqli_query($connection, $sql)) {
             echo "<p>Uczeń został dodany do bazy danych.</p>";
         } else {
