@@ -990,6 +990,9 @@ przedstaw("Anna", 25);
 ###  10. **Rest parameters — ...**
 
 **Pozwala przekazać dowolną liczbę argumentów.**
+
+JavaScript
+
 ```JS
 function suma(...liczby) {
 
@@ -998,12 +1001,13 @@ function suma(...liczby) {
     for (const liczba of liczby) {
         wynik += liczba;
     }
-
     return wynik;
 }
-
 console.log(suma(1, 2, 3, 4)); // 10
 ```
+
+TypeScript
+
 ```TS
 function suma(...liczby: number[]): number {
 
@@ -1012,9 +1016,9 @@ function suma(...liczby: number[]): number {
     for (const liczba of liczby) {
         wynik += liczba;
     }
-
     return wynik;
 }
+console.log(suma(1, 2, 3, 4)); // 10
 ```
 
 ### 12. **Funkcja generatorowa — Generator Function**
