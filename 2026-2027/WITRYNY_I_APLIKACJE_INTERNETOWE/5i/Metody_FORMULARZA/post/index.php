@@ -32,13 +32,11 @@
 
         <input type="text" name="imie"  >
 
-        <button type="submit">
-            Wyślij
-        </button>
+        <button type="submit">Wyślij</button>
 
     </form>
 
-       <?php
+    <?php
     $imie="";
     /*
     isset() w PHP sprawdza, czy zmienna lub element tablicy istnieje i ma wartość inną niż null.
