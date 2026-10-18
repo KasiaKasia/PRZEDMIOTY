@@ -70,11 +70,17 @@
         );
 
         if ($id !== false && $id > 0) {
-           
+         
             $sql = "DELETE FROM uczniowie
                     WHERE id = $id";
 
             if (mysqli_query($connection, $sql)) {
+
+				// mysqli_affected_rows() – zwraca liczbę rekordów,
+				// które zostały dodane, zmienione lub usunięte
+				// przez ostatnio wykonane zapytanie SQL.
+
+				// $liczba = mysqli_affected_rows($connection);
 
                 if (mysqli_affected_rows($connection) > 0) {
                     echo "<p>Uczeń został usunięty.</p>";
@@ -88,7 +94,7 @@
         
  /*
 
-   $sql = "DELETE FROM uczniowie WHERE id = ?";
+		$sql = "DELETE FROM uczniowie WHERE id = ?";
 
         // Przygotowanie zapytania SQL
         $stmt = mysqli_prepare($connection, $sql);
@@ -112,17 +118,14 @@
         // Zamknięcie przygotowanego zapytania
         mysqli_stmt_close($stmt);
 
-
  
 */
-
-
         } else {
             echo "<p>Podaj poprawne ID ucznia.</p>";
         }
     }
 
- 
+    // POBIERANIE UCZNIÓW
 
     $sql = "SELECT * FROM uczniowie";
 

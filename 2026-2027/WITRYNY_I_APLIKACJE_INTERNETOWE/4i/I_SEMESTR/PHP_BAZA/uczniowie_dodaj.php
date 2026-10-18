@@ -64,45 +64,53 @@
             $wiek > 0 ) {
 
         // mysqli_real_escape_string() – funkcja, która dodaje odpowiednie znaki ucieczki do znaków specjalnych.
-        /*
-        Załóżmy, że użytkownik wpisał imię zawierające apostrof: $imie = "O'Neil"; Zmienna $imie będzie zawierała: O\'Neil
-        Funkcja dodała znak \ przed apostrofem, aby MySQL nie potraktował go jako zakończenia tekstu w zapytaniu SQL.
+        
+        // Załóżmy, że użytkownik wpisał imię zawierające apostrof: $imie = "O'Neil"; Zmienna $imie będzie zawierała: O\'Neil
+        // Funkcja dodała znak \ przed apostrofem, aby MySQL nie potraktował go jako zakończenia tekstu w zapytaniu SQL.
 
-        Bez zabezpieczenia:
+        // Bez zabezpieczenia:
 
-        Dla wartości O'Neil powstałoby niepoprawne zapytanie:
-            INSERT INTO uczniowie (imie)
-            VALUES ('O'Neil');
+        // Dla wartości O'Neil powstałoby niepoprawne zapytanie:
+        //    INSERT INTO uczniowie (imie)  VALUES ('O'Neil');
 
-        Po zastosowaniu mysqli_real_escape_string():
-            INSERT INTO uczniowie (imie)
-            VALUES ('O\'Neil');
+        // Po zastosowaniu mysqli_real_escape_string():
+        //    INSERT INTO uczniowie (imie) VALUES ('O\'Neil');
 
-        MySQL poprawnie odczyta wartość O'Neil i zapisze ją w bazie danych bez dodatkowego ukośnika.
-        */
-        $imie = mysqli_real_escape_string($connection, $imie);
+        // MySQL poprawnie odczyta wartość O'Neil i zapisze ją w bazie danych bez dodatkowego ukośnika.
+        
+        $imie =  mysqli_real_escape_string($connection, $imie);
         $nazwisko = mysqli_real_escape_string($connection, $nazwisko);
         $klasa = mysqli_real_escape_string($connection, $klasa);
 
+        // Zapytanie SQL
         $sql = "INSERT INTO uczniowie
                 (imie, nazwisko, klasa, wiek)
                 VALUES ('$imie', '$nazwisko', '$klasa', $wiek)";
 
-   
+        // Wykonanie zapytania
         if (mysqli_query($connection, $sql)) {
             echo "<p>Uczeń został dodany do bazy danych.</p>";
         } else {
             echo "<p>Błąd podczas dodawania ucznia.</p>";
         }
 
-
-
 /*
-
+ 
             $sql = "INSERT INTO uczniowie
                     (imie, nazwisko, klasa, wiek)
-                    VALUES (?, ?, ?, ?)";
+                    VALUES ( ?, ?, ?, ?)";
             // mysqli_prepare() – przygotowuje zapytanie SQL do wykonania.
+			// 1. Przesyła zapytanie SQL do serwera MySQL.
+			// 2. Serwer sprawdza składnię zapytania i przygotowuje je do wykonania.
+			 
+				// 2.1. Czy składnia SQL jest poprawna – np. czy instrukcja INSERT INTO ma prawidłową strukturę.
+				// 2.2. Czy tabela istnieje – np. czy istnieje tabela uczniowie.
+				// 2.3. Czy wskazane kolumny istnieją – np. imie, nazwisko, wiek.
+				// 2.4. Czy liczba kolumn zgadza się z liczbą wartości – tutaj są 3 kolumny i 3 znaczniki ?.
+				// 2.5. Czy znaczniki ? zostały umieszczone w dozwolonych miejscach – np. mogą zastępować wartości, ale nie nazwy tabel.
+			
+			// 3. W miejscach oznaczonych znakiem ? będzie można później przekazać konkretne wartości.
+			// 4. Zwraca obiekt przygotowanego zapytania, który zapisujemy w zmiennej $stmt.
             $stmt = mysqli_prepare($connection, $sql);
 
 
@@ -138,13 +146,13 @@
             } else {
                 echo "<p>Błąd podczas dodawania ucznia.</p>";
             }
-            /*
-            mysqli_stmt_close()
-            - Zamyka przygotowane zapytanie – kończy pracę z zapytaniem przechowywanym w zmiennej $stmt.
-            - Zwalnia zasoby – zwalnia zasoby związane z przygotowanym zapytaniem po stronie PHP i MySQL.
-            */
-            mysqli_stmt_close($stmt);
-*/
+            
+          
+            // mysqli_stmt_close() - Zamyka przygotowane zapytanie – kończy pracę z zapytaniem przechowywanym w zmiennej $stmt.
+            // - Zwalnia zasoby – zwalnia zasoby związane z przygotowanym zapytaniem po stronie PHP i MySQL.
+            
+         mysqli_stmt_close($stmt);
+ */
         } else {
             echo "<p>Wprowadź poprawne dane ucznia.</p>";
         }
