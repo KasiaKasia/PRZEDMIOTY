@@ -223,3 +223,100 @@ if (image) {
 ```
 
 W TypeScript szczególnie warto używać `textContent`, gdy chcemy wstawić zwykły tekst. `innerHTML` powinno być używane ostrożnie, zwłaszcza gdy treść pochodzi od użytkownika.
+
+
+
+
+## 🖱️ Zdarzenia myszy w JavaScript
+
+🔹 1. `onclick` – kliknięcie myszką
+
+Występuje, gdy użytkownik **kliknie na dany element** (naciśnięcie i puszczenie lewego przycisku myszy).
+
+```HTML
+<button onclick="alert('Kliknięto przycisk!')">Kliknij mnie</button>
+```
+
+Zastosowanie:
+– do wywołania funkcji po kliknięciu,
+– otwierania linków,
+– wysyłania formularzy,
+– pokazywania lub ukrywania elementów.
+
+🔹 2. `ondblclick` – podwójne kliknięcie
+
+Reaguje na dwukrotne **szybkie kliknięcie w ten sam element**.
+
+```HTML
+<p ondblclick="this.style.color='red'">Kliknij mnie dwa razy, by zmienić kolor</p>
+```
+
+Zastosowanie:
+– do uruchamiania innej akcji niż pojedynczy klik (np. edycja tekstu, otwarcie szczegółów).
+
+🔹 3. `onmouseover` – najechanie kursorem
+
+Zdarzenie występuje, gdy **kursor myszy najedzie na element**.
+
+```HTML
+<div onmouseover="this.style.backgroundColor='lightgreen'">Najedź na mnie</div>
+```
+
+Zastosowanie:
+– podświetlanie przycisków,
+– pokazywanie podpowiedzi (tooltipów),
+– animacje po najechaniu.
+
+🔹 4. `onmouseout` – opuszczenie kursora
+
+Zdarzenie występuje, gdy **kursor myszy opuści element, na który wcześniej najechał**.
+
+```HTML
+<div onmouseout="this.style.backgroundColor='white'">Opuść mnie</div>
+```
+
+Zastosowanie:
+– przywracanie wyglądu po onmouseover,
+– ukrywanie dodatkowych informacji,
+– zatrzymywanie animacji.
+
+🔹 5. `onmousedown` – naciśnięcie przycisku myszy
+
+Wywołuje się w momencie **naciśnięcia przycisku myszy** (jeszcze przed jego puszczeniem).
+
+```HTML
+<button onmousedown="this.style.backgroundColor='yellow'">Naciśnij i przytrzymaj</button>
+```
+
+Zastosowanie:
+– efekt „wciśniętego” przycisku,
+– rozpoczęcie przeciągania elementu.
+
+🔹 6. `onmouseup` – puszczenie przycisku myszy
+
+Występuje, gdy użytkownik **puści przycisk myszy po wcześniejszym wciśnięciu**.
+
+```HTML
+<button onmouseup="this.style.backgroundColor='lightblue'">Puść przycisk</button>
+```
+
+Zastosowanie:
+– zakończenie przeciągania,
+– rejestrowanie akcji po zakończeniu kliknięcia.
+
+
+
+### TypeScript – zdarzenia myszy
+
+W TypeScript możemy określić typ obiektu zdarzenia, np. `MouseEvent`:
+
+```TS
+const button = document.querySelector<HTMLButtonElement>("#btn");
+
+button?.addEventListener("click", (event: MouseEvent) => {
+  console.log("Kliknięto:", event.clientX, event.clientY);
+});
+```
+
+W nowoczesnym JavaScript i TypeScript zamiast atrybutów HTML takich jak `onclick` często stosuje się `addEventListener()`.
+
