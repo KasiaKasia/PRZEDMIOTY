@@ -1,0 +1,67 @@
+<p>reactive-forms works!</p>
+<p>Reaktywny formularz może pracować w pełni oderwany od HTML. W przeciwnieństwie od formularza sterowanego szablonem </p>
+<p>Wystarczy utworzyć oobiekt klasy new FormControl('nieZaleznaZimennaControl' ) </p>
+<p>{{nieZaleznaZimennaControl.value}}</p><p>Podpiecie formularza do HTMl wykonuje się za pomoca [formControl]</p>
+<p>formGroup łaczy grupe pól, a przypisanie do formularza z grupy pyl wartości wykonuje się za pomoca formControlName podając nazwe klucza z grupy pól formularza </p>
+<input type="text" [formControl]="nieZaleznaZimennaControl"   />
+<p>Własne funkcję walidujące pole przekazujemy bez wywołania czyli tylko nazwe this.this.validateName ponieważ wywołuje ją funkcja form control</p>
+
+
+
+
+<form [formGroup]="addForm" (ngSubmit)="onSubmit( )" class="form__body">
+
+    @for (item of items.controls; track item; let i=$index) {
+    <div formArrayName="items">
+
+        <ng-container [formGroupName]="i">
+            <div class="form__row">
+
+                <div>
+                    <label>Name </label>
+                    <input formControlName="name" maxlength="30" minlength="3" placeholder="Name" />
+                    @if(item.get('name')?.hasError('required')){
+                    <span> Name is required. </span>
+                    }
+                    @if(item.get('name')?.hasError('minlength') || item.get('name')?.hasError('maxLength')){
+                    <span>The name should be at least 3 and max 30 characters long.</span>
+                    }
+                </div>
+
+                <div>
+                    <label>Count</label>
+                    <input formControlName="count" placeholder="Count" maxlength="3" type="number" />
+                    @if(item.get('count')?.hasError('required') ){
+                    <span> Count is required. </span>
+                    }
+
+                    @if(item.get('count')?.hasError('min') || item.get('count')?.hasError('max')){
+                    <span> Count can be between 1 and 100</span>
+                    }
+                </div>
+                <div>
+                    <label>Price</label>
+                    <input formControlName="price" maxlength="7" placeholder="Price" type="number" />
+
+                    @if(item.get('price')?.hasError('required')){
+                    <span> Price is required. </span>
+                    }
+                    @if(item.get('price')?.hasError('min') || item.get('price')?.hasError('max')){
+                    <span> Price can be between 1 and 1000000</span>
+                    }
+                </div>
+
+                <div class="form__actions-container">
+                    <button color="warn" type="button" (click)="removeItem(i)">
+                        Remove product
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    }
+    <div class="form__actions-container">
+        <button type="button" (click)="addItem()">Add an item to the Invoice</button>
+        <button class="form__actions-button" type="submit">Save Invoice</button>
+    </div>
+</form>

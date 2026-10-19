@@ -1,0 +1,187 @@
+<h1>Formularze sterowane szablonem</h1>
+<h1>Template-driven Forms</h1>
+<!-- 
+NgForm to dyrektywa z modułu FormsModule
+
+FormsModule	Udostępnia dyrektywy do obsługi formularzy sterowanych szablonem.
+NgForm	Zarządza całym formularzem i jego walidacją.
+ngModel	Łączy pole formularza z właściwością komponentu i obsługuje stan tego pola.
+
+-->
+<form #formularz="ngForm" (ngSubmit)="zapisz()">
+<!-- 
+Samo  [(ngModel)]="osoba.imie" bez #formularz="ngForm" powoduje poniższy błąd, ponieważ nie ma przypisanego name (brak name ) ani ngModelOptions
+
+Component update failed: NG01352: If ngModel is used within a form tag, either the name attribute must be set or the form
+    control must be defined as 'standalone' in ngModelOptions.
+
+    Example 1: <input [(ngModel)]="person.firstName" name="first">
+    Example 2: <input [(ngModel)]="person.firstName" [ngModelOptions]="{standalone: true}">
+ 
+
+  
+[(ngModel)] - dwukierunkowe wiązanie danych, pozwala na powiązanie wartości pola formularza z właściwością obiektu w komponencie. 
+[(ngModel)] bez #formularz="ngForm"  odrazu ustawia wartość pola formularza w komponencie
+#formularz="ngForm" - tworzy lokalną referencję do formularza,
+-->
+  <h3>Dane osobowe</h3>
+
+  <!-- INPUT TEXT -->
+  <label for="imie">Imię:</label>
+
+  <input
+    type="text"
+    id="imie"
+    name="imie"
+    [(ngModel)]="osoba.imie"
+    #poleImie="ngModel"
+    required>
+
+
+
+  <br><br>
+  <p>Wartość pola: {{ poleImie.value }}</p>
+  <p>Czy poprawne: {{ poleImie.valid }}</p>
+  <p>Czy niepoprawne: {{ poleImie.invalid }}</p>
+  <p>Czy dotknięte: {{ poleImie.touched }}</p>
+  <p>Czy zmodyfikowane: {{ poleImie.dirty }}</p>
+  <label for="nazwisko">Nazwisko:</label>
+
+  <input
+    type="text"
+    id="nazwisko"
+    name="nazwisko"
+    [(ngModel)]="osoba.nazwisko"
+    required>
+
+  <br><br>
+ 
+  <label for="email">E-mail:</label>
+
+  <input
+    type="email"
+    id="email"
+    name="email"
+    [(ngModel)]="osoba.email"
+    required
+    email>
+
+  <br><br>
+
+  <!-- SELECT -->
+  <label for="miasto">Miasto:</label>
+
+<pre>{{ miasta | json }}</pre>
+  <select
+      id="miasto"
+      name="miasto"
+      [(ngModel)]="osoba.miasto"
+      required
+  >
+      <!-- track w Angularze służy do rozpoznawania elementów listy. Dzięki temu Angular wie, które elementy już istnieją, a które trzeba dodać, usunąć lub zmienić -->
+
+    <option value="">Wybierz miasto</option>
+
+@for (miasto of miasta; track miasto) {
+        <option value="{{ miasto }}">
+            {{ miasto }}
+        </option>
+    }
+  </select>
+
+  <br><br>
+
+  <!-- RADIO value zawsze musi być ustawione i mieć różną wartość 
+  jak chesz zbindować inną wartość string , nalezy użyć  [value] zamiast value, wtedy można bindować obiekty i inne typy danych --> 
+ 
+  <h3>Płeć</h3>
+
+  <input
+    type="radio"
+    id="kobieta"
+    name="plec"
+   
+     [value] ="{value: 'kobieta'}"
+    [(ngModel)]="osoba.plec"
+    required>
+  <label for="kobieta">Kobieta</label>
+
+  <input
+    type="radio"
+    id="mezczyzna"
+    name="plec"
+  
+    [value] ="{value: 'mezczyzna'}"
+    [(ngModel)]="osoba.plec">
+
+  <label for="mezczyzna">Mężczyzna</label>
+
+  <br><br>
+
+  <!-- CHECKBOX   [(ngModel)] nadpisuje wartość value jedynie czyta checked -->
+  <input
+    type="checkbox"
+    id="regulamin"
+    name="regulamin"
+    [(ngModel)]="osoba.regulamin"
+    required>
+
+  <label for="regulamin"> Akceptuję regulamin </label>
+
+  <br><br>
+
+  <!-- SUBMIT -->
+  <button type="submit" [disabled]="formularz.invalid"> Zapisz </button>
+
+</form>
+
+<h3>Dane formularza:</h3>
+
+<pre>{{ osoba | json }}</pre>
+
+
+<h3>Wartości formularza:</h3>
+<pre>{{ formularz.value | json }}</pre>
+<p>Czy formularz jest poprawny: {{ formularz.valid }}</p>
+<p>Czy formularz jest niepoprawny: {{ formularz.invalid }}</p>
+<p>Czy formularz został zmodyfikowany: {{ formularz.dirty }}</p>
+
+<!--
+Właściwość	Znaczenie
+formularz.value	Wartości wszystkich zarejestrowanych pól formularza
+formularz.valid	Czy formularz jest poprawny
+formularz.invalid	Czy formularz zawiera błędy
+formularz.touched	Czy użytkownik dotknął przynajmniej jednego pola
+formularz.dirty	Czy użytkownik zmienił wartość przynajmniej jednego pola
+formularz.submitted	Czy formularz został wysłany
+-->
+
+
+<h2>Formularz – jednokierunkowe wiązanie danych</h2>
+<!--
+ [ngModel]="imie1" - pojedyńcze wiązanie danych (zadziała w 1 strone) , 
+ wartość pola formularza jest ustawiana w komponencie, ale nie można zmieniać wartości w komponencie, ani walidować formularza.
+Czyli widzi tylko wartości defaultowe, po zmienie form nie widzi ich. Chyba że użyjemy referencji
+-->
+<form #formularz1="ngForm" (ngSubmit)="zapiszPojednynczeWiazanie()">
+    <label for="imie">Imię:</label>
+
+    <input
+        type="text"
+        id="imie"
+        name="imie1"
+        [ngModel]="imie1"
+    />
+
+    <p>Wartość w komponencie: {{ imie1 }}</p>
+</form>
+<h3>Wartości formularza:</h3>
+<pre>{{ formularz1.value | json }}</pre>
+<p>Czy formularz jest poprawny: {{ formularz1.valid }}</p>
+<p>Czy formularz jest niepoprawny: {{ formularz1.invalid }}</p>
+<p>Czy formularz został zmodyfikowany: {{ formularz1.dirty }}</p>
+
+
+<!--
+ngModel	Zarządza polem formularza, bez wiązania z właściwością komponentu.
+-->
