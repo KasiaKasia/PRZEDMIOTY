@@ -1,0 +1,153 @@
+Krok po kroku
+
+Formularze sterowane szablonem (Template-driven Forms)
+
+1. Tworzymy nowy projket
+
+ng new Formularze_sterowane_szablonem
+
+- ? Which stylesheet system would you like to use?
+Wybieramy
+SCSS
+- ? Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (y/N)
+Piszemy
+N 
+- ? Which AI tools do you want to configure with Angular best practices? https://angular.dev/ai/develop-with-ai
+Wybieramy
+None
+
+Wchodziny do projektu
+cd Formularze_sterowane_szablonem
+
+Jak nie ma katalogu node_modules to uruchamiamy polecenie do instalacji zależności:
+npm i --legacy-peer-deps
+
+Uruchamiamy projekt
+ng serve -o
+
+Wchodzimy do nowego terminala i do katalogi projektu
+cd Formularze_sterowane_szablonem
+
+Tworzymy komponent dla formularza sterowanym szablonem poleceniem
+ng g c form_sterowany_szablonem
+
+Wchodzmy do pliku nowo utworzonego komponentu dla widoku:
+form-sterowany-szablonem.html
+
+w nim (form-sterowany-szablonem.html) wklejamy kod:
+
+<div>
+    <label for="imie">Imię: </label>
+
+    <input type="text" id="imie"   [(ngModel)]="osoba.imie">
+</div>
+
+
+<div>
+    <label for="pelnoletni">Pełnoletni: </label>
+    <input type="radio" id="pelnoletni" value="true"[(ngModel)]="osoba.pelnoletni">
+</div>
+<div>
+    <label for="Niepelnoletni">NIE Pełnoletni: </label>
+    <input type="radio" id="Niepelnoletni" value="false" [(ngModel)]="osoba.pelnoletni">
+</div>
+
+{{ osoba | json }}
+
+Przechodzimy do kompomentu form-sterowany-szablonem.ts w nimy uzupełniamy tablice imports:
+
+imports: [FormsModule, JsonPipe],
+
+i w klasie FormSterowanySzablonem dopisujemy obiekt osoba = {imie: ''}; Tak jak poniżej:
+
+export class FormSterowanySzablonem {
+ 
+  osoba = {
+    imie:"",
+    pelnoletni: false
+  };
+ 
+}
+
+
+Całość komponentu wyglada tak:
+
+import { JsonPipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-form-sterowany-szablonem',
+  imports: [FormsModule, JsonPipe,],
+  templateUrl: './form-sterowany-szablonem.html',
+  styleUrl: './form-sterowany-szablonem.scss',
+})
+export class FormSterowanySzablonem {
+ 
+  osoba = {
+    imie:""
+  };
+ 
+}
+
+
+Teraz bedziemy się zajmowac umieszczeniem komponentu na stronie kopjujemy nazwe selektora z komponentu :
+app-form-sterowany-szablonem
+
+Przechodzimy do app.html, tu trzeba wstrzyknąć komponent za pomoca selektora app-form-sterowany-szablonem
+
+Cały kod app.html (bez styli )
+
+<main class="main">
+  <div class="content">
+    <div class="left-side">
+      <app-form-sterowany-szablonem></app-form-sterowany-szablonem>
+    </div>
+    <div class="divider" role="separator" aria-label="Divider"></div>
+    <div class="right-side">
+
+    </div>
+  </div>
+</main>
+
+
+Kopjujemy nazwe klasy FormSterowanySzablonem w której bedziemy kodować formularzz  
+
+Wklejamy ja do app.ts w imports. Cały kod klasay App (plik app.ts):
+
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { FormSterowanySzablonem } from './form-sterowany-szablonem/form-sterowany-szablonem';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, FormSterowanySzablonem],
+  templateUrl: './app.html',
+  styleUrl: './app.scss'
+})
+export class App {
+  protected readonly title = signal('Formularze_sterowane_szablonem');
+}
+
+Uruchamiamy projekt i sprawdzamy 
+
+
+
+Na ten moment mamy tylko ngMode on nie jest jeszcze formularzem Zmiany w obiekcie sa odrazu widoczne. 
+Zazwyczaj po kliknieciu przycisku Enter lub innego button chemy wysłać formularz
+
+JAK DODAMY <form> i jest wewnatrz niego są [(ngModel)] to formularz generuje błąd 
+
+
+Component update failed: NG01352: If ngModel is used within a form tag, either the name attribute must be set or the form
+    control must be defined as 'standalone' in ngModelOptions.
+
+    Example 1: <input [(ngModel)]="person.firstName" name="first">
+    Example 2: <input [(ngModel)]="person.firstName" [ngModelOptions]="{standalone: true}">
+ 
+
+
+TRZEBA dodać do wszystkich input name
+
+--------------------------------------------------------------------
