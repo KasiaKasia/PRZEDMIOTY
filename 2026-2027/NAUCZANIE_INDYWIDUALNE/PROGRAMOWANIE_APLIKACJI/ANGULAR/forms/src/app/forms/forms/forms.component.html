@@ -1,0 +1,100 @@
+<h1 appHighlighted >Formularze sterowane szablonem</h1>
+
+<p>
+    <code> [(ngModel)]</code> musi zawierać właściwość <code>name</code> w
+    <code> tgach HTML takich jak input , textarea, select itp  </code>
+    aby można było powiązać je z formularzem .
+</p>
+<p>Jak brakuje pojawia sie komunikat błędu</p>
+<p style="color: red;">
+    ERROR RuntimeError: NG01352: If ngModel is used within a form tag, either the name attribute must be set or the form
+    control must be defined as <code>'standalone'</code> in <code>ngModelOptions</code>.
+</p>
+<p style="color: red;">Example 1: &lt;input &#91;&#40;ngModel&#41;&#93;="person.firstName" name="first"&gt;</p>
+<p style="color: red;">Example 2: &lt;input &#91;&#40;ngModel&#41;&#93;="person.firstName"
+    &#91;ngModelOptions&#93;="&#123;standalone: true&#125;"&gt;</p>
+<p>Dla <code>radio</code> trzeba pamietać aby wartość <code>value</code> zawsze była inna , poniewaz nie będą się
+    przełaczać  poprawnie.</p>
+<p>Aby wstawić w radio wartości true i false trzeba zastosować wiązanie <code> [value]="true"</code></p>
+<p>Dla checkbox wartość true lub false jest brana od razu </p>
+<p>Aby uzyskać dostęp do formularza sterowanego szablonem wystarczy zastosować pojedyńcze wiązanie [ngModel].</p>
+    
+<p>  W tym przypadku po kliknieciu dopiero w przycisk będą widoczne zmiany w ngForm?.value . </p>
+    
+<p>   W dla obiektu formData nie będą dostępne w przypaku pojedyńczego wiązania [ngModel] </p>
+<p> Za pomocą derektywy &#64;ViewChild(NgForm) formDirective!: NgForm; may dostęp do formularza ngForm</p>
+<form (ngSubmit)="onSubmit(  )"  >
+    <!-- <form (ngSubmit)="onSubmit( referencjaForm)" #referencjaForm="ngForm"> -->
+
+    <div>
+        <label>
+            <!-- <input type="text" appDirectiveValue #nameCtrl="ngModel" [ngModel]="formData.name" name="name"  /> -->
+            <input type="text" appDirectiveValue  [ngModel]="formData.name" name="name"  />
+            Akceptuję warunki
+        </label>
+
+        <!-- {{nameCtrl.errors?.['forbiddenName'] | json}}
+        @if (nameCtrl.errors?.['forbiddenName'] && nameCtrl.touched) {
+        <div>
+            Username "admin" is not allowed.
+        </div>
+        } -->
+
+    </div>
+    <!-- Select Field -->
+    <div>
+        <label for="country">Wybierz kraj:</label>
+        <select id="country" [(ngModel)]="formData.country" [value]="formData.country" name="country" required>
+            <option value="">Wybierz...</option>
+            <option [value]="'pl'">Polska</option>
+            <option [value]="'de'">Niemcy</option>
+            <option [value]="'us'">USA</option>
+        </select>
+    </div>
+
+    <!-- Checkbox Field -->
+    <div>
+        <label>
+            <input type="checkbox" [checked]="true"   required [(ngModel)]="formData.agreeToTerms" name="agreeToTerms" />
+            Akceptuję warunki
+        </label>
+
+    </div>
+
+    <!-- Radio Buttons Field -->
+    <div>
+        <p>Wybierz metodę płatności:</p>
+        <label>
+            <input type="radio" [ngModel]="formData.paymentMethod" name="paymentMethod" value="credit" />
+            Karta kredytowa
+        </label>
+        <label>
+            <input type="radio" [ngModel]="formData.paymentMethod" name="paymentMethod" value="paypal" />
+            PayPal
+        </label>
+        <label>
+            <input type="radio" [ngModel]="formData.paymentMethod" name="paymentMethod" value="bank" />
+            Przelew bankowy
+        </label>
+    </div>
+
+
+    <label for="password">Password:</label>
+    <input id="password" name="password" ngModel #password="ngModel" required minlength="6" />
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input id="confirmPassword" name="confirmPassword" ngModel appDirectiveMatchFields="password"  #confirmPassword="ngModel" required />
+        
+    @if (confirmPassword.errors?.['fieldsMismatch']) {
+        <div>Passwords do not match!</div>
+    }
+
+
+    <!-- Submit Button -->
+    <button type="submit">Zapisz formularz sterowany szablonem</button>
+</form>
+<hr>
+
+
+<!-- formDirective: {{formDirective  }} -->
+{{formData | json}}
