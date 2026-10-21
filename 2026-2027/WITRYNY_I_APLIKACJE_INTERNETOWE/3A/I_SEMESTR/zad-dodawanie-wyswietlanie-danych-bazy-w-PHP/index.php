@@ -106,16 +106,11 @@
     Napisz skrypt PHP, który:
 
     a) Nawiąże połączenie z bazą szkola_php za pomocą mysqli_connect().
-
-    b) Sprawdzi poprawność połączenia.
-    
-    c) Ustawi kodowanie znaków utf8mb4 za pomocą mysqli_set_charset().
-
+    b) Sprawdzi poprawność połączenia.    
+    c) Ustawi kodowanie znaków utf8mb4 za pomocą mysqli_set_charset(). Zastosuj parametr "utf8mb4" w metodzie mysqli_set_charset() określający kodowanie znaków, które obsługuje m.in. polskie znaki
     d) Pobierze wszystkie rekordy z tabeli uczniowie za pomocą zapytania SELECT.
-
     e) Pobrane dane wyświetli w tabeli HTML:
-       ID, Imię, Nazwisko, Klasa, Wiek.
-
+      ID, Imię, Nazwisko, Klasa, Wiek.
     f) Zabezpieczy wyświetlane dane tekstowe za pomocą htmlspecialchars().
 
 
@@ -139,21 +134,14 @@
     Dodatkowe wymagania dotyczące obsługi formularza w PHP:
 
     a) Sprawdzi, czy formularz wysłano metodą POST.
-
     b) Pobierze dane z tablicy $_POST.
-
     c) Sprawdzi, czy pola nie są puste.
-
     d) Sprawdzi poprawność wieku za pomocą
        filter_var() i FILTER_VALIDATE_INT.
-
     e) Zabezpieczy wartości tekstowe funkcją
        mysqli_real_escape_string().
-
     f)  Kolumny id nie podawaj, ponieważ posiada AUTO_INCREMENT.
-
     g)  Wyświetli komunikat o dodaniu ucznia lub o wystąpieniu błędu.
-
     i) Po dodaniu ucznia wyświetli aktualną listę w prawej sekcji.
   
     -->
@@ -170,11 +158,9 @@
             <h2>Dodaj ucznia</h2>
 
             <!--
-            Tutaj napisz formularz HTML
-            umożliwiający dodanie nowego ucznia.
+            Tutaj napisz formularz HTML umożliwiający dodanie nowego ucznia.
  
-            Napisz także kod PHP obsługujący
-            dodawanie nowego rekordu do bazy.
+            Napisz także kod PHP obsługujący dodawanie nowego rekordu do bazy.
             -->
 
         </section>
@@ -185,8 +171,7 @@
             <h2>Lista uczniów</h2>
 
             <!--
-            Tutaj napisz kod PHP pobierający
-            dane z tabeli uczniowie.
+            Tutaj napisz kod PHP pobierający  dane z tabeli uczniowie.
 
             Wyświetl wyniki w tabeli HTML.
 
