@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal szkolny – Moja szkoła</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            color: #222;
+        }
+
+        header {
+            background-color: #205782;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background-color: #3278a8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        main {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            min-height: 500px;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            width: 65%;
+            border-radius: 8px;
+        }
+
+        aside {
+            background-color: #eaf5ff;
+            padding: 20px;
+            width: 35%;
+            border-radius: 8px;
+        }
+
+        article {
+            background-color: #f1f8ff;
+            border: 1px solid #aacde5;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        h2, h3 {
+            color: #205782;
+        }
+
+        figure {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        figure img,
+        picture img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        details {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #dceeff;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        progress, meter {
+            width: 100%;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            background-color: #205782;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #205782;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        address {
+            font-style: normal;
+            line-height: 1.8;
+        }
+
+        dialog {
+            border: 2px solid #205782;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        @media (max-width: 700px) {
+            main {
+                flex-direction: column;
+            }
+
+            section, aside {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. NAGŁÓWEK STRONY -->
+    <header>
+        <h1>Portal szkolny</h1>
+        <p>Witamy na stronie naszej szkoły</p>
+    </header>
+
+    <!-- 2. MENU NAWIGACYJNE -->
+    <nav>
+        <a href="index.html">Strona główna</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <!-- 3. GŁÓWNA ZAWARTOŚĆ -->
+    <main>
+
+        <!-- LEWA CZĘŚĆ – SECTION -->
+        <section>
+
+            <h2>Aktualności szkolne</h2>
+
+            <!-- PIERWSZY ARTYKUŁ -->
+            <article>
+                <h3>Dzień sportu</h3>
+
+                <p>
+                    W naszej szkole odbył się Dzień Sportu.
+                    Uczniowie uczestniczyli w zawodach
+                    sportowych oraz różnych konkurencjach.
+                </p>
+
+                <p>
+                    Data wydarzenia:
+                    <time datetime="2026-10-15">
+                        15 października 2026
+                    </time>
+                </p>
+            </article>
+
+            <!-- DRUGI ARTYKUŁ -->
+            <article>
+                <h3>Konkurs programistyczny</h3>
+
+                <p>
+                    W naszej szkole organizowany jest
+                    <mark>konkurs programistyczny</mark>.
+                    Uczniowie będą rozwiązywać zadania
+                    związane z programowaniem.
+                </p>
+            </article>
+
+            <!-- ILUSTRACJA – FIGURE I FIGCAPTION -->
+            <figure>
+
+                <img
+                    src="images/szkola.jpg"
+                    alt="Budynek szkoły">
+
+                <figcaption>
+                    Budynek naszej szkoły
+                </figcaption>
+
+            </figure>
+
+            <!-- DETAILS I SUMMARY -->
+            <details>
+
+                <summary>
+                    Godziny pracy sekretariatu
+                </summary>
+
+                <p>
+                    Poniedziałek – piątek: 8:00–16:00
+                </p>
+
+            </details>
+
+            <!-- OBRAZY RESPONSYWNE – PICTURE -->
+            <h3>Galeria szkolna</h3>
+
+            <picture>
+
+                <source
+                    media="(max-width: 600px)"
+                    srcset="images/szkola-mala.jpg">
+
+                <img
+                    src="images/szkola-duza.jpg"
+                    alt="Widok budynku szkoły">
+
+            </picture>
+
+        </section>
+
+        <!-- PRAWA CZĘŚĆ – ASIDE -->
+        <aside>
+
+            <h2>Panel ucznia</h2>
+
+            <!-- FORMULARZ HTML -->
+            <form action="#" method="post">
+
+                <label for="imie">Imię:</label>
+                <input
+                    type="text"
+                    id="imie"
+                    name="imie"
+                    required>
+
+                <label for="email">E-mail:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required>
+
+                <label for="wiadomosc">Wiadomość:</label>
+                <textarea
+                    id="wiadomosc"
+                    name="wiadomosc"
+                    rows="5"
+                    required></textarea>
+
+                <button type="submit">
+                    Wyślij
+                </button>
+
+            </form>
+
+            <!-- PASEK POSTĘPU – PROGRESS -->
+            <h3>Postęp kursu HTML</h3>
+
+            <progress value="60" max="100">
+                60%
+            </progress>
+
+            <p>Ukończono 60% kursu</p>
+
+            <!-- WSKAŹNIK WARTOŚCI – METER -->
+            <h3>Frekwencja klasy</h3>
+
+            <meter
+                min="0"
+                max="100"
+                value="85">
+                85%
+            </meter>
+
+            <p>Frekwencja wynosi 85%</p>
+
+        </aside>
+
+    </main>
+
+    <!-- 10. STOPKA STRONY -->
+    <footer>
+
+        <p>Portal szkolny – 2026</p>
+
+        <address>
+            ul. Szkolna 10, Warszawa
+
+            <p>
+                E-mail:
+                <a href="mailto:sekretariat@szkola.pl">
+                    sekretariat@szkola.pl
+                </a>
+            </p>
+        </address>
+
+    </footer>
+
+</body>
+
+</html>
