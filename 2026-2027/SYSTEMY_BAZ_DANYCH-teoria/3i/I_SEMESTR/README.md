@@ -871,15 +871,21 @@ Dodajemy pracownika:
 INSERT INTO pracownicy (imie, nazwisko, dzial_id)
 VALUES ('Anna', 'Kowalska', 1);
 ```
-
 dzial_id = 1 wskazuje tutaj na dział:
+
+
 
 ## **Składnia języka SQL**
 Klasyfikację poleceń ze względu na ich przeznaczenie. Są to:
+
 o **Instrukcje DDL (ang. Data Definition Language**) — tworzą język definiowania danych i służą do tworzenia, modyfikowania i usuwania obiektów bazy danych.
+
 o **Instrukcje DML (ang. Data Manipulation Language)**— tworzą język manipulowania danymi i służą do odczytywania i modyfikowania danych.
+
 o **Instrukcje DCL (ang. Data Control Language)** — tworzą język kontroli dostępu do danych i umożliwiają nadawanie i odbieranie uprawnień użytkownikom.
+
 o **Instrukcje TCL (ang. Transaction Control Language)**— tworzą język obsługi transakcji.
+
 o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowania zapytań, który zawiera tylko jedno polecenie SELECT i służy do tworzenia kwerend (zapytań).
 
 ![Klasyfikację poleceń](zdjecia/sql-commands.png)
@@ -926,14 +932,6 @@ o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowani
 = Łatwa **replikacja** i **sharding** (rozbijanie bazy na wiele serwerów) 
 
  
-
- 
-
- 
-
- 
-
-
 
 ## Zarządzanie bezpieczeństwem bazy danych.
 
