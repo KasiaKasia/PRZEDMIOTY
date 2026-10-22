@@ -927,7 +927,7 @@ o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowani
 
 - Wbudowane **AI/ML** do automatycznego tuningu i wykrywania anomalii (np. Oracle Autonomous, Azure SQL Hyperscale) 
 
-- **Zero-downtime **– możliwość aktualizacji bez zatrzymywania bazy 
+- **Zero-downtime** – możliwość aktualizacji bez zatrzymywania bazy 
 
 = Łatwa **replikacja** i **sharding** (rozbijanie bazy na wiele serwerów) 
 
