@@ -874,6 +874,65 @@ VALUES ('Anna', 'Kowalska', 1);
 
 dzial_id = 1 wskazuje tutaj na dział:
 
+## **Składnia języka SQL**
+Klasyfikację poleceń ze względu na ich przeznaczenie. Są to:
+o **Instrukcje DDL (ang. Data Definition Language**) — tworzą język definiowania danych i służą do tworzenia, modyfikowania i usuwania obiektów bazy danych.
+o **Instrukcje DML (ang. Data Manipulation Language)**— tworzą język manipulowania danymi i służą do odczytywania i modyfikowania danych.
+o **Instrukcje DCL (ang. Data Control Language)** — tworzą język kontroli dostępu do danych i umożliwiają nadawanie i odbieranie uprawnień użytkownikom.
+o **Instrukcje TCL (ang. Transaction Control Language)**— tworzą język obsługi transakcji.
+o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowania zapytań, który zawiera tylko jedno polecenie SELECT i służy do tworzenia kwerend (zapytań).
+
+![Klasyfikację poleceń](zdjecia/sql-commands.png)
+
+## **System zarządzania bazą danych**
+
+**System zarządzania bazą danych** (w skrócie SZBD; po angielsku: Database Management System – DBMS) to specjalne oprogramowanie, które służy do tworzenia, zarządzania i przetwarzania danych w bazach danych.
+
+**Główne zadania SZBD**
+
+| Zadanie                        | W praktyce                                                                            |
+| -----------------------------: | ------------------------------------------------------------------------------------- |
+| Definiowanie danych            | Tworzenie struktury bazy (tabele, kolumny, relacje)                                   |
+| Manipulacja danymi             | Dodawanie, usuwanie, modyfikowanie i wyszukiwanie rekordów                            |
+| Kontrola współbieżności        | Wielu użytkowników może pracować jednocześnie bez kolizji                             |
+| Bezpieczeństwo i autoryzacja   | Hasła, role, szyfrowanie, logi kto i co zmienił                                       |
+| Integralność danych            | Zapobieganie „bzdurnym” danym (np. data urodzenia w przyszłości)                      |
+| Backup i odzyskiwanie          | Regularne kopie + możliwość przywrócenia bazy po awarii                               |
+| Optymalizacja wydajności       | Indeksy, partycjonowanie, cache, zapytania optymalizowane                             |
+| Transakcje (ACID)              | Gwarancja, że operacje albo wykonają się w całości, albo wcale                        |
+
+
+**Najpopularniejsze rodzaje SZBD**
+
+|Typ                            | Przykłady                                              |                           Kiedy się używa                        |
+| ----------------------------: |------------------------------------------------------: |---------------------------------------------------------------: |
+| Relacyjny (RDBMS)             | MySQL, PostgreSQL, Oracle, SQL Server, MariaDB, SQLite | Finanse, e-commerce, systemy firmowe, aplikacje webowe          |
+| NoSQL dokumentowy             | MongoDB, CouchDB                                       | Aplikacje z dużą ilością niestrukturyzowanych danych (JSON)     |
+| NoSQL kolumnowy               | Cassandra, HBase                                       | Bardzo duże zbiory danych, analityka, Big Data                  |
+| NoSQL grafowy                 | Neo4j, Amazon Neptune                                  | Sieci społecznościowe, rekomendacje, wykrywanie oszustw         |
+| Klucz-wartość                 | Redis, DynamoDB                                        | Cache, sesje użytkowników, liczniki                             |
+| NewSQL                        | CockroachDB, TiDB, YugabyteDB                          | Połączenie zalet RDBMS i skalowalności NoSQL                    |
+
+ 
+
+ **Najważniejsze cechy dobrego SZBD (2025/2026) **
+
+- Wsparcie dla **chmury** (AWS RDS, Azure SQL, Google Cloud SQL, Supabase, Neon, PlanetScale) 
+
+- Wbudowane **AI/ML** do automatycznego tuningu i wykrywania anomalii (np. Oracle Autonomous, Azure SQL Hyperscale) 
+
+- **Zero-downtime **– możliwość aktualizacji bez zatrzymywania bazy 
+
+= Łatwa **replikacja** i **sharding** (rozbijanie bazy na wiele serwerów) 
+
+ 
+
+ 
+
+ 
+
+ 
+
 
 
 ## Zarządzanie bezpieczeństwem bazy danych.
