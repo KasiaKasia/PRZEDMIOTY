@@ -1576,3 +1576,27 @@ Lista najczęściej używanych znaczników semantycznych w HTML5:
 17. `<dialog>` – Definiuje okno dialogowe lub modalne, np. do wyświetlania alertów.
 18. `<picture>` – Umożliwia definiowanie różnych źródeł obrazów dla różnych urządzeń lub rozdzielczości.
 19. `<template>` – Przechowuje treść, która nie jest wyświetlana od razu, ale może być użyta przez JavaScript
+20. `<legend>` - Definiuje podpis grupy pól formularza.
+21.	`<h1>–<h6>` - Definiują nagłówki o różnym poziomie ważności. `<h1>` oznacza nagłówek najwyższego poziomu.
+22.	`<p>` - Definiuje akapit tekstu.
+23.	`<strong>` - Oznacza tekst o szczególnym znaczeniu lub ważności.
+24.	`<em>` - Oznacza tekst, na który położono nacisk znaczeniowy.
+25.	`<blockquote>` - Oznacza dłuższy cytat pochodzący z innego źródła.
+26.	`<q>` -	Oznacza krótki cytat umieszczony wewnątrz tekstu.
+27.	`<cite>` - Oznacza tytuł cytowanego utworu, np. książki, filmu lub artykułu.
+28.	`<abbr>` - Definiuje skrót lub akronim, np. HTML, CSS.
+29.	`<code>` - Oznacza fragment kodu komputerowego.
+30.	`<pre>`	- Wyświetla tekst z zachowaniem spacji i znaków nowej linii.
+31.	`<kbd>`	- Oznacza dane wprowadzane przez użytkownika, np. skrót klawiaturowy.
+32.	`<samp>` - Oznacza przykładowy wynik działania programu.
+33.	`<var>`  - Oznacza zmienną, np. w programowaniu lub matematyce.
+34.	`<dfn>` - Wskazuje termin, którego definicja znajduje się w danym kontekście.
+35.	`<data>` - Łączy widoczny tekst z wartością przeznaczoną do przetwarzania przez program.
+36.	`<dl>` - Definiuje listę opisową, np. słownik pojęć.
+37.	`<dt>` - Określa termin na liście opisowej.
+38.	`<dd>` - Zawiera opis lub definicję terminu.
+39.	`<ul>` - Definiuje listę nieuporządkowaną.
+40.	`<ol>` - Definiuje listę uporządkowaną.
+41.	`<li>` - Oznacza element listy.
+42.	`<table>` - Definiuje tabelę danych.
+43.	`<caption>` - Określa tytuł lub opis tabeli.
