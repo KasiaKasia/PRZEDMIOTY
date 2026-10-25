@@ -986,6 +986,9 @@ przedstaw("Anna", 25);
 ###  10. **Rest parameters — ...**
 
 **Pozwala przekazać dowolną liczbę argumentów.**
+
+JavaScript
+
 ```JS
 function suma(...liczby) {
 
@@ -994,12 +997,13 @@ function suma(...liczby) {
     for (const liczba of liczby) {
         wynik += liczba;
     }
-
     return wynik;
 }
-
 console.log(suma(1, 2, 3, 4)); // 10
 ```
+
+TypeScript
+
 ```TS
 function suma(...liczby: number[]): number {
 
@@ -1008,7 +1012,6 @@ function suma(...liczby: number[]): number {
     for (const liczba of liczby) {
         wynik += liczba;
     }
-
     return wynik;
 }
 ```
@@ -1278,23 +1281,23 @@ person2.introduce();
 ```
 W TypeScript możemy dodatkowo określić typy właściwości, parametrów i wartości zwracanych przez metody:
 ```TS
-class Person {
-    name: string;
-    age: number;
+  class Person {
+      name: string;
+      age: number;
 
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
+      constructor(name: string, age: number) {
+          this.name = name;
+          this.age = age;
+      }
 
-    introduce(): void {
-        console.log(`Mam na imię ${this.name} i mam ${this.age} lat.`);
-    }
-}
+      introduce(): void {
+          console.log(`Mam na imię ${this.name} i mam ${this.age} lat.`);
+      }
+  }
 
-const person1 = new Person("Anna", 25);
+  const person1 = new Person("Anna", 25);
 
-person1.introduce();
+  person1.introduce();
 ```
 
 ## Dziedziczenie
