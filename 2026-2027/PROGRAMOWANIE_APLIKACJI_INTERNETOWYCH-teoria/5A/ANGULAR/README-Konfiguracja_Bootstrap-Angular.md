@@ -54,9 +54,10 @@ w **architect -> build -> options -> styles** dopisz ścieżkę do pliku CSS:
 ]
 ```
  
-## **Konfiguracja JavaScript (opcjonalnie, dla komponentów takich jak dropdown, modal itp.)**
+## 4. Konfiguracja JavaScript (opcjonalnie, dla komponentów takich jak dropdown, modal itp.)
 
 Jeśli chcesz korzystać z interaktywnych elementów Bootstrap opartych na JavaScript, przejdź do pliku `angular.json` w katalogu głównym projektu w sekcji:
+
  **architect -> build -> options -> scripts** dopisz 
 
 ```json
@@ -65,7 +66,7 @@ Jeśli chcesz korzystać z interaktywnych elementów Bootstrap opartych na JavaS
             ]
 ```            
 
-**Konfiguraca dla CSS i JavaScript dla Bootstrap**
+## 5. Konfiguraca dla CSS i JavaScript dla Bootstrap
 
 Dla konfiguracji CSS i JavaScript zawartość skryptu `angular.json` powinna prezentować się następująco:
 
