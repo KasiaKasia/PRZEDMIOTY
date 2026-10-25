@@ -1581,7 +1581,7 @@ Lista najczęściej używanych znaczników semantycznych w HTML5:
 18. `<picture>` – Umożliwia definiowanie różnych źródeł obrazów dla różnych urządzeń lub rozdzielczości.
 19. `<template>` – Przechowuje treść, która nie jest wyświetlana od razu, ale może być użyta przez JavaScript
 20. `<legend>` - Definiuje podpis grupy pól formularza.
-21.	`<h1>–<h6>` - Definiują nagłówki o różnym poziomie ważności. `<h1>` oznacza nagłówek najwyższego poziomu.
+21.	`<h1>–<h6>` - Definiują nagłówki o różnym poziomie ważności. `h1` oznacza nagłówek najwyższego poziomu.
 22.	`<p>` - Definiuje akapit tekstu.
 23.	`<strong>` - Oznacza tekst o szczególnym znaczeniu lub ważności.
 24.	`<em>` - Oznacza tekst, na który położono nacisk znaczeniowy.
