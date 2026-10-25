@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Lista uczniów</title>
+    <title>Lista uczniów z funkcją dodania rekordu</title>
 
     <style>
         table {
@@ -25,8 +25,6 @@
 
 <body>
     <h1>Dodaj ucznia</h1>
-
-    <h1>Lista uczniów</h1>
 
     <?php
 
@@ -49,19 +47,13 @@
         $imie = trim($_POST["imie"]);
         $nazwisko = trim($_POST["nazwisko"]);
         $klasa = trim($_POST["klasa"]);
-
+        $wiek = trim($_POST["wiek"]);
         // filter_var() – funkcja PHP służąca do filtrowania lub sprawdzania poprawności danych.
         // FILTER_VALIDATE_INT – sprawdza, czy przekazana wartość jest poprawną liczbą całkowitą (integer).        
-        $wiek = filter_var(
-            $_POST["wiek"],
-            FILTER_VALIDATE_INT
-        );
-
+       
         if ($imie !== "" &&
             $nazwisko !== "" &&
-            $klasa !== "" &&
-            $wiek !== false &&
-            $wiek > 0 ) {
+            $klasa !== "") {
 
         // mysqli_real_escape_string() – funkcja, która dodaje odpowiednie znaki ucieczki do znaków specjalnych.
         
@@ -151,8 +143,8 @@
             // mysqli_stmt_close() - Zamyka przygotowane zapytanie – kończy pracę z zapytaniem przechowywanym w zmiennej $stmt.
             // - Zwalnia zasoby – zwalnia zasoby związane z przygotowanym zapytaniem po stronie PHP i MySQL.
             
-         mysqli_stmt_close($stmt);
- */
+			mysqli_stmt_close($stmt);
+		*/
         } else {
             echo "<p>Wprowadź poprawne dane ucznia.</p>";
         }
@@ -201,6 +193,8 @@
     </form>
 
 
+
+    <h1>Lista uczniów</h1>
 <?php
 
     $sql = "SELECT * FROM uczniowie";
