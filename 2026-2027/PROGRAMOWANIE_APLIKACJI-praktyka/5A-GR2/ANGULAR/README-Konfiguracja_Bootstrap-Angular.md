@@ -24,6 +24,7 @@ npm install bootstrap
 
 
 **1. Otwórz plik `angular.json` w głównym katalogu projektu**
+
 **2. Wyszukaj `architect`:**
 
 ```json
@@ -64,7 +65,9 @@ Jeśli chcesz korzystać z interaktywnych elementów Bootstrap opartych na JavaS
             ]
 ```            
 
-Zawartość skryptu `angular.json` powinna prezentować się następująco:
+**Konfiguraca dla CSS i JavaScript dla Bootstrap**
+
+Dla konfiguracji CSS i JavaScript zawartość skryptu `angular.json` powinna prezentować się następująco:
 
 ```json
 {
@@ -147,7 +150,7 @@ Zawartość skryptu `angular.json` powinna prezentować się następująco:
 ```
 ## 4. Wykonanie testów, czy Bootstrap działa
 
-w pliku` bootstrap-angular\src\app\app.html`
+w pliku `bootstrap-angular\src\app\app.html`
 
 Dopisz:
 ```HTML
@@ -160,9 +163,9 @@ Dopisz:
 </div>
 ```
 
-Czyli zawartość (nie kopiowałam styli sekcji <style></style>) z pliku `app.html` ma wyglądać tak:
-```HTML
+Czyli zawartość (nie kopiowałam styli sekcji <style></style>) z pliku `bootstrap-angular\src\app\app.html` ma wyglądać tak:
 
+```HTML
 <main class="main">
   <div class="content">
     <div class="left-side">
