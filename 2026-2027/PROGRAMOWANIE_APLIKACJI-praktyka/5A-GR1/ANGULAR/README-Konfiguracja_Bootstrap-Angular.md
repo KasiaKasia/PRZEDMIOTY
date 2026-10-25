@@ -4,12 +4,13 @@
 ```bash
 ng new bootstrap-angular
 ```
-✔ Which stylesheet system would you like to use? **wybieramy =>**  **CSS**            
-[ https://developer.mozilla.org/docs/Web/CSS                     ]
+
+✔ Which stylesheet system would you like to use? **wybieramy =>**  **CSS**           
+
 ✔ Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? **wybieramy =>** **No**
+
 ✔ Which AI tools do you want to configure with Angular best practices? https://angular.dev/ai/develop-with-ai **wybieramy =>** **None**
-CREATE bootstrap-angular/.prettierrc (173 bytes)
- 
+
  
 
 ## **2. Instalacja paczki bootstrap przez NPM w katalogu projektu**
@@ -19,7 +20,7 @@ cd bootstrap-angular
 npm install bootstrap
 ```
 
-## Konfiguracja bootstrap
+## 3. Konfiguracja bootstrap
 
 
 **1. Otwórz plik `angular.json` w głównym katalogu projektu**
@@ -52,7 +53,7 @@ w **architect -> build -> options -> styles** dopisz ścieżkę do pliku CSS:
 ]
 ```
  
-**3. Konfiguracja JavaScript (opcjonalnie, dla komponentów takich jak dropdown, modal itp.)**
+## **Konfiguracja JavaScript (opcjonalnie, dla komponentów takich jak dropdown, modal itp.)**
 
 Jeśli chcesz korzystać z interaktywnych elementów Bootstrap opartych na JavaScript, przejdź do pliku `angular.json` w katalogu głównym projektu w sekcji:
  **architect -> build -> options -> scripts** dopisz 
@@ -144,7 +145,7 @@ Zawartość skryptu `angular.json` powinna prezentować się następująco:
   }
 }
 ```
-## Wykonanie testów, czy Bootstrap działa
+## 4. Wykonanie testów, czy Bootstrap działa
 
 w pliku` bootstrap-angular\src\app\app.html`
 
@@ -190,6 +191,7 @@ Czyli zawartość (nie kopiowałam styli sekcji <style></style>) z pliku `app.ht
 ```bash
 ng serve -o
 ```
+
 
 
 
