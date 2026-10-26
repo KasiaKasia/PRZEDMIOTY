@@ -1010,6 +1010,7 @@ FROM 'jan'@'localhost';
 | `ON szkola.*`	        |   Wszystkie tabele w bazie szkola.                |
 | `ON szkola.uczniowie`	|   Tylko tabela uczniowie w bazie szkola.          |
 
+
 **Przykład – nadanie uprawnień do wszystkich tabel w bazie:**
 ```SQL
 GRANT SELECT, INSERT, UPDATE, DELETE
@@ -1057,3 +1058,27 @@ SELECT User, Host
 FROM mysql.user
 WHERE User = 'jan';
 ```
+
+## Logowanie się za pomocą innego użytkownika niż `root`
+
+Logowanie się innymi użytkownikami w phpMyAdmin w XAMPP niż root jest ustawione w pliku:
+
+**`C:\xampp\phpMyAdmin\config.inc.php`**
+
+za pomoca opcji:
+```bash
+$cfg['Servers'][$i]['auth_type'] = 'config';
+```
+
+**Oznacza automatyczne logowanie się za pomoca root**. Zamiana opcji:
+
+```bash
+$cfg['Servers'][$i]['auth_type'] = 'config';
+```
+
+na:
+
+```bash
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+```
+spowoduje możliwośc logowania się innymi użytkkownikami.
