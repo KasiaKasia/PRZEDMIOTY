@@ -8,19 +8,23 @@ npm create vite react-bootstrap
 ```
 Podczas tworzenia projektu trzeba będzie wybrać kilka opcji/ustawień. Poniżej listać, które ustawienia są preferowane:
 
-│
+
 ◇  Select a framework:
+
 │  **React**
-│
+
 ◇  Select a variant:
+
 │  **TypeScript**
-│
+
 ◇  Which linter to use?
+
 │  **ESLint**
-│
+
 ◇  Install with npm and start now?
+
 │  **Yes**
-│ 
+ 
  
 
 
