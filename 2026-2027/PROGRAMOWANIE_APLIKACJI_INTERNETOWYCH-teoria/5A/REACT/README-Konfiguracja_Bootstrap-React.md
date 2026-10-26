@@ -147,6 +147,6 @@ function App() {
 export default App
 ```
 
-## Uruchomienie projektu 
+## 5. Uruchomienie projektu 
 
 `npm run dev`
