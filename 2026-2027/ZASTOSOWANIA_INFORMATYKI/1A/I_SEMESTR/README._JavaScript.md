@@ -304,6 +304,53 @@ Zastosowanie:
 – zakończenie przeciągania,
 – rejestrowanie akcji po zakończeniu kliknięcia.
 
+🔹 7. `onmouseenter` – wejście kursora na element
+Zdarzenie występuje, gdy **kursor myszy wejdzie na obszar danego elementu**.
+
+W przeciwieństwie do onmouseover, nie uruchamia się ponownie podczas przechodzenia kursorem na elementy potomne.
+
+```HTML
+<div onmouseenter="this.style.backgroundColor='orange'">
+    Najedź na mnie
+</div>
+```
+
+Zastosowanie:
+- podświetlanie elementów,
+- wyświetlanie menu,
+- uruchamianie animacji.
+
+
+🔹 8. `onmouseleave` – opuszczenie elementu przez kursor
+Zdarzenie występuje, gdy **kursor myszy opuści obszar elementu**, łącznie z jego elementami potomnymi.
+
+```HTML
+<div onmouseleave="this.style.backgroundColor='lightgray'">
+    Opuść mnie
+</div>
+```
+
+Zastosowanie:
+- przywracanie pierwotnego wyglądu elementu,
+- ukrywanie rozwijanych menu,
+- kończenie animacji.
+
+
+🔹 9. `onmousemove` – poruszanie kursorem myszy
+Zdarzenie występuje, gdy **kursor myszy porusza się w obrębie elementu**.
+
+```HTML
+<div onmousemove="this.innerText='Poruszasz myszą!'">
+    Poruszaj kursorem w tym obszarze
+</div>
+```
+
+
+Zastosowanie:
+- śledzenie pozycji kursora,
+- tworzenie gier,
+- rysowanie myszą,
+- interaktywne animacje.
 
 
 ### TypeScript – zdarzenia myszy

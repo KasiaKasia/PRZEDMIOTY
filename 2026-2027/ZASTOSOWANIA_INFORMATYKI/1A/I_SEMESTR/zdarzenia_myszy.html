@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Laboratorium myszy</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #17253e;
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #00000012;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 19px;
+        }
+
+        .demo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 85px;
+            padding: 12px;
+            background: #dbeafe;
+            border: 2px dashed #60a5fa;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .demo:hover {
+            border-color: #2563eb;
+        }
+
+        .log {
+            margin-top: 30px;
+            padding: 20px;
+            background: #17253e;
+            color: white;
+            border-radius: 12px;
+        }
+
+        #wynik {
+            min-height: 35px;
+            color: #93c5fd;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🖱️ Laboratorium myszy</h1>
+        <p>12 zdarzeń myszy w JavaScript</p>
+    </header>
+
+    <main>
+        <div class="grid">
+
+            <section class="card">
+                <h2>1. onclick</h2>
+                <div class="demo"
+                     onclick="pokaz('Kliknięto element!')">
+                    Kliknij mnie
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>2. ondblclick</h2>
+                <div class="demo"
+                     ondblclick="pokaz('Podwójne kliknięcie!')">
+                    Kliknij dwa razy
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>3. onmouseover</h2>
+                <div class="demo"
+                     onmouseover="pokaz('Najechano kursorem!')">
+                    Najedź na mnie
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>4. onmouseout</h2>
+                <div class="demo"
+                     onmouseout="pokaz('Kursor opuścił element!')">
+                    Opuść element
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>5. onmousedown</h2>
+                <div class="demo"
+                     onmousedown="this.style.backgroundColor='#fca5a5';
+                                  pokaz('Naciśnięto przycisk!')">
+                    Naciśnij i przytrzymaj
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>6. onmouseup</h2>
+                <div class="demo"
+                     onmouseup="this.style.backgroundColor='#86efac';
+                                pokaz('Zwolniono przycisk!')">
+                    Naciśnij i puść
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>7. onmouseenter</h2>
+                <div class="demo"
+                     onmouseenter="this.style.backgroundColor='#fde68a';
+                                   pokaz('Kursor wszedł na element!')">
+                    Wejdź kursorem
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>8. onmouseleave</h2>
+                <div class="demo"
+                     onmouseleave="this.style.backgroundColor='#dbeafe';
+                                   pokaz('Kursor opuścił obszar!')">
+                    Wyjdź kursorem
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>9. onmousemove</h2>
+                <div class="demo"
+                     onmousemove="pozycja(event)">
+                    Poruszaj kursorem
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>10. oncontextmenu</h2>
+                <div class="demo"
+                     oncontextmenu="event.preventDefault();
+                                    pokaz('Prawy przycisk myszy!')">
+                    Kliknij prawym przyciskiem
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>11. onwheel</h2>
+                <div class="demo"
+                     onwheel="pokaz('Obrócono kółkiem myszy!')">
+                    Obróć kółkiem myszy
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>12. onauxclick</h2>
+                <div class="demo"
+                     onauxclick="pokaz('Kliknięto dodatkowym przyciskiem!')">
+                    Kliknij środkowym przyciskiem
+                </div>
+            </section>
+
+        </div>
+
+        <section class="log">
+            <h2>📋 Dziennik zdarzeń</h2>
+            <p id="wynik">Wykonaj dowolną akcję myszą...</p>
+        </section>
+    </main>
+
+    <footer>
+        Laboratorium myszy – HTML, CSS i JavaScript
+    </footer>
+
+    <script>
+        function pokaz(tekst) {
+            document.getElementById("wynik").textContent = tekst;
+        }
+
+        function pozycja(event) {
+            pokaz(
+                "Pozycja kursora: X = " + event.clientX +
+                ", Y = " + event.clientY
+            );
+        }
+    </script>
+</body>
+</html>
