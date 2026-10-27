@@ -2332,19 +2332,31 @@ except ValueError as e:
 
  
 ```python
-class MojBlad(Exception):  # Dziedziczy po Exception 
-    def __init__(self, wiadomosc="To mój custom błąd!"): 
-        self.wiadomosc = wiadomosc 
-        super().__init__(self.wiadomosc) 
- 
-def funkcja(): 
-    raise MojBlad("Coś poszło nie tak.") 
- 
-try: 
-    funkcja() 
-except MojBlad as e: 
-    print(e)  # Wyjście: Coś poszło nie tak.
+# Definicja własnego wyjątku
+class MojBlad(Exception):
+    def __init__(self, wiadomosc="To mój custom błąd!"):
+        self.wiadomosc = wiadomosc
+        super().__init__(self.wiadomosc)
 
+
+# Funkcja sprawdzająca wiek
+def sprawdz_wiek(wiek):
+    if wiek < 18:
+        raise MojBlad("Użytkownik musi mieć co najmniej 18 lat!")
+
+    print("Użytkownik jest pełnoletni.")
+
+
+# Obsługa wyjątku
+try:
+    wiek = int(input("Podaj swój wiek: "))
+    sprawdz_wiek(wiek)
+
+except MojBlad as e:
+    print("Błąd:", e)
+
+except ValueError:
+    print("Błąd: Podaj poprawną liczbę!")
 ```
 
 
