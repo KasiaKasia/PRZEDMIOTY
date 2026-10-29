@@ -1,0 +1,57 @@
+<div class="container">
+
+    <h2>Menedżer haseł</h2>
+
+    <form #formularzHasel="ngForm" (ngSubmit)="zapisz(formularzHasel)">
+        <div>
+            <label for="adres">Adres WWW:</label>
+            <input type="url" id="adres" name="adres" [ngModel]="formularz.adres"  >
+        </div>
+        <div>
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="login" [ngModel]="formularz.login"   >
+
+        </div>
+
+
+        <div class="checkbox">
+            <input type="checkbox" id="generuj" name="generuj" [ngModel]="formularz.generuj" (ngModelChange)="formularz.generuj = $event; generujHaslo()">
+
+            <label for="generuj">
+                Wygeneruj hasło
+            </label>
+        </div>
+
+        <label for="haslo">Hasło:</label>
+        <input type="password" id="haslo" name="haslo" [ngModel]="formularz.haslo" [disabled]="formularz.generuj">
+        <div>
+            <button type="submit" [disabled]="formularzHasel.invalid">
+                Zapisz
+            </button>
+               <button type="button" (click)="reset()" >Reset</button>
+             
+        </div>
+
+
+    </form>
+    
+{{ formularz | json }}
+<br>
+{{ formularzHasel.value | json }}
+<br>
+{{ zapisaneDane | json }}
+<br>
+<br><br>
+    @if (zapisaneDane) {
+
+    <div class="wynik">
+        <h3>Zapisane dane</h3>
+
+        <p>Adres WWW: {{ zapisaneDane.adres }}</p>
+        <p>Login: {{ zapisaneDane.login }}</p>
+        <p>Hasło: ************</p>
+    </div>
+
+    }
+
+</div>

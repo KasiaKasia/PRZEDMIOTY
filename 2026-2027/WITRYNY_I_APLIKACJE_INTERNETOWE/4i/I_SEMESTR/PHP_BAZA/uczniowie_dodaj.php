@@ -54,7 +54,7 @@
         if ($imie !== "" &&
             $nazwisko !== "" &&
             $klasa !== "") {
-
+/*
         // mysqli_real_escape_string() – funkcja, która dodaje odpowiednie znaki ucieczki do znaków specjalnych.
         
         // Załóżmy, że użytkownik wpisał imię zawierające apostrof: $imie = "O'Neil"; Zmienna $imie będzie zawierała: O\'Neil
@@ -85,8 +85,8 @@
         } else {
             echo "<p>Błąd podczas dodawania ucznia.</p>";
         }
-
-/*
+*/
+ 
  
             $sql = "INSERT INTO uczniowie
                     (imie, nazwisko, klasa, wiek)
@@ -144,7 +144,7 @@
             // - Zwalnia zasoby – zwalnia zasoby związane z przygotowanym zapytaniem po stronie PHP i MySQL.
             
 			mysqli_stmt_close($stmt);
-		*/
+		 
         } else {
             echo "<p>Wprowadź poprawne dane ucznia.</p>";
         }
