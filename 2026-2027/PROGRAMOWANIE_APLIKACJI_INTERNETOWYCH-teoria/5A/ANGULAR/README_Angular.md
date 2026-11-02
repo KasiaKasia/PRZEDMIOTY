@@ -476,6 +476,7 @@ W widoku umieszczmy link do komponentu:
 Przydatny gdy mamy tylko mało komponentów do prezentacji 
 
 
+
 ## **W Angularze wyróżniamy dwa podstawowe rodzaje formularzy:**
 **1. Formularze sterowane szablonem (Template-driven Forms)**
 
@@ -538,3 +539,195 @@ HTML:
 1. **Dyrektywy strukturalne** – zmieniają strukturę HTML, np. *ngIf, *ngFor.
 2. **Dyrektywy atrybutowe** – zmieniają wygląd lub zachowanie elementów, np. ngClass, ngStyle, ngModel.
 3. **Komponenty** – specjalny rodzaj dyrektywy, który posiada własny szablon HTML.
+
+
+
+
+## Service i wstrzykiwanie zależności (Dependency Injection – DI) 
+
+**Wstrzykiwanie zależności (Dependency Injection – DI)** to wzorzec projektowy, **w którym obiekt otrzymuje swoje wymagane zależności (inne obiekty lub usługi) z zewnątrz, zamiast tworzyć je samodzielnie wewnątrz swojego kodu.**
+
+**Serwis** w Angularze to **klasa, która przechowuje logikę lub dane, które mają być używane w różnych komponentach**
+
+Czyli komponenty nie muszą komunikować się bezpośrednio ze sobą. Mogą korzystać z tego samego serwisu.
+
+Polecenie do generowania servisu:
+
+`ng generate service nazwa-serwisu`
+
+lub
+
+`$ ng g s services/projects`
+
+Wygenerowany service:
+
+```TS
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class Projects {}
+```
+ `providedIn: 'root'` - sprawia, że serwis jest dostępny w całej aplikacji przez główny injector Angulara.
+
+
+ Dodanie interface :
+
+ ```TS
+ export interface Project {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+}
+```
+Generowanie danych w service:
+
+```TS
+import { Injectable } from '@angular/core';
+import { Project } from './interface-projects';
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ProjectsService {
+
+  projects: Project[] = [
+    {
+      id: 1,
+      name: 'Sklep internetowy',
+      description: 'Aplikacja do sprzedaży produktów online',
+      status: 'Aktywny'
+    },
+    {
+      id: 2,
+      name: 'System faktur',
+      description: 'Aplikacja do wystawiania i zarządzania fakturami',
+      status: 'W trakcie'
+    },
+    {
+      id: 3,
+      name: 'Aplikacja OCR',
+      description: 'System do odczytywania danych z paragonów',
+      status: 'Zakończony'
+    }
+  ];
+
+}
+```
+Przekazanie do komponentu serwisu:
+
+```TS
+import { Component } from '@angular/core';
+import { Project } from '../../services/interface-projects';
+import { ProjectsService } from '../../services/projects';
+
+@Component({
+  selector: 'app-projects-list',
+  standalone: true,
+  imports: [],
+  templateUrl: './projects-list.html',
+  styleUrl: './projects-list.scss',
+})
+export class ProjectsList {
+  projects: Project[];
+
+  constructor(private projectsService: ProjectsService) {
+    this.projects = this.projectsService.projects;
+  }
+}
+```
+
+Wyświetlenie danych w komponecie 
+```HTML
+<p>projects-list works!</p>
+
+
+<h2>Lista projektów</h2>
+
+@for (project of projects; track project.id) {
+  <div>
+    <h3>{{ project.name }}</h3>
+    <p>{{ project.description }}</p>
+    <p>Status: {{ project.status }}</p>
+  </div>
+}
+```
+
+
+
+`track` jest bardzo ważny, bo **pozwala Angularowi rozpoznać, który element kolekcji odpowiada któremu elementowi w DOM**.
+
+Masz np.:
+```TS
+@for (project of projects; track project.id) {
+  <p>{{ project.name }}</p>
+}
+```
+
+Załóżmy, że:
+
+```TS
+projects = [
+  { id: 1, name: 'Sklep' },
+  { id: 2, name: 'OCR' },
+  { id: 3, name: 'Faktury' }
+];
+```
+Angular używa wtedy:
+**project.id**
+
+```text
+jako klucza identyfikującego każdy element:
+id 1 → Sklep
+id 2 → OCR
+id 3 → Faktury
+```
+
+Dzięki temu, gdy np. **usuniesz projekt o id: 2, Angular wie dokładnie, który fragment DOM usunąć. Nie musi przebudowywać całej listy**.
+**track pomaga Angularowi wykonać minimalną liczbę operacji na DOM**.
+
+
+`track` jest wymagane w @for, właśnie ze względów wydajnościowych.
+
+Dodatkowo `@for` ma wbudowane zmienne kontekstowe:
+- `$count`  → liczba elementów
+- `$index`  → indeks aktualnego elementu
+- `$first`  → czy pierwszy element
+- `$last`   → czy ostatni element
+- `$even`   → czy indeks parzysty
+- `$odd`   → czy indeks nieparzysty
+
+Przykład:
+```TS
+@for (
+  project of projects;
+  track project.id;
+  let i = $index,
+      first = $first,
+      last = $last
+) {
+  <p>
+    {{ i }} - {{ project.name }}
+
+    @if (first) {
+      <strong>Pierwszy</strong>
+    }
+
+    @if (last) {
+      <strong>Ostatni</strong>
+    }
+  </p>
+}
+```
+
+
+## `inject():`
+
+`private projectsService = inject(ProjectsService);`
+
+**pozwala wstrzyknąć zależność bez konstruktora.**
+
+**inject()** ma jeszcze jedną dużą zaletę: można go **używać także poza konstruktorem klasy**, np. w funkcyjnych **guardach**:

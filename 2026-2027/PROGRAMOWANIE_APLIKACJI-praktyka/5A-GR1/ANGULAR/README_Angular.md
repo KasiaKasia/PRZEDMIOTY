@@ -41,6 +41,7 @@ Najczęściej wykorzystuje się go do budowy aplikacji typu SPA (Single Page App
 1. Wykonanie polecenia:
 
     - `npm install -g @angular/cli`
+
 1. 1. Sprawdzenie wersji zainstalowanego Angular wykonuje się poleceniem
     `ng version`
 
@@ -304,7 +305,7 @@ komponent `standalone: true` jest samodzielny. Nie trzeba tworzyć modułu i dek
 ## `standalone: false` 
 
 **Przy `standalone: false` należy pamiętać o usunieciu tablicy `imports: [],`.**
-Problemem jest samo istnienie właściwości imports w komponencie, który ma `standalone: false`. **Tablica imports jest przeznaczona tylko dla komponentów `standalone: true`**, wiec nie ważne czy napiszesz tak `imports: [FormsModule, RouterLink]` czy tak: `imports: []` lub `imports: [CommonModule]` wW każdym przypadku dla `standalone: false` dostaniesz błąd, bo imports w `@Component` jest przeznaczone tylko dla komponentów standalone.
+Problemem jest samo istnienie właściwości imports w komponencie, który ma `standalone: false`. **Tablica imports jest przeznaczona tylko dla komponentów `standalone: true`**, wiec nie ważne czy napiszesz tak `imports: [FormsModule, RouterLink]` czy tak: `imports: []` lub `imports: [CommonModule]` w każdym przypadku dla `standalone: false` dostaniesz błąd, bo imports w `@Component` jest przeznaczone tylko dla komponentów standalone.
 
 ```TS
 import { Component } from '@angular/core';
@@ -473,6 +474,72 @@ W widoku umieszczmy link do komponentu:
 `<a routerLink="/projekty">Lista projektów</a>`
 
 Przydatny gdy mamy tylko mało komponentów do prezentacji 
+
+
+
+## **W Angularze wyróżniamy dwa podstawowe rodzaje formularzy:**
+**1. Formularze sterowane szablonem (Template-driven Forms)**
+
+- Wykorzystują moduł FormsModule.
+
+- Formularz tworzymy głównie w pliku HTML.
+
+- Do powiązania danych używamy [(ngModel)].
+
+- Do zarządzania całym formularzem wykorzystujemy dyrektywę NgForm.
+
+- Walidację możemy definiować za pomocą atrybutów HTML, np. required, minlength, email.
+
+**Przykład:**
+
+```HTML
+<form #formularz="ngForm">
+    <input
+        type="text"
+        name="imie"
+        [(ngModel)]="imie"
+        required
+    />
+</form>
+```
+
+
+**2. Formularze reaktywne (Reactive Forms)**
+
+- Wykorzystują moduł ReactiveFormsModule.
+
+- Formularz definiujemy głównie w pliku TypeScript.
+
+- Do tworzenia formularzy używamy FormGroup, FormControl i FormArray.
+
+- Walidację definiujemy najczęściej w TypeScript za pomocą Validators.
+
+- Zapewniają większą kontrolę nad formularzem i dobrze sprawdzają się w rozbudowanych aplikacjach.
+
+**Przykład TypeScript:**
+
+```TS
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+formularz = new FormGroup({
+    imie: new FormControl('', Validators.required)
+});
+```
+
+HTML:
+```HTML
+<form [formGroup]="formularz">
+    <input type="text" formControlName="imie" />
+</form>
+```
+
+
+## **Rodzaje dyrektyw**
+**W Angularze wyróżniamy:**
+1. **Dyrektywy strukturalne** – zmieniają strukturę HTML, np. *ngIf, *ngFor.
+2. **Dyrektywy atrybutowe** – zmieniają wygląd lub zachowanie elementów, np. ngClass, ngStyle, ngModel.
+3. **Komponenty** – specjalny rodzaj dyrektywy, który posiada własny szablon HTML.
+
 
 
 ## Service i wstrzykiwanie zależności (Dependency Injection – DI) 
