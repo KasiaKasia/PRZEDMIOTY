@@ -345,9 +345,9 @@ Przykład:
 </div>
 ```
 
-Jeżeli przesuniemy kursor z rodzica na <p>, zdarzenie nie zostanie wywołane.
+Jeżeli przesuniemy kursor z rodzica na `<p>`, zdarzenie nie zostanie wywołane.
 
-Dopiero gdy kursor opuści cały obszar <div>, zdarzenie mouseleave zostanie uruchomione.
+Dopiero gdy kursor opuści cały obszar `<div>`, zdarzenie mouseleave zostanie uruchomione.
 
 Zastosowanie:
 - przywracanie pierwotnego wyglądu elementu,
