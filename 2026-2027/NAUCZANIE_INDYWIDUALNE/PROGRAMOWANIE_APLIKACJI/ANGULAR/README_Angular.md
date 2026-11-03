@@ -41,6 +41,7 @@ Najczęściej wykorzystuje się go do budowy aplikacji typu SPA (Single Page App
 1. Wykonanie polecenia:
 
     - `npm install -g @angular/cli`
+
 1. 1. Sprawdzenie wersji zainstalowanego Angular wykonuje się poleceniem
     `ng version`
 
@@ -267,6 +268,7 @@ Wtedy Angular utworzy:
 
 
 
+
 ## standalone: true - Komponenty samodzielne
 
 Od wersji Angular 17 `standalone: true` jest defaultową wartością, a wiej jej brak oznacza oznacza wartość: `standalone: true`
@@ -303,7 +305,7 @@ komponent `standalone: true` jest samodzielny. Nie trzeba tworzyć modułu i dek
 ## `standalone: false` 
 
 **Przy `standalone: false` należy pamiętać o usunieciu tablicy `imports: [],`.**
-Problemem jest samo istnienie właściwości imports w komponencie, który ma `standalone: false`. **Tablica imports jest przeznaczona tylko dla komponentów `standalone: true`**, wiec nie ważne czy napiszesz tak `imports: [FormsModule, RouterLink]` czy tak: `imports: []` lub `imports: [CommonModule]` wW każdym przypadku dla `standalone: false` dostaniesz błąd, bo imports w `@Component` jest przeznaczone tylko dla komponentów standalone.
+Problemem jest samo istnienie właściwości imports w komponencie, który ma `standalone: false`. **Tablica imports jest przeznaczona tylko dla komponentów `standalone: true`**, wiec nie ważne czy napiszesz tak `imports: [FormsModule, RouterLink]` czy tak: `imports: []` lub `imports: [CommonModule]` w każdym przypadku dla `standalone: false` dostaniesz błąd, bo imports w `@Component` jest przeznaczone tylko dla komponentów standalone.
 
 ```TS
 import { Component } from '@angular/core';
@@ -474,65 +476,191 @@ W widoku umieszczmy link do komponentu:
 Przydatny gdy mamy tylko mało komponentów do prezentacji 
 
 
-## **W Angularze wyróżniamy dwa podstawowe rodzaje formularzy:**
-**1. Formularze sterowane szablonem (Template-driven Forms)**
+## Service i wstrzykiwanie zależności (Dependency Injection – DI) 
 
-- Wykorzystują moduł FormsModule.
+**Wstrzykiwanie zależności (Dependency Injection – DI)** to wzorzec projektowy, **w którym obiekt otrzymuje swoje wymagane zależności (inne obiekty lub usługi) z zewnątrz, zamiast tworzyć je samodzielnie wewnątrz swojego kodu.**
 
-- Formularz tworzymy głównie w pliku HTML.
+**Serwis** w Angularze to **klasa, która przechowuje logikę lub dane, które mają być używane w różnych komponentach**
 
-- Do powiązania danych używamy [(ngModel)].
+Czyli komponenty nie muszą komunikować się bezpośrednio ze sobą. Mogą korzystać z tego samego serwisu.
 
-- Do zarządzania całym formularzem wykorzystujemy dyrektywę NgForm.
+Polecenie do generowania servisu:
 
-- Walidację możemy definiować za pomocą atrybutów HTML, np. required, minlength, email.
+`ng generate service nazwa-serwisu`
 
-**Przykład:**
+lub
 
-```HTML
-<form #formularz="ngForm">
-    <input
-        type="text"
-        name="imie"
-        [(ngModel)]="imie"
-        required
-    />
-</form>
-```
+`$ ng g s services/projects`
 
-
-**2. Formularze reaktywne (Reactive Forms)**
-
-- Wykorzystują moduł ReactiveFormsModule.
-
-- Formularz definiujemy głównie w pliku TypeScript.
-
-- Do tworzenia formularzy używamy FormGroup, FormControl i FormArray.
-
-- Walidację definiujemy najczęściej w TypeScript za pomocą Validators.
-
-- Zapewniają większą kontrolę nad formularzem i dobrze sprawdzają się w rozbudowanych aplikacjach.
-
-**Przykład TypeScript:**
+Wygenerowany service:
 
 ```TS
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Injectable } from '@angular/core';
 
-formularz = new FormGroup({
-    imie: new FormControl('', Validators.required)
-});
+@Injectable({
+  providedIn: 'root',
+})
+export class Projects {}
+```
+ `providedIn: 'root'` - sprawia, że serwis jest dostępny w całej aplikacji przez główny injector Angulara.
+
+
+ Dodanie interface :
+
+ ```TS
+ export interface Project {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+}
+```
+Generowanie danych w service:
+
+```TS
+import { Injectable } from '@angular/core';
+import { Project } from './interface-projects';
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ProjectsService {
+
+  projects: Project[] = [
+    {
+      id: 1,
+      name: 'Sklep internetowy',
+      description: 'Aplikacja do sprzedaży produktów online',
+      status: 'Aktywny'
+    },
+    {
+      id: 2,
+      name: 'System faktur',
+      description: 'Aplikacja do wystawiania i zarządzania fakturami',
+      status: 'W trakcie'
+    },
+    {
+      id: 3,
+      name: 'Aplikacja OCR',
+      description: 'System do odczytywania danych z paragonów',
+      status: 'Zakończony'
+    }
+  ];
+
+}
+```
+Przekazanie do komponentu serwisu:
+
+```TS
+import { Component } from '@angular/core';
+import { Project } from '../../services/interface-projects';
+import { ProjectsService } from '../../services/projects';
+
+@Component({
+  selector: 'app-projects-list',
+  standalone: true,
+  imports: [],
+  templateUrl: './projects-list.html',
+  styleUrl: './projects-list.scss',
+})
+export class ProjectsList {
+  projects: Project[];
+
+  constructor(private projectsService: ProjectsService) {
+    this.projects = this.projectsService.projects;
+  }
+}
 ```
 
-HTML:
+Wyświetlenie danych w komponecie 
 ```HTML
-<form [formGroup]="formularz">
-    <input type="text" formControlName="imie" />
-</form>
+<p>projects-list works!</p>
+
+
+<h2>Lista projektów</h2>
+
+@for (project of projects; track project.id) {
+  <div>
+    <h3>{{ project.name }}</h3>
+    <p>{{ project.description }}</p>
+    <p>Status: {{ project.status }}</p>
+  </div>
+}
 ```
 
 
-## **Rodzaje dyrektyw**
-**W Angularze wyróżniamy:**
-1. **Dyrektywy strukturalne** – zmieniają strukturę HTML, np. *ngIf, *ngFor.
-2. **Dyrektywy atrybutowe** – zmieniają wygląd lub zachowanie elementów, np. ngClass, ngStyle, ngModel.
-3. **Komponenty** – specjalny rodzaj dyrektywy, który posiada własny szablon HTML.
+
+`track` jest bardzo ważny, bo **pozwala Angularowi rozpoznać, który element kolekcji odpowiada któremu elementowi w DOM**.
+
+Masz np.:
+```TS
+@for (project of projects; track project.id) {
+  <p>{{ project.name }}</p>
+}
+```
+
+Załóżmy, że:
+
+```TS
+projects = [
+  { id: 1, name: 'Sklep' },
+  { id: 2, name: 'OCR' },
+  { id: 3, name: 'Faktury' }
+];
+```
+Angular używa wtedy:
+**project.id**
+
+```text
+jako klucza identyfikującego każdy element:
+id 1 → Sklep
+id 2 → OCR
+id 3 → Faktury
+```
+
+Dzięki temu, gdy np. **usuniesz projekt o id: 2, Angular wie dokładnie, który fragment DOM usunąć. Nie musi przebudowywać całej listy**.
+**track pomaga Angularowi wykonać minimalną liczbę operacji na DOM**.
+
+
+`track` jest wymagane w @for, właśnie ze względów wydajnościowych.
+
+Dodatkowo `@for` ma wbudowane zmienne kontekstowe:
+- `$count`  → liczba elementów
+- `$index`  → indeks aktualnego elementu
+- `$first`  → czy pierwszy element
+- `$last`   → czy ostatni element
+- `$even`   → czy indeks parzysty
+- `$odd`   → czy indeks nieparzysty
+
+Przykład:
+```TS
+@for (
+  project of projects;
+  track project.id;
+  let i = $index,
+      first = $first,
+      last = $last
+) {
+  <p>
+    {{ i }} - {{ project.name }}
+
+    @if (first) {
+      <strong>Pierwszy</strong>
+    }
+
+    @if (last) {
+      <strong>Ostatni</strong>
+    }
+  </p>
+}
+```
+
+
+## `inject():`
+
+`private projectsService = inject(ProjectsService);`
+
+**pozwala wstrzyknąć zależność bez konstruktora.**
+
+**inject()** ma jeszcze jedną dużą zaletę: można go **używać także poza konstruktorem klasy**, np. w funkcyjnych **guardach**:
