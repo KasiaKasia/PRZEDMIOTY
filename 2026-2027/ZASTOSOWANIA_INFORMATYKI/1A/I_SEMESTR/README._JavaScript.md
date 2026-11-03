@@ -272,11 +272,12 @@ Zastosowanie:
 Zdarzenie mouseout występuje, gdy **kursor opuszcza element, również wtedy, gdy przechodzi z niego na element potomny**.
 
 Przykład:
+```HTML
 <div onmouseout="alert('mouseout')">
     Rodzic
     <p>Dziecko</p>
 </div>
-
+```
 
 Jeżeli przesuniemy kursor z obszaru rodzica na element <p>, zdarzenie mouseout zostanie wywołane na rodzicu.
 
