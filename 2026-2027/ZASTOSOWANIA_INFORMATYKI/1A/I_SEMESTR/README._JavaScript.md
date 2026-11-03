@@ -279,7 +279,7 @@ Przykład:
 </div>
 ```
 
-Jeżeli przesuniemy kursor z obszaru rodzica na element <p>, zdarzenie mouseout zostanie wywołane na rodzicu.
+Jeżeli przesuniemy kursor z obszaru rodzica na element `<p>`, zdarzenie mouseout zostanie wywołane na rodzicu.
 
 Zastosowanie:
 – przywracanie wyglądu po onmouseover,
