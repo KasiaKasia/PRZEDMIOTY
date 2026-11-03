@@ -468,7 +468,7 @@ export const routes: Routes = [
     }, 
  
 ];
-```
+``` 
 W widoku umieszczmy link do komponentu:
 
 `<a routerLink="/projekty">Lista projektów</a>`

@@ -269,11 +269,16 @@ Zastosowanie:
 
 🔹 4. `onmouseout` – opuszczenie kursora
 
-Zdarzenie występuje, gdy **kursor myszy opuści element, na który wcześniej najechał**.
+Zdarzenie mouseout występuje, gdy **kursor opuszcza element, również wtedy, gdy przechodzi z niego na element potomny**.
 
-```HTML
-<div onmouseout="this.style.backgroundColor='white'">Opuść mnie</div>
-```
+Przykład:
+<div onmouseout="alert('mouseout')">
+    Rodzic
+    <p>Dziecko</p>
+</div>
+
+
+Jeżeli przesuniemy kursor z obszaru rodzica na element <p>, zdarzenie mouseout zostanie wywołane na rodzicu.
 
 Zastosowanie:
 – przywracanie wyglądu po onmouseover,
@@ -285,8 +290,11 @@ Zastosowanie:
 Wywołuje się w momencie **naciśnięcia przycisku myszy** (jeszcze przed jego puszczeniem).
 
 ```HTML
-<button onmousedown="this.style.backgroundColor='yellow'">Naciśnij i przytrzymaj</button>
+<button onmousedown="alert('Naciśnięto przycisk myszy')">
+    Kliknij mnie
+</button>
 ```
+Komunikat pojawi się już w chwili naciśnięcia przycisku myszy.
 
 Zastosowanie:
 – efekt „wciśniętego” przycisku,
@@ -294,11 +302,15 @@ Zastosowanie:
 
 🔹 6. `onmouseup` – puszczenie przycisku myszy
 
-Występuje, gdy użytkownik **puści przycisk myszy po wcześniejszym wciśnięciu**.
+Zdarzenie `onmouseup` jest wywoływane **w momencie zwolnienia wcześniej naciśniętego przycisku myszy**.
 
 ```HTML
-<button onmouseup="this.style.backgroundColor='lightblue'">Puść przycisk</button>
+<button onmouseup="alert('Zwolniono przycisk myszy')">
+    Kliknij mnie
+</button>
 ```
+
+Komunikat pojawi się dopiero po puszczeniu przycisku myszy.
 
 Zastosowanie:
 – zakończenie przeciągania,
@@ -322,13 +334,19 @@ Zastosowanie:
 
 
 🔹 8. `onmouseleave` – opuszczenie elementu przez kursor
-Zdarzenie występuje, gdy **kursor myszy opuści obszar elementu**, łącznie z jego elementami potomnymi.
+Zdarzenie mouseleave występuje, gdy kursor opuszcza cały obszar elementu wraz z jego elementami potomnymi.
 
+Przykład:
 ```HTML
-<div onmouseleave="this.style.backgroundColor='lightgray'">
-    Opuść mnie
+<div onmouseleave="alert('mouseleave')">
+    Rodzic
+    <p>Dziecko</p>
 </div>
 ```
+
+Jeżeli przesuniemy kursor z rodzica na <p>, zdarzenie nie zostanie wywołane.
+
+Dopiero gdy kursor opuści cały obszar <div>, zdarzenie mouseleave zostanie uruchomione.
 
 Zastosowanie:
 - przywracanie pierwotnego wyglądu elementu,
