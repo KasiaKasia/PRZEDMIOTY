@@ -118,6 +118,8 @@
 
             <?php
             // ZADANIE 1–3: foreach, article, h3, dane kursu i warunek if.
+
+
             ?>
         </section>
 
