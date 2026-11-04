@@ -1,0 +1,45 @@
+<h1>Kategorie zdjęć</h1>
+
+<div class="filtry">
+    <input type="checkbox" name="kategoria" id="kategoria-zwierzeta" value="zwierzeta" [(ngModel)]="zwierzeta">
+    <label for="kategoria-zwierzeta">Zwierzęta</label>
+
+    <input type="checkbox" name="kategoria" id="kategoria-kwiaty" value="kwiaty" [(ngModel)]="kwiaty">
+    <label for="kategoria-kwiaty">Kwiaty</label>
+
+    <input type="checkbox" name="kategoria" id="kategoria-samochody" value="samochody" [(ngModel)]="samochody">
+    <label for="kategoria-samochody">Samochody</label>
+{{zwierzeta | json}}
+{{kwiaty}}
+{{samochody}}
+</div> 
+<div class="galeria">
+
+    @for (zdjecie of zdjecia; track zdjecie.id; ) {
+
+    @if (
+    (zdjecie.category === 1 && kwiaty) ||
+    (zdjecie.category === 2 && zwierzeta) ||
+    (zdjecie.category === 3 && samochody)
+    ) {
+
+    <div class="karta">
+
+        <img src="zdjecie.filename">
+
+        <h4>Pobrań: {{ zdjecie.downloads }}</h4>
+
+        <button (click)="pobierz(zdjecie.id)">
+            Pobierz
+        </button>
+
+    </div>
+
+    }
+
+    }
+
+</div>
+@if ( !kwiaty && !zwierzeta && !samochody) {
+<p>nie zaznaczono opcji </p>
+}
