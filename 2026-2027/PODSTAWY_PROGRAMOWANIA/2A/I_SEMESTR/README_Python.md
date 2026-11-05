@@ -2059,7 +2059,17 @@ Najczęściej stosuje się je do krótkich, prostych operacji, np. w połączeni
 
 Funkcja `lambda` składa się ze słowa kluczowego `lambda`, argumentów, dwukropka i jednego wyrażenia.
 
-Czyli zamiast:
+
+Skrótowa wersja w lambda: 
+`lambda a, b: a + b` 
+
+Składnia: 
+`lambda argumenty: wyrażenie `
+
+
+**Zamiast:**
+
+Przykład 1:
 
 ```python
 def dodaj(a, b):
@@ -2073,13 +2083,28 @@ dodaj = lambda a, b: a + b
 print(dodaj(2, 3))  # 5
 ```
 
-Skrótowa wersja w lambda: 
-`lambda a, b: a + b` 
+Przykład 2:
 
-Składnia: 
-`lambda argumenty: wyrażenie `
+```python
+def sprawdz_srednia(a, b, c):
+    srednia = (a + b + c) / 3
+    return srednia >= 4
 
-Istotne:
+print(sprawdz_srednia(5, 4, 3))  # True
+print(sprawdz_srednia(2, 3, 3))  # False
+```
+
+możemy zapisać:
+```
+sprawdz_srednia = lambda a, b, c: (a + b + c) / 3 >= 4
+
+print(sprawdz_srednia(5, 4, 3))  # True
+print(sprawdz_srednia(2, 3, 3))  # False
+```
+
+
+
+**Istotne:**
 
 - lambda może zawierać tylko jedno wyrażenie,
 - nie można umieszczać w niej instrukcji takich jak return, while, for ani zwykłego bloku if,
