@@ -386,3 +386,103 @@ button?.addEventListener("click", (event: MouseEvent) => {
 
 W nowoczesnym JavaScript i TypeScript zamiast atrybutów HTML takich jak `onclick` często stosuje się `addEventListener()`.
 
+
+--
+## **camelCase**
+
+**W JavaScript możemy zmieniać wygląd elementów HTML za pomocą właściwości style**, np. kolor tła, kolor tekstu, wielkość czcionki, obramowanie czy wyrównanie tekstu.
+
+**Warto przy tym rozróżnić trzy rzeczy**:
+1. **Pobranie elementu HTML** – np. `getElementById()`, `getElementsByClassName()`, `querySelector()`.
+2. **Dostęp do jego stylów** – za pomocą właściwości `.style`.
+3. **Zmianę konkretnej właściwości CSS** – np. `.backgroundColor`, `.color`, `.fontSize`.
+
+### W CSS piszemy `background-color`, a w JavaScript `backgroundColor`
+
+W CSS nazwy właściwości składające się z kilku słów zapisujemy z myślnikiem:
+```CSS
+.informacja {
+    background-color: lightblue;
+    font-size: 20px;
+    border-radius: 10px;
+}
+```
+Natomiast w JavaScript, gdy korzystamy z .style, najczęściej używamy zapisu **camelCase**.
+
+**Oznacza to, że:**
+- **Usuwamy myślnik**.
+- **Pierwsze słowo zapisujemy małą literą**.
+- **Każde kolejne słowo rozpoczynamy wielką literą**
+
+
+| Właściwość CSS     | Właściwość JavaScript | Zastosowanie                       |
+|--------------------|-----------------------|------------------------------------|
+| `background-color` | `backgroundColor`     | Zmiana koloru tła                  |
+| `font-size`        | `fontSize`            | Zmiana wielkości czcionki          |
+| `font-weight`      | `fontWeight`          | Pogrubienie tekstu                 |
+| `font-style`       | `fontStyle`           | Zmiana stylu czcionki, np. kursywa |
+| `border-radius`    | `borderRadius`        | Zaokrąglenie narożników            |
+| `text-align`       | `textAlign`           | Wyrównanie tekstu                  |
+| `box-shadow`       | `boxShadow`           | Dodanie cienia do elementu         |
+| `list-style-type`  | `listStyleType`       | Zmiana rodzaju wypunktowania listy |
+| `color`            | `color`               | Zmiana koloru tekstu               |
+| `border`           | `border`              | Ustawienie obramowania             |
+| `opacity`          | `opacity`             | Zmienia przezroczystość elementu   |
+
+
+### Czcionka i tekst
+
+| Właściwość       | Działanie              | Przykład      |
+|------------------|------------------------|---------------|
+| `fontSize`       | Wielkość czcionki      | `"24px"`      |
+| `fontWeight`     | Grubość czcionki       | `"bold"`      |
+| `fontStyle`      | Styl czcionki          | `"italic"`    |
+| `fontFamily`     | Rodzaj czcionki        | `"Arial"`     |
+| `textAlign`      | Wyrównanie tekstu      | `"center"`    |
+| `textDecoration` | Dekoracja tekstu       | `"underline"` |
+| `textTransform`  | Zmiana wielkości liter | `"uppercase"` |
+
+
+### Obramowanie
+
+| Właściwość     | Działanie               | Przykład             |
+|----------------|-------------------------|----------------------|
+| `border`       | Obramowanie elementu    | `"2px solid red"`    |
+| `borderColor`  | Kolor obramowania       | `"blue"`             |
+| `borderWidth`  | Grubość obramowania     | `"3px"`              |
+| `borderStyle`  | Styl obramowania        | `"dashed"`           |
+| `borderRadius` | Zaokrąglenie narożników | `"10px"`             |
+| `boxShadow`    | Cień elementu           | `"2px 2px 5px gray"` |
+  
+
+
+### Rozmiary i odstępy
+
+| Właściwość   | Działanie           | Przykład      |
+|--------------|---------------------|---------------|
+| `width`      | Szerokość elementu  | `"300px"`     |
+| `height`     | Wysokość elementu   | `"150px"`     |
+| `padding`    | Odstęp wewnętrzny   | `"20px"`      |
+| `margin`     | Odstęp zewnętrzny   | `"10px"`      |
+| `display`    | Sposób wyświetlania | `"none"`      |
+| `visibility` | Widoczność elementu | `"hidden"`    |
+
+**JavaScript udostępnia te style jako właściwości obiektu. Myślnik - w zwykłym wyrażeniu JavaScript jest traktowany jako operator odejmowania.**
+
+
+Dlatego piszemy:
+
+`element.style.backgroundColor = "red";`
+
+
+A nie:
+
+`element.style.background-color = "red"; // BŁĄD`
+
+
+M**ożemy jednak używać oryginalnych nazw CSS za pomocą metody setProperty()**:
+
+`element.style.setProperty("background-color", "red");`
+
+
+Oba poprawne sposoby ustawiają tę samą właściwość CSS.
