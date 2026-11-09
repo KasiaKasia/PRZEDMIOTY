@@ -2140,15 +2140,34 @@ print(kwadraty)
 ### map
 **Funkcja map** stosuje podaną funkcję do każdego elementu iterowalnego (np. listy, tupli) i zwraca iterator z wynikami. Często łączy się ją z lambdami dla zwięzłości. 
 
-**Przykład zastosowania**: Podwojenie elementów listy. 
+**Przykład 1. zastosowania**: Podwojenie elementów listy. 
  
 ```python
 liczby = [1, 2, 3, 4] 
 podwojone = list(map(lambda x: x * 2, liczby)) 
 print(podwojone) 
 ```
+**Przykład 2. Zamiana napisów na wielkie litery**
+```python
+imiona = ["anna", "jan", "piotr"]
+
+wynik = list(map(str.upper, imiona))
+print(wynik)
+```
+
+**Przykład 3. Mnożenie każdej liczby przez 2**
+
+```python
+def podwoj(x):
+    return x * 2
+
+liczby = [1, 2, 3, 4, 5]
+
+wynik = list(map(podwoj, liczby))
+print(wynik)
+```
  
-Przykład: Konwersja temperatur z Celsjusza na Fahrenheita dla listy wartości. 
+**Przykład: Konwersja temperatur z Celsjusza na Fahrenheita dla listy wartości.**
 
 Konwersja z **Celsjusza (°C)** na **Fahrenheita (°F)** działa według prostego wzoru matematycznego:  **°F=(°C×9/5 )+32**
 Skale różnią się w dwóch rzeczach: 
@@ -2185,9 +2204,18 @@ print(fahrenheit)
 
 **Przykład zastosowania**: Wybór parzystych liczb z listy. 
 ```python
-liczby = [1, 2, 3, 4, 5, 6] 
+liczby = [1, 2, 3, 4, 5, 6, 7, 8]
+
 parzyste = list(filter(lambda x: x % 2 == 0, liczby)) 
 print(parzyste) 
+
+
+def czy_parzysta(x):
+    return x % 2 == 0
+
+wynik = list(filter(czy_parzysta, liczby))
+print(wynik)
+
 ```
 
 Przykład: Filtrowanie słów dłuższych niż 3 litery z listy. 
