@@ -1,0 +1,1084 @@
+# SYSTEMY BAZ DANYCH
+
+## 📝**Definicja bazy danych:**
+**Baza danych** – uporządkowany zbiór danych dotyczących określonej dziedziny, zapisanych w sposób umożliwiający ich **przechowywanie, wyszukiwanie, dodawanie, modyfikowanie i usuwanie**.
+
+**Dzięki bazom danych można:**
+
+- przechowywać dane w uporządkowany sposób,
+- szybko wyszukiwać potrzebne informacje,
+- dodawać nowe dane,
+- modyfikować i usuwać istniejące dane,
+- łączyć dane z różnych tabel,
+- ograniczać powtarzanie tych samych informacji,
+- kontrolować dostęp do danych,
+- wykorzystywać dane w aplikacjach, stronach internetowych i systemach informatycznych.
+
+## 📝 **Rodzaje baz danych i modele baz danych**
+
+Bazy danych można klasyfikować na różne sposoby. Najważniejsze jest rozróżnienie:
+
+1. **według modelu danych** – czyli sposobu organizacji danych,
+2. **według sposobu przechowywania i dostępu**,
+3. **według specjalnego przeznaczenia lub sposobu działania**.
+
+---
+
+### 📝 1. Modele danych
+
+**Model danych** określa sposób, w jaki dane są zorganizowane, przechowywane i powiązane ze sobą w bazie danych.
+
+#### 📝 1.1. Model hierarchiczny
+
+Dane mają strukturę przypominającą **drzewo**. Element nadrzędny może posiadać wiele elementów podrzędnych.
+
+Przykład:
+
+```text
+Szkoła
+│
+├── Klasa 1A
+│   ├── Uczeń 1
+│   └── Uczeń 2
+│
+└── Klasa 2A
+    ├── Uczeń 3
+    └── Uczeń 4
+```
+
+Każdy uczeń należy tutaj do określonej klasy, a klasy należą do szkoły.
+
+---
+
+#### 📝 1.2. Model sieciowy
+
+Dane tworzą **sieć powiązań**. Jeden element może być połączony z wieloma innymi elementami.
+
+**Przykład:** uczeń może uczestniczyć w wielu zajęciach, a w jednych zajęciach może uczestniczyć wielu uczniów.
+
+```text
+Anna ─── Programowanie
+  │
+  └───── Bazy danych
+
+Jan ──── Programowanie
+```
+
+Model sieciowy pozwala więc tworzyć bardziej złożone powiązania niż model hierarchiczny.
+
+---
+
+#### 📝 1.3. Model relacyjny
+
+Jest to najważniejszy model z punktu widzenia INF.03.
+
+Dane przechowywane są w **tabelach**, które składają się z wierszy i kolumn. Tabele mogą być ze sobą powiązane za pomocą kluczy.
+
+Tabela `uczniowie`:
+
+| id_ucznia | imie | nazwisko |
+| --------: | ---- | -------- |
+|         1 | Anna | Kowalska |
+|         2 | Jan  | Nowak    |
+
+Tabela `oceny`:
+
+| id_oceny | id_ucznia | ocena |
+| -------: | --------: | ----: |
+|        1 |         1 |     5 |
+|        2 |         1 |     4 |
+|        3 |         2 |     3 |
+
+Pole `id_ucznia` pozwala powiązać ocenę z konkretnym uczniem.
+
+**Przykładowe systemy:** MySQL, PostgreSQL, Microsoft SQL Server.
+
+---
+
+#### 📝 1.4. Model obiektowy
+
+W modelu obiektowym dane przechowywane są w postaci **obiektów**, podobnie jak w programowaniu obiektowym.
+
+Obiekt może posiadać właściwości opisujące dany element.
+
+**Przykład:**
+
+```text
+Uczen
+ ├── imie: Anna
+ ├── nazwisko: Kowalska
+ ├── klasa: 3A
+ └── oceny: 5, 4, 5
+```
+
+Model ten jest szczególnie związany z programowaniem obiektowym.
+
+---
+
+#### 📝 1.5. Model obiektowo-relacyjny
+
+**Model obiektowo-relacyjny** łączy cechy relacyjnych baz danych z niektórymi możliwościami charakterystycznymi dla modelu obiektowego.
+
+Dane nadal mogą znajdować się w tabelach, ale system pozwala stosować bardziej rozbudowane typy danych i struktury.
+
+**Przykład:** PostgreSQL jest określany jako system obiektowo-relacyjnej bazy danych.
+
+---
+
+#### 📝 1.6. Modele nierelacyjne – NoSQL
+
+**NoSQL** to grupa baz danych, które nie opierają się wyłącznie na klasycznym modelu relacyjnym.
+
+Stosuje się je m.in. wtedy, gdy potrzebna jest duża elastyczność struktury danych, obsługa bardzo dużej ilości informacji albo szybkie przetwarzanie danych.
+
+##### 📝 1.6.1 Model dokumentowy
+
+Dane przechowywane są w postaci **dokumentów**, np. JSON lub BSON.
+
+Przykład:
+
+```json
+{
+  "imie": "Anna",
+  "nazwisko": "Kowalska",
+  "klasa": "3A",
+  "oceny": [5, 4, 5]
+}
+```
+
+W jednym dokumencie można przechowywać informacje o uczniu razem z jego ocenami.
+
+**Przykładowe systemy:** MongoDB, Couchbase.
+
+**Zastosowanie:** np. katalogi produktów, profile użytkowników, aplikacje internetowe.
+
+---
+
+##### 📝 1.6.2. Model klucz–wartość
+
+Dane przechowywane są jako pary:
+
+**klucz → wartość**
+
+Przykład:
+
+```text
+user_1 → Anna Kowalska
+user_2 → Jan Nowak
+```
+
+Klucz pozwala szybko odnaleźć przypisaną do niego wartość.
+
+**Przykład:** Redis.
+
+**Zastosowanie:** np. pamięć podręczna (cache), przechowywanie sesji użytkowników lub ustawień aplikacji.
+
+---
+
+##### 📝 1.6.3. Model szerokokolumnowy – wide-column
+
+Dane są organizowane w **rodziny kolumn**, a poszczególne rekordy mogą posiadać dużą liczbę kolumn.
+
+Model ten jest przeznaczony do przechowywania bardzo dużych zbiorów danych i łatwego skalowania systemu.
+
+Przykładowo jeden użytkownik może mieć:
+
+```text
+ID: 1
+imie: Anna
+email: anna@example.com
+telefon: 123456789
+```
+
+a inny:
+
+```text
+ID: 2
+imie: Jan
+email: jan@example.com
+miasto: Warszawa
+wiek: 20
+```
+
+Struktura nie musi być więc identyczna dla każdego rekordu.
+
+**Przykładowe systemy:** Apache Cassandra, HBase, Google Bigtable.
+
+Cassandra jest przykładem rozproszonej bazy NoSQL wykorzystującej model wide-column.
+
+---
+
+##### 📝 1.6.4. Model grafowy
+
+W bazie grafowej dane przedstawiane są za pomocą:
+
+* **węzłów** – obiektów,
+* **relacji/krawędzi** – połączeń między obiektami,
+* **właściwości** – dodatkowych informacji o obiektach i relacjach.
+
+Przykład:
+
+```text
+(Anna) ──ZNA──> (Jan)
+   │
+   └──LUBI──> (Programowanie)
+```
+
+Węzłami mogą być osoby, produkty, miasta lub inne obiekty, a krawędzie opisują ich wzajemne relacje.
+
+**Przykład:** Neo4j.
+
+**Zastosowanie:** sieci społecznościowe, systemy rekomendacji, analiza powiązań czy wykrywanie oszustw.
+
+Neo4j wykorzystuje model grafowy oparty na węzłach, relacjach i właściwościach.
+
+---
+
+### 📝 2. Rodzaje (podział) baz według sposobu przechowywania i dostępu
+
+Ten podział nie określa modelu danych, ale mówi **gdzie znajduje się baza i w jaki sposób użytkownicy mają do niej dostęp**.
+
+#### 📝 2.1. Baza lokalna
+
+Baza znajduje się na jednym komputerze i jest wykorzystywana przez działającą na nim aplikację.
+
+**Przykład:** program przechowujący listę książek w lokalnej bazie SQLite.
+
+```text
+Komputer
+│
+├── aplikacja
+└── baza danych
+```
+
+---
+
+#### 📝 2.2. Baza sieciowa
+
+Baza znajduje się na serwerze, a użytkownicy łączą się z nią przez sieć.
+
+```text
+Komputer 1 ──┐
+             │
+Komputer 2 ──┼──> Serwer ──> Baza danych
+             │
+Komputer 3 ──┘
+```
+
+**Przykład:** szkolny system, w którym sekretariat, nauczyciele i dyrekcja korzystają ze wspólnej bazy znajdującej się na serwerze.
+
+---
+
+#### 📝 2.3. Baza rozproszona
+
+Dane są przechowywane na **wielu komputerach lub serwerach**, które współpracują ze sobą.
+
+```text
+            SYSTEM
+               │
+       ┌───────┼───────┐
+       │       │       │
+   Serwer 1 Serwer 2 Serwer 3
+```
+
+**Przykład:** duży sklep internetowy może korzystać z serwerów znajdujących się w różnych centrach danych.
+
+---
+
+## 3. Rodzaje baz danych według przeznaczenia (specjalizowane i nowoczesne rozwiązania)
+
+
+#### 3.1. Bazy szeregów czasowych – time-series
+
+Są przeznaczone do danych, w których szczególnie ważny jest **czas wykonania pomiaru lub wystąpienia zdarzenia**.
+
+Przykład:
+
+```text
+czas                 temperatura
+10:00                21°C
+10:05                22°C
+10:10                23°C
+```
+
+**Przykładowe zastosowania:**
+
+* pomiary temperatury,
+* dane z czujników,
+* monitoring serwerów,
+* kursy giełdowe.
+
+**Przykłady systemów:** InfluxDB, TimescaleDB.
+
+--- 
+
+
+
+#### 3.2. Bazy przestrzenne i geograficzne
+
+Służą do przechowywania oraz analizowania danych związanych z **położeniem geograficznym i przestrzenią**.
+
+Mogą przechowywać np.:
+
+* współrzędne punktu,
+* lokalizację budynku,
+* przebieg drogi,
+* granice miasta.
+
+**Przykład zastosowania:** aplikacja wyświetlająca na mapie najbliższe restauracje.
+
+**Przykład:** PostGIS – rozszerzenie PostgreSQL umożliwiające przechowywanie i analizowanie danych przestrzennych.
+
+---
+ 
+#### 3.3. Bazy pamięciowe – in-memory
+
+Dane są przechowywane przede wszystkim w **pamięci RAM**, dzięki czemu dostęp do nich może być bardzo szybki.
+
+**Przykład:** Redis.
+
+Mogą być wykorzystywane np. do:
+
+* cache,
+* sesji użytkowników,
+* danych wymagających bardzo szybkiego odczytu.
+
+---
+
+#### 3.4. Bazy wielomodelowe
+
+Pozwalają korzystać z **więcej niż jednego modelu danych w jednym systemie**.
+
+Przykładowo jeden system może umożliwiać przechowywanie dokumentów oraz danych grafowych.
+
+**Przykład:** ArangoDB.
+
+---
+
+### Ważne
+
+Te kategorie mogą się **nakładać**.
+
+Na przykład **Redis** można określić jednocześnie jako:
+
+* bazę typu **klucz–wartość** – ponieważ opisuje to model przechowywania danych,
+* rozwiązanie **in-memory** – ponieważ opisuje to sposób przechowywania i przetwarzania danych.
+
+Podobnie baza może być jednocześnie:
+
+**relacyjna + sieciowa + rozproszona**
+
+ponieważ każde z tych określeń opisuje inną cechę systemu.
+
+
+**RODZAJE I MODELE BAZ DANYCH**
+```text
+1. MODELE DANYCH
+   ├── hierarchiczny
+   ├── sieciowy
+   ├── relacyjny
+   ├── obiektowy
+   ├── obiektowo-relacyjny
+   │
+   └── modele NoSQL
+       ├── dokumentowy
+       ├── klucz–wartość
+       ├── szerokokolumnowy
+       └── grafowy
+
+
+2. RODZAJE BAZ WEDŁUG SPOSOBU DOSTĘPU
+   ├── lokalne
+   ├── sieciowe
+   └── rozproszone
+
+
+3. RODZAJE BAZ WEDŁUG PRZEZNACZENIA
+   ├── time-series
+   └── przestrzenne
+
+
+4. INNE ROZWIĄZANIA
+   ├── in-memory
+   └── wielomodelowe
+```
+## **Omówienie podstawowych koncepcji: tabele, rekordy, pola**   
+
+### 📝 **1. Tabela**
+To główna struktura w relacyjnej bazie danych. Można ją porównać do arkusza w
+Excelu – ma wiersze i kolumny. Każda tabela przechowuje dane dotyczące jednego
+typu obiektów.
+
+Przykład: Tabela Studenci przechowuje informacje o studentach.
+
+### 📝 **2. Rekord (wiersz, ang. row/record)**
+Pojedynczy wiersz w tabeli. Odpowiada jednej jednostce danych (np. jednemu
+studentowi). Składa się z pól (kolumn).
+
+Przykład rekordu w tabeli Studenci:
+ID Imię Nazwisko Wiek Kierunek
+1 Anna Kowalska 21 Informatyka
+Ten jeden wiersz to rekord opisujący Annę Kowalską.
+
+### 📝 **3. Pole (kolumna, ang. field/column)**
+To kolumna w tabeli, przechowująca określony typ danych.
+Każde pole ma nazwę i jest określonego typu danych (np. liczba, tekst, data).
+
+Przykłady pól w tabeli Studenci:
+Imię – tekst,
+Nazwisko – tekst,
+Wiek – liczba całkowita,
+Kierunek – tekst.
+
+### 📝 **4. Klucze**
+
+#### 📝 **Klucz główny (Primary Key, PK)**
+To unikalny identyfikator rekordu w tabeli.
+Gwarantuje, że każdy wiersz można jednoznacznie odróżnić.
+
+Kluczem głównym może być:
+liczba całkowita (np. ID = 1, 2, 3...),
+unikalny kod (np. PESEL, NIP),
+
+👉 W tabeli Studenci:
+ID Imię Nazwisko Wiek
+1 Anna Kowalska 21
+
+Tutaj ID jest kluczem głównym.
+
+#### 📝 **Klucz obcy (Foreign Key, FK)**
+To pole w tabeli, które wskazuje na klucz główny w innej tabeli.
+Dzięki temu możemy powiązać dane między tabelami.
+
+👉 Przykład:
+Tabela Zapisy (które kursy student wybrał) może mieć klucze obce:
+- StudentID → odwołanie do tabeli Studenci(ID),
+- KursID → odwołanie do tabeli Kursy(ID).
+
+
+## **Relacje między tabelami**
+
+**Relacje między tabelami** określają, w jaki sposób dane z jednej tabeli są powiązane z danymi w drugiej tabeli.
+
+Najczęściej wyróżnia się trzy rodzaje relacji:
+
+### 1. Relacja jeden do jednego — 1:1
+
+Jeden rekord z pierwszej tabeli jest powiązany z **jednym rekordem** z drugiej tabeli.
+
+**Przykład:**
+
+Mamy tabelę `pracownicy`:
+
+| id_pracownika | imie | nazwisko |
+| ------------: | ---- | -------- |
+|             1 | Anna | Kowalska |
+|             2 | Jan  | Nowak    |
+
+oraz tabelę `karty_pracownika`:
+
+| id_karty | id_pracownika | numer_karty |
+| -------: | ------------: | ----------- |
+|        1 |             1 | K001        |
+|        2 |             2 | K002        |
+
+Jeden pracownik ma jedną kartę, a jedna karta należy do jednego pracownika.
+
+Schemat:
+
+```text
+Pracownik 1 ───────── 1 Karta
+```
+
+Czyli:
+
+**1 : 1**
+
+---
+
+### 2. Relacja jeden do wielu — 1:N
+
+Jeden rekord z pierwszej tabeli może być powiązany z **wieloma rekordami** z drugiej tabeli.
+
+To bardzo częsty typ relacji.
+
+**Przykład: klient i zamówienia**
+
+Tabela `klienci`:
+
+| id_klienta | imie | nazwisko |
+| ---------: | ---- | -------- |
+|          1 | Anna | Kowalska |
+|          2 | Jan  | Nowak    |
+
+Tabela `zamowienia`:
+
+| id_zamowienia | id_klienta | data       |
+| ------------: | ---------: | ---------- |
+|           101 |          1 | 2026-08-01 |
+|           102 |          1 | 2026-08-10 |
+|           103 |          2 | 2026-08-12 |
+
+Klient Anna Kowalska ma dwa zamówienia:
+
+```text
+Anna
+ ├── zamówienie 101
+ └── zamówienie 102
+```
+
+Natomiast każde konkretne zamówienie należy do jednego klienta.
+
+Schemat:
+
+```text
+Klient 1 ───────── N Zamówień
+```
+
+czyli:
+
+**1 : N**
+
+W tabeli `zamowienia` znajduje się `id_klienta`, czyli **klucz obcy**, który wskazuje klienta.
+
+---
+
+### 3. Relacja wiele do wielu — N:M
+
+Wiele rekordów z pierwszej tabeli może być powiązanych z wieloma rekordami z drugiej tabeli.
+
+**Przykład: uczniowie i przedmioty**
+
+Jeden uczeń może uczęszczać na wiele przedmiotów.
+
+Jednocześnie na jeden przedmiot może uczęszczać wielu uczniów.
+
+```text
+Anna ───── Matematyka
+  │
+  └────── Programowanie
+
+Jan ───── Matematyka
+  │
+  └────── Bazy danych
+```
+
+Mamy więc:
+
+```text
+Uczeń N ───────── M Przedmiot
+```
+
+W relacyjnej bazie danych takiej relacji zazwyczaj **nie tworzy się bezpośrednio**. Tworzy się dodatkową tabelę pośrednią.
+
+Na przykład:
+
+Tabela `uczniowie`:
+
+| id_ucznia | imie |
+| --------: | ---- |
+|         1 | Anna |
+|         2 | Jan  |
+
+Tabela `przedmioty`:
+
+| id_przedmiotu | nazwa         |
+| ------------: | ------------- |
+|             1 | Matematyka    |
+|             2 | Programowanie |
+
+Tabela pośrednia `uczen_przedmiot`:
+
+| id_ucznia | id_przedmiotu |
+| --------: | ------------: |
+|         1 |             1 |
+|         1 |             2 |
+|         2 |             1 |
+
+Dzięki tabeli pośredniej relacja N:M zostaje rozbita na dwie relacje 1:N.
+
+```text
+Uczeń
+  │
+  │ 1:N
+  ▼
+Uczeń_Przedmiot
+  ▲
+  │ N:1
+  │
+Przedmiot
+```
+ 
+**1. Relacja 1:1 — jeden do jednego**
+
+Przykład: **jedna osoba ma jeden paszport**, a jeden paszport należy do jednej osoby.
+
+```SQL
+CREATE TABLE osoby (
+    id_osoby INT PRIMARY KEY,
+    imie VARCHAR(50)
+);
+
+CREATE TABLE paszporty (
+    id_paszportu INT PRIMARY KEY,
+    numer VARCHAR(20),
+    id_osoby INT UNIQUE,
+    FOREIGN KEY (id_osoby) REFERENCES osoby(id_osoby)
+);
+INSERT INTO osoby (id_osoby, imie)
+VALUES
+(1, 'Anna'),
+(2, 'Jan');
+
+INSERT INTO paszporty (id_paszportu, numer, id_osoby)
+VALUES
+(1, 'ABC123', 1),
+(2, 'DEF456', 2);
+
+```
+
+**2. Relacja 1:N — jeden do wielu**
+
+Przykład: **jeden dział może mieć wielu pracowników**, ale jeden pracownik należy do jednego działu.
+
+```SQL
+CREATE TABLE dzialy (
+    id_dzialu INT PRIMARY KEY,
+    nazwa VARCHAR(50)
+);
+
+CREATE TABLE pracownicy (
+    id_pracownika INT PRIMARY KEY,
+    imie VARCHAR(50),
+    id_dzialu INT,
+    FOREIGN KEY (id_dzialu) REFERENCES dzialy(id_dzialu)
+);
+INSERT INTO dzialy (id_dzialu, nazwa)
+VALUES
+(1, 'IT'),
+(2, 'Księgowość');
+
+INSERT INTO pracownicy (id_pracownika, imie, id_dzialu)
+VALUES
+(1, 'Anna', 1),
+(2, 'Jan', 1),
+(3, 'Ola', 2);
+
+```
+
+**3. Relacja N:1 — wielu do jednego**
+
+To jest dokładnie ta sama konstrukcja, tylko patrzymy od strony pracownika.
+
+Przykład: **Wielu uczniów należy do jednej klasy.**
+
+```SQL
+
+CREATE TABLE klasy (
+    id_klasy INT PRIMARY KEY,
+    nazwa VARCHAR(20)
+);
+
+CREATE TABLE uczniowie (
+    id_ucznia INT PRIMARY KEY,
+    imie VARCHAR(50),
+    id_klasy INT,
+    FOREIGN KEY (id_klasy) REFERENCES klasy(id_klasy)
+);
+
+INSERT INTO klasy (id_klasy, nazwa)
+VALUES
+(1, '4A'),
+(2, '4B');
+INSERT INTO uczniowie (id_ucznia, imie, id_klasy)
+VALUES
+(1, 'Kamil', 1),
+(2, 'Oliwia', 1),
+(3, 'Natalia', 2);
+```
+
+**4. Relacja N:N — wiele do wielu**
+
+Przykład: **jeden uczeń może chodzić na wiele kursów i jeden kurs może mieć wielu uczniów**.
+
+Tutaj potrzebujemy **trzeciej tabeli pośredniczącej**.
+
+```SQL
+CREATE TABLE uczniowie_nn (
+    id_ucznia INT PRIMARY KEY,
+    imie VARCHAR(50)
+);
+
+CREATE TABLE kursy (
+    id_kursu INT PRIMARY KEY,
+    nazwa VARCHAR(50)
+);
+
+CREATE TABLE uczniowie_kursy (
+    id_ucznia INT,
+    id_kursu INT,
+
+    PRIMARY KEY (id_ucznia, id_kursu),
+
+    FOREIGN KEY (id_ucznia)
+        REFERENCES uczniowie_nn(id_ucznia),
+
+    FOREIGN KEY (id_kursu)
+        REFERENCES kursy(id_kursu)
+);
+
+INSERT INTO uczniowie_nn (id_ucznia, imie)
+VALUES
+(1, 'Anna'),
+(2, 'Jan');
+
+INSERT INTO kursy (id_kursu, nazwa)
+VALUES
+(1, 'Python'),
+(2, 'PHP'),
+(3, 'JavaScript');
+
+INSERT INTO uczniowie_kursy (id_ucznia, id_kursu)
+VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(2, 3);
+```
+
+
+## Podstawowe polecenia do sortowania
+
+### ORDER BY
+
+```SQL
+CREATE TABLE pracownicy (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    imie VARCHAR(50) NOT NULL,
+    nazwisko VARCHAR(50) NOT NULL
+);
+INSERT INTO pracownicy (imie, nazwisko) VALUES
+('Anna', 'Kowalska'),('Jan', 'Nowak'),
+('Piotr', 'Wiśniewski'),('Maria', 'Adamska'),
+('Tomasz', 'Zieliński'),('Ola', 'Kaczmarek');
+
+
+SELECT nazwisko, imie
+FROM pracownicy
+ORDER BY nazwisko ASC; -- rosnąco
+
+SELECT nazwisko, imie
+FROM pracownicy
+ORDER BY nazwisko DESC; -- malejąco
+```
+
+### Sortowanie po wielu kolumnach
+
+```SQL
+SELECT nazwisko, imie, pensja
+FROM pracownicy
+ORDER BY nazwisko ASC, pensja DESC;
+```
+
+Najpierw sortuje po nazwisku rosnąco, a w ramach tego – po pensji malejąco.
+
+#### Sortować można po numerach kolumn (niezalecane, ale działa):
+
+```SQL
+SELECT nazwisko, imie
+FROM pracownicy
+ORDER BY 2 ASC, 4 DESC
+```
+**2 kolumną będzie imie. Nie bierze pod uwagę faktyczna kolejnośc kolumn w tabeli**
+
+
+## AUTO_INCREMENT, PRIMARY KEY i FOREIGN KEY służą do definiowania relacji i identyfikacji rekordów w bazie danych.
+
+- `PRIMARY KEY` — klucz główny, czyli kolumna, która jednoznacznie identyfikuje każdy rekord.
+- `AUTO_INCREMENT` — automatycznie zwiększa wartość liczbową, najczęściej dla id.
+- `FOREIGN KEY` — klucz obcy, który łączy jedną tabelę z drugą.
+
+```SQL
+CREATE TABLE dzialy (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nazwa VARCHAR(50) NOT NULL
+);
+``` 
+
+- `PRIMARY KEY` — id jednoznacznie identyfikuje rekord,
+- `AUTO_INCREMENT` — id zwiększa się automatycznie.
+
+Dodajemy dane:
+```SQL
+INSERT INTO dzialy (nazwa) VALUES
+('IT'),
+('Kadry'),
+('Księgowość');
+```
+
+Mamy:
+
+```SQL
+id | nazwa
+---+-------------
+1  | IT
+2  | Kadry
+3  | Księgowość
+```
+
+Teraz usuwamy rekord o id = 2:
+```SQL
+DELETE FROM dzialy
+WHERE id = 2;
+```
+
+Zostanie:
+```text
+id | nazwa
+---+-------------
+1  | IT
+3  | Księgowość
+```
+Teraz dodajemy nowy rekord:
+
+`INSERT INTO dzialy (nazwa) VALUES ('Marketing');`
+
+Wynik:
+```text
+id | nazwa
+---+-------------
+1  | IT
+3  | Księgowość
+4  | Marketing
+```
+
+Czyli nowy rekord dostaje id = 4, a nie 2.
+
+**Przykład FOREIGN KEY:**
+```SQL
+CREATE TABLE pracownicy (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    imie VARCHAR(50),
+    nazwisko VARCHAR(50),
+    dzial_id INT,
+    FOREIGN KEY (dzial_id) REFERENCES dzialy(id)
+);
+```
+
+Dodajemy pracownika:
+
+```SQL
+INSERT INTO pracownicy (imie, nazwisko, dzial_id)
+VALUES ('Anna', 'Kowalska', 1);
+```
+dzial_id = 1 wskazuje tutaj na dział:
+
+
+
+## **Składnia języka SQL**
+Klasyfikację poleceń ze względu na ich przeznaczenie. Są to:
+
+o **Instrukcje DDL (ang. Data Definition Language**) — tworzą język definiowania danych i służą do tworzenia, modyfikowania i usuwania obiektów bazy danych.
+
+o **Instrukcje DML (ang. Data Manipulation Language)**— tworzą język manipulowania danymi i służą do odczytywania i modyfikowania danych.
+
+o **Instrukcje DCL (ang. Data Control Language)** — tworzą język kontroli dostępu do danych i umożliwiają nadawanie i odbieranie uprawnień użytkownikom.
+
+o **Instrukcje TCL (ang. Transaction Control Language)**— tworzą język obsługi transakcji.
+
+o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowania zapytań, który zawiera tylko jedno polecenie SELECT i służy do tworzenia kwerend (zapytań).
+
+![Klasyfikację poleceń](zdjecia/sql-commands.png)
+
+## **System zarządzania bazą danych**
+
+**System zarządzania bazą danych** (w skrócie SZBD; po angielsku: Database Management System – DBMS) to specjalne oprogramowanie, które służy do tworzenia, zarządzania i przetwarzania danych w bazach danych.
+
+**Główne zadania SZBD**
+
+| Zadanie                        | W praktyce                                                                            |
+| -----------------------------: | ------------------------------------------------------------------------------------- |
+| Definiowanie danych            | Tworzenie struktury bazy (tabele, kolumny, relacje)                                   |
+| Manipulacja danymi             | Dodawanie, usuwanie, modyfikowanie i wyszukiwanie rekordów                            |
+| Kontrola współbieżności        | Wielu użytkowników może pracować jednocześnie bez kolizji                             |
+| Bezpieczeństwo i autoryzacja   | Hasła, role, szyfrowanie, logi kto i co zmienił                                       |
+| Integralność danych            | Zapobieganie „bzdurnym” danym (np. data urodzenia w przyszłości)                      |
+| Backup i odzyskiwanie          | Regularne kopie + możliwość przywrócenia bazy po awarii                               |
+| Optymalizacja wydajności       | Indeksy, partycjonowanie, cache, zapytania optymalizowane                             |
+| Transakcje (ACID)              | Gwarancja, że operacje albo wykonają się w całości, albo wcale                        |
+
+
+**Najpopularniejsze rodzaje SZBD**
+
+|Typ                            | Przykłady                                              |                           Kiedy się używa                        |
+| ----------------------------: |------------------------------------------------------: |---------------------------------------------------------------: |
+| Relacyjny (RDBMS)             | MySQL, PostgreSQL, Oracle, SQL Server, MariaDB, SQLite | Finanse, e-commerce, systemy firmowe, aplikacje webowe          |
+| NoSQL dokumentowy             | MongoDB, CouchDB                                       | Aplikacje z dużą ilością niestrukturyzowanych danych (JSON)     |
+| NoSQL kolumnowy               | Cassandra, HBase                                       | Bardzo duże zbiory danych, analityka, Big Data                  |
+| NoSQL grafowy                 | Neo4j, Amazon Neptune                                  | Sieci społecznościowe, rekomendacje, wykrywanie oszustw         |
+| Klucz-wartość                 | Redis, DynamoDB                                        | Cache, sesje użytkowników, liczniki                             |
+| NewSQL                        | CockroachDB, TiDB, YugabyteDB                          | Połączenie zalet RDBMS i skalowalności NoSQL                    |
+
+ 
+
+ **Najważniejsze cechy dobrego SZBD (2025/2026) **
+
+- Wsparcie dla **chmury** (AWS RDS, Azure SQL, Google Cloud SQL, Supabase, Neon, PlanetScale) 
+
+- Wbudowane **AI/ML** do automatycznego tuningu i wykrywania anomalii (np. Oracle Autonomous, Azure SQL Hyperscale) 
+
+- **Zero-downtime** – możliwość aktualizacji bez zatrzymywania bazy 
+
+= Łatwa **replikacja** i **sharding** (rozbijanie bazy na wiele serwerów) 
+
+ 
+
+## Zarządzanie bezpieczeństwem bazy danych.
+
+W bazie danych MySQL uprawnienia (*privileges*) określają, jakie operacje użytkownik może wykonywać na bazach danych, tabelach i innych obiektach.
+
+Definicje
+
+● **GRANT** – służy do nadawania uprawnień użytkownikom bazy danych (np. prawa do odczytu, zapisu, aktualizacji, usuwania, tworzenia tabel).
+
+● **REVOKE** – służy do odbierania wcześniej nadanych uprawnień
+
+
+## **Najważniejsze uprawnienia w MySQL**
+| **Uprawnienie     |	**Opis**                                                                            |
+| ----------------: | ------------------------------------------------------------------------------------- |
+| `SELECT`	        | Odczytywanie danych z tabeli.                                                         |
+| `INSERT`	        | Dodawanie nowych rekordów do tabeli.                                                  |
+| `UPDATE`	        | Modyfikowanie istniejących rekordów.                                                  |    
+| `DELETE`	        | Usuwanie rekordów z tabeli.                                                           |
+| `CREATE`	        | Tworzenie baz danych i tabel.                                                         |
+| `DROP`	        | Usuwanie baz danych i tabel.                                                          |
+| `ALTER`	        | Zmienianie struktury tabeli.                                                          |
+| `INDEX`	        | Tworzenie i usuwanie indeksów.                                                        |
+| `REFERENCES`	    | Uprawnienie związane z kluczami obcymi.                                               |
+| `CREATE VIEW`	    | Tworzenie widoków.                                                                    |
+| `SHOW VIEW`	    | Wyświetlanie definicji widoków.                                                       |
+| `EXECUTE`	        | Wykonywanie procedur i funkcji składowanych.                                          |        
+| `TRIGGER`	        | Tworzenie i usuwanie wyzwalaczy oraz wykonywanie związanych z nimi operacji.          |
+| `ALL PRIVILEGES`  |	Nadanie wszystkich uprawnień dostępnych na określonym poziomie (bez GRANT OPTION).  |
+
+
+**Składnia**
+
+### **Nadawanie uprawnień (GRANT)**
+
+```SQL
+GRANT <uprawnienia>
+ON <nazwa_bazy_danych>.<nazwa_tabeli>
+TO <nazwa_uzytkownika>@<host>;
+```
+### **Odbieranie uprawnień (REVOKE)**
+
+```SQL
+REVOKE <uprawnienia>
+ON <nazwa_bazy_danych>.<nazwa_tabeli>
+FROM <nazwa_uzytkownika>@<host>;
+```
+
+
+**Przykład – nadanie użytkownikowi jan uprawnienia do odczytywania danych z tabeli uczniowie w bazie szkola:**
+```SQL
+GRANT SELECT
+ON szkola.uczniowie
+TO 'jan'@'localhost';
+```
+
+**Nadanie kilku uprawnień jednocześnie:**
+```SQL
+GRANT SELECT, INSERT, UPDATE
+ON szkola.uczniowie
+TO 'jan'@'localhost';
+```
+
+**Przykład – odebranie uprawnienia UPDATE:**
+```SQL
+REVOKE UPDATE
+ON szkola.uczniowie
+FROM 'jan'@'localhost';
+```
+
+
+### Nadawanie uprawnień na różnych poziomach
+| Zapis	                |      Znaczenie                                    |
+| --------------------: | ------------------------------------------------- |
+| `ON *.*`              |	Wszystkie bazy danych i ich tabele na serwerze. |
+| `ON szkola.*`	        |   Wszystkie tabele w bazie szkola.                |
+| `ON szkola.uczniowie`	|   Tylko tabela uczniowie w bazie szkola.          |
+
+
+**Przykład – nadanie uprawnień do wszystkich tabel w bazie:**
+```SQL
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON szkola.*
+TO 'jan'@'localhost';
+```
+
+**Przykład – nadanie wszystkich uprawnień na poziomie bazy:**
+```SQL
+GRANT ALL PRIVILEGES
+ON szkola.*
+TO 'jan'@'localhost';
+```
+
+### Sprawdzanie uprawnień – SHOW GRANTS
+Aby sprawdzić uprawnienia użytkownika, wykonujemy:
+```SQL
+SHOW GRANTS FOR 'jan'@'localhost';
+```
+
+### Uprawnienie do nadawania uprawnień innym użytkownikom
+```SQL
+GRANT SELECT
+ON szkola.*
+TO 'jan'@'localhost'
+WITH GRANT OPTION;
+```
+
+`WITH GRANT OPTION` pozwala użytkownikowi jan nadawać innym użytkownikom uprawnienie SELECT w określonym zakresie.
+## Tworzenie użytkownika – CREATE USER
+```SQL
+CREATE USER 'nazwa_uzytkownika'@'host'
+IDENTIFIED BY 'haslo';
+```
+
+``Tworzymy użytkownika jan z hasłem Jan123!:``
+```SQL
+CREATE USER 'jan'@'localhost'
+IDENTIFIED BY 'Jan123!';
+```
+
+**Polecenie sprawdzjące czy użytkownik istnieje**
+```SQL
+SELECT User, Host
+FROM mysql.user
+WHERE User = 'jan';
+```
+
+## Logowanie się za pomocą innego użytkownika niż `root`
+
+Logowanie się innymi użytkownikami w phpMyAdmin w XAMPP niż root jest ustawione w pliku:
+
+*`C:\xampp\phpMyAdmin\config.inc.php`*
+
+za pomoca opcji:
+```bash
+$cfg['Servers'][$i]['auth_type'] = 'config';
+```
+
+**Oznacza  automatyczne logowanie się za pomoca root**. Zamiana opcji:
+
+```bash
+$cfg['Servers'][$i]['auth_type'] = 'config';
+```
+
+na:
+
+```bash
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+```
+spowoduje możliwośc logowania się innymi użytkkownikami.
