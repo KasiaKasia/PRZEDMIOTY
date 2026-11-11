@@ -16,6 +16,20 @@
         section { background-color: white; border: 1px solid #dbe3eb; border-radius: 8px; padding: 22px; margin-bottom: 20px; }
         h2 { color: #205782; margin-top: 0; }
         .wynik { background-color: #edf5fb; border-left: 4px solid #3278a8; padding: 15px; min-height: 65px; line-height: 1.8; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid gray;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #3278a8;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -43,12 +57,14 @@
 			gatunek => Science fiction
 			
         Wyświetl wyłącznie tytuł filmu, odwołując się bezpośrednio do klucza.
+
+       
         -->
         <section id="zadanie1">
             <h2>Zadanie 1 – Tytuł filmu</h2>
             <div class="wynik">
                 <?php
-                // Tutaj wpisz rozwiązanie zadania 1.
+ 
                 ?>
             </div>
         </section>
@@ -110,6 +126,60 @@
             </div>
         </section>
  
+
+
+
+        <!--
+        ZADANIE 5. Wyświetlanie filmów w tabeli HTML
+
+        Utwórz tablicę $filmy zawierającą trzy tablice asocjacyjne.
+
+        Każdy film powinien zawierać:
+        tytul, rezyser, rok, gatunek.
+
+        Filmy:
+        1. Interstellar, Christopher Nolan, 2014, Science fiction
+        2. Incepcja, Christopher Nolan, 2010, Thriller
+        3. Titanic, James Cameron, 1997, Romans
+
+        Utwórz tabelę HTML z nagłówkami:
+        Tytuł, Reżyser, Rok, Gatunek.
+
+        Za pomocą pętli foreach wyświetl wszystkie filmy.
+        Każdy film umieść w osobnym wierszu tabeli.
+
+        Wiersze i komórki tabeli generuj za pomocą echo.
+        Wartości pobieraj bezpośrednio z kluczy tablic asocjacyjnych.
+        -->
+
+        <section id="zadanie5">
+            <h2>Zadanie 5 – Katalog filmów</h2>
+
+            <div class="wynik">
+
+                <?php
+                // Tutaj utwórz tablicę $filmy.
+                ?>
+
+                <table>
+                    <tr>
+                        <th>Tytuł</th>
+                        <th>Reżyser</th>
+                        <th>Rok</th>
+                        <th>Gatunek</th>
+                    </tr>
+
+                    <?php
+                    // Tutaj zastosuj pętlę foreach.
+                    // Wygeneruj wiersze i komórki tabeli za pomocą echo.
+                    ?>
+
+                </table>
+
+            </div>
+        </section>
+
+
     </main>
 
     <footer>PHP – Tablice asocjacyjne | Zadanie praktyczne</footer>
