@@ -228,3 +228,74 @@ foreach ($osoby as $nazwisko => $dane) {
 
 ?>
 ```
+**Wyświetlenie wszystkich danych za pomocą dwóch pętli `foreach`**
+
+```PHP
+<?php
+foreach ($osoby as $nazwisko => $dane) {
+
+    echo "<h2>Nazwisko: $nazwisko</h2>";
+
+    foreach ($dane as $klucz => $wartosc) {
+
+        echo $klucz . ": " . $wartosc . "<br>";
+
+    }
+}
+
+?>
+```
+**Dodanie nowego klucza do tablicy wielowymiarowej**
+
+```PHP
+<?php
+$osoby["Nowak"]["email"] = "kamil@example.com";
+?>
+```
+
+**Dodanie nowego klucza do wszystkich osób**
+
+```PHP
+<?php
+foreach ($osoby as $nazwisko => $dane) {
+    $osoby[$nazwisko]["email"] = "brak";
+}
+?>
+```
+
+**Usniecie tylko dla "Kowalska"**
+```PHP
+<?php
+unset($osoby["Kowalska"]["miasto"]);
+?>
+```
+
+**Usunięcie klucza miasto ze wszystkich osób**
+
+```PHP
+<?php
+foreach ($osoby as $nazwisko => $dane) {
+    unset($osoby[$nazwisko]["miasto"]);
+}
+?>
+```
+
+**Edycja wartości tylko dla "Kowalska"**
+
+```PHP
+<?php
+
+$osoby["Kowalska"]["wiek"] = 25;
+?>
+```
+
+**Edycja wartości dla wszystkich osób – np. zwiększenie wieku o 1**
+
+```PHP
+<?php
+foreach ($osoby as $nazwisko => $dane) {
+    $osoby[$nazwisko]["wiek"] += 1;
+}
+?>
+```
+
