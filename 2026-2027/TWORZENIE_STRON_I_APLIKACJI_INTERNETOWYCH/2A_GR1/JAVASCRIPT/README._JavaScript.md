@@ -1,0 +1,488 @@
+## Wyszukiwanie elementów w dokumencie
+
+document to część tzw. DOM (Document Object Model) — czyli „drzewo” reprezentujące całą stronę.
+
+HTML = struktura strony
+document = interfejs JS do tej struktury
+
+1) `document.getElementById(id)`
+
+**Zwraca jeden element** o konkretnym identyfikatorze (atrybut `id`).
+Jeśli element nie istnieje — zwraca `null`.
+
+```HTML
+<p id="opis">To jest akapit.</p>
+
+<script>
+const akapit = document.getElementById("opis");
+akapit.style.color = "blue"; // zmiana koloru tekstu
+</script>
+```
+
+2) `document.getElementsByTagName(tagName)`
+
+**Zwraca kolekcję (HTMLCollection)** wszystkich elementów o danym znaczniku.
+
+```HTML
+<p>Tekst 1</p>
+<p>Tekst 2</p>
+
+<script>
+const akapity = document.getElementsByTagName("p");
+console.log(akapity.length); // 2
+akapity[0].style.fontWeight = "bold";
+</script>
+```
+
+3) `document.getElementsByClassName(className)`
+
+**Zwraca kolekcję (HTMLCollectio)** wszystkich elementów mających określoną klasę CSS.
+
+```HTML
+<div class="sekcja">Sekcja 1</div>
+<div class="sekcja">Sekcja 2</div>
+
+<script>
+const sekcje = document.getElementsByClassName("sekcja");
+sekcje[1].style.backgroundColor = "lightgreen";
+</script>
+```
+
+4) `document.getElementsByName(elementName)`
+
+**Zwraca kolekcję (NodeList)** elementów o danym atrybucie `name` (np. w formularzach).
+
+```HTML
+<input type="radio" name="gender" value="M"> Mężczyzna
+<input type="radio" name="gender" value="K"> Kobieta
+
+<script>
+const genders = document.getElementsByName("gender");
+genders[1].checked = true; // zaznacza "Kobieta"
+</script>
+
+```
+5) `document.querySelector(CSSselector)`
+
+**Zwraca pierwszy pasujący element** do podanego selektora CSS.
+
+```HTML
+<p class="text">Pierwszy akapit</p>
+<p class="text">Drugi akapit</p> 
+
+
+<script>
+const el = document.querySelector('.text');
+console.log(el.textContent); // ➜ "Pierwszy akapit"
+</script>
+```
+
+6) `document.querySelectorAll(CSSselector)`
+
+**Zwraca wszystkie pasujące elementy (NodeList)** do podanego selektora CSS.
+
+```HTML
+<ul>
+  <li class="item">A</li>
+  <li class="item">B</li>
+</ul>
+
+<script>
+const items = document.querySelectorAll(".item");
+items.forEach(el => el.style.color = "red");
+</script>
+```
+
+7) `element.closest(selector)`
+
+**Zwraca najbliższego przodka** (lub samego siebie), który pasuje do selektora.
+
+```HTML
+<div class="card">
+  <p><span id="tekst">Kliknij mnie</span></p>
+</div>
+
+<script>
+const span = document.getElementById("tekst");
+const card = span.closest(".card");
+card.style.border = "1px solid blue";
+</script>
+```
+
+8) `element.parentElement` / `element.children`
+
+**Dostęp do rodzica lub dzieci** konkretnego elementu.
+
+```HTML
+<div id="blok">
+  <p>Jeden</p>
+  <p>Dwa</p>
+</div>
+
+<script>
+const blok = document.getElementById("blok");
+console.log(blok.children.length); // 2
+</script>
+```
+9) `element.querySelector()` / `element.querySelectorAll()`
+
+Te same metody co w `document`, ale **ograniczone do danego elementu**.
+
+```HTML
+<div id="menu">
+  <a href="#">Start</a>
+  <a href="#">Kontakt</a>
+</div>
+
+<script>
+const menu = document.getElementById("menu");
+const kontakt = menu.querySelector("a:last-child");
+kontakt.style.color = "green";
+</script>
+```
+
+
+
+### TypeScript – wyszukiwanie elementów DOM
+
+Metody DOM są takie same jak w JavaScript, ale TypeScript zna typy elementów HTML i zwraca uwagę na możliwość otrzymania `null`.
+
+```TS
+const paragraph = document.getElementById("opis");
+// typ: HTMLElement | null
+
+if (paragraph !== null) {
+  paragraph.textContent = "Nowy tekst";
+}
+```
+
+Można też skorzystać z **optional chaining** `?.`:
+
+```TS
+document.getElementById("opis")?.classList.add("active");
+```
+
+Dla konkretnych elementów formularza często określamy dokładniejszy typ:
+
+```TS
+const email = document.querySelector<HTMLInputElement>("#email");
+
+if (email) {
+  console.log(email.value);
+}
+```
+
+Lub stosujemy **asercję typu** (`as`), gdy wiemy, jakiego elementu oczekujemy:
+
+```TS
+const input = document.getElementById("name") as HTMLInputElement | null;
+console.log(input?.value);
+```
+
+
+## 9. Zmiana treści i właściwości elementów HTML w JavaScript
+
+1. `element.innerHTML = "wartość"`
+
+• Zmienia zawartość HTML elementu.
+
+```JS
+var paragraf = document.getElementById("par1");
+paragraf.innerHTML = "Nowa treść paragrafu";
+```
+
+2. `element.attribute_name = "wartość"`
+
+• Zmiana wartości atrybutu bezpośrednio.
+
+```JS
+var obraz = document.getElementById("obrazek");
+obraz.src = "nowy_obraz.jpg";
+```
+
+3. `element.setAttribute(atrybut, wartosc)`
+
+• Ustawienie lub zmiana dowolnego atrybutu elementu.
+
+```JS
+obraz.setAttribute("alt", "Opis obrazka");
+```
+
+
+### TypeScript – zmiana właściwości elementów HTML
+
+Operacje na DOM są takie same, ale TypeScript sprawdza, czy dana właściwość istnieje dla określonego typu elementu.
+
+```TS
+const image = document.getElementById("obrazek") as HTMLImageElement | null;
+
+if (image) {
+  image.src = "nowy_obraz.jpg";
+  image.alt = "Opis obrazka";
+}
+```
+
+W TypeScript szczególnie warto używać `textContent`, gdy chcemy wstawić zwykły tekst. `innerHTML` powinno być używane ostrożnie, zwłaszcza gdy treść pochodzi od użytkownika.
+
+
+
+
+## 🖱️ Zdarzenia myszy w JavaScript
+
+🔹 1. `onclick` – kliknięcie myszką
+
+Występuje, gdy użytkownik **kliknie na dany element** (naciśnięcie i puszczenie lewego przycisku myszy).
+
+```HTML
+<button onclick="alert('Kliknięto przycisk!')">Kliknij mnie</button>
+```
+
+Zastosowanie:
+– do wywołania funkcji po kliknięciu,
+– otwierania linków,
+– wysyłania formularzy,
+– pokazywania lub ukrywania elementów.
+
+🔹 2. `ondblclick` – podwójne kliknięcie
+
+Reaguje na dwukrotne **szybkie kliknięcie w ten sam element**.
+
+```HTML
+<p ondblclick="this.style.color='red'">Kliknij mnie dwa razy, by zmienić kolor</p>
+```
+
+Zastosowanie:
+– do uruchamiania innej akcji niż pojedynczy klik (np. edycja tekstu, otwarcie szczegółów).
+
+🔹 3. `onmouseover` – najechanie kursorem
+
+Zdarzenie występuje, gdy **kursor myszy najedzie na element**.
+
+```HTML
+<div onmouseover="this.style.backgroundColor='lightgreen'">Najedź na mnie</div>
+```
+
+Zastosowanie:
+– podświetlanie przycisków,
+– pokazywanie podpowiedzi (tooltipów),
+– animacje po najechaniu.
+
+🔹 4. `onmouseout` – opuszczenie kursora
+
+Zdarzenie mouseout występuje, gdy **kursor opuszcza element, również wtedy, gdy przechodzi z niego na element potomny**.
+
+Przykład:
+```HTML
+<div onmouseout="alert('mouseout')">
+    Rodzic
+    <p>Dziecko</p>
+</div>
+```
+
+Jeżeli przesuniemy kursor z obszaru rodzica na element `<p>`, zdarzenie mouseout zostanie wywołane na rodzicu.
+
+Zastosowanie:
+– przywracanie wyglądu po onmouseover,
+– ukrywanie dodatkowych informacji,
+– zatrzymywanie animacji.
+
+🔹 5. `onmousedown` – naciśnięcie przycisku myszy
+
+Wywołuje się w momencie **naciśnięcia przycisku myszy** (jeszcze przed jego puszczeniem).
+
+```HTML
+<button onmousedown="alert('Naciśnięto przycisk myszy')">
+    Kliknij mnie
+</button>
+```
+Komunikat pojawi się już w chwili naciśnięcia przycisku myszy.
+
+Zastosowanie:
+– efekt „wciśniętego” przycisku,
+– rozpoczęcie przeciągania elementu.
+
+🔹 6. `onmouseup` – puszczenie przycisku myszy
+
+Zdarzenie `onmouseup` jest wywoływane **w momencie zwolnienia wcześniej naciśniętego przycisku myszy**.
+
+```HTML
+<button onmouseup="alert('Zwolniono przycisk myszy')">
+    Kliknij mnie
+</button>
+```
+
+Komunikat pojawi się dopiero po puszczeniu przycisku myszy.
+
+Zastosowanie:
+– zakończenie przeciągania,
+– rejestrowanie akcji po zakończeniu kliknięcia.
+
+🔹 7. `onmouseenter` – wejście kursora na element
+Zdarzenie występuje, gdy **kursor myszy wejdzie na obszar danego elementu**.
+
+W przeciwieństwie do onmouseover, nie uruchamia się ponownie podczas przechodzenia kursorem na elementy potomne.
+
+```HTML
+<div onmouseenter="this.style.backgroundColor='orange'">
+    Najedź na mnie
+</div>
+```
+
+Zastosowanie:
+- podświetlanie elementów,
+- wyświetlanie menu,
+- uruchamianie animacji.
+
+
+🔹 8. `onmouseleave` – opuszczenie elementu przez kursor
+Zdarzenie mouseleave występuje, gdy kursor opuszcza cały obszar elementu wraz z jego elementami potomnymi.
+
+Przykład:
+```HTML
+<div onmouseleave="alert('mouseleave')">
+    Rodzic
+    <p>Dziecko</p>
+</div>
+```
+
+Jeżeli przesuniemy kursor z rodzica na `<p>`, zdarzenie nie zostanie wywołane.
+
+Dopiero gdy kursor opuści cały obszar `<div>`, zdarzenie mouseleave zostanie uruchomione.
+
+Zastosowanie:
+- przywracanie pierwotnego wyglądu elementu,
+- ukrywanie rozwijanych menu,
+- kończenie animacji.
+
+
+🔹 9. `onmousemove` – poruszanie kursorem myszy
+Zdarzenie występuje, gdy **kursor myszy porusza się w obrębie elementu**.
+
+```HTML
+<div onmousemove="this.innerText='Poruszasz myszą!'">
+    Poruszaj kursorem w tym obszarze
+</div>
+```
+
+
+Zastosowanie:
+- śledzenie pozycji kursora,
+- tworzenie gier,
+- rysowanie myszą,
+- interaktywne animacje.
+
+
+### TypeScript – zdarzenia myszy
+
+W TypeScript możemy określić typ obiektu zdarzenia, np. `MouseEvent`:
+
+```TS
+const button = document.querySelector<HTMLButtonElement>("#btn");
+
+button?.addEventListener("click", (event: MouseEvent) => {
+  console.log("Kliknięto:", event.clientX, event.clientY);
+});
+```
+
+W nowoczesnym JavaScript i TypeScript zamiast atrybutów HTML takich jak `onclick` często stosuje się `addEventListener()`.
+
+
+--
+## **camelCase**
+
+**W JavaScript możemy zmieniać wygląd elementów HTML za pomocą właściwości style**, np. kolor tła, kolor tekstu, wielkość czcionki, obramowanie czy wyrównanie tekstu.
+
+**Warto przy tym rozróżnić trzy rzeczy**:
+1. **Pobranie elementu HTML** – np. `getElementById()`, `getElementsByClassName()`, `querySelector()`.
+2. **Dostęp do jego stylów** – za pomocą właściwości `.style`.
+3. **Zmianę konkretnej właściwości CSS** – np. `.backgroundColor`, `.color`, `.fontSize`.
+
+### W CSS piszemy `background-color`, a w JavaScript `backgroundColor`
+
+W CSS nazwy właściwości składające się z kilku słów zapisujemy z myślnikiem:
+```CSS
+.informacja {
+    background-color: lightblue;
+    font-size: 20px;
+    border-radius: 10px;
+}
+```
+Natomiast w JavaScript, gdy korzystamy z .style, najczęściej używamy zapisu **camelCase**.
+
+**Oznacza to, że:**
+- **Usuwamy myślnik**.
+- **Pierwsze słowo zapisujemy małą literą**.
+- **Każde kolejne słowo rozpoczynamy wielką literą**
+
+
+| Właściwość CSS     | Właściwość JavaScript | Zastosowanie                       |
+|--------------------|-----------------------|------------------------------------|
+| `background-color` | `backgroundColor`     | Zmiana koloru tła                  |
+| `font-size`        | `fontSize`            | Zmiana wielkości czcionki          |
+| `font-weight`      | `fontWeight`          | Pogrubienie tekstu                 |
+| `font-style`       | `fontStyle`           | Zmiana stylu czcionki, np. kursywa |
+| `border-radius`    | `borderRadius`        | Zaokrąglenie narożników            |
+| `text-align`       | `textAlign`           | Wyrównanie tekstu                  |
+| `box-shadow`       | `boxShadow`           | Dodanie cienia do elementu         |
+| `list-style-type`  | `listStyleType`       | Zmiana rodzaju wypunktowania listy |
+| `color`            | `color`               | Zmiana koloru tekstu               |
+| `border`           | `border`              | Ustawienie obramowania             |
+| `opacity`          | `opacity`             | Zmienia przezroczystość elementu   |
+
+
+### Czcionka i tekst
+
+| Właściwość       | Działanie              | Przykład      |
+|------------------|------------------------|---------------|
+| `fontSize`       | Wielkość czcionki      | `"24px"`      |
+| `fontWeight`     | Grubość czcionki       | `"bold"`      |
+| `fontStyle`      | Styl czcionki          | `"italic"`    |
+| `fontFamily`     | Rodzaj czcionki        | `"Arial"`     |
+| `textAlign`      | Wyrównanie tekstu      | `"center"`    |
+| `textDecoration` | Dekoracja tekstu       | `"underline"` |
+| `textTransform`  | Zmiana wielkości liter | `"uppercase"` |
+
+
+### Obramowanie
+
+| Właściwość     | Działanie               | Przykład             |
+|----------------|-------------------------|----------------------|
+| `border`       | Obramowanie elementu    | `"2px solid red"`    |
+| `borderColor`  | Kolor obramowania       | `"blue"`             |
+| `borderWidth`  | Grubość obramowania     | `"3px"`              |
+| `borderStyle`  | Styl obramowania        | `"dashed"`           |
+| `borderRadius` | Zaokrąglenie narożników | `"10px"`             |
+| `boxShadow`    | Cień elementu           | `"2px 2px 5px gray"` |
+  
+
+
+### Rozmiary i odstępy
+
+| Właściwość   | Działanie           | Przykład      |
+|--------------|---------------------|---------------|
+| `width`      | Szerokość elementu  | `"300px"`     |
+| `height`     | Wysokość elementu   | `"150px"`     |
+| `padding`    | Odstęp wewnętrzny   | `"20px"`      |
+| `margin`     | Odstęp zewnętrzny   | `"10px"`      |
+| `display`    | Sposób wyświetlania | `"none"`      |
+| `visibility` | Widoczność elementu | `"hidden"`    |
+
+**JavaScript udostępnia te style jako właściwości obiektu. Myślnik - w zwykłym wyrażeniu JavaScript jest traktowany jako operator odejmowania.**
+
+
+Dlatego piszemy:
+
+`element.style.backgroundColor = "red";`
+
+
+A nie:
+
+`element.style.background-color = "red"; // BŁĄD`
+
+
+M**ożemy jednak używać oryginalnych nazw CSS za pomocą metody setProperty()**:
+
+`element.style.setProperty("background-color", "red");`
+
+
+Oba poprawne sposoby ustawiają tę samą właściwość CSS.
