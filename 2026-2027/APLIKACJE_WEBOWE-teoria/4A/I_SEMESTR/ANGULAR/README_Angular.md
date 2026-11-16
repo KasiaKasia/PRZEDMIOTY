@@ -504,6 +504,15 @@ Przydatny gdy mamy tylko mało komponentów do prezentacji
 ```
 
 
+Korzystanie z dyrektywy ngModel na trzy sposoby:
+
+1. `[ngModel]` – wiązanie jednokierunkowe, z TypeScript do HTML.
+
+2. `[(ngModel)]` – wiązanie dwukierunkowe, pomiędzy TypeScript i HTML.
+
+3. `ngModel` – dyrektywa bez nawiasów, która pozwala zarządzać wartością pola formularza bez powiązania jej ze zmienną komponentu.
+
+
 **2. Formularze reaktywne (Reactive Forms)**
 
 - Wykorzystują moduł ReactiveFormsModule.
