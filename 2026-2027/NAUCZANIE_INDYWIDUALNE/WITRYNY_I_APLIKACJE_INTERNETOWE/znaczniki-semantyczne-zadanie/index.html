@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal wydarzeń i konkursów szkolnych</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            color: #222;
+        }
+
+        header {
+            background-color: #205782;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background-color: #3278a8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        main {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            min-height: 500px;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            width: 65%;
+            border-radius: 8px;
+        }
+
+        aside {
+            background-color: #eaf5ff;
+            padding: 20px;
+            width: 35%;
+            border-radius: 8px;
+        }
+
+        article {
+            background-color: #f1f8ff;
+            border: 1px solid #aacde5;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        h2, h3 {
+            color: #205782;
+        }
+
+        details {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #dceeff;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        progress, meter {
+            width: 100%;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            background-color: #205782;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #205782;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        address {
+            font-style: normal;
+            line-height: 1.8;
+        }
+
+        dialog {
+            border: 2px solid #205782;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        @media (max-width: 700px) {
+            main {
+                flex-direction: column;
+            }
+
+            section, aside {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--
+    ZADANIE – PORTAL WYDARZEŃ I KONKURSÓW SZKOLNYCH
+
+    Cel:
+    Utwórz stronę internetową przedstawiającą wydarzenia
+    i konkursy organizowane w szkole.
+
+    Wykorzystaj znaczniki semantyczne HTML5.
+
+    WAŻNE:
+    - Style CSS zostały już przygotowane.
+    - Nie modyfikuj kodu CSS.
+    - Nie dodawaj własnych stylów CSS.
+    - Nie używaj zdjęć ani grafik.
+    - Uzupełnij wyłącznie kod wewnątrz <body>.
+
+
+    1. NAGŁÓWEK STRONY – HEADER
+
+    Utwórz nagłówek za pomocą znacznika <header>.
+
+    Umieść w nim:
+    - nagłówek h1:
+      "Portal wydarzeń szkolnych",
+
+    - akapit:
+      "Sprawdź aktualne konkursy i wydarzenia organizowane w naszej szkole".
+
+
+    2. MENU NAWIGACYJNE – NAV
+
+    Pod nagłówkiem utwórz element <nav>.
+
+    Umieść w nim trzy odnośniki:
+
+    - Strona główna – index.html
+    - Konkursy – konkursy.html
+    - Kontakt – kontakt.html
+
+    Zastosuj znacznik <a> oraz atrybut href.
+
+    Utwórz również pliki:
+    - konkursy.html
+    - kontakt.html
+
+    Każdy dodatkowy plik powinien zawierać podstawową strukturę dokumentu HTML, nagłówek h1 i odnośnik powrotny do index.html.
+
+
+    3. GŁÓWNA ZAWARTOŚĆ – MAIN
+
+    Utwórz znacznik <main>.
+
+    Wewnątrz umieść dwa elementy:
+
+    - <section> – lewa kolumna,
+    - <aside> – prawa kolumna.
+
+    Lewa kolumna zajmuje 65% szerokości.
+    Prawa kolumna zajmuje 35% szerokości.
+
+    Układ został już przygotowany w CSS.
+
+
+    4. LEWA KOLUMNA – SECTION
+
+    W elemencie <section> umieść:
+
+    a) Nagłówek h2:
+       "Nadchodzące wydarzenia".
+
+    b) Trzy artykuły za pomocą <article>.
+
+
+    ARTYKUŁ 1 – KONKURS INFORMATYCZNY
+
+    Umieść:
+    - nagłówek h3:
+      "Szkolny konkurs informatyczny",
+
+    - akapit:
+      "Zapraszamy uczniów do udziału w konkursie sprawdzającym umiejętności programowania.",
+
+    - datę wydarzenia: 15 marca 2027
+
+    Datę zapisz znacznikiem <time> z atrybutem datetime="2027-03-15".
+
+
+    ARTYKUŁ 2 – DZIEŃ OTWARTY
+
+    Umieść:
+    - nagłówek h3:
+      "Dzień otwarty szkoły",
+
+    - akapit:
+      "Zapraszamy przyszłych uczniów na dzień otwarty naszej szkoły.",
+
+    - wyróżnij słowa: "dzień otwarty"
+
+    Do wyróżnienia zastosuj znacznik <mark>.
+
+
+    ARTYKUŁ 3 – WARSZTATY PROGRAMOWANIA
+
+    Umieść:
+    - nagłówek h3:
+      "Warsztaty programowania",
+
+    - akapit:
+      "Podczas warsztatów uczniowie poznają podstawy tworzenia aplikacji internetowych.",
+
+    - datę wydarzenia: 20 kwietnia 2027
+
+    Zastosuj znacznik <time> z atrybutem datetime="2027-04-20".
+
+
+    5. ROZWIJANY PANEL – DETAILS I SUMMARY
+
+    Pod artykułami, nadal w elemencie <section>,
+    utwórz rozwijany panel informacyjny.
+
+    Wykorzystaj:
+    - <details>
+    - <summary>
+
+    Nagłówek panelu:
+    "Zasady udziału w konkursach".
+
+    Po rozwinięciu wyświetl akapit:
+    "W konkursach mogą uczestniczyć wszyscy uczniowie naszej szkoły. Udział jest bezpłatny."
+
+
+    6. PRAWA KOLUMNA – ASIDE
+
+    W prawej części strony umieść:
+
+    a) Nagłówek h2:
+       "Panel zgłoszeniowy".
+
+    b) Formularz zgłoszenia na wydarzenie.
+
+    Formularz powinien zawierać:
+
+    - Imię – input type="text"
+    - Nazwisko – input type="text"
+    - E-mail – input type="email"
+
+    - Wybór wydarzenia – select
+      zawierający trzy opcje:
+
+      * Konkurs informatyczny
+      * Dzień otwarty
+      * Warsztaty programowania
+
+    - Dodatkowe informacje – textarea
+
+    - Przycisk "Zgłoś udział"  button type="submit"
+
+    Pola imię, nazwisko, e-mail oraz wybór wydarzenia powinny być obowiązkowe.
+
+    Zastosuj atrybut required.
+
+    Formularz nie musi przesyłać danych do serwera.
+
+
+    7. PASEK POSTĘPU – PROGRESS
+
+    W elemencie <aside>, pod formularzem,
+    umieść:
+
+    - nagłówek h3:
+      "Postęp zapisów na konkurs",
+
+    - element <progress> z atrybutami:
+      value="70"
+      max="100"
+
+    Pod paskiem wyświetl akapit:
+    "Zapełniono 70% dostępnych miejsc".
+
+
+    8. WSKAŹNIK WARTOŚCI – METER
+
+    W elemencie <aside> umieść:
+
+    - nagłówek h3:
+      "Frekwencja na wydarzeniach",
+
+    - element <meter> z atrybutami:
+      min="0"
+      max="100"
+      value="90"
+
+    Pod wskaźnikiem wyświetl akapit:
+    "Średnia frekwencja wynosi 90%".
+
+
+    9. STOPKA STRONY – FOOTER
+
+    Na dole strony utwórz <footer>.
+
+    Umieść w nim:
+
+    a) Akapit:
+       "Portal wydarzeń szkolnych – 2027".
+
+    b) Dane kontaktowe w elemencie <address>:
+
+       Szkoła Informatyczna
+       ul. Szkolna 15, Warszawa
+       E-mail: wydarzenia@szkola.pl
+
+    Adres e-mail powinien być odnośnikiem
+    wykorzystującym mailto:.
+
+
+    10. OKNO DIALOGOWE – DIALOG
+
+    Pod znacznikiem <footer> utwórz element <dialog>.
+
+    Wewnątrz umieść:
+    - nagłówek h2:
+      "Informacja dla uczniów",
+
+    - akapit:
+      "Zapisy na wydarzenia szkolnesą już dostępne.",
+
+    - przycisk z tekstem "Zamknij".
+
+    Aby okno było widoczne po uruchomieniu strony, zastosuj atrybut open.
+
+    Przycisk "Zamknij" nie musi działać, ponieważ zadanie dotyczy wyłącznie HTML.
+
+
+    WYMAGANIA KOŃCOWE
+
+    - Zastosuj znaczniki semantyczne HTML5.
+    - Element <main> powinien występować raz.
+    - Strona musi zawierać nagłówek i stopkę.
+    - Wewnątrz main utwórz section i aside.
+    - W section umieść trzy artykuły.
+    - Zastosuj znaczniki time oraz mark.
+    - Utwórz panel details i summary.
+    - Utwórz formularz HTML.
+    - Zastosuj elementy progress i meter.
+    - Utwórz okno dialogowe.
+    - Zachowaj przygotowane style CSS.
+    - Nie dodawaj obrazów ani grafik.
+    - Prawidłowo zagnieżdżaj znaczniki.
+    - Zamknij wszystkie znaczniki,
+      które wymagają zamknięcia.
+    -->
+
+
+    <!-- TUTAJ UTWÓRZ HEADER -->
+
+
+    <!-- TUTAJ UTWÓRZ NAV -->
+
+
+    <!-- TUTAJ UTWÓRZ MAIN -->
+
+
+        <!-- LEWA KOLUMNA – SECTION -->
+
+
+            <!-- ARTYKUŁ 1 – KONKURS INFORMATYCZNY -->
+
+
+            <!-- ARTYKUŁ 2 – DZIEŃ OTWARTY -->
+
+
+            <!-- ARTYKUŁ 3 – WARSZTATY PROGRAMOWANIA -->
+
+
+            <!-- DETAILS I SUMMARY -->
+
+
+
+        <!-- PRAWA KOLUMNA – ASIDE -->
+
+
+            <!-- FORMULARZ ZGŁOSZENIOWY -->
+
+
+            <!-- PROGRESS -->
+
+
+            <!-- METER -->
+
+
+
+    <!-- TUTAJ UTWÓRZ FOOTER -->
+
+
+    <!-- TUTAJ UTWÓRZ DIALOG -->
+
+
+</body>
+
+</html>

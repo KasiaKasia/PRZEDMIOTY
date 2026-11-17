@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal szkolny – Moja szkoła</title>
+    <title>Portal wydarzeń i konkursów szkolnych</title>
 
     <style>
         * {
@@ -71,22 +71,6 @@
             color: #205782;
         }
 
-        figure {
-            margin: 15px 0;
-            text-align: center;
-        }
-
-        figure img,
-        picture img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        figcaption {
-            font-style: italic;
-            margin-top: 8px;
-        }
-
         details {
             margin-top: 15px;
             padding: 12px;
@@ -102,7 +86,7 @@
             width: 100%;
         }
 
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 8px;
             margin: 8px 0;
@@ -149,193 +133,255 @@
 <body>
 
     <!--
-    ZADANIE – PORTAL SZKOLNY
+    ZADANIE – PORTAL WYDARZEŃ I KONKURSÓW SZKOLNYCH
 
     Cel:
-    Utwórz stronę internetową "Portal szkolny",
-    wykorzystując znaczniki semantyczne HTML5.
+    Utwórz stronę internetową przedstawiającą wydarzenia
+    i konkursy organizowane w szkole.
 
-    Wykorzystaj przygotowane style CSS.
-    Nie zmieniaj nazw znaczników w selektorach CSS.
+    Wykorzystaj znaczniki semantyczne HTML5.
+
+    WAŻNE:
+    - Style CSS zostały już przygotowane.
+    - Nie modyfikuj kodu CSS.
+    - Nie dodawaj własnych stylów CSS.
+    - Nie używaj zdjęć ani grafik.
+    - Uzupełnij wyłącznie kod wewnątrz <body>.
 
 
     1. NAGŁÓWEK STRONY – HEADER
 
-    Utwórz nagłówek strony za pomocą znacznika
-    <header>.
+    Utwórz nagłówek za pomocą znacznika <header>.
 
-    W nagłówku umieść:
-    - nagłówek h1 z tekstem "Portal szkolny",
-    - akapit z tekstem
-      "Witamy na stronie naszej szkoły".
+    Umieść w nim:
+    - nagłówek h1:
+      "Portal wydarzeń szkolnych",
+
+    - akapit:
+      "Sprawdź aktualne konkursy i wydarzenia organizowane w naszej szkole".
 
 
     2. MENU NAWIGACYJNE – NAV
 
     Pod nagłówkiem utwórz element <nav>.
 
-    Umieść w nim dwa odnośniki:
+    Umieść w nim trzy odnośniki:
 
     - Strona główna – index.html
+    - Konkursy – konkursy.html
     - Kontakt – kontakt.html
 
-    Do tworzenia odnośników zastosuj znacznik <a> i atrybut href.
+    Zastosuj znacznik <a> oraz atrybut href.
 
-    Utwórz również plik kontakt.html,  aby drugi odnośnik prowadził do istniejącej podstrony.
+    Utwórz również pliki:
+    - konkursy.html
+    - kontakt.html
+
+    Każdy dodatkowy plik powinien zawierać podstawową strukturę dokumentu HTML, nagłówek h1 i odnośnik powrotny do index.html.
 
 
-    3. GŁÓWNA ZAWARTOŚĆ STRONY – MAIN
+    3. GŁÓWNA ZAWARTOŚĆ – MAIN
 
     Utwórz znacznik <main>.
 
-    Wewnątrz elementu main umieść dwie części:
+    Wewnątrz umieść dwa elementy:
 
-    LEWA CZĘŚĆ – <section>
-    PRAWA CZĘŚĆ – <aside>
+    - <section> – lewa kolumna,
+    - <aside> – prawa kolumna.
 
-    Lewa część powinna zajmować 65% szerokości, a prawa 35%. -> to jest już zrobione w CSS.
+    Lewa kolumna zajmuje 65% szerokości.
+    Prawa kolumna zajmuje 35% szerokości.
 
-    Układ kolumn został przygotowany w CSS za pomocą display: flex.
+    Układ został już przygotowany w CSS.
 
 
-    4. LEWA CZĘŚĆ STRONY – SECTION
+    4. LEWA KOLUMNA – SECTION
 
     W elemencie <section> umieść:
 
     a) Nagłówek h2:
-       "Aktualności szkolne".
+       "Nadchodzące wydarzenia".
 
-    b) Dwa artykuły za pomocą <article>.
-
-    ARTYKUŁ 1:
-    - nagłówek h3 "Dzień sportu",
-    - akapit opisujący wydarzenie,
-    - datę wydarzenia zapisaną znacznikiem <time> z atrybutem datetime="2026-10-15".
-
-    ARTYKUŁ 2:
-    - nagłówek h3 "Konkurs programistyczny",
-    - akapit opisujący konkurs,
-    - wyróżnij słowa "konkurs programistyczny"
-      znacznikiem <mark>.
+    b) Trzy artykuły za pomocą <article>.
 
 
-    5. ILUSTRACJA – FIGURE I FIGCAPTION
+    ARTYKUŁ 1 – KONKURS INFORMATYCZNY
 
-    W lewej części strony dodaj ilustrację  za pomocą znacznika <figure>.
+    Umieść:
+    - nagłówek h3:
+      "Szkolny konkurs informatyczny",
 
-    Wewnątrz umieść:
-    - obraz <img> przedstawiający szkołę,
-    - podpis <figcaption>
-      "Budynek naszej szkoły".
+    - akapit:
+      "Zapraszamy uczniów do udziału w konkursie sprawdzającym umiejętności programowania.",
 
-    Obraz zapisz w folderze images.
+    - datę wydarzenia: 15 marca 2027
+
+    Datę zapisz znacznikiem <time> z atrybutem datetime="2027-03-15".
 
 
-    6. DODATKOWE INFORMACJE – DETAILS I SUMMARY
+    ARTYKUŁ 2 – DZIEŃ OTWARTY
 
-    W lewej części strony umieść
-    rozwijany panel informacyjny.
+    Umieść:
+    - nagłówek h3:
+      "Dzień otwarty szkoły",
+
+    - akapit:
+      "Zapraszamy przyszłych uczniów na dzień otwarty naszej szkoły.",
+
+    - wyróżnij słowa: "dzień otwarty"
+
+    Do wyróżnienia zastosuj znacznik <mark>.
+
+
+    ARTYKUŁ 3 – WARSZTATY PROGRAMOWANIA
+
+    Umieść:
+    - nagłówek h3:
+      "Warsztaty programowania",
+
+    - akapit:
+      "Podczas warsztatów uczniowie poznają podstawy tworzenia aplikacji internetowych.",
+
+    - datę wydarzenia: 20 kwietnia 2027
+
+    Zastosuj znacznik <time> z atrybutem datetime="2027-04-20".
+
+
+    5. ROZWIJANY PANEL – DETAILS I SUMMARY
+
+    Pod artykułami, nadal w elemencie <section>,
+    utwórz rozwijany panel informacyjny.
 
     Wykorzystaj:
-    - <details>,
-    - <summary>.
+    - <details>
+    - <summary>
 
     Nagłówek panelu:
-    "Godziny pracy sekretariatu".
+    "Zasady udziału w konkursach".
 
-    Po rozwinięciu powinien pojawić się tekst:
-    "Poniedziałek – piątek: 8:00–16:00".
+    Po rozwinięciu wyświetl akapit:
+    "W konkursach mogą uczestniczyć wszyscy uczniowie naszej szkoły. Udział jest bezpłatny."
 
 
-    7. PRAWA CZĘŚĆ STRONY – ASIDE
+    6. PRAWA KOLUMNA – ASIDE
 
     W prawej części strony umieść:
 
     a) Nagłówek h2:
-       "Panel ucznia".
+       "Panel zgłoszeniowy".
 
-    b) Formularz HTML zawierający:
-       - Imię 
-       - E-mail 
-       - Wiadomość – textarea,
-       - Przycisk "Wyślij" – button type="submit".
+    b) Formularz zgłoszenia na wydarzenie.
 
-    Wszystkie pola powinny być obowiązkowe.
+    Formularz powinien zawierać:
+
+    - Imię – input type="text"
+    - Nazwisko – input type="text"
+    - E-mail – input type="email"
+
+    - Wybór wydarzenia – select
+      zawierający trzy opcje:
+
+      * Konkurs informatyczny
+      * Dzień otwarty
+      * Warsztaty programowania
+
+    - Dodatkowe informacje – textarea
+
+    - Przycisk "Zgłoś udział"  button type="submit"
+
+    Pola imię, nazwisko, e-mail oraz wybór wydarzenia powinny być obowiązkowe.
+
+    Zastosuj atrybut required.
 
     Formularz nie musi przesyłać danych do serwera.
 
 
-    8. PASEK POSTĘPU – PROGRESS
+    7. PASEK POSTĘPU – PROGRESS
 
-    W prawej części strony umieść:
+    W elemencie <aside>, pod formularzem,
+    umieść:
 
-    - nagłówek h3 "Postęp kursu HTML",
-    - element <progress>,
-    - wartość value="60",
-    - wartość max="100".
+    - nagłówek h3:
+      "Postęp zapisów na konkurs",
 
-    Pod paskiem wyświetl tekst:
-    "Ukończono 60% kursu".
+    - element <progress> z atrybutami:
+      value="70"
+      max="100"
 
-
-    9. WSKAŹNIK WARTOŚCI – METER
-
-    W prawej części strony umieść:
-
-    - nagłówek h3 "Frekwencja klasy",
-    - element <meter>,
-    - min="0",
-    - max="100",
-    - value="85".
-
-    Pod wskaźnikiem wyświetl tekst:
-    "Frekwencja wynosi 85%".
+    Pod paskiem wyświetl akapit:
+    "Zapełniono 70% dostępnych miejsc".
 
 
-    10. STOPKA STRONY – FOOTER
+    8. WSKAŹNIK WARTOŚCI – METER
 
-    Na dole strony utwórz znacznik <footer>.
+    W elemencie <aside> umieść:
+
+    - nagłówek h3:
+      "Frekwencja na wydarzeniach",
+
+    - element <meter> z atrybutami:
+      min="0"
+      max="100"
+      value="90"
+
+    Pod wskaźnikiem wyświetl akapit:
+    "Średnia frekwencja wynosi 90%".
+
+
+    9. STOPKA STRONY – FOOTER
+
+    Na dole strony utwórz <footer>.
 
     Umieść w nim:
 
     a) Akapit:
-       "Portal szkolny – 2026".
+       "Portal wydarzeń szkolnych – 2027".
 
     b) Dane kontaktowe w elemencie <address>:
-       - Adres: ul. Szkolna 10, Warszawa
-       - E-mail: sekretariat@szkola.pl
 
-    Adres e-mail powinien być odnośnikiem wykorzystującym mailto:.
+       Szkoła Informatyczna
+       ul. Szkolna 15, Warszawa
+       E-mail: wydarzenia@szkola.pl
+
+    Adres e-mail powinien być odnośnikiem
+    wykorzystującym mailto:.
 
 
+    10. OKNO DIALOGOWE – DIALOG
 
-    11. OBRAZY RESPONSYWNE – PICTURE
+    Pod znacznikiem <footer> utwórz element <dialog>.
 
-    W lewej części strony dodaj nagłówek h3 "Galeria szkolna".
+    Wewnątrz umieść:
+    - nagłówek h2:
+      "Informacja dla uczniów",
 
-    Pod nagłówkiem utwórz element <picture>.
+    - akapit:
+      "Zapisy na wydarzenia szkolnesą już dostępne.",
 
-    Wykorzystaj:
-    - <source> dla szerokości do 600px,
-    - <img> jako obraz domyślny.
+    - przycisk z tekstem "Zamknij".
 
-    Przygotuj dwa obrazy:
-    - images/szkola-mala.jpg,
-    - images/szkola-duza.jpg.
+    Aby okno było widoczne po uruchomieniu strony, zastosuj atrybut open.
+
+    Przycisk "Zamknij" nie musi działać, ponieważ zadanie dotyczy wyłącznie HTML.
 
 
     WYMAGANIA KOŃCOWE
 
     - Zastosuj znaczniki semantyczne HTML5.
-    - Element main powinien występować tylko raz.
-    - Strona powinna mieć nagłówek i stopkę.
-    - W main utwórz dwie kolumny.
-    - Lewa kolumna zawiera aktualności.
-    - Prawa kolumna zawiera panel ucznia.
-    - Menu nawigacyjne zawiera dwa odnośniki.
+    - Element <main> powinien występować raz.
+    - Strona musi zawierać nagłówek i stopkę.
+    - Wewnątrz main utwórz section i aside.
+    - W section umieść trzy artykuły.
+    - Zastosuj znaczniki time oraz mark.
+    - Utwórz panel details i summary.
+    - Utwórz formularz HTML.
+    - Zastosuj elementy progress i meter.
+    - Utwórz okno dialogowe.
     - Zachowaj przygotowane style CSS.
-    - Kod HTML powinien być poprawnie zagnieżdżony.
-    - Wszystkie znaczniki wymagające zamknięcia powinny zostać prawidłowo zamknięte.
+    - Nie dodawaj obrazów ani grafik.
+    - Prawidłowo zagnieżdżaj znaczniki.
+    - Zamknij wszystkie znaczniki,
+      które wymagają zamknięcia.
     -->
 
 
@@ -348,26 +394,33 @@
     <!-- TUTAJ UTWÓRZ MAIN -->
 
 
-        <!-- LEWA CZĘŚĆ – SECTION -->
-
-            <!-- Artykuły ARTICLE -->
-
-            <!-- Data TIME i wyróżnienie MARK -->
-
-            <!-- Ilustracja FIGURE i FIGCAPTION -->
-
-            <!-- DETAILS i SUMMARY -->
-
-            <!-- PICTURE -->
+        <!-- LEWA KOLUMNA – SECTION -->
 
 
-        <!-- PRAWA CZĘŚĆ – ASIDE -->
+            <!-- ARTYKUŁ 1 – KONKURS INFORMATYCZNY -->
 
-            <!-- Formularz HTML -->
+
+            <!-- ARTYKUŁ 2 – DZIEŃ OTWARTY -->
+
+
+            <!-- ARTYKUŁ 3 – WARSZTATY PROGRAMOWANIA -->
+
+
+            <!-- DETAILS I SUMMARY -->
+
+
+
+        <!-- PRAWA KOLUMNA – ASIDE -->
+
+
+            <!-- FORMULARZ ZGŁOSZENIOWY -->
+
 
             <!-- PROGRESS -->
 
+
             <!-- METER -->
+
 
 
     <!-- TUTAJ UTWÓRZ FOOTER -->
