@@ -932,6 +932,7 @@ o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowani
 = Łatwa **replikacja** i **sharding** (rozbijanie bazy na wiele serwerów) 
 
  
+ 
 
 ## Zarządzanie bezpieczeństwem bazy danych.
 
@@ -1082,3 +1083,146 @@ na:
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 ```
 spowoduje możliwośc logowania się innymi użytkkownikami.
+
+## krok po kroku tworzenie uzytkoniwka i sprawdzenie uprawnień
+
+**Krok 1. Utworzenie bazy danych i tabeli**
+Zaloguj się do phpMyAdmin jako `root` i przejdź do zakładki SQL.
+
+**Wykonaj:**
+```SQL
+CREATE DATABASE IF NOT EXISTS biblioteka_szkolna;
+
+USE biblioteka_szkolna;
+
+CREATE TABLE IF NOT EXISTS ksiazki (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tytul VARCHAR(100),
+    autor VARCHAR(100),
+    rok_wydania INT
+);
+
+
+INSERT INTO ksiazki (tytul, autor, rok_wydania)
+VALUES
+('Lalka', 'Bolesław Prus', 1890),
+('Pan Tadeusz', 'Adam Mickiewicz', 1834),
+('Quo Vadis', 'Henryk Sienkiewicz', 1896);
+```
+**Krok 2. Utworzenie użytkownika uczen**
+
+**W phpMyAdmin, będąc zalogowanym jako `root`, wykonaj:**
+```SQL
+CREATE USER 'uczen'@'localhost'
+IDENTIFIED BY '';
+```
+
+
+**Krok 3. Nadanie uprawnienia do jednej tabeli**
+Chcemy, aby użytkownik uczen mógł wyłącznie odczytywać dane z tabeli ksiazki.
+
+**Wykonaj:**
+```SQL
+GRANT SELECT
+ON biblioteka_szkolna.ksiazki
+TO 'uczen'@'localhost';
+```
+
+**Od tej chwili użytkownik może wykonywać np.:**
+```SQL
+SELECT * FROM biblioteka_szkolna.ksiazki;
+```
+
+**Nie powinien natomiast mieć możliwości wykonywania INSERT, UPDATE i DELETE**, o ile nie nadano mu takich praw w inny sposób.
+
+
+**Krok 4. Sprawdzenie nadanych uprawnień**
+Nadal jako `root` wykonaj:
+
+```SQL
+SHOW GRANTS FOR 'uczen'@'localhost';
+```
+
+Wynik:
+
+```SQL
+GRANT USAGE ON *.* TO 'uczen'@'localhost';
+
+GRANT SELECT ON `biblioteka_szkolna`.`ksiazki`
+TO 'uczen'@'localhost';
+```
+
+**Krok 5. Zalogowanie się jako użytkownik uczen**
+Teraz musimy sprawdzić, czy ograniczenia rzeczywiście działają.
+
+Ważne: Nie wystarczy wykonywać kolejnych zapytań w tej samej sesji phpMyAdmin, ponieważ nadal możesz być zalogowana jako `root`.
+
+
+**Krok 6. Sprawdzenie, na jakiego użytkownika jesteśmy zalogowani**
+**Wykonaj:**
+
+```SQL
+SELECT CURRENT_USER();
+```
+Następnie sprawdź własne uprawnienia:
+```SQL
+SHOW GRANTS;
+```
+
+**Krok 7. Próba odczytu danych – operacja dozwolona**
+**Jako użytkownik uczen wykonaj:**
+```SQL
+SELECT * FROM biblioteka_szkolna.ksiazki;
+```
+
+
+**Krok 8. Próba modyfikowania danych – operacja zabroniona**
+**Spróbuj zmienić tytuł książki:**
+```SQL
+UPDATE biblioteka_szkolna.ksiazki
+SET tytul = 'Nowy tytuł'
+WHERE id = 1;
+```
+
+Oczekiwany wynik: odmowa dostępu.
+```text
+Przykładowy komunikat:
+ERROR 1142 (42000):
+UPDATE command denied to user 'uczen'@'localhost'
+for table 'ksiazki'
+```
+
+
+**Analogicznie możesz sprawdzić próbę dodania rekordu:**
+```SQL
+INSERT INTO biblioteka_szkolna.ksiazki
+(tytul, autor, rok_wydania)
+VALUES ('Test', 'Autor testowy', 2026);
+```
+
+
+**Krok 9. Odebranie uprawnienia użytkownikowi**
+**Wyloguj się z konta uczen:**
+ 
+**Odbierz użytkownikowi uprawnienie:**
+```SQL
+REVOKE SELECT
+ON biblioteka_szkolna.ksiazki
+FROM 'uczen'@'localhost';
+```
+
+
+**Sprawdź:**
+```SQL
+SHOW GRANTS FOR 'uczen'@'localhost';
+```
+
+**Po odebraniu uprawnienia i ponownym zalogowaniu jako uczen polecenie:**
+```SQL
+SELECT * FROM biblioteka_szkolna.ksiazki;
+```
+
+powinno zostać odrzucone.
+```text
+#1142 - SELECT command denied to user 'uczen'@'localhost' for table `biblioteka_szkolna`.`ksiazki`
+```
