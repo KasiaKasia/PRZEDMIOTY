@@ -1,0 +1,62 @@
+
+<form (ngSubmit)="zapisz(refForm)" #refForm="ngForm">
+
+<h2>Formularz danych osobowych</h2>
+
+<label for="imie">Imię:</label>
+
+<input
+    type="text"
+    id="imie"
+    name="imie"
+    [(ngModel)]="osoba.imie"
+
+    maxlength="20"
+>
+
+<p id="wynik">Wpisane imię: {{ osoba.imie }}</p>
+
+<p>Wybierz płeć:</p>
+
+<br><br>
+
+<label for="nazwisko">Nazwisko:</label>
+<input
+    type="text"
+    id="nazwisko"
+    name="nazwisko"
+    [(ngModel)]="osoba.nazwisko"
+required >
+
+<br><br>
+
+<p>Wybierz płeć:</p>
+
+<input
+    type="radio"
+    id="kobieta"
+    name="plec"
+    value="Kobieta"
+    [ngModel]="osoba.plec"
+    (ngModelChange)="osoba.plec = $event"
+>
+<label for="kobieta">Kobieta</label>
+
+<br>
+
+<input
+    type="radio"
+    id="mezczyzna"
+    name="plec"
+    value="Mężczyzna"
+    [ngModel]="osoba.plec"
+    (ngModelChange)="osoba.plec = $event"
+>
+<label for="mezczyzna">Mężczyzna</label>
+<button type="submit" name="wyslij">zapisz</button>
+</form>
+<hr>
+
+<h3>Dane formularza:</h3>
+
+<pre>{{ osoba | json }}</pre>
