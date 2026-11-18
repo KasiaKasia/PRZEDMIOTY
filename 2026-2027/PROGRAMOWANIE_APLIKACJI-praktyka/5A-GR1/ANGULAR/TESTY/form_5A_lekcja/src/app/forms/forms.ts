@@ -15,4 +15,8 @@ export class Forms {
     nazwisko: '',
     plec: ''
   };
+  zapisz(formularz: any) {
+    console.log('Zapisano formularz', formularz);
+    console.log('Zapisano formularz', formularz.value.imie);
+  }
 }

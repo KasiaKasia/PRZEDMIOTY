@@ -45,9 +45,9 @@ describe('App', () => {
     await fixture.whenStable();
     // fixture.nativeElement – pobranie HTML komponentu
     const compiled = fixture.nativeElement as HTMLElement;
-
+ 
     // Metoda querySelector() wyszukuje pierwszy element HTML pasujący do podanego selektora CSS.
-    const formularz = compiled.querySelector('app-forms');
+    const formularz = compiled.querySelectorAll('app-forms');
 
     expect(formularz).not.toBeNull();
   });

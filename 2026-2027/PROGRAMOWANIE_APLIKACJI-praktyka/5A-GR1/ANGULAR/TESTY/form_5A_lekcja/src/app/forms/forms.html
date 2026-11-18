@@ -1,13 +1,22 @@
 
+<form (ngSubmit)="zapisz(refForm)" #refForm="ngForm">
+
 <h2>Formularz danych osobowych</h2>
 
 <label for="imie">Imię:</label>
+
 <input
     type="text"
     id="imie"
     name="imie"
     [(ngModel)]="osoba.imie"
+
+    maxlength="20"
 >
+
+<p id="wynik">Wpisane imię: {{ osoba.imie }}</p>
+
+<p>Wybierz płeć:</p>
 
 <br><br>
 
@@ -17,7 +26,7 @@
     id="nazwisko"
     name="nazwisko"
     [(ngModel)]="osoba.nazwisko"
->
+required >
 
 <br><br>
 
@@ -44,7 +53,8 @@
     (ngModelChange)="osoba.plec = $event"
 >
 <label for="mezczyzna">Mężczyzna</label>
-
+<button type="submit" name="wyslij">zapisz</button>
+</form>
 <hr>
 
 <h3>Dane formularza:</h3>
