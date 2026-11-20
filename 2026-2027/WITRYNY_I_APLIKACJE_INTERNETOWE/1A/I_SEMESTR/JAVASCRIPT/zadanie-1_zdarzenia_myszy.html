@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zdarzenia myszy – zadania JavaScript</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f8ff;
+            color: #253244;
+        }
+
+        header, footer {
+            background-color: #205782;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        nav {
+            background-color: #3278a8;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 15px;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #d4e2ee;
+            box-shadow: 0 2px 6px #00000012;
+        }
+
+        .card h2 {
+            font-size: 19px;
+            color: #205782;
+        }
+
+        .demo {
+            background-color: #dbeafe;
+            border: 1px solid #93c5fd;
+            padding: 25px 12px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            min-height: 90px;
+        }
+
+        .demo p {
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 18px;
+            background-color: #3278a8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .log {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-left: 5px solid #3278a8;
+            border-radius: 8px;
+        }
+
+        footer {
+            margin-top: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Zdarzenia myszy w JavaScript</h1>
+    <p>12 zadań praktycznych – HTML, CSS i JavaScript</p>
+</header>
+
+<nav>
+    <a href="#zadania">Zadania</a>
+    <a href="#dziennik">Dziennik zdarzeń</a>
+</nav>
+
+<main id="zadania">
+
+    <div class="grid">
+
+        <!--
+        ZADANIE 1 – onclick
+
+        Po kliknięciu elementu o id="klik":
+
+        1. Zmień jego tekst na "Przycisk został kliknięty!".
+        2. Zmień kolor tła na lightgreen.
+        3. Zmień kolor tekstu na darkgreen.
+
+        Wykorzystaj zdarzenie onclick.
+        -->
+
+        <section class="card">
+            <h2>1. onclick</h2>
+
+            <div class="demo" id="klik">
+                Kliknij mnie
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 2 – ondblclick
+
+        Po dwukrotnym kliknięciu elementu
+        o id="podwojne":
+
+        1. Zmień tekst na "Podwójne kliknięcie!".
+        2. Zmień kolor tła na yellow.
+        3. Ustaw obramowanie 3px solid orange.
+
+        Wykorzystaj zdarzenie ondblclick.
+        -->
+
+        <section class="card">
+            <h2>2. ondblclick</h2>
+
+            <div class="demo" id="podwojne">
+                Kliknij dwa razy
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 3 – onmouseover
+
+        Gdy użytkownik najedzie kursorem
+        na element o id="najazd":
+
+        1. Zmień kolor tła na lightcoral.
+        2. Zmień tekst na "Kursor znajduje się
+           nad elementem!".
+        3. Zmień rozmiar czcionki na 20px.
+
+        Wykorzystaj zdarzenie onmouseover.
+        -->
+
+        <section class="card">
+            <h2>3. onmouseover</h2>
+
+            <div class="demo" id="najazd">
+                Najedź na mnie
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 4 – onmouseout
+
+        Gdy użytkownik opuści kursorem
+        element o id="wyjscie":
+
+        1. Zmień kolor tła na lightgray.
+        2. Zmień tekst na "Kursor opuścił element".
+        3. Ustaw kolor tekstu na red.
+
+        Wykorzystaj zdarzenie onmouseout.
+        -->
+
+        <section class="card">
+            <h2>4. onmouseout</h2>
+
+            <div class="demo" id="wyjscie">
+                Opuść element kursorem
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 5 – onmousedown
+
+        W momencie naciśnięcia przycisku myszy
+        na elemencie o id="nacisnij":
+
+        1. Zmień kolor tła na red.
+        2. Zmień kolor tekstu na white.
+        3. Zmień tekst na "Przycisk naciśnięty!".
+
+        Zmiana ma nastąpić już w momencie
+        naciśnięcia, bez konieczności puszczania
+        przycisku myszy.
+
+        Wykorzystaj zdarzenie onmousedown.
+        -->
+
+        <section class="card">
+            <h2>5. onmousedown</h2>
+
+            <div class="demo" id="nacisnij">
+                Naciśnij przycisk myszy
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 6 – onmouseup
+
+        W momencie zwolnienia przycisku myszy
+        nad elementem o id="zwolnij":
+
+        1. Zmień kolor tła na lightgreen.
+        2. Zmień tekst na "Przycisk zwolniony!".
+        3. Ustaw obramowanie 3px solid green.
+
+        Wykorzystaj zdarzenie onmouseup.
+        -->
+
+        <section class="card">
+            <h2>6. onmouseup</h2>
+
+            <div class="demo" id="zwolnij">
+                Naciśnij i puść przycisk
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 7 – onmouseenter
+
+        Gdy kursor wejdzie w obszar elementu
+        o id="wejscie":
+
+        1. Zmień kolor tła na gold.
+        2. Zmień tekst na "Witaj w obszarze!".
+        3. Ustaw zaokrąglenie rogów na 25px.
+
+        Wykorzystaj zdarzenie onmouseenter.
+        -->
+
+        <section class="card">
+            <h2>7. onmouseenter</h2>
+
+            <div class="demo" id="wejscie">
+                Wejdź kursorem
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 8 – onmouseleave
+
+        Gdy kursor opuści element o id="opuszczenie":
+
+        1. Zmień kolor tła na pink.
+        2. Zmień tekst na "Do zobaczenia!".
+        3. Ukryj akapit o id="informacja"
+           poprzez ustawienie display na none.
+
+        Wykorzystaj zdarzenie onmouseleave.
+        -->
+
+        <section class="card">
+            <h2>8. onmouseleave</h2>
+
+            <div class="demo" id="opuszczenie">
+                Opuść ten obszar
+                <p id="informacja">Dodatkowa informacja</p>
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 9 – onmousemove
+
+        Podczas poruszania kursorem wewnątrz
+        elementu o id="ruch":
+
+        1. Pobierz współrzędną X kursora.
+        2. Pobierz współrzędną Y kursora.
+        3. Wyświetl współrzędne w akapicie
+           o id="koordynaty".
+
+        Przykładowy wynik:
+
+        X: 250, Y: 180
+
+        Wykorzystaj:
+        - onmousemove
+        - event.clientX
+        - event.clientY
+        -->
+
+        <section class="card">
+            <h2>9. onmousemove</h2>
+
+            <div class="demo" id="ruch">
+                Poruszaj kursorem
+                <p id="koordynaty">X: 0, Y: 0</p>
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 10 – oncontextmenu
+
+        Po kliknięciu prawym przyciskiem myszy
+        na elemencie o id="prawe":
+
+        1. Zablokuj domyślne menu kontekstowe.
+        2. Zmień tekst na "Kliknięto prawym
+           przyciskiem myszy!".
+        3. Zmień kolor tła na orange.
+
+        Wykorzystaj:
+        - oncontextmenu
+        - event.preventDefault()
+        -->
+
+        <section class="card">
+            <h2>10. oncontextmenu</h2>
+
+            <div class="demo" id="prawe">
+                Kliknij prawym przyciskiem
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 11 – onwheel
+
+        Gdy użytkownik obraca kółkiem myszy
+        nad elementem o id="kolko":
+
+        1. Jeśli kółko obracane jest w dół,
+           zmień kolor tła na lightcoral.
+        2. Jeśli kółko obracane jest w górę,
+           zmień kolor tła na lightgreen.
+        3. Wyświetl odpowiedni komunikat:
+           "Przewijanie w dół"
+           lub "Przewijanie w górę".
+
+        Wykorzystaj:
+        - onwheel
+        - event.deltaY
+        - instrukcję if...else
+        -->
+
+        <section class="card">
+            <h2>11. onwheel</h2>
+
+            <div class="demo" id="kolko">
+                Obróć kółkiem myszy
+            </div>
+        </section>
+
+
+        <!--
+        ZADANIE 12 – onauxclick
+
+        Po kliknięciu środkowym przyciskiem myszy
+        na elemencie o id="srodkowy":
+
+        1. Zmień kolor tła na violet.
+        2. Zmień tekst na "Środkowy przycisk!".
+        3. Wyświetl w dzienniku zdarzeń komunikat:
+           "Wykryto dodatkowy przycisk myszy".
+
+        Wykorzystaj:
+        - onauxclick
+        - event.button
+
+        Sprawdź, czy event.button ma wartość 1.
+        -->
+
+        <section class="card">
+            <h2>12. onauxclick</h2>
+
+            <div class="demo" id="srodkowy">
+                Kliknij środkowym przyciskiem
+            </div>
+        </section>
+
+    </div>
+
+
+    <!--
+    ZADANIE DODATKOWE – DZIENNIK ZDARZEŃ
+
+    Utwórz funkcję pokaz(tekst), która:
+
+    1. Pobiera element o id="wynik".
+    2. Zmienia jego zawartość tekstową
+       na wartość przekazanego parametru.
+    3. Wywołaj tę funkcję w co najmniej
+       trzech dowolnych zadaniach.
+
+    Przykład:
+    pokaz("Kliknięto element!");
+    -->
+
+    <section class="log" id="dziennik">
+        <h2>Dziennik zdarzeń</h2>
+        <p id="wynik">
+            Tutaj będą pojawiały się komunikaty...
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    Zdarzenia myszy – ćwiczenia HTML, CSS i JavaScript
+</footer>
+
+<script>
+    // Tutaj napisz funkcje potrzebne
+    // do rozwiązania zadań.
+
+</script>
+
+</body>
+</html>
