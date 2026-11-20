@@ -277,8 +277,9 @@
      
         // Wyszukaj akapit o identyfikatorze "opis".
         // Zmień jego treść na:  "Witamy na portalu szkolnym!".
- 
-
+		const opis = document.getElementById("opis")
+		opis.innerHTML ="Witamy na portalu szkolnym!"
+		
         // ZADANIE 2 – getElementsByTagName()
   
         // Wyszukaj wszystkie elementy h3.
@@ -289,9 +290,18 @@
         
         // Wyszukaj wszystkie elementy z klasą "informacja".
         // Zmień kolor tła drugiego elementu na jasnozielony ("lightgreen").
- 
+ const inf = document.getElementsByClassName("informacja");
+ inf[1].style.color = "lightgreen";
 
         // ZADANIE 4 – getElementsByName()
+	const infee = document.getElementsByName("typSzkoly");
+	console.log(infee);
+ 	// infee[0].checked = true;
+	infee.forEach( (a) =>{
+	   if(a.value  =="Technikum") {
+	   a.checked = true
+	   }
+	} )
 
         // Wyszukaj wszystkie przyciski radio o nazwie "typSzkoly".
         // Zaznacz domyślnie "Technikum".

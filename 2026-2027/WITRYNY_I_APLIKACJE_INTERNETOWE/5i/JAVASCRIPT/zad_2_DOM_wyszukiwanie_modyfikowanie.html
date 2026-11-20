@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karta pracy – wyszukiwanie i modyfikowanie elementów DOM</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #f0f8ff; color: #273444; font-family: Arial, sans-serif; line-height: 1.5; }
+        header, footer { background: #205782; color: white; text-align: center; padding: 22px 15px; }
+        header h1 { margin: 0 0 8px; font-size: 27px; }
+        header p { margin: 0; }
+        nav { background: #3278a8; padding: 12px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 12px; }
+        main { max-width: 1150px; margin: 0 auto; padding: 25px 18px; }
+        .intro { background: white; padding: 15px 20px; border-left: 5px solid #3278a8; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .card { background: white; border: 1px solid #d2e0ec; border-radius: 9px; padding: 18px; }
+        .card h2 { color: #205782; font-size: 19px; margin: 0 0 10px; }
+        .demo { background: #eaf3ff; border: 1px solid #bed7ef; padding: 14px; border-radius: 6px; min-height: 78px; }
+        .demo p { margin: 6px 0; }
+        .demo a { color: #205782; margin-right: 15px; }
+        .demo ul { margin: 7px 0; padding-left: 24px; }
+        .sekcja, .pole, .mini-card { padding: 8px; margin: 6px 0; background: #fff; border: 1px solid #c5d5e5; border-radius: 4px; }
+        .card-rodzic { background: white; border: 2px solid #a6bfd7; padding: 13px; border-radius: 5px; }
+        label { display: inline-block; margin: 5px 12px 5px 0; }
+        button { background: #3278a8; color: white; border: 0; border-radius: 5px; padding: 9px 14px; cursor: pointer; margin-top: 12px; }
+        button:hover { background: #205782; }
+        .info { font-size: 13px; color: #52667c; margin: 9px 0 0; }
+        .wynik { margin: 8px 0 0; font-weight: bold; }
+        footer { margin-top: 12px; font-size: 14px; }
+        @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } header h1 { font-size: 22px; } }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Wyszukiwanie i modyfikowanie elementów DOM</h1>
+    <p>Karta pracy – JavaScript</p>
+</header>
+<nav>
+    <a href="#zadania">Zadania</a>
+    <a href="#skrypt">Miejsce na JavaScript</a>
+</nav>
+<main id="zadania">
+    <div class="intro">
+        <strong>Instrukcja:</strong> Wykonaj zadania zapisane w komentarzach HTML przy poszczególnych kartach.
+        Użyj metod wskazanych w poleceniach. Kod JavaScript umieść w znaczniku
+        <code>&lt;script&gt;</code> na końcu dokumentu. Po zmianach odśwież stronę.
+        <p class="info">Przyciski są elementami przygotowanymi do ćwiczeń. Aby działały, dopisz odpowiedni kod JS.</p>
+    </div>
+
+    <div class="grid">
+        <!--
+        ZADANIE 1 – document.getElementById(id)
+        1. Pobierz akapit o id="opis" za pomocą document.getElementById().
+        2. Zmień jego tekst na: "Witamy na lekcji JavaScript!".
+        3. Ustaw kolor tekstu na blue i grubość czcionki na bold.
+        -->
+        <section class="card">
+            <h2>1. getElementById()</h2>
+            <div class="demo">
+                <p id="opis">To jest początkowy opis strony.</p>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 2 – document.getElementsByTagName(tagName)
+        1. Pobierz wszystkie elementy <h3> na stronie metodą getElementsByTagName().
+        2. Za pomocą pętli zmień kolor tekstu każdego nagłówka <h3> na darkgreen.
+        3. Ustaw dla każdego nagłówka rozmiar czcionki 18px.
+        UWAGA: Metoda zwraca HTMLCollection – przejdź po jej elementach pętlą.
+        -->
+        <section class="card">
+            <h2>2. getElementsByTagName()</h2>
+            <div class="demo">
+                <h3>Aktualności szkolne</h3>
+                <h3>Plan wydarzeń</h3>
+                <h3>Koła zainteresowań</h3>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 3 – document.getElementsByClassName(className)
+        1. Pobierz wszystkie elementy z klasą "sekcja".
+        2. Ustaw tło drugiego elementu na lightgreen.
+        3. Ustaw obramowanie trzeciego elementu na "2px solid orange".
+        4. Zmień tekst pierwszego elementu na "Sekcja pierwsza – zmieniona".
+        Pamiętaj: indeksy kolekcji zaczynają się od 0.
+        -->
+        <section class="card">
+            <h2>3. getElementsByClassName()</h2>
+            <div class="demo">
+                <div class="sekcja">Sekcja pierwsza</div>
+                <div class="sekcja">Sekcja druga</div>
+                <div class="sekcja">Sekcja trzecia</div>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 4 – document.getElementsByName(elementName)
+        1. Pobierz wszystkie przyciski radio o name="typSzkoly"
+           metodą getElementsByName().
+        2. Zaznacz programowo opcję "Technikum" za pomocą właściwości checked.
+        3. Ustaw wartość checked pozostałych opcji na false.
+        -->
+        <section class="card">
+            <h2>4. getElementsByName()</h2>
+            <div class="demo">
+                <p>Wybierz typ szkoły:</p>
+                <label><input type="radio" name="typSzkoly" value="liceum" checked> Liceum</label>
+                <label><input type="radio" name="typSzkoly" value="technikum"> Technikum</label>
+                <label><input type="radio" name="typSzkoly" value="branzowa"> Szkoła branżowa</label>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 5 – document.querySelector(CSSselector)
+        1. Za pomocą document.querySelector() wybierz PIERWSZY
+           akapit z klasą "wiadomosc".
+        2. Zmień jego tekst na "Pierwsza wiadomość została zmieniona".
+        3. Ustaw mu kolor tekstu na red.
+        4. Drugi akapit z klasą "wiadomosc" powinien pozostać bez zmian.
+        -->
+        <section class="card">
+            <h2>5. querySelector()</h2>
+            <div class="demo">
+                <p class="wiadomosc">Pierwsza wiadomość</p>
+                <p class="wiadomosc">Druga wiadomość</p>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 6 – document.querySelectorAll(CSSselector)
+        1. Pobierz wszystkie elementy <li> wewnątrz listy o id="przedmioty"
+           za pomocą document.querySelectorAll().
+        2. Dla każdego elementu zmień kolor tekstu na purple.
+        3. Dla każdego elementu ustaw fontWeight na bold.
+        Użyj pętli for lub metody forEach().
+        -->
+        <section class="card">
+            <h2>6. querySelectorAll()</h2>
+            <div class="demo">
+                <ul id="przedmioty">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 7 – element.closest(selector)
+        1. Pobierz element <span> o id="tekstKarty".
+        2. Za pomocą closest(".card-rodzic") znajdź najbliższy
+           element nadrzędny z klasą "card-rodzic".
+        3. Zmień tło znalezionej karty na lightyellow.
+        4. Ustaw jej obramowanie na "3px solid orange".
+        -->
+        <section class="card">
+            <h2>7. closest()</h2>
+            <div class="demo">
+                <div class="card-rodzic">
+                    <p>Informacja: <span id="tekstKarty">ważna wiadomość</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 8 – element.parentElement
+        1. Pobierz akapit o id="dziecko".
+        2. Za pomocą właściwości parentElement znajdź jego rodzica.
+        3. Zmień kolor tła rodzica na lightpink.
+        4. Ustaw obramowanie rodzica na "2px dashed red".
+        -->
+        <section class="card">
+            <h2>8. parentElement</h2>
+            <div class="demo">
+                <div class="pole">
+                    <p id="dziecko">Jestem akapitem wewnątrz elementu div.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 9 – element.children
+        1. Pobierz element o id="kontener".
+        2. Za pomocą właściwości children odczytaj jego bezpośrednie dzieci.
+        3. Zmień kolor tła każdego dziecka na lightcyan.
+        4. W akapicie o id="liczbaDzieci" wyświetl:
+           "Liczba dzieci: X", gdzie X to liczba elementów children.
+        -->
+        <section class="card">
+            <h2>9. children</h2>
+            <div class="demo">
+                <div id="kontener">
+                    <div class="mini-card">Element A</div>
+                    <div class="mini-card">Element B</div>
+                    <div class="mini-card">Element C</div>
+                </div>
+                <p id="liczbaDzieci">Liczba dzieci: ...</p>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 10 – element.querySelector(CSSselector)
+        1. Pobierz element o id="menu".
+        2. Na pobranym elemencie wywołaj querySelector("a:last-child").
+        3. Zmień tekst ostatniego linku na "Napisz do nas".
+        4. Zmień jego kolor na green i ustaw fontWeight na bold.
+        Nie używaj document.querySelector() do wyszukiwania linku.
+        -->
+        <section class="card">
+            <h2>10. element.querySelector()</h2>
+            <div class="demo">
+                <div id="menu">
+                    <a href="#menu">Start</a>
+                    <a href="#menu">O szkole</a>
+                    <a href="#menu">Kontakt</a>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 11 – element.querySelectorAll(CSSselector)
+        1. Pobierz element o id="listaUczniow".
+        2. Użyj na nim querySelectorAll("li") do znalezienia
+           WSZYSTKICH elementów listy wewnątrz tego kontenera.
+        3. Dla każdego znalezionego elementu ustaw kolor tekstu na blue.
+        4. Dodaj na początku tekstu każdego elementu przedrostek "Uczeń: ".
+        5. Nie zmieniaj listy znajdującej się poza kontenerem.
+        -->
+        <section class="card">
+            <h2>11. element.querySelectorAll()</h2>
+            <div class="demo">
+                <div id="listaUczniow">
+                    <ul>
+                        <li>Anna</li>
+                        <li>Piotr</li>
+                        <li>Maria</li>
+                    </ul>
+                </div>
+                <p class="info">Lista kontrolna (ma pozostać bez zmian):</p>
+                <ul>
+                    <li>Lista spoza kontenera</li>
+                </ul>
+            </div>
+        </section>
+
+        <!--
+        ZADANIE 12 – PODSUMOWANIE (kilka poznanych metod)
+        1. Pobierz element o id="podsumowanie".
+        2. W jego wnętrzu znajdź wszystkie elementy z klasą "punkt"
+           za pomocą element.querySelectorAll().
+        3. Dla każdej pozycji ustaw tło na lightgreen.
+        4. Za pomocą querySelector() działającego NA kontenerze
+           wybierz pierwszy element klasy "punkt" i zmień jego tekst na
+           "Pierwszy punkt został ukończony".
+        5. Ustaw tekst akapitu o id="status" na "Zadanie wykonane!".
+        -->
+        <section class="card">
+            <h2>12. Zadanie podsumowujące</h2>
+            <div class="demo" id="podsumowanie">
+                <div class="punkt sekcja">Punkt pierwszy</div>
+                <div class="punkt sekcja">Punkt drugi</div>
+                <div class="punkt sekcja">Punkt trzeci</div>
+                <p id="status">Status: do wykonania</p>
+            </div>
+        </section>
+    </div>
+</main>
+<footer>Laboratorium DOM – HTML, CSS i JavaScript</footer>
+
+<script id="skrypt">
+    // ==============================================
+    // MIEJSCE NA ROZWIĄZANIA UCZNIA
+    // ==============================================
+    // Zadanie 1:
+
+    // Zadanie 2:
+
+    // Zadanie 3:
+
+    // Zadanie 4:
+
+    // Zadanie 5:
+
+    // Zadanie 6:
+
+    // Zadanie 7:
+
+    // Zadanie 8:
+
+    // Zadanie 9:
+
+    // Zadanie 10:
+
+    // Zadanie 11:
+
+    // Zadanie 12:
+</script>
+</body>
+</html>
