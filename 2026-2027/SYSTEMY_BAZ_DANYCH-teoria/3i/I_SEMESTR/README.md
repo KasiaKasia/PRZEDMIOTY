@@ -24,11 +24,11 @@ Bazy danych można klasyfikować na różne sposoby. Najważniejsze jest rozró�
 
 ---
 
-### 📝 1. Modele danych
+## 📝 1. Modele danych
 
 **Model danych** określa sposób, w jaki dane są zorganizowane, przechowywane i powiązane ze sobą w bazie danych.
 
-#### 📝 1.1. Model hierarchiczny
+### 📝 1.1. Model hierarchiczny
 
 Dane mają strukturę przypominającą **drzewo**. Element nadrzędny może posiadać wiele elementów podrzędnych.
 
@@ -50,7 +50,7 @@ Każdy uczeń należy tutaj do określonej klasy, a klasy należą do szkoły.
 
 ---
 
-#### 📝 1.2. Model sieciowy
+### 📝 1.2. Model sieciowy
 
 Dane tworzą **sieć powiązań**. Jeden element może być połączony z wieloma innymi elementami.
 
@@ -68,7 +68,7 @@ Model sieciowy pozwala więc tworzyć bardziej złożone powiązania niż model 
 
 ---
 
-#### 📝 1.3. Model relacyjny
+### 📝 1.3. Model relacyjny
 
 Jest to najważniejszy model z punktu widzenia INF.03.
 
@@ -95,7 +95,7 @@ Pole `id_ucznia` pozwala powiązać ocenę z konkretnym uczniem.
 
 ---
 
-#### 📝 1.4. Model obiektowy
+### 📝 1.4. Model obiektowy
 
 W modelu obiektowym dane przechowywane są w postaci **obiektów**, podobnie jak w programowaniu obiektowym.
 
@@ -115,7 +115,7 @@ Model ten jest szczególnie związany z programowaniem obiektowym.
 
 ---
 
-#### 📝 1.5. Model obiektowo-relacyjny
+### 📝 1.5. Model obiektowo-relacyjny
 
 **Model obiektowo-relacyjny** łączy cechy relacyjnych baz danych z niektórymi możliwościami charakterystycznymi dla modelu obiektowego.
 
@@ -125,7 +125,7 @@ Dane nadal mogą znajdować się w tabelach, ale system pozwala stosować bardzi
 
 ---
 
-#### 📝 1.6. Modele nierelacyjne – NoSQL
+### 📝 1.6. Modele nierelacyjne – NoSQL
 
 **NoSQL** to grupa baz danych, które nie opierają się wyłącznie na klasycznym modelu relacyjnym.
 
@@ -154,7 +154,7 @@ W jednym dokumencie można przechowywać informacje o uczniu razem z jego ocenam
 
 ---
 
-##### 📝 1.6.2. Model klucz–wartość
+#### 📝 1.6.2. Model klucz–wartość
 
 Dane przechowywane są jako pary:
 
@@ -175,7 +175,7 @@ Klucz pozwala szybko odnaleźć przypisaną do niego wartość.
 
 ---
 
-##### 📝 1.6.3. Model szerokokolumnowy – wide-column
+#### 📝 1.6.3. Model szerokokolumnowy – wide-column
 
 Dane są organizowane w **rodziny kolumn**, a poszczególne rekordy mogą posiadać dużą liczbę kolumn.
 
@@ -208,7 +208,7 @@ Cassandra jest przykładem rozproszonej bazy NoSQL wykorzystującej model wide-c
 
 ---
 
-##### 📝 1.6.4. Model grafowy
+#### 📝 1.6.4. Model grafowy
 
 W bazie grafowej dane przedstawiane są za pomocą:
 
@@ -234,11 +234,11 @@ Neo4j wykorzystuje model grafowy oparty na węzłach, relacjach i właściwości
 
 ---
 
-### 📝 2. Rodzaje (podział) baz według sposobu przechowywania i dostępu
+## 📝 2. Rodzaje (podział) baz według sposobu przechowywania i dostępu
 
 Ten podział nie określa modelu danych, ale mówi **gdzie znajduje się baza i w jaki sposób użytkownicy mają do niej dostęp**.
 
-#### 📝 2.1. Baza lokalna
+### 📝 2.1. Baza lokalna
 
 Baza znajduje się na jednym komputerze i jest wykorzystywana przez działającą na nim aplikację.
 
@@ -253,7 +253,7 @@ Komputer
 
 ---
 
-#### 📝 2.2. Baza sieciowa
+### 📝 2.2. Baza sieciowa
 
 Baza znajduje się na serwerze, a użytkownicy łączą się z nią przez sieć.
 
@@ -269,7 +269,7 @@ Komputer 3 ──┘
 
 ---
 
-#### 📝 2.3. Baza rozproszona
+### 📝 2.3. Baza rozproszona
 
 Dane są przechowywane na **wielu komputerach lub serwerach**, które współpracują ze sobą.
 
@@ -288,7 +288,7 @@ Dane są przechowywane na **wielu komputerach lub serwerach**, które współpra
 ## 3. Rodzaje baz danych według przeznaczenia (specjalizowane i nowoczesne rozwiązania)
 
 
-#### 3.1. Bazy szeregów czasowych – time-series
+### 3.1. Bazy szeregów czasowych – time-series
 
 Są przeznaczone do danych, w których szczególnie ważny jest **czas wykonania pomiaru lub wystąpienia zdarzenia**.
 
@@ -314,7 +314,7 @@ czas                 temperatura
 
 
 
-#### 3.2. Bazy przestrzenne i geograficzne
+### 3.2. Bazy przestrzenne i geograficzne
 
 Służą do przechowywania oraz analizowania danych związanych z **położeniem geograficznym i przestrzenią**.
 
@@ -331,7 +331,7 @@ Mogą przechowywać np.:
 
 ---
  
-#### 3.3. Bazy pamięciowe – in-memory
+### 3.3. Bazy pamięciowe – in-memory
 
 Dane są przechowywane przede wszystkim w **pamięci RAM**, dzięki czemu dostęp do nich może być bardzo szybki.
 
@@ -345,7 +345,7 @@ Mogą być wykorzystywane np. do:
 
 ---
 
-#### 3.4. Bazy wielomodelowe
+### 3.4. Bazy wielomodelowe
 
 Pozwalają korzystać z **więcej niż jednego modelu danych w jednym systemie**.
 
@@ -371,7 +371,7 @@ Podobnie baza może być jednocześnie:
 ponieważ każde z tych określeń opisuje inną cechę systemu.
 
 
-**RODZAJE I MODELE BAZ DANYCH**
+📝 **RODZAJE I MODELE BAZ DANYCH**
 ```text
 1. MODELE DANYCH
    ├── hierarchiczny
@@ -458,11 +458,11 @@ Tabela Zapisy (które kursy student wybrał) może mieć klucze obce:
 
 ## **Relacje między tabelami**
 
-**Relacje między tabelami** określają, w jaki sposób dane z jednej tabeli są powiązane z danymi w drugiej tabeli.
+📝 **Relacje między tabelami** określają, w jaki sposób dane z jednej tabeli są powiązane z danymi w drugiej tabeli.
 
 Najczęściej wyróżnia się trzy rodzaje relacji:
 
-### 1. Relacja jeden do jednego — 1:1
+### 📝 1. Relacja jeden do jednego — 1:1
 
 Jeden rekord z pierwszej tabeli jest powiązany z **jednym rekordem** z drugiej tabeli.
 
@@ -496,7 +496,7 @@ Czyli:
 
 ---
 
-### 2. Relacja jeden do wielu — 1:N
+### 📝 2. Relacja jeden do wielu — 1:N
 
 Jeden rekord z pierwszej tabeli może być powiązany z **wieloma rekordami** z drugiej tabeli.
 
@@ -543,7 +543,7 @@ W tabeli `zamowienia` znajduje się `id_klienta`, czyli **klucz obcy**, który w
 
 ---
 
-### 3. Relacja wiele do wielu — N:M
+### 📝 3. Relacja wiele do wielu — N:M
 
 Wiele rekordów z pierwszej tabeli może być powiązanych z wieloma rekordami z drugiej tabeli.
 
@@ -747,9 +747,9 @@ VALUES
 ```
 
 
-## Podstawowe polecenia do sortowania
+## 📝 Podstawowe polecenia do sortowania
 
-### ORDER BY
+### 📝 ORDER BY
 
 ```SQL
 CREATE TABLE pracownicy (
@@ -772,7 +772,7 @@ FROM pracownicy
 ORDER BY nazwisko DESC; -- malejąco
 ```
 
-### Sortowanie po wielu kolumnach
+### 📝 Sortowanie po wielu kolumnach
 
 ```SQL
 SELECT nazwisko, imie, pensja
@@ -782,7 +782,7 @@ ORDER BY nazwisko ASC, pensja DESC;
 
 Najpierw sortuje po nazwisku rosnąco, a w ramach tego – po pensji malejąco.
 
-#### Sortować można po numerach kolumn (niezalecane, ale działa):
+#### 📝 Sortować można po numerach kolumn (niezalecane, ale działa):
 
 ```SQL
 SELECT nazwisko, imie
@@ -792,7 +792,7 @@ ORDER BY 2 ASC, 4 DESC
 **2 kolumną będzie imie. Nie bierze pod uwagę faktyczna kolejnośc kolumn w tabeli**
 
 
-## AUTO_INCREMENT, PRIMARY KEY i FOREIGN KEY służą do definiowania relacji i identyfikacji rekordów w bazie danych.
+## 📝 AUTO_INCREMENT, PRIMARY KEY i FOREIGN KEY służą do definiowania relacji i identyfikacji rekordów w bazie danych.
 
 - `PRIMARY KEY` — klucz główny, czyli kolumna, która jednoznacznie identyfikuje każdy rekord.
 - `AUTO_INCREMENT` — automatycznie zwiększa wartość liczbową, najczęściej dla id.
@@ -875,26 +875,26 @@ dzial_id = 1 wskazuje tutaj na dział:
 
 
 
-## **Składnia języka SQL**
+## 📝 **Składnia języka SQL**
 Klasyfikację poleceń ze względu na ich przeznaczenie. Są to:
 
-o **Instrukcje DDL (ang. Data Definition Language**) — tworzą język definiowania danych i służą do tworzenia, modyfikowania i usuwania obiektów bazy danych.
+o 📝 **Instrukcje DDL (ang. Data Definition Language**) — tworzą język definiowania danych i służą do tworzenia, modyfikowania i usuwania obiektów bazy danych.
 
-o **Instrukcje DML (ang. Data Manipulation Language)**— tworzą język manipulowania danymi i służą do odczytywania i modyfikowania danych.
+o 📝 **Instrukcje DML (ang. Data Manipulation Language)**— tworzą język manipulowania danymi i służą do odczytywania i modyfikowania danych.
 
-o **Instrukcje DCL (ang. Data Control Language)** — tworzą język kontroli dostępu do danych i umożliwiają nadawanie i odbieranie uprawnień użytkownikom.
+o 📝 **Instrukcje DCL (ang. Data Control Language)** — tworzą język kontroli dostępu do danych i umożliwiają nadawanie i odbieranie uprawnień użytkownikom.
 
-o **Instrukcje TCL (ang. Transaction Control Language)**— tworzą język obsługi transakcji.
+o 📝 **Instrukcje TCL (ang. Transaction Control Language)**— tworzą język obsługi transakcji.
 
-o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowania zapytań, który zawiera tylko jedno polecenie SELECT i służy do tworzenia kwerend (zapytań).
+o 📝 **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowania zapytań, który zawiera tylko jedno polecenie SELECT i służy do tworzenia kwerend (zapytań).
 
 ![Klasyfikację poleceń](zdjecia/sql-commands.png)
 
-## **System zarządzania bazą danych**
+## 📝 **System zarządzania bazą danych**
 
-**System zarządzania bazą danych** (w skrócie SZBD; po angielsku: Database Management System – DBMS) to specjalne oprogramowanie, które służy do tworzenia, zarządzania i przetwarzania danych w bazach danych.
+📝 **System zarządzania bazą danych** (w skrócie SZBD; po angielsku: Database Management System – DBMS) to specjalne oprogramowanie, które służy do tworzenia, zarządzania i przetwarzania danych w bazach danych.
 
-**Główne zadania SZBD**
+📝 **Główne zadania SZBD**
 
 | Zadanie                        | W praktyce                                                                            |
 | -----------------------------: | ------------------------------------------------------------------------------------- |
@@ -933,18 +933,18 @@ o **Instrukcja DQL (ang. Data Querying Language)** — tworzy język definiowani
 
  
 
-## Zarządzanie bezpieczeństwem bazy danych.
+## 📝 Zarządzanie bezpieczeństwem bazy danych.
 
 W bazie danych MySQL uprawnienia (*privileges*) określają, jakie operacje użytkownik może wykonywać na bazach danych, tabelach i innych obiektach.
 
 Definicje
 
-● **GRANT** – służy do nadawania uprawnień użytkownikom bazy danych (np. prawa do odczytu, zapisu, aktualizacji, usuwania, tworzenia tabel).
+● 📝 **GRANT** – służy do nadawania uprawnień użytkownikom bazy danych (np. prawa do odczytu, zapisu, aktualizacji, usuwania, tworzenia tabel).
 
-● **REVOKE** – służy do odbierania wcześniej nadanych uprawnień
+● 📝 **REVOKE** – służy do odbierania wcześniej nadanych uprawnień
 
 
-## **Najważniejsze uprawnienia w MySQL**
+### 📝 **Najważniejsze uprawnienia w MySQL**
 | **Uprawnienie     |	**Opis**                                                                            |
 | ----------------: | ------------------------------------------------------------------------------------- |
 | `SELECT`	        | Odczytywanie danych z tabeli.                                                         |
@@ -965,14 +965,14 @@ Definicje
 
 **Składnia**
 
-### **Nadawanie uprawnień (GRANT)**
+### 📝 **Nadawanie uprawnień (GRANT)**
 
 ```SQL
 GRANT <uprawnienia>
 ON <nazwa_bazy_danych>.<nazwa_tabeli>
 TO <nazwa_uzytkownika>@<host>;
 ```
-### **Odbieranie uprawnień (REVOKE)**
+### 📝 **Odbieranie uprawnień (REVOKE)**
 
 ```SQL
 REVOKE <uprawnienia>
@@ -981,21 +981,21 @@ FROM <nazwa_uzytkownika>@<host>;
 ```
 
 
-**Przykład – nadanie użytkownikowi jan uprawnienia do odczytywania danych z tabeli uczniowie w bazie szkola:**
+📝 **Przykład – nadanie użytkownikowi jan uprawnienia do odczytywania danych z tabeli uczniowie w bazie szkola:**
 ```SQL
 GRANT SELECT
 ON szkola.uczniowie
 TO 'jan'@'localhost';
 ```
 
-**Nadanie kilku uprawnień jednocześnie:**
+📝 **Nadanie kilku uprawnień jednocześnie:**
 ```SQL
 GRANT SELECT, INSERT, UPDATE
 ON szkola.uczniowie
 TO 'jan'@'localhost';
 ```
 
-**Przykład – odebranie uprawnienia UPDATE:**
+📝 **Przykład – odebranie uprawnienia UPDATE:**
 ```SQL
 REVOKE UPDATE
 ON szkola.uczniowie
@@ -1003,7 +1003,7 @@ FROM 'jan'@'localhost';
 ```
 
 
-### Nadawanie uprawnień na różnych poziomach
+###  📝 Nadawanie uprawnień na różnych poziomach
 | Zapis	                |      Znaczenie                                    |
 | --------------------: | ------------------------------------------------- |
 | `ON *.*`              |	Wszystkie bazy danych i ich tabele na serwerze. |
@@ -1025,7 +1025,7 @@ ON szkola.*
 TO 'jan'@'localhost';
 ```
 
-### Sprawdzanie uprawnień – SHOW GRANTS
+### 📝 Sprawdzanie uprawnień – SHOW GRANTS
 Aby sprawdzić uprawnienia użytkownika, wykonujemy:
 ```SQL
 SHOW GRANTS FOR 'jan'@'localhost';
@@ -1040,7 +1040,7 @@ WITH GRANT OPTION;
 ```
 
 `WITH GRANT OPTION` pozwala użytkownikowi jan nadawać innym użytkownikom uprawnienie SELECT w określonym zakresie.
-## Tworzenie użytkownika – CREATE USER
+## 📝 Tworzenie użytkownika – CREATE USER
 ```SQL
 CREATE USER 'nazwa_uzytkownika'@'host'
 IDENTIFIED BY 'haslo';
@@ -1052,7 +1052,7 @@ CREATE USER 'jan'@'localhost'
 IDENTIFIED BY 'Jan123!';
 ```
 
-**Polecenie sprawdzjące czy użytkownik istnieje**
+📝 **Polecenie sprawdzjące czy użytkownik istnieje**
 ```SQL
 SELECT User, Host
 FROM mysql.user
@@ -1083,7 +1083,7 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 ```
 spowoduje możliwośc logowania się innymi użytkkownikami.
 
-## krok po kroku tworzenie uzytkoniwka i sprawdzenie uprawnień
+## 📝 krok po kroku tworzenie uzytkoniwka i sprawdzenie uprawnień
 
 **Krok 1. Utworzenie bazy danych i tabeli**
 Zaloguj się do phpMyAdmin jako `root` i przejdź do zakładki SQL.
@@ -1225,3 +1225,4 @@ powinno zostać odrzucone.
 ```text
 #1142 - SELECT command denied to user 'uczen'@'localhost' for table `biblioteka_szkolna`.`ksiazki`
 ```
+
