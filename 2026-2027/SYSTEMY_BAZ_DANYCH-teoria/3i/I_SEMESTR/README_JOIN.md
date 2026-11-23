@@ -87,7 +87,7 @@ LEFT JOIN Przedmioty ON Osoby.osoba_id = Przedmioty.osoba_id;
 
 **RIGHT JOIN** — wszystkie rekordy z prawej tabeli. W tym przykładzie prawa tabela to **`Przedmioty`**. Jeśli przedmiot istnieje, ale nie ma dopasowania w tabeli `Osoby`, również zostanie wyświetlony.
 
-![Diagram INNER JOIN](img/right_join.jpg)
+![Diagram INNER JOIN](img/right_join.png)
 
 ```sql
 SELECT Osoby.imie, Osoby.nazwisko, Przedmioty.nazwa
@@ -139,7 +139,7 @@ RIGHT JOIN Przedmioty p ON o.osoba_id = p.osoba_id;
 
 
 
-## 6. 🔀 CROSS JOIN (strony 23–24)
+## 6. 🔀 CROSS JOIN 
 
 **CROSS JOIN** — łączy **każdy wiersz pierwszej tabeli z każdym wierszem drugiej tabeli** (iloczyn kartezjański).
 
