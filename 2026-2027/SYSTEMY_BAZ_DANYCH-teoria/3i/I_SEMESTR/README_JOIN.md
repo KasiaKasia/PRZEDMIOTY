@@ -1,10 +1,10 @@
 # JOIN
 
 ```SQL
-*
+
 DROP TABLE Przedmioty;
 DROP TABLE Osoby;
-*/
+ 
 CREATE TABLE Osoby (
  osoba_id INT AUTO_INCREMENT PRIMARY KEY,
  imie VARCHAR(50) NOT NULL,
@@ -82,6 +82,9 @@ LEFT JOIN Przedmioty ON Osoby.osoba_id = Przedmioty.osoba_id;
 | Kasia      | Wiśniewska     | Plecak     |
 | **Patryk** | **Nowakowski** | **`NULL`** |
 
+**Złota zasada**
+• **Lewa tabela (left table) = tabela, która stoi bezpośrednio po słowie FROM**
+• **Prawa tabela (right table) = tabela, która stoi bezpośrednio po słowie JOIN** (lub LEFT JOIN, RIGHT JOIN, INNER JOIN itp.)
 
 ## RIGHT JOIN
 
@@ -106,6 +109,10 @@ RIGHT JOIN Przedmioty ON Osoby.osoba_id = Przedmioty.osoba_id;
 | Kasia      | Wiśniewska     | Plecak     |
 | **`NULL`** | **`NULL`**     | **Kubek**  |
 
+
+**Złota zasada**
+• **Lewa tabela (left table) = tabela, która stoi bezpośrednio po słowie FROM**
+• **Prawa tabela (right table) = tabela, która stoi bezpośrednio po słowie JOIN** (lub LEFT JOIN, RIGHT JOIN, INNER JOIN itp.)
 
 ## FULL OUTER JOIN
 
