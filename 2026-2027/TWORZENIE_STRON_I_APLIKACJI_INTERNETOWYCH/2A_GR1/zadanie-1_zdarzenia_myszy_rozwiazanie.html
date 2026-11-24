@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zdarzenia myszy – rozwiązania</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f0f8ff; color: #253244; }
+    header, footer { background: #205782; color: white; text-align: center; padding: 22px; }
+    nav { background: #3278a8; padding: 14px; text-align: center; }
+    nav a { color: white; margin: 15px; text-decoration: none; }
+    main { max-width: 1200px; margin: auto; padding: 25px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: white; padding: 20px; border-radius: 10px; border: 1px solid #d4e2ee; box-shadow: 0 2px 6px #00000012; }
+    .card h2 { font-size: 19px; color: #205782; }
+    .demo { background: #dbeafe; border: 1px solid #93c5fd; padding: 25px 12px; text-align: center; border-radius: 8px; cursor: pointer; margin-top: 15px; min-height: 90px; }
+    .demo p { margin: 5px; }
+    .log { margin-top: 30px; padding: 20px; background: white; border-left: 5px solid #3278a8; border-radius: 8px; }
+    footer { margin-top: 30px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Zdarzenia myszy w JavaScript</h1>
+  <p>12 zadań praktycznych – rozwiązania</p>
+</header>
+<nav><a href="#zadania">Zadania</a><a href="#dziennik">Dziennik zdarzeń</a></nav>
+<main id="zadania">
+  <div class="grid">
+    <!-- ZADANIE 1: onclick – zmień tekst, tło na lightgreen i kolor tekstu na darkgreen. -->
+    <section class="card"><h2>1. onclick</h2>
+      <div class="demo" id="klik" onclick="zadanie1()">Kliknij mnie</div>
+    </section>
+
+    <!-- ZADANIE 2: ondblclick – zmień tekst, tło na yellow i obramowanie na 3px solid orange. -->
+    <section class="card"><h2>2. ondblclick</h2>
+      <div class="demo" id="podwojne" ondblclick="zadanie2()">Kliknij dwa razy</div>
+    </section>
+
+    <!-- ZADANIE 3: onmouseover – zmień tło na lightcoral, tekst i rozmiar czcionki na 20px. -->
+    <section class="card"><h2>3. onmouseover</h2>
+      <div class="demo" id="najazd" onmouseover="zadanie3()">Najedź na mnie</div>
+    </section>
+
+    <!-- ZADANIE 4: onmouseout – po opuszczeniu kursorem zmień tło na lightgray, tekst i jego kolor na red. -->
+    <section class="card"><h2>4. onmouseout</h2>
+      <div class="demo" id="wyjscie" onmouseout="zadanie4()">Opuść element kursorem</div>
+    </section>
+
+    <!-- ZADANIE 5: onmousedown – w momencie naciśnięcia ustaw czerwone tło, biały tekst i nowy komunikat. -->
+    <section class="card"><h2>5. onmousedown</h2>
+      <div class="demo" id="nacisnij" onmousedown="zadanie5()">Naciśnij przycisk myszy</div>
+    </section>
+
+    <!-- ZADANIE 6: onmouseup – po zwolnieniu przycisku ustaw jasnozielone tło, tekst i zielone obramowanie. -->
+    <section class="card"><h2>6. onmouseup</h2>
+      <div class="demo" id="zwolnij" onmouseup="zadanie6()">Naciśnij i puść przycisk</div>
+    </section>
+
+    <!-- ZADANIE 7: onmouseenter – ustaw złote tło, nowy tekst i border-radius: 25px. -->
+    <section class="card"><h2>7. onmouseenter</h2>
+      <div class="demo" id="wejscie" onmouseenter="zadanie7()">Wejdź kursorem</div>
+    </section>
+
+    <!-- ZADANIE 8: onmouseleave – zmień tło i tekst; ukryj akapit informacja za pomocą display: none. -->
+    <section class="card"><h2>8. onmouseleave</h2>
+      <div class="demo" id="opuszczenie" onmouseleave="zadanie8()">
+        <span id="tekst-opuszczenie">Opuść ten obszar</span>
+        <p id="informacja">Dodatkowa informacja</p>
+      </div>
+    </section>
+
+    <!-- ZADANIE 9: onmousemove – pokaż event.clientX i event.clientY w akapicie koordynaty. -->
+    <section class="card"><h2>9. onmousemove</h2>
+      <div class="demo" id="ruch" onmousemove="zadanie9(event)">
+        Poruszaj kursorem
+        <p id="koordynaty">X: 0, Y: 0</p>
+      </div>
+    </section>
+
+    <!-- ZADANIE 10: oncontextmenu – zablokuj standardowe menu przez preventDefault(), ustaw tekst i pomarańczowe tło. -->
+    <section class="card"><h2>10. oncontextmenu</h2>
+      <div class="demo" id="prawe" oncontextmenu="zadanie10(event)">Kliknij prawym przyciskiem</div>
+    </section>
+
+    <!-- ZADANIE 11: onwheel – użyj deltaY i if...else: w dół lightcoral, w górę lightgreen. -->
+    <section class="card"><h2>11. onwheel</h2>
+      <div class="demo" id="kolko" onwheel="zadanie11(event)">Obróć kółkiem myszy</div>
+    </section>
+
+    <!-- ZADANIE 12: onauxclick – reaguj wyłącznie, gdy event.button === 1. -->
+    <section class="card"><h2>12. onauxclick</h2>
+      <div class="demo" id="srodkowy" onauxclick="zadanie12(event)">Kliknij środkowym przyciskiem</div>
+    </section>
+  </div>
+
+  <!-- ZADANIE DODATKOWE: funkcja pokaz(tekst) zmienia tekst w elemencie wynik; wywołaj ją w minimum trzech zadaniach. -->
+  <section class="log" id="dziennik">
+    <h2>Dziennik zdarzeń</h2>
+    <p id="wynik">Tutaj będą pojawiały się komunikaty...</p>
+  </section>
+</main>
+<footer>Zdarzenia myszy – HTML, CSS i JavaScript</footer>
+<script>
+  // Zadanie dodatkowe – funkcja aktualizująca dziennik zdarzeń.
+  function pokaz(tekst) {
+    document.getElementById("wynik").textContent = tekst;
+  }
+
+  function zadanie1() {
+    const element = document.getElementById("klik");
+    element.textContent = "Przycisk został kliknięty!";
+    element.style.backgroundColor = "lightgreen";
+    element.style.color = "darkgreen";
+    pokaz("Wykonano zadanie 1: onclick");
+  }
+
+  function zadanie2() {
+    const element = document.getElementById("podwojne");
+    element.textContent = "Podwójne kliknięcie!";
+    element.style.backgroundColor = "yellow";
+    element.style.border = "3px solid orange";
+    pokaz("Wykonano zadanie 2: ondblclick");
+  }
+
+  function zadanie3() {
+    const element = document.getElementById("najazd");
+    element.style.backgroundColor = "lightcoral";
+    element.textContent = "Kursor znajduje się nad elementem!";
+    element.style.fontSize = "20px";
+    pokaz("Wykonano zadanie 3: onmouseover");
+  }
+
+  function zadanie4() {
+    const element = document.getElementById("wyjscie");
+    element.style.backgroundColor = "lightgray";
+    element.textContent = "Kursor opuścił element";
+    element.style.color = "red";
+    pokaz("Wykonano zadanie 4: onmouseout");
+  }
+
+  function zadanie5() {
+    const element = document.getElementById("nacisnij");
+    element.style.backgroundColor = "red";
+    element.style.color = "white";
+    element.textContent = "Przycisk naciśnięty!";
+    pokaz("Wykonano zadanie 5: onmousedown");
+  }
+
+  function zadanie6() {
+    const element = document.getElementById("zwolnij");
+    element.style.backgroundColor = "lightgreen";
+    element.textContent = "Przycisk zwolniony!";
+    element.style.border = "3px solid green";
+    pokaz("Wykonano zadanie 6: onmouseup");
+  }
+
+  function zadanie7() {
+    const element = document.getElementById("wejscie");
+    element.style.backgroundColor = "gold";
+    element.textContent = "Witaj w obszarze!";
+    element.style.borderRadius = "25px";
+    pokaz("Wykonano zadanie 7: onmouseenter");
+  }
+
+  function zadanie8() {
+    const element = document.getElementById("opuszczenie");
+    element.style.backgroundColor = "pink";
+    document.getElementById("tekst-opuszczenie").textContent = "Do zobaczenia!";
+    document.getElementById("informacja").style.display = "none";
+    pokaz("Wykonano zadanie 8: onmouseleave");
+  }
+
+  function zadanie9(event) {
+    const tekst = "X: " + event.clientX + ", Y: " + event.clientY;
+    document.getElementById("koordynaty").textContent = tekst;
+    pokaz("Pozycja kursora: " + tekst);
+  }
+
+  function zadanie10(event) {
+    event.preventDefault();
+    const element = document.getElementById("prawe");
+    element.textContent = "Kliknięto prawym przyciskiem myszy!";
+    element.style.backgroundColor = "orange";
+    pokaz("Wykonano zadanie 10: oncontextmenu");
+  }
+
+  function zadanie11(event) {
+    const element = document.getElementById("kolko");
+    if (event.deltaY > 0) {
+      element.style.backgroundColor = "lightcoral";
+      element.textContent = "Przewijanie w dół";
+      pokaz("Przewijanie w dół");
+    } else if (event.deltaY < 0) {
+      element.style.backgroundColor = "lightgreen";
+      element.textContent = "Przewijanie w górę";
+      pokaz("Przewijanie w górę");
+    }
+  }
+
+  function zadanie12(event) {
+    if (event.button === 1) {
+      const element = document.getElementById("srodkowy");
+      element.style.backgroundColor = "violet";
+      element.textContent = "Środkowy przycisk!";
+      pokaz("Wykryto dodatkowy przycisk myszy");
+    }
+  }
+</script>
+</body>
+</html>
